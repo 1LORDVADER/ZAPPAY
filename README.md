@@ -136,4 +136,4 @@ This project is proprietary and confidential. Unauthorized copying, distribution
 
 ## Contact
 
-For questions or support, please contact [support@zappay.example.com](mailto:support@zappay.example.com).
+For questions or support, please contact [ZAPPAY.CO@gmail.com].
