@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1765689340858,
+      "tag": "0000_condemned_cargill",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1766333130942,
+      "tag": "0001_nice_anthem",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1766445201134,
+      "tag": "0002_dark_korg",
+      "breakpoints": true
+    }
+  ]
+}

@@ -61,3 +61,194 @@
 - [ ] Add consumer benefits section (medical precision, exact THC levels)
 - [ ] Emphasize interstate transportation revenue opportunities
 
+
+
+## MVP Development (Full-Stack Platform) 🚀
+
+### Phase 1: Database Schema & Core Models
+- [ ] Create user table with role-based access (farmer, consumer, dispensary, transporter, admin)
+- [ ] Create product listings table (strain, THC%, CBD%, price, quantity, farmer_id, photos)
+- [ ] Create orders table (order_id, consumer_id, farmer_id, status, total, created_at)
+- [ ] Create order_items table (order_id, product_id, quantity, price)
+- [ ] Create farmer_profiles table (business_name, license_number, location, bio, verified)
+- [ ] Create consumer_profiles table (delivery_address, preferences)
+- [ ] Create transactions table (order_id, amount, status, stripe_payment_id)
+- [ ] Create reviews table (product_id, consumer_id, rating, comment)
+- [ ] Run database migrations with `pnpm db:push`
+
+### Phase 2: Authentication & User Management
+- [ ] Implement Manus OAuth authentication
+- [ ] Create user registration flow with role selection
+- [ ] Create user profile pages
+- [ ] Implement role-based access control (RBAC)
+- [ ] Create admin dashboard for user management
+
+### Phase 3: Farmer Features
+- [ ] Create farmer dashboard layout
+- [ ] Build product listing creation form (name, strain, THC%, CBD%, price, quantity, photos)
+- [ ] Implement product photo upload to S3
+- [ ] Create product management interface (edit, delete, mark as sold out)
+- [ ] Build inventory management system
+- [ ] Create farmer analytics dashboard (sales, revenue, popular products)
+- [ ] Implement farmer profile editing
+- [ ] Create order management for farmers (view orders, update status)
+
+### Phase 4: Consumer Features
+- [ ] Create consumer homepage with featured products
+- [ ] Build precision search interface (search by strain, THC%, CBD%, price range)
+- [ ] Implement product listing grid with filters
+- [ ] Create product detail pages
+- [ ] Build shopping cart functionality
+- [ ] Implement cart persistence (save to database)
+- [ ] Create checkout flow
+- [ ] Integrate Stripe payment processing
+- [ ] Build order confirmation page
+- [ ] Create consumer order history page
+- [ ] Implement order tracking
+- [ ] Build consumer profile/settings page
+- [ ] Create product review system
+
+### Phase 5: Pre-Order/Crowdfunding System
+- [ ] Create pre-order product type (future harvest)
+- [ ] Build crowdfunding campaign creation for farmers
+- [ ] Implement campaign progress tracking (funding goal, current amount)
+- [ ] Create pre-order checkout flow (pay upfront for future delivery)
+- [ ] Build campaign discovery page for consumers
+- [ ] Implement campaign success/failure logic
+- [ ] Create refund system for failed campaigns
+
+### Phase 6: Search & Discovery
+- [ ] Implement basic search functionality (product name, strain)
+- [ ] Add advanced filters (THC%, CBD%, price, location, farmer rating)
+- [ ] Create category browsing (flower, edibles, concentrates)
+- [ ] Build recommendation engine (based on purchase history)
+- [ ] Implement "similar products" feature
+- [ ] Create trending products section
+
+### Phase 7: Admin Panel
+- [ ] Create admin dashboard with key metrics (GMV, users, orders)
+- [ ] Build user management interface (view, edit, ban users)
+- [ ] Create product moderation system (approve/reject listings)
+- [ ] Implement farmer verification system (license verification)
+- [ ] Build transaction monitoring dashboard
+- [ ] Create compliance reporting tools
+- [ ] Implement fraud detection alerts
+
+### Phase 8: Notifications & Communication
+- [ ] Set up email notifications (order confirmation, shipping updates)
+- [ ] Implement SMS notifications for order status
+- [ ] Create in-app notification system
+- [ ] Build messaging system (consumer ↔ farmer)
+- [ ] Set up admin notification system (new orders, flagged content)
+
+### Phase 9: Payment Processing
+- [ ] Integrate Stripe Connect for marketplace payments
+- [ ] Implement payment splitting (farmer 94.8%, platform 5.2%)
+- [ ] Create payout system for farmers
+- [ ] Build transaction history for all users
+- [ ] Implement refund processing
+- [ ] Add tax calculation (state/local taxes)
+
+### Phase 10: Compliance & Legal
+- [ ] Create age verification system (21+)
+- [ ] Implement state-by-state compliance rules
+- [ ] Build license verification for farmers
+- [ ] Create terms of service acceptance flow
+- [ ] Implement data privacy controls (GDPR/CCPA)
+- [ ] Add audit logging for all transactions
+
+### Phase 11: Testing & Quality Assurance
+- [ ] Write unit tests for critical tRPC procedures
+- [ ] Test authentication flows
+- [ ] Test payment processing (Stripe test mode)
+- [ ] Test order creation and fulfillment workflow
+- [ ] Test role-based access control
+- [ ] Test search and filtering
+- [ ] Test mobile responsiveness
+- [ ] Perform security audit
+
+### Phase 12: Polish & Launch Prep
+- [ ] Optimize page load times
+- [ ] Add loading states for all async operations
+- [ ] Implement error handling and user-friendly error messages
+- [ ] Create onboarding tutorial for farmers
+- [ ] Create onboarding tutorial for consumers
+- [ ] Add empty states for all pages
+- [ ] Implement SEO optimization (meta tags, sitemap)
+- [ ] Create privacy policy page
+- [ ] Create terms of service page
+- [ ] Create FAQ page
+- [ ] Create about page
+- [ ] Create contact page
+
+### Phase 13: Deployment
+- [ ] Set up production database
+- [ ] Configure production environment variables
+- [ ] Set up Stripe production account
+- [ ] Configure S3 for production
+- [ ] Deploy to production
+- [ ] Set up monitoring and error tracking
+- [ ] Create backup system
+- [ ] Set up SSL certificates
+- [ ] Configure custom domain
+
+**Target**: Complete MVP in 7-10 days, ready for beta launch with real transactions
+
+
+## Completed in Current Session ✅
+
+- [x] Create user table with role-based access (farmer, consumer, dispensary, transporter, admin)
+- [x] Create product listings table (strain, THC%, CBD%, price, quantity, farmer_id, photos)
+- [x] Create orders table (order_id, consumer_id, farmer_id, status, total, created_at)
+- [x] Create order_items table (order_id, product_id, quantity, price)
+- [x] Create farmer_profiles table (business_name, license_number, location, bio, verified)
+- [x] Create consumer_profiles table (delivery_address, preferences)
+- [x] Create transactions table (order_id, amount, status, stripe_payment_id)
+- [x] Create reviews table (product_id, consumer_id, rating, comment)
+- [x] Create cartItems table for shopping cart persistence
+- [x] Run database migrations with `pnpm db:push`
+
+- [x] Create tRPC procedures for product management (list, create, update, delete)
+- [x] Create tRPC procedures for shopping cart (add, update, clear)
+- [x] Create tRPC procedures for orders (create, list, update status)
+- [x] Create tRPC procedures for user profiles (farmer, consumer)
+
+
+## New Requirements: Advertising & Subscription Revenue 💰
+
+### Farmer Subscription Tiers
+- [ ] Add subscription tier to farmer profiles (free, premium, enterprise)
+- [ ] Create subscription pricing page
+- [ ] Build subscription management in farmer dashboard
+- [ ] Add featured/sponsored product flags to database
+- [ ] Implement premium farmer badge/verification
+
+### Advertising Features
+- [ ] Create featured product slots on homepage (hero, sidebar, grid)
+- [ ] Build ad management dashboard for farmers
+- [ ] Add analytics for ad impressions and clicks
+- [ ] Create sponsored product carousel
+- [ ] Implement "Promoted" badges on products
+
+### Farmer Onboarding & Management
+- [ ] Create farmer signup/onboarding flow
+- [ ] Build farmer verification process (license upload)
+- [ ] Add farmer dashboard with product management
+- [ ] Create farmer analytics (views, sales, revenue)
+- [ ] Build bulk product upload (CSV import)
+
+### Admin Features for Managing 76+ Farmers
+- [ ] Admin panel to approve/reject farmers
+- [ ] Farmer subscription management (upgrade/downgrade)
+- [ ] Ad placement management
+- [ ] Revenue analytics dashboard (commission + subscriptions + ads)
+- [ ] Farmer communication system (email/notifications)
+
+- [x] Create product detail page with add to cart functionality
+- [x] Create shopping cart page with quantity management
+- [x] Add routes for /product/:id and /cart
+
+- [x] Create checkout page with Stripe payment integration
+- [x] Add payment router to server for Stripe checkout sessions
+- [x] Install Stripe package
+- [x] Add all routes to App.tsx (product detail, cart, farmer dashboard, checkout)
