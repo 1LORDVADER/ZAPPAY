@@ -252,3 +252,11 @@
 - [x] Add payment router to server for Stripe checkout sessions
 - [x] Install Stripe package
 - [x] Add all routes to App.tsx (product detail, cart, farmer dashboard, checkout)
+
+
+## Product Photo Generation (New Request)
+- [ ] Generate ultra high-quality photos for all 37+ cannabis products
+- [ ] Upload generated images to S3 storage
+- [ ] Update database with photo URLs for each product
+- [ ] Update frontend to display real product photos
+- [ ] Test product grid and detail pages with new photos

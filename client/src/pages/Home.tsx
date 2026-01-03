@@ -9,6 +9,8 @@ import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut } from "lucide-r
 import { useState } from "react";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
+import { motion } from "framer-motion";
+import { APP_LOGO, APP_TITLE } from "@/const";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -35,289 +37,338 @@ export default function Home() {
 
   const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100
+      }
+    }
+  };
+
+  const logoVariants = {
+    initial: { scale: 1 },
+    hover: { 
+      scale: 1.05,
+      transition: { type: "spring" as const, stiffness: 400, damping: 10 }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+      <motion.header 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring" as const, stiffness: 100 }}
+        className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm"
+      >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
-                <img 
-                  src="/zappay-logo.jpeg" 
-                  alt="ZAPPAY Logo" 
+                <motion.img 
+                  src={APP_LOGO}
+                  alt={`${APP_TITLE} Logo`}
                   className="h-12 w-auto object-contain"
+                  variants={logoVariants}
+                  initial="initial"
+                  whileHover="hover"
                 />
               </a>
             </Link>
-            
+
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/">
-                <a className="text-slate-700 hover:text-blue-900 font-medium transition-colors">
-                  Browse
-                </a>
-              </Link>
-              {isAuthenticated && user?.role === 'farmer' && (
-                <Link href="/farmer/dashboard">
-                  <a className="text-slate-700 hover:text-blue-900 font-medium transition-colors">
-                    Sell Products
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/">
+                  <a className="text-slate-700 hover:text-blue-600 font-medium transition-colors">
+                    Browse
                   </a>
                 </Link>
-              )}
-              {isAuthenticated && (
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/orders">
-                  <a className="text-slate-700 hover:text-blue-900 font-medium transition-colors">
+                  <a className="text-slate-700 hover:text-blue-600 font-medium transition-colors">
                     My Orders
                   </a>
                 </Link>
-              )}
-              
-              <Link href="/cart">
-                <a className="relative">
-                  <Button variant="outline" size="sm">
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    Cart
-                    {cartItemCount > 0 && (
-                      <Badge className="ml-2 bg-red-600 text-white">
-                        {cartItemCount}
-                      </Badge>
-                    )}
-                  </Button>
-                </a>
-              </Link>
-              
-              {isAuthenticated ? (
-                <div className="flex items-center gap-3">
-                  <span className="text-sm text-slate-600">
-                    {user?.name || user?.email}
-                  </span>
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    onClick={() => logout()}
-                  >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Logout
-                  </Button>
-                </div>
-              ) : (
-                <Button 
-                  onClick={() => window.location.href = getLoginUrl()}
-                  className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white"
-                >
-                  <User className="h-4 w-4 mr-2" />
-                  Login
-                </Button>
-              )}
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/cart">
+                  <a className="relative">
+                    <Button variant="outline" size="sm" className="gap-2">
+                      <ShoppingCart className="h-4 w-4" />
+                      Cart
+                      {cartItemCount > 0 && (
+                        <motion.span 
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                        >
+                          {cartItemCount}
+                        </motion.span>
+                      )}
+                    </Button>
+                  </a>
+                </Link>
+              </motion.div>
             </nav>
+
+            <div className="flex items-center gap-3">
+              {isAuthenticated ? (
+                <>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button variant="ghost" size="sm" className="gap-2">
+                      <User className="h-4 w-4" />
+                      <span className="hidden sm:inline">{user?.email}</span>
+                    </Button>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button variant="outline" size="sm" onClick={logout} className="gap-2">
+                      <LogOut className="h-4 w-4" />
+                      <span className="hidden sm:inline">Logout</span>
+                    </Button>
+                  </motion.div>
+                </>
+              ) : (
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild size="sm">
+                    <a href={getLoginUrl()}>Login</a>
+                  </Button>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
-      {/* Hero Search Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
-              <Zap className="h-4 w-4 text-red-400" />
-              <span className="text-sm font-medium">World's First Precision Cannabis Marketplace</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Find Your Perfect Cannabis
+      {/* Hero Section */}
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="py-12 px-4"
+      >
+        <div className="container mx-auto">
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-center mb-8"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              Premium Cannabis Marketplace
             </h1>
-            
-            <p className="text-xl text-blue-100 mb-8">
-              Search by strain, THC%, or price. Direct from licensed farmers.
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Direct from verified farmers. 5.2% fees. Sub-1s payments.
             </p>
-            
-            {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+          >
+            <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-green-100 rounded-lg">
+                      <Leaf className="h-6 w-6 text-green-600" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-slate-900">{products.length}+</p>
+                      <p className="text-sm text-slate-600">Premium Products</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-blue-100 rounded-lg">
+                      <Zap className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-slate-900">5.2%</p>
+                      <p className="text-sm text-slate-600">Platform Fee</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-purple-100 rounded-lg">
+                      <Package className="h-6 w-6 text-purple-600" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-slate-900">24/7</p>
+                      <p className="text-sm text-slate-600">Always Open</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          {/* Search Bar */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="max-w-2xl mx-auto mb-8"
+          >
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
               <Input
                 type="text"
-                placeholder="Search by strain name, THC%, or product type..."
+                placeholder="Search by strain, THC%, or price..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-4 py-6 text-lg bg-white text-slate-900 border-0 shadow-xl"
+                className="pl-10 py-6 text-lg"
               />
             </div>
-            
-            <div className="grid grid-cols-3 gap-8 mt-12 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-400 mb-2">{products.length}+</div>
-                <div className="text-sm text-blue-200">Products Available</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-400 mb-2">5.2%</div>
-                <div className="text-sm text-blue-200">Commission Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-400 mb-2">24/7</div>
-                <div className="text-sm text-blue-200">Marketplace Open</div>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Product Grid with Tabs */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
+      {/* Products Section */}
+      <section className="py-8 px-4">
+        <div className="container mx-auto">
           <Tabs defaultValue="all" className="w-full" onValueChange={setActiveCategory}>
-            <TabsList className="grid w-full grid-cols-6 max-w-3xl mx-auto mb-8">
-              <TabsTrigger value="all">All Products</TabsTrigger>
-              <TabsTrigger value="flower">
-                <Leaf className="h-4 w-4 mr-2" />
-                Flower
-              </TabsTrigger>
-              <TabsTrigger value="edibles">Edibles</TabsTrigger>
-              <TabsTrigger value="concentrates">Concentrates</TabsTrigger>
-              <TabsTrigger value="pre-rolls">Pre-Rolls</TabsTrigger>
-              <TabsTrigger value="vapes">Vapes</TabsTrigger>
-            </TabsList>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 mb-8">
+                <TabsTrigger value="all">All Products</TabsTrigger>
+                <TabsTrigger value="flower">Flower</TabsTrigger>
+                <TabsTrigger value="edibles">Edibles</TabsTrigger>
+                <TabsTrigger value="concentrates">Concentrates</TabsTrigger>
+                <TabsTrigger value="pre-rolls">Pre-Rolls</TabsTrigger>
+                <TabsTrigger value="vapes">Vapes</TabsTrigger>
+              </TabsList>
+            </motion.div>
 
-            <TabsContent value={activeCategory} className="mt-8">
+            <TabsContent value={activeCategory} className="mt-0">
               {isLoading ? (
                 <div className="text-center py-12">
                   <p className="text-slate-600">Loading products...</p>
                 </div>
               ) : filteredProducts.length === 0 ? (
                 <div className="text-center py-12">
-                  <Package className="h-16 w-16 text-slate-300 mx-auto mb-4" />
-                  <p className="text-slate-600 text-lg">No products found</p>
-                  <p className="text-slate-500 text-sm mt-2">
-                    {searchQuery ? "Try a different search term" : "Check back soon for new listings"}
-                  </p>
+                  <p className="text-slate-600">No products found</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredProducts.map((product) => (
-                    <Card key={product.id} className="hover:shadow-xl transition-shadow border-2 border-slate-200 hover:border-blue-500">
-                      <CardHeader className="pb-3">
-                        <div className="flex items-start justify-between mb-2">
-                          <Badge className="bg-green-100 text-green-800 hover:bg-green-200">
-                            {product.category}
-                          </Badge>
-                          {product.isPreOrder === 'yes' && (
-                            <Badge className="bg-orange-100 text-orange-800">
-                              Pre-Order
-                            </Badge>
-                          )}
-                        </div>
-                        <CardTitle className="text-lg">{product.name}</CardTitle>
-                        <CardDescription className="text-sm">
-                          {product.strain}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between text-sm">
-                            <span className="text-slate-600">THC:</span>
-                            <span className="font-semibold text-green-600">{product.thcPercentage || 'N/A'}</span>
-                          </div>
-                          <div className="flex items-center justify-between text-sm">
-                            <span className="text-slate-600">CBD:</span>
-                            <span className="font-semibold text-blue-600">{product.cbdPercentage || 'N/A'}</span>
-                          </div>
-                          <div className="flex items-center justify-between text-sm">
-                            <span className="text-slate-600">Quantity:</span>
-                            <span className="font-semibold">{product.quantity} {product.unit}</span>
-                          </div>
-                          <div className="border-t pt-3 mt-3">
-                            <div className="flex items-center justify-between mb-3">
-                              <span className="text-2xl font-bold text-slate-900">
-                                ${(product.price / 100).toFixed(2)}
-                              </span>
-                              <span className="text-sm text-slate-500">per {product.unit}</span>
+                <motion.div 
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                >
+                  {filteredProducts.map((product, index) => (
+                    <motion.div
+                      key={product.id}
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.03, y: -5 }}
+                      transition={{ type: "spring" as const, stiffness: 300 }}
+                    >
+                      <Card className="overflow-hidden h-full hover:shadow-xl transition-all">
+                        <CardHeader className="p-0">
+                          <div className="relative h-48 bg-gradient-to-br from-green-100 to-blue-100">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Leaf className="h-20 w-20 text-green-600 opacity-20" />
                             </div>
-                            <Link href={`/product/${product.id}`}>
-                              <a>
-                                <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white">
-                                  <ShoppingCart className="h-4 w-4 mr-2" />
-                                  View Details
-                                </Button>
-                              </a>
-                            </Link>
+                            <div className="absolute top-3 left-3 flex gap-2">
+                              <Badge variant="secondary" className="capitalize bg-white/90">
+                                {product.category}
+                              </Badge>
+                              {product.isPreOrder && (
+                                <Badge variant="outline" className="bg-yellow-50">
+                                  Pre-Order
+                                </Badge>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardHeader>
+                        <CardContent className="p-4">
+                          <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+                          <CardDescription className="mb-3">
+                            <span className="font-medium text-slate-700">{product.strain}</span>
+                          </CardDescription>
+                          
+                          <div className="flex items-center gap-3 mb-3 text-sm">
+                            {product.thcPercentage && (
+                              <div>
+                                <span className="text-slate-500">THC:</span>
+                                <span className="ml-1 font-semibold text-green-600">
+                                  {product.thcPercentage}
+                                </span>
+                              </div>
+                            )}
+                            {product.cbdPercentage && (
+                              <div>
+                                <span className="text-slate-500">CBD:</span>
+                                <span className="ml-1 font-semibold text-blue-600">
+                                  {product.cbdPercentage}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <span className="text-2xl font-bold text-slate-900">
+                              ${product.price}
+                            </span>
+                            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                              <Link href={`/product/${product.id}`}>
+                                <Button size="sm">View Details</Button>
+                              </Link>
+                            </motion.div>
+                          </div>
+
+                          {product.quantity < 10 && product.quantity > 0 && (
+                            <p className="text-xs text-orange-600 mt-2">
+                              Only {product.quantity} left in stock!
+                            </p>
+                          )}
+                          {product.quantity === 0 && (
+                            <p className="text-xs text-red-600 mt-2">Out of stock</p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               )}
             </TabsContent>
           </Tabs>
         </div>
       </section>
-
-      {/* CTA Section for Farmers */}
-      {!isAuthenticated || user?.role !== 'farmer' ? (
-        <section className="py-16 bg-gradient-to-r from-green-600 to-green-700 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Are you a licensed cannabis farmer?
-            </h2>
-            <p className="text-xl mb-8 text-green-100">
-              List your products and reach thousands of consumers. Just 5.2% commission.
-            </p>
-            <Button 
-              size="lg"
-              onClick={() => window.location.href = getLoginUrl()}
-              className="bg-white text-green-700 hover:bg-green-50 text-lg px-8 py-6"
-            >
-              <Leaf className="h-5 w-5 mr-2" />
-              Start Selling Today
-            </Button>
-          </div>
-        </section>
-      ) : null}
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <img 
-                src="/zappay-logo.jpeg" 
-                alt="ZAPPAY Logo" 
-                className="h-10 w-auto object-contain mb-4"
-              />
-              <p className="text-slate-400 text-sm">
-                America's premier cannabis marketplace connecting farmers with consumers.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Shop</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">All Products</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">Flower</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">Edibles</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">Concentrates</a>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Sell</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">For Farmers</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">For Dispensaries</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">Transportation</a>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Legal</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">Terms of Service</a>
-                <a href="#" className="block text-slate-400 hover:text-white transition-colors text-sm">Compliance</a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400 text-sm">
-            © 2025 ZAPPAY. All rights reserved. Licensed cannabis marketplace platform.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
