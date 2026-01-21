@@ -1,0 +1,122 @@
+{
+  "blue-dream": {
+    "name": "Blue Dream",
+    "origin": "Born in the sun-soaked hills of Santa Cruz, California, Blue Dream emerged in the early 2000s as a legendary cross between Blueberry indica and Haze sativa. This West Coast icon was crafted by breeders seeking the perfect balance between relaxation and euphoria.",
+    "lore": "Blue Dream quickly became the most sought-after strain in California dispensaries, earning its reputation as the 'gateway to cannabis connoisseurship.' Patients and recreational users alike discovered its remarkable ability to ease pain and anxiety while maintaining mental clarity. Its sweet berry aroma became so iconic that it inspired countless breeding projects attempting to capture its magic.",
+    "effects": "Provides gentle full-body relaxation paired with cerebral invigoration. Users report enhanced creativity, uplifted mood, and a dreamy euphoria that makes stress melt away. Perfect for daytime use when you need to stay productive while finding your zen.",
+    "flavor": "Sweet blueberry and vanilla notes with subtle herbal undertones. The smoke is smooth and pleasant, leaving a lingering berry sweetness on the palate.",
+    "bestFor": "Creative work, social gatherings, managing chronic pain, reducing anxiety, daytime relaxation"
+  },
+  "og-kush": {
+    "name": "OG Kush",
+    "origin": "The legendary OG Kush emerged from the underground cannabis scene of Southern California in the early 1990s. While its exact genetics remain shrouded in mystery, most experts believe it descends from Chemdawg crossed with a Hindu Kush landrace from Amsterdam. The 'OG' has sparked endless debate—some say it means 'Original Gangster,' others claim 'Ocean Grown,' referring to its coastal California roots.",
+    "lore": "OG Kush became the foundation of West Coast cannabis culture, spawning countless legendary phenotypes and crosses. Hip-hop artists and celebrities made it their strain of choice, cementing its status as the ultimate luxury cannabis experience. Its genetics have influenced more modern strains than any other cultivar, making it the grandfather of contemporary cannabis.",
+    "effects": "Delivers a powerful euphoric rush followed by deep physical relaxation. Users experience stress melting away, replaced by a sense of contentment and mental calm. The body high is profound without being overwhelming, making it ideal for evening unwinding.",
+    "flavor": "Complex profile of earthy pine, woody notes, and subtle lemon zest. The smoke has a distinctive fuel-like undertone that connoisseurs recognize instantly.",
+    "bestFor": "Stress relief, insomnia, chronic pain, evening relaxation, meditation"
+  },
+  "sour-diesel": {
+    "name": "Sour Diesel",
+    "origin": "Sour Diesel exploded onto the East Coast scene in the early 1990s, allegedly created by accident when Chemdog 91 was crossed with Super Skunk. The strain quickly became synonymous with New York City cannabis culture, spreading through underground networks before going nationwide.",
+    "lore": "Known simply as 'Sour D' or 'East Coast Sour Diesel,' this strain became the fuel of choice for artists, musicians, and creative minds across America. Its energizing effects and distinctive aroma made it instantly recognizable, and its reputation for inspiring creativity turned it into a cultural phenomenon. Many credit Sour Diesel with revolutionizing the perception of sativa strains.",
+    "effects": "Provides an immediate cerebral rush that energizes the mind and body. Users report enhanced focus, bursts of creativity, and an uplifted mood that can last for hours. The effects are invigorating without causing anxiety, making it perfect for tackling projects or social activities.",
+    "flavor": "Pungent diesel fuel aroma with sharp citrus and earthy notes. The taste is intense and memorable, with a sour lemon finish that lingers pleasantly.",
+    "bestFor": "Creative projects, focus and productivity, depression, fatigue, daytime energy boost"
+  },
+  "granddaddy-purple": {
+    "name": "Granddaddy Purple",
+    "origin": "Created in 2003 by Ken Estes in the San Francisco Bay Area, Granddaddy Purple (GDP) is a cross between Purple Urkle and Big Bud. Estes, a wheelchair-bound breeder, developed this strain specifically to address his own chronic pain and insomnia.",
+    "lore": "Granddaddy Purple became California's most famous purple strain, winning numerous Cannabis Cup awards and inspiring a generation of purple cannabis cultivars. Its stunning appearance—deep purple buds covered in white trichomes—made it a favorite for both medical patients and cannabis photographers. GDP's therapeutic properties earned it legendary status in the medical cannabis community.",
+    "effects": "Induces deep physical relaxation and mental tranquility. Users experience a gentle euphoria that gradually transitions into full-body sedation. Perfect for evening use, GDP is renowned for its ability to ease pain and promote restful sleep.",
+    "flavor": "Sweet grape and berry flavors dominate, with subtle hints of earth and spice. The smoke is smooth and pleasant, leaving a fruity sweetness that makes it highly enjoyable.",
+    "bestFor": "Insomnia, chronic pain, muscle spasms, stress relief, evening relaxation"
+  },
+  "girl-scout-cookies": {
+    "name": "Girl Scout Cookies",
+    "origin": "Girl Scout Cookies (GSC) emerged from the Bay Area cannabis scene around 2010, created by crossing OG Kush with Durban Poison. The strain was developed by the Cookie Fam collective, who would go on to create some of the most influential genetics in modern cannabis.",
+    "lore": "GSC took the cannabis world by storm, becoming one of the most sought-after and widely imitated strains of the 2010s. Its potency, unique flavor profile, and balanced effects made it an instant classic. The strain spawned countless phenotypes and crosses, including the famous Thin Mint and Platinum varieties. Celebrities, athletes, and cannabis connoisseurs made GSC their go-to strain, cementing its legendary status.",
+    "effects": "Delivers a powerful euphoric high that uplifts mood while providing full-body relaxation. Users report feeling happy, creative, and deeply relaxed without heavy sedation. The effects are long-lasting and well-balanced, making it suitable for various activities.",
+    "flavor": "Sweet and earthy with prominent notes of mint, chocolate, and subtle spice. The flavor is complex and memorable, with a smooth smoke that's easy on the throat.",
+    "bestFor": "Chronic pain, nausea, appetite loss, stress, depression, creative activities"
+  },
+  "gelato-33": {
+    "name": "Gelato #33",
+    "origin": "Gelato #33, also known as 'Larry Bird' after the legendary Boston Celtics player's jersey number, was created by Cookie Fam and Sherbinskis in the San Francisco Bay Area. This phenotype of Gelato (a cross between Sunset Sherbet and Thin Mint GSC) became the most celebrated of all Gelato varieties.",
+    "lore": "Gelato #33 revolutionized modern cannabis breeding with its dessert-like flavor profile and potent, balanced effects. Sherbinskis' meticulous cultivation and marketing turned Gelato into a luxury brand, with #33 commanding premium prices in dispensaries worldwide. The strain became a status symbol in cannabis culture, featured in countless rap lyrics and social media posts.",
+    "effects": "Provides a powerful yet balanced high that combines cerebral euphoria with physical relaxation. Users experience enhanced mood, creativity, and a sense of calm contentment. The effects are potent but manageable, making it suitable for experienced consumers.",
+    "flavor": "Creamy, sweet dessert flavors with notes of berry, citrus, and vanilla. The smoke is exceptionally smooth, with a lingering sweetness that lives up to its gelato namesake.",
+    "bestFor": "Stress relief, mood enhancement, chronic pain, creative pursuits, social situations"
+  },
+  "wedding-cake": {
+    "name": "Wedding Cake",
+    "origin": "Wedding Cake, also known as Pink Cookies, emerged from Southern California's Seed Junky Genetics around 2013. Created by crossing Cherry Pie with Girl Scout Cookies, this strain was bred to deliver maximum potency and a unique flavor profile.",
+    "lore": "Wedding Cake quickly became one of the most popular strains in California dispensaries, known for its frosted appearance that resembles a wedding cake covered in powdered sugar. The strain's reputation for powerful effects and exceptional bag appeal made it a favorite among connoisseurs. Its genetics have been used to create numerous award-winning crosses.",
+    "effects": "Delivers a strong euphoric high that begins in the head and spreads throughout the body. Users report feeling relaxed, happy, and slightly sedated. The effects are potent and long-lasting, best suited for evening use or experienced consumers.",
+    "flavor": "Sweet vanilla and cake-like flavors with earthy undertones and a hint of pepper. The smoke is smooth and rich, leaving a pleasant sweetness on the palate.",
+    "bestFor": "Insomnia, chronic pain, anxiety, appetite loss, evening relaxation"
+  },
+  "jack-herer": {
+    "name": "Jack Herer",
+    "origin": "Named after the legendary cannabis activist and author of 'The Emperor Wears No Clothes,' Jack Herer was created in the Netherlands in the mid-1990s by Sensi Seeds. The strain combines a Haze hybrid with Northern Lights #5 and Shiva Skunk, creating a tribute worthy of its namesake.",
+    "lore": "Jack Herer became one of the most awarded strains in cannabis history, winning numerous Cannabis Cup titles. The strain embodies Jack Herer's legacy of cannabis advocacy, providing clear-headed effects that allow users to remain functional and engaged. Medical patients and recreational users alike praise its balanced effects and reliable consistency.",
+    "effects": "Provides an uplifting cerebral high that enhances focus and creativity while maintaining mental clarity. Users report feeling energized, happy, and motivated. The effects are clean and functional, making it ideal for daytime use.",
+    "flavor": "Spicy pine and earthy notes with hints of citrus and pepper. The smoke is smooth and aromatic, with a distinctive herbal character.",
+    "bestFor": "Depression, fatigue, stress, focus and creativity, daytime use"
+  },
+  "zkittlez": {
+    "name": "Zkittlez",
+    "origin": "Zkittlez was bred by crossing Grape Ape with Grapefruit, creating a strain that won 1st Place at the 2016 Emerald Cup and Best Indica at the 2015 Cannabis Cup in San Francisco. Developed in California, this strain was designed to deliver exceptional flavor and relaxing effects.",
+    "lore": "Zkittlez took the cannabis world by storm with its candy-like flavor profile that truly lives up to its name. The strain became a social media sensation, with its colorful appearance and fruity aroma making it instantly recognizable. Zkittlez genetics have been used to create numerous popular crosses, spreading its legendary flavor profile throughout the cannabis gene pool.",
+    "effects": "Induces a calm, focused state of relaxation without heavy sedation. Users report feeling uplifted, stress-free, and gently euphoric. The effects are smooth and manageable, making it suitable for various times of day.",
+    "flavor": "Bursting with fruity candy flavors—grape, berry, and tropical fruit notes dominate. The taste is sweet and smooth, reminiscent of the candy that inspired its name.",
+    "bestFor": "Stress relief, mood enhancement, mild pain, creative activities, social situations"
+  },
+  "gorilla-glue-4": {
+    "name": "Gorilla Glue #4",
+    "origin": "Gorilla Glue #4 (now known as Original Glue due to trademark issues) was accidentally created in 2012 when Joesy Whales' Chem Sister plants hermaphrodited and pollinated his Sour Dubb. The resulting seeds produced several phenotypes, with #4 becoming the most celebrated.",
+    "lore": "GG4 became one of the most awarded and sought-after strains in cannabis history, winning multiple Cannabis Cup titles including the 2014 Michigan and Los Angeles High Times Cannabis Cups. The strain earned its name from its incredibly sticky resin production—so heavy that it can literally glue scissors together during trimming. Its extreme potency and unique terpene profile made it an instant legend.",
+    "effects": "Delivers an extremely powerful body high accompanied by cerebral euphoria. Users report feeling deeply relaxed, happy, and 'glued' to the couch. The effects are long-lasting and potent, best suited for experienced consumers and evening use.",
+    "flavor": "Earthy and sour with notes of chocolate, coffee, and diesel fuel. The smoke is thick and pungent, with a complex flavor that lingers.",
+    "bestFor": "Chronic pain, insomnia, stress, appetite loss, evening relaxation"
+  },
+  "purple-haze": {
+    "name": "Purple Haze",
+    "origin": "Purple Haze gained legendary status in the 1960s, though its exact origins remain debated. Most experts believe it's a cross between Purple Thai and Haze, developed to capture the psychedelic essence of the era. The strain became forever linked to Jimi Hendrix's iconic 1967 song of the same name.",
+    "lore": "Purple Haze embodies the spirit of the 1960s counterculture movement, representing freedom, creativity, and consciousness expansion. While many 'Purple Haze' varieties circulated over the decades, modern versions maintain the strain's reputation for delivering a dreamy, psychedelic-like experience. The strain remains a symbol of cannabis's cultural impact and its role in artistic expression.",
+    "effects": "Provides an uplifting, euphoric high with strong cerebral effects. Users report enhanced sensory perception, creativity, and a dreamy, almost psychedelic headspace. The effects are energizing and mentally stimulating.",
+    "flavor": "Sweet berry and grape flavors with earthy and spicy undertones. The smoke is smooth with a pleasant fruity aroma.",
+    "bestFor": "Creative pursuits, depression, fatigue, social activities, artistic expression"
+  },
+  "live-resin-vape": {
+    "name": "Live Resin Vape Cartridge",
+    "origin": "Live resin extraction revolutionized cannabis concentrates in the early 2010s when Colorado extractors discovered that flash-freezing fresh cannabis immediately after harvest preserved the plant's full terpene profile. This process captures the plant's essence at its peak, before any degradation occurs.",
+    "lore": "Live resin vapes represent the pinnacle of cannabis extraction technology, offering the most authentic representation of the plant's flavor and effects. The process requires expertise and specialized equipment, making true live resin products premium offerings. Connoisseurs prize live resin for its superior taste and full-spectrum effects that closely mirror the experience of smoking fresh flower.",
+    "effects": "Delivers potent, fast-acting effects that closely mirror the original strain's profile. The high terpene content provides enhanced entourage effects, resulting in a more complete and satisfying experience. Effects vary by strain but are typically more pronounced than standard distillate.",
+    "flavor": "Exceptionally flavorful with the authentic taste of fresh cannabis. Each strain's unique terpene profile shines through, providing a true-to-plant experience.",
+    "bestFor": "Discreet consumption, precise dosing, on-the-go use, flavor enthusiasts, medical patients"
+  },
+  "gummy-bears": {
+    "name": "Cannabis Gummy Bears",
+    "origin": "Cannabis-infused gummies emerged as a mainstream product in the early 2010s when Colorado and Washington legalized recreational cannabis. Manufacturers sought to create a discreet, precisely-dosed alternative to smoking that would appeal to both medical patients and recreational users.",
+    "lore": "Gummies revolutionized cannabis consumption by making it accessible to those who couldn't or wouldn't smoke. The familiar candy format removed intimidation factors and allowed for precise, consistent dosing. As legalization spread, gummies became the best-selling edible category, praised for their convenience, discretion, and reliability.",
+    "effects": "Provides longer-lasting effects compared to smoking or vaping, typically lasting 4-8 hours. The onset is gradual, usually beginning 30-90 minutes after consumption. Effects are full-body and deeply relaxing, making them ideal for extended relief.",
+    "flavor": "Sweet, fruity flavors that mask the cannabis taste. Available in various fruit flavors including strawberry, orange, lemon, and mixed fruit.",
+    "bestFor": "Long-lasting pain relief, insomnia, anxiety, discreet consumption, precise dosing"
+  },
+  "shatter": {
+    "name": "Cannabis Shatter",
+    "origin": "Shatter emerged in the late 2000s as extraction artists refined butane hash oil (BHO) techniques. The glass-like consistency is achieved through careful purging and temperature control during the extraction process, resulting in one of the purest forms of cannabis concentrate.",
+    "lore": "Shatter became the gold standard for cannabis concentrates in the early 2010s, prized for its purity, potency, and visual appeal. The transparent, amber appearance allowed consumers to judge quality at a glance, while its stable consistency made it easy to handle and dose. Dabbing culture grew around shatter, creating a new category of cannabis connoisseurs.",
+    "effects": "Delivers extremely potent, fast-acting effects due to high THC concentrations (typically 70-90%). The high is intense and immediate, providing powerful relief and euphoria. Best suited for experienced consumers with high tolerance.",
+    "flavor": "Clean, pure cannabis flavor that highlights the strain's terpene profile. The taste is smooth and potent, with minimal plant material flavor.",
+    "bestFor": "Severe pain, high tolerance users, dabbing enthusiasts, fast-acting relief"
+  },
+  "pre-rolls": {
+    "name": "Premium Pre-Rolled Joints",
+    "origin": "Pre-rolls have existed as long as cannabis has been smoked, but the modern premium pre-roll emerged with legalization. Licensed producers began offering machine-rolled or hand-crafted joints using top-shelf flower, eliminating the inconsistency and quality issues of traditional pre-rolls.",
+    "lore": "Premium pre-rolls transformed from a convenience product into a luxury experience, with brands competing to offer the finest flower, perfect rolling, and innovative packaging. The category expanded to include infused pre-rolls, strain-specific offerings, and artisan hand-rolled options. Pre-rolls became the perfect introduction to new strains and a convenient option for experienced consumers.",
+    "effects": "Effects depend on the strain used but typically provide the full flower experience without the need for grinding or rolling. Onset is quick, usually within minutes, with effects lasting 1-3 hours.",
+    "flavor": "Authentic flower taste that varies by strain. Premium pre-rolls showcase the strain's natural terpene profile without paper taste interference.",
+    "bestFor": "Convenience, trying new strains, social smoking, on-the-go use, beginners"
+  }
+}

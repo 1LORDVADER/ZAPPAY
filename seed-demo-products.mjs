@@ -1,7 +1,11 @@
 import { drizzle } from 'drizzle-orm/mysql2';
 import { products, farmerProfiles } from './drizzle/schema.js';
+import fs from 'fs';
 
 const db = drizzle(process.env.DATABASE_URL);
+
+// Load strain descriptions
+const strainDescriptions = JSON.parse(fs.readFileSync('./strain-descriptions.json', 'utf-8'));
 
 // Demo farmers from the provided list
 const demoFarmers = [
@@ -27,6 +31,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "A balanced hybrid with sweet berry aroma. Perfect for daytime use with uplifting effects.",
+    origin: strainDescriptions["blue-dream"].origin,
+    lore: strainDescriptions["blue-dream"].lore,
+    effects: strainDescriptions["blue-dream"].effects,
+    flavor: strainDescriptions["blue-dream"].flavor,
+    bestFor: strainDescriptions["blue-dream"].bestFor,
+    photos: "/strains/blue-dream.png",
     isFeatured: "yes",
     isSponsored: "yes",
   },
@@ -40,6 +50,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Classic strain with earthy, pine, and woody notes. Known for stress relief and relaxation.",
+    origin: strainDescriptions["og-kush"].origin,
+    lore: strainDescriptions["og-kush"].lore,
+    effects: strainDescriptions["og-kush"].effects,
+    flavor: strainDescriptions["og-kush"].flavor,
+    bestFor: strainDescriptions["og-kush"].bestFor,
+    photos: "/strains/og-kush.png",
     isFeatured: "yes",
   },
   {
@@ -52,6 +68,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Energizing sativa with diesel aroma. Great for creativity and focus.",
+    origin: strainDescriptions["sour-diesel"].origin,
+    lore: strainDescriptions["sour-diesel"].lore,
+    effects: strainDescriptions["sour-diesel"].effects,
+    flavor: strainDescriptions["sour-diesel"].flavor,
+    bestFor: strainDescriptions["sour-diesel"].bestFor,
+    photos: "/strains/sour-diesel.png",
   },
   {
     name: "Granddaddy Purple",
@@ -63,6 +85,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Deep purple buds with grape and berry flavors. Perfect for evening relaxation.",
+    origin: strainDescriptions["granddaddy-purple"].origin,
+    lore: strainDescriptions["granddaddy-purple"].lore,
+    effects: strainDescriptions["granddaddy-purple"].effects,
+    flavor: strainDescriptions["granddaddy-purple"].flavor,
+    bestFor: strainDescriptions["granddaddy-purple"].bestFor,
+    photos: "/strains/granddaddy-purple.png",
     isFeatured: "yes",
   },
   {
@@ -75,6 +103,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Sweet and earthy with minty notes. Euphoric and relaxing effects.",
+    origin: strainDescriptions["girl-scout-cookies"].origin,
+    lore: strainDescriptions["girl-scout-cookies"].lore,
+    effects: strainDescriptions["girl-scout-cookies"].effects,
+    flavor: strainDescriptions["girl-scout-cookies"].flavor,
+    bestFor: strainDescriptions["girl-scout-cookies"].bestFor,
+    photos: "/strains/girl-scout-cookies.png",
     isSponsored: "yes",
   },
   {
@@ -87,6 +121,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Dessert-like flavor profile with balanced effects. Popular for its smooth smoke.",
+    origin: strainDescriptions["gelato-33"].origin,
+    lore: strainDescriptions["gelato-33"].lore,
+    effects: strainDescriptions["gelato-33"].effects,
+    flavor: strainDescriptions["gelato-33"].flavor,
+    bestFor: strainDescriptions["gelato-33"].bestFor,
+    photos: "/strains/gelato-33.png",
   },
   {
     name: "Wedding Cake",
@@ -98,6 +138,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Sweet vanilla and earthy flavors. Relaxing with euphoric undertones.",
+    origin: strainDescriptions["wedding-cake"].origin,
+    lore: strainDescriptions["wedding-cake"].lore,
+    effects: strainDescriptions["wedding-cake"].effects,
+    flavor: strainDescriptions["wedding-cake"].flavor,
+    bestFor: strainDescriptions["wedding-cake"].bestFor,
+    photos: "/strains/wedding-cake.png",
   },
   {
     name: "Jack Herer",
@@ -109,6 +155,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Spicy pine scent with clear-headed effects. Named after the cannabis activist.",
+    origin: strainDescriptions["jack-herer"].origin,
+    lore: strainDescriptions["jack-herer"].lore,
+    effects: strainDescriptions["jack-herer"].effects,
+    flavor: strainDescriptions["jack-herer"].flavor,
+    bestFor: strainDescriptions["jack-herer"].bestFor,
+    photos: "/strains/jack-herer.png",
   },
   {
     name: "Zkittlez",
@@ -120,6 +172,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Fruity candy-like flavor. Calming and mood-lifting effects.",
+    origin: strainDescriptions["zkittlez"].origin,
+    lore: strainDescriptions["zkittlez"].lore,
+    effects: strainDescriptions["zkittlez"].effects,
+    flavor: strainDescriptions["zkittlez"].flavor,
+    bestFor: strainDescriptions["zkittlez"].bestFor,
+    photos: "/strains/zkittlez.png",
   },
   {
     name: "Gorilla Glue #4",
@@ -131,6 +189,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Extremely potent with earthy and sour notes. Heavy-hitting relaxation.",
+    origin: strainDescriptions["gorilla-glue-4"].origin,
+    lore: strainDescriptions["gorilla-glue-4"].lore,
+    effects: strainDescriptions["gorilla-glue-4"].effects,
+    flavor: strainDescriptions["gorilla-glue-4"].flavor,
+    bestFor: strainDescriptions["gorilla-glue-4"].bestFor,
+    photos: "/strains/gorilla-glue-4.png",
     isFeatured: "yes",
   },
   {
@@ -143,6 +207,12 @@ const demoProducts = [
     quantity: 1,
     unit: "gram",
     description: "Premium live resin vape cartridge. Full-spectrum terpenes preserved.",
+    origin: strainDescriptions["live-resin-vape"].origin,
+    lore: strainDescriptions["live-resin-vape"].lore,
+    effects: strainDescriptions["live-resin-vape"].effects,
+    flavor: strainDescriptions["live-resin-vape"].flavor,
+    bestFor: strainDescriptions["live-resin-vape"].bestFor,
+    photos: "/strains/vape-cartridge.png",
     isSponsored: "yes",
   },
   {
@@ -155,6 +225,12 @@ const demoProducts = [
     quantity: 10,
     unit: "pieces",
     description: "Delicious fruit-flavored gummies. 10mg THC per piece, 100mg total.",
+    origin: strainDescriptions["gummy-bears"].origin,
+    lore: strainDescriptions["gummy-bears"].lore,
+    effects: strainDescriptions["gummy-bears"].effects,
+    flavor: strainDescriptions["gummy-bears"].flavor,
+    bestFor: strainDescriptions["gummy-bears"].bestFor,
+    photos: "/strains/gummy-bears.png",
   },
   {
     name: "Shatter - Sour Diesel",
@@ -166,6 +242,12 @@ const demoProducts = [
     quantity: 1,
     unit: "gram",
     description: "Glass-like concentrate with high potency. Perfect for dabbing.",
+    origin: strainDescriptions["shatter"].origin,
+    lore: strainDescriptions["shatter"].lore,
+    effects: strainDescriptions["shatter"].effects,
+    flavor: strainDescriptions["shatter"].flavor,
+    bestFor: strainDescriptions["shatter"].bestFor,
+    photos: "/strains/shatter.png",
   },
   {
     name: "Pre-Roll Pack - OG Kush",
@@ -177,6 +259,12 @@ const demoProducts = [
     quantity: 5,
     unit: "pack",
     description: "5 premium pre-rolled joints. Convenient and ready to smoke.",
+    origin: strainDescriptions["pre-rolls"].origin,
+    lore: strainDescriptions["pre-rolls"].lore,
+    effects: strainDescriptions["pre-rolls"].effects,
+    flavor: strainDescriptions["pre-rolls"].flavor,
+    bestFor: strainDescriptions["pre-rolls"].bestFor,
+    photos: "/strains/pre-rolls.png",
   },
   {
     name: "Summer 2025 Harvest - Purple Haze",
@@ -188,6 +276,12 @@ const demoProducts = [
     quantity: 28,
     unit: "gram",
     description: "Pre-order for summer 2025 harvest. Classic Purple Haze genetics.",
+    origin: strainDescriptions["purple-haze"].origin,
+    lore: strainDescriptions["purple-haze"].lore,
+    effects: strainDescriptions["purple-haze"].effects,
+    flavor: strainDescriptions["purple-haze"].flavor,
+    bestFor: strainDescriptions["purple-haze"].bestFor,
+    photos: "/strains/purple-haze.png",
     isPreOrder: "yes",
   },
 ];

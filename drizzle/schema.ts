@@ -78,6 +78,11 @@ export const products = mysqlTable("products", {
   quantity: int("quantity").notNull(),
   unit: varchar("unit", { length: 20 }).default("gram").notNull(),
   description: text("description"),
+  origin: text("origin"),
+  lore: text("lore"),
+  effects: text("effects"),
+  flavor: text("flavor"),
+  bestFor: text("bestFor"),
   photos: text("photos"), // JSON array of S3 URLs
   status: mysqlEnum("status", ["active", "sold_out", "inactive"]).default("active").notNull(),
   isPreOrder: mysqlEnum("isPreOrder", ["yes", "no"]).default("no").notNull(),

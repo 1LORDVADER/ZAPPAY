@@ -120,11 +120,21 @@ export default function ProductDetail() {
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Product Image */}
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-12 flex items-center justify-center border-2 border-slate-200">
-              <div className="text-center">
-                <Leaf className="h-48 w-48 text-green-600 mx-auto mb-4" />
-                <p className="text-slate-500 text-sm">Product image coming soon</p>
-              </div>
+            <div className="bg-white rounded-2xl overflow-hidden border-2 border-slate-200 shadow-lg">
+              {product.photos ? (
+                <img 
+                  src={product.photos} 
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="bg-gradient-to-br from-green-50 to-blue-50 p-12 flex items-center justify-center">
+                  <div className="text-center">
+                    <Leaf className="h-48 w-48 text-green-600 mx-auto mb-4" />
+                    <p className="text-slate-500 text-sm">Product image coming soon</p>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Product Info */}
@@ -258,17 +268,76 @@ export default function ProductDetail() {
                 {addToCartMutation.isPending ? 'Adding...' : 'Add to Cart'}
               </Button>
 
-              {/* Description */}
-              {product.description && (
-                <div className="mt-8">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-3">
-                    Description
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">
-                    {product.description}
-                  </p>
-                </div>
-              )}
+              {/* Rich Strain Information */}
+              <div className="mt-8 space-y-6">
+                {product.origin && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                      <Leaf className="h-5 w-5 text-green-600" />
+                      Origin Story
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {product.origin}
+                    </p>
+                  </div>
+                )}
+
+                {product.lore && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                      <Star className="h-5 w-5 text-yellow-600" />
+                      Legacy & Lore
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {product.lore}
+                    </p>
+                  </div>
+                )}
+
+                {product.effects && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      Effects
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {product.effects}
+                    </p>
+                  </div>
+                )}
+
+                {product.flavor && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      Flavor Profile
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {product.flavor}
+                    </p>
+                  </div>
+                )}
+
+                {product.bestFor && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      Best For
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {product.bestFor}
+                    </p>
+                  </div>
+                )}
+
+                {product.description && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      Description
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {product.description}
+                    </p>
+                  </div>
+                )}
+              </div>
 
               {/* Farmer Info */}
               <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 border-2 border-slate-200">

@@ -299,10 +299,18 @@ export default function Home() {
                     >
                       <Card className="overflow-hidden h-full hover:shadow-xl transition-all">
                         <CardHeader className="p-0">
-                          <div className="relative h-48 bg-gradient-to-br from-green-100 to-blue-100">
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <Leaf className="h-20 w-20 text-green-600 opacity-20" />
-                            </div>
+                          <div className="relative h-48 bg-white overflow-hidden">
+                            {product.photos ? (
+                              <img 
+                                src={product.photos} 
+                                alt={product.name}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-100 to-blue-100">
+                                <Leaf className="h-20 w-20 text-green-600 opacity-20" />
+                              </div>
+                            )}
                             <div className="absolute top-3 left-3 flex gap-2">
                               <Badge variant="secondary" className="capitalize bg-white/90">
                                 {product.category}
