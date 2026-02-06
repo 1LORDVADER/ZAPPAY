@@ -75,7 +75,7 @@ export default function Home() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring" as const, stiffness: 100 }}
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm"
+        className="sticky top-0 z-50 bg-[#1e3a5f]/95 backdrop-blur-sm border-b border-[#1e3a5f] shadow-lg"
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -92,14 +92,14 @@ export default function Home() {
             <nav className="hidden md:flex items-center gap-6">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/">
-                  <a className="text-slate-700 hover:text-blue-600 font-medium transition-colors">
+                  <a className="text-white hover:text-red-400 font-medium transition-colors">
                     Browse
                   </a>
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/orders">
-                  <a className="text-slate-700 hover:text-blue-600 font-medium transition-colors">
+                  <a className="text-white hover:text-red-400 font-medium transition-colors">
                     My Orders
                   </a>
                 </Link>
@@ -107,7 +107,7 @@ export default function Home() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/cart">
                   <a className="relative">
-                    <Button variant="outline" size="sm" className="gap-2">
+                    <Button variant="outline" size="sm" className="gap-2 bg-white/10 text-white border-white/30 hover:bg-white/20">
                       <ShoppingCart className="h-4 w-4" />
                       Cart
                       {cartItemCount > 0 && (
@@ -129,13 +129,13 @@ export default function Home() {
               {isAuthenticated ? (
                 <>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button variant="ghost" size="sm" className="gap-2">
+                    <Button variant="ghost" size="sm" className="gap-2 text-white hover:bg-white/10">
                       <User className="h-4 w-4" />
                       <span className="hidden sm:inline">{user?.email}</span>
                     </Button>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button variant="outline" size="sm" onClick={logout} className="gap-2">
+                    <Button variant="outline" size="sm" onClick={logout} className="gap-2 bg-white/10 text-white border-white/30 hover:bg-white/20">
                       <LogOut className="h-4 w-4" />
                       <span className="hidden sm:inline">Logout</span>
                     </Button>

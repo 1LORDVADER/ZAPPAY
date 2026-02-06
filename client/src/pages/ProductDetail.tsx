@@ -187,16 +187,38 @@ export default function ProductDetail() {
                 </span>
               </div>
 
-              {/* Price */}
-              <div className="bg-white rounded-xl p-6 border-2 border-slate-200 mb-6">
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-5xl font-bold text-slate-900">
+              {/* Price with Comparison */}
+              <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200 mb-6">
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="text-5xl font-bold text-green-700">
                     ${(product.price / 100).toFixed(2)}
                   </span>
-                  <span className="text-lg text-slate-500">per {product.unit}</span>
+                  <span className="text-lg text-slate-600">per {product.unit}</span>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                {product.retailPrice && (
+                  <div className="mt-4 pt-4 border-t border-green-200">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-slate-600">Typical Retail Price:</span>
+                      <span className="text-lg text-slate-400 line-through">
+                        ${(product.retailPrice / 100).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-semibold text-green-700">Your ZAPPAY Savings:</span>
+                      <span className="text-2xl font-bold text-green-600">
+                        ${((product.retailPrice - product.price) / 100).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="mt-3 bg-white/80 rounded-lg p-3">
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        💡 <strong>Why cheaper?</strong> ZAPPAY connects you directly with farmers, eliminating retail overhead (no storefront lease, utilities, or middleman markup). You get premium quality at wholesale prices.
+                      </p>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="grid grid-cols-2 gap-4 text-sm mt-4">
                   <div>
                     <span className="text-slate-600">THC:</span>
                     <span className="ml-2 font-semibold text-green-600">

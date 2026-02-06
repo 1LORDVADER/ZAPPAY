@@ -74,7 +74,8 @@ export const products = mysqlTable("products", {
   category: mysqlEnum("category", ["flower", "edibles", "concentrates", "pre-rolls", "vapes", "other"]).notNull(),
   thcPercentage: varchar("thcPercentage", { length: 10 }),
   cbdPercentage: varchar("cbdPercentage", { length: 10 }),
-  price: int("price").notNull(), // stored in cents
+  price: int("price").notNull(), // stored in cents - ZAPPAY price
+  retailPrice: int("retailPrice"), // typical retail dispensary price in cents (optional)
   quantity: int("quantity").notNull(),
   unit: varchar("unit", { length: 20 }).default("gram").notNull(),
   description: text("description"),

@@ -295,3 +295,16 @@
 - [x] Fix nested anchor tag React error
 - [x] Verify logo file loads correctly
 - [ ] Logo still not displaying - needs alternative approach
+
+
+## Pricing Comparison Feature (Feb 5, 2026)
+- [x] Generate premium Girl Scout Cookies strain image
+- [x] Add retailPrice field to database schema
+- [x] Update Girl Scout Cookies product with retail pricing data
+- [x] Add pricing comparison section to ProductDetail page
+- [x] Show ZAPPAY savings vs retail dispensaries
+- [x] Test pricing display and save checkpoint
+
+- [x] Fix TypeScript error in ProductDetail.tsx
+- [x] Add navy blue color from ZAPPAY logo to header
+- [x] Enhance website color scheme throughout
