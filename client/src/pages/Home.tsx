@@ -79,18 +79,15 @@ export default function Home() {
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/">
-              <a className="flex items-center gap-3 cursor-pointer">
-                <motion.img 
-                  src={APP_LOGO}
-                  alt={`${APP_TITLE} Logo`}
-                  className="h-12 w-auto object-contain"
-                  variants={logoVariants}
-                  initial="initial"
-                  whileHover="hover"
+            <div className="flex items-center">
+              <Link href="/">
+                <img 
+                  src="/logo.png"
+                  alt="ZAPPAY Logo"
+                  className="h-14 w-auto object-contain cursor-pointer"
                 />
-              </a>
-            </Link>
+              </Link>
+            </div>
 
             <nav className="hidden md:flex items-center gap-6">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
