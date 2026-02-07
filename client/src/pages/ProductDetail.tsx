@@ -189,11 +189,11 @@ export default function ProductDetail() {
 
               {/* Price with Comparison */}
               <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200 mb-6">
-                <div className="flex items-baseline gap-3 mb-2">
+                <div className="flex items-baseline gap-2 mb-2">
                   <span className="text-5xl font-bold text-green-700">
                     ${product.price.toFixed(2)}
                   </span>
-                  <span className="text-lg text-slate-600">per {product.unit}</span>
+                  <span className="text-2xl font-semibold text-slate-700">/gram</span>
                 </div>
                 
                 {product.retailPrice && (

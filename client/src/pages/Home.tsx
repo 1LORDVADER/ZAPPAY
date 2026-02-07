@@ -346,9 +346,12 @@ export default function Home() {
                           </div>
 
                           <div className="flex items-center justify-between">
-                            <span className="text-2xl font-bold text-slate-900">
-                              ${product.price}
-                            </span>
+                            <div>
+                              <span className="text-2xl font-bold text-slate-900">
+                                ${product.price}
+                              </span>
+                              <span className="text-sm text-slate-600 ml-1">/gram</span>
+                            </div>
                             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                               <Link href={`/product/${product.id}`}>
                                 <Button size="sm">View Details</Button>

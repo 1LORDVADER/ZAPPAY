@@ -329,4 +329,12 @@
 - [x] Add pricing transparency showing farmer costs vs retail markup
 - [x] Fix ProductDetail.tsx syntax error
 - [x] Test pricing across all categories
-- [ ] Save checkpoint with economically sustainable pricing
+- [x] Save checkpoint with economically sustainable pricing
+
+
+## Per-Gram Pricing Display (Feb 7, 2026)
+- [x] Update Home.tsx product cards to show "/gram" label
+- [x] Update ProductDetail.tsx to emphasize per-gram pricing
+- [x] Ensure pricing is instantly understandable to consumers
+- [x] Test pricing display across all products
+- [ ] Save checkpoint with per-gram pricing labels
