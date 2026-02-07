@@ -191,23 +191,23 @@ export default function ProductDetail() {
               <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200 mb-6">
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="text-5xl font-bold text-green-700">
-                    ${(product.price / 100).toFixed(2)}
+                    ${product.price.toFixed(2)}
                   </span>
                   <span className="text-lg text-slate-600">per {product.unit}</span>
                 </div>
                 
                 {product.retailPrice && (
                   <div className="mt-4 pt-4 border-t border-green-200">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-slate-600">Typical Retail Price:</span>
-                      <span className="text-lg text-slate-400 line-through">
-                        ${(product.retailPrice / 100).toFixed(2)}
+                    <div className="flex items-center justify-between">
+                      <span className="text-lg text-slate-600">Typical Retail Price:</span>
+                      <span className="text-lg font-semibold text-slate-700 line-through">
+                        ${product.retailPrice.toFixed(2)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-green-700">Your ZAPPAY Savings:</span>
                       <span className="text-2xl font-bold text-green-600">
-                        ${((product.retailPrice - product.price) / 100).toFixed(2)}
+                        ${(product.retailPrice - product.price).toFixed(2)}
                       </span>
                     </div>
                     <div className="mt-3 bg-white/80 rounded-lg p-3">

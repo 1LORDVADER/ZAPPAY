@@ -308,3 +308,25 @@
 - [x] Fix TypeScript error in ProductDetail.tsx
 - [x] Add navy blue color from ZAPPAY logo to header
 - [x] Enhance website color scheme throughout
+
+
+## Pricing Restructure (Feb 5, 2026)
+- [x] Research current cannabis market pricing (retail dispensaries, street dealers, online)
+- [x] Design competitive ZAPPAY pricing tiers ($10-15 per eighth target)
+- [x] Update all 62+ products with realistic bulk pricing
+- [x] Add retail comparison pricing to show ZAPPAY savings
+- [ ] Test pricing across all product categories
+- [ ] Save checkpoint with new pricing structure
+
+
+## Realistic Pricing Based on Cultivation Costs (Feb 5, 2026)
+- [x] Research cannabis cultivation costs per pound (seeds, nutrients, labor, electricity, testing, packaging)
+- [x] Research yield differences between strain types (premium vs mid-tier vs budget)
+- [x] Calculate farmer profit margins at different price points
+- [x] Design ZAPPAY pricing tiers that beat street prices while ensuring farmer profitability
+- [x] Factor in ZAPPAY's 5.2% commission in pricing calculations
+- [x] Update all 62+ products with realistic cost-based pricing
+- [x] Add pricing transparency showing farmer costs vs retail markup
+- [x] Fix ProductDetail.tsx syntax error
+- [x] Test pricing across all categories
+- [ ] Save checkpoint with economically sustainable pricing
