@@ -125,6 +125,7 @@ export default function ProductDetail() {
                 <img 
                   src={product.photos} 
                   alt={product.name}
+                  loading="eager"
                   className="w-full h-full object-cover"
                 />
               ) : (

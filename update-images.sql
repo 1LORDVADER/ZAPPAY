@@ -1,0 +1,15 @@
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/hZcsxyBvkNmHyHZz.png' WHERE photos = '/strains/blue-dream.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/xHiOTyhDMoQXFUMy.png' WHERE photos = '/strains/gelato-33.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/JclSJzMbAKrEVaSH.png' WHERE photos = '/strains/girl-scout-cookies.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/rMgNENLWFYeAnyRr.png' WHERE photos = '/strains/gorilla-glue-4.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/LNElxlwNhIuvmgZm.png' WHERE photos = '/strains/granddaddy-purple.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/wLNxUZEwAAjhIQGp.png' WHERE photos = '/strains/gummy-bears.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DtNdmELSrdCXszAp.png' WHERE photos = '/strains/jack-herer.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OgvYGmtbvPPdMlCn.png' WHERE photos = '/strains/og-kush.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/kRqVrTKlvOeRyisw.png' WHERE photos = '/strains/pre-rolls.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/BtnlBybBOlUMQHft.png' WHERE photos = '/strains/purple-haze.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/HcqJUTfCgAKLDeib.png' WHERE photos = '/strains/shatter.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GyUMcAtrGwynpZBg.png' WHERE photos = '/strains/sour-diesel.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MTNhZOMBeNsFpnAd.png' WHERE photos = '/strains/vape-cartridge.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/twTZhlSocEWqtFRT.png' WHERE photos = '/strains/wedding-cake.png';
+UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/JkJizVeAncYrlpxY.png' WHERE photos = '/strains/zkittlez.png';

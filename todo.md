@@ -337,4 +337,18 @@
 - [x] Update ProductDetail.tsx to emphasize per-gram pricing
 - [x] Ensure pricing is instantly understandable to consumers
 - [x] Test pricing display across all products
-- [ ] Save checkpoint with per-gram pricing labels
+- [x] Save checkpoint with per-gram pricing labels
+
+
+## Performance Optimization & Image Loading Fixes (Feb 13, 2026)
+- [x] Fix Girl Scout Cookies image loading issue
+- [x] Fix all product images that aren't loading
+- [x] Upload all strain images to S3 CDN for fast delivery
+- [x] Replace local image paths with S3 CDN URLs
+- [x] Remove "Show Details" button - make entire product card clickable
+- [x] Add lazy loading for images
+- [x] Optimize image sizes and compression
+- [x] Test Girl Scout Cookies product loads instantly
+- [x] Test all products load fast during browsing
+- [ ] Test payment flow is fast and smooth
+- [ ] Save checkpoint with performance optimizations

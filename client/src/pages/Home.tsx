@@ -294,13 +294,15 @@ export default function Home() {
                       whileHover={{ scale: 1.03, y: -5 }}
                       transition={{ type: "spring" as const, stiffness: 300 }}
                     >
-                      <Card className="overflow-hidden h-full hover:shadow-xl transition-all">
+                      <Link href={`/product/${product.id}`}>
+                        <Card className="overflow-hidden h-full hover:shadow-xl transition-all cursor-pointer">
                         <CardHeader className="p-0">
                           <div className="relative h-48 bg-white overflow-hidden">
                             {product.photos ? (
                               <img 
                                 src={product.photos} 
                                 alt={product.name}
+                                loading="lazy"
                                 className="w-full h-full object-cover"
                               />
                             ) : (
@@ -352,11 +354,6 @@ export default function Home() {
                               </span>
                               <span className="text-sm text-slate-600 ml-1">/gram</span>
                             </div>
-                            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                              <Link href={`/product/${product.id}`}>
-                                <Button size="sm">View Details</Button>
-                              </Link>
-                            </motion.div>
                           </div>
 
                           {product.quantity < 10 && product.quantity > 0 && (
@@ -369,6 +366,7 @@ export default function Home() {
                           )}
                         </CardContent>
                       </Card>
+                      </Link>
                     </motion.div>
                   ))}
                 </motion.div>
