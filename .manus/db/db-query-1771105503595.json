@@ -1,0 +1,42 @@
+{
+  "query": "SELECT name, photos FROM products WHERE photos LIKE '%manuscdn%' LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT name, photos FROM products WHERE photos LIKE '%manuscdn%' LIMIT 10;",
+  "rows": [
+    {
+      "name": "Blue Dream",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.png"
+    },
+    {
+      "name": "OG Kush",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.png"
+    },
+    {
+      "name": "Sour Diesel",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.png"
+    },
+    {
+      "name": "Girl Scout Cookies",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.png"
+    },
+    {
+      "name": "Gelato #33",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.png"
+    },
+    {
+      "name": "Wedding Cake",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.png"
+    },
+    {
+      "name": "Zkittlez",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.png"
+    },
+    {
+      "name": "Gorilla Glue #4",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.png"
+    }
+  ],
+  "messages": [],
+  "stdout": "name\tphotos\nBlue Dream\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.png\nOG Kush\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.png\nSour Diesel\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.png\nGirl Scout Cookies\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.png\nGelato #33\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.png\nWedding Cake\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.png\nZkittlez\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.png\nGorilla Glue #4\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.png\n",
+  "stderr": "",
+  "execution_time_ms": 50
+}

@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, name, photos FROM products LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, photos FROM products LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "photos": "NULL"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "photos": "NULL"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "photos": "NULL"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "photos": "NULL"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "photos": "[\"https://private-us-east-1.manuscdn.com/sessionFile/BPBio4gvpoM5hxRuK31E4R/sandbox/dtlu291kWsU4aNO5IqZG9z-img-1_1770338154000_na1fn_Z2lybC1zY291dC1jb29raWVzLXByZW1pdW0.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvQlBCaW80Z3Zwb001aHhSdUszMUU0Ui9zYW5kYm94L2R0bHUyOTFrV3NVNGFOTzVJcVpHOXotaW1nLTFfMTc3MDMzODE1NDAwMF9uYTFmbl9aMmx5YkMxelkyOTFkQzFqYjI5cmFXVnpMWEJ5WlcxcGRXMC5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=IPKhKV0QO-SbhmPc8PeDCfOJhYiDXznfq6sLNkviCO1JSnU2ZXCF3X6PgjEr4Pw9OLaKkVcxMvwyhwtdh0HD1kEJnmYYUxKHOsTeYrWIa7bdxEskbuf2WjhMPrHS1sQ4z3cMrRr8Yl1Pyz3G6UBamJAuAW-QJ11EpXpQ~JUKdzQQz5oRZZ-zLMdu7ECYN0L1oIHAcHAk-xxeBYynDnOmcztf~en9Z0hXN-09JzcNzUu9sZK9OGDeFvMcRY~7M3AMSSZYPD2-lQOxBAOA~-MJF~bpw4qiXyTZy0LFzicv~NdaA3W14LBc3lYbT4oM2K55ZhaYo8~Q5~9Dgn3VebiT-A__\"]"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "photos": "NULL"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "photos": "NULL"
+    },
+    {
+      "id": "10",
+      "name": "Jack Herer",
+      "photos": "NULL"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "photos": "NULL"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "photos": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tphotos\n1\tBlue Dream\tNULL\n2\tOG Kush\tNULL\n3\tSour Diesel\tNULL\n5\tGranddaddy Purple\tNULL\n6\tGirl Scout Cookies\t[\"https://private-us-east-1.manuscdn.com/sessionFile/BPBio4gvpoM5hxRuK31E4R/sandbox/dtlu291kWsU4aNO5IqZG9z-img-1_1770338154000_na1fn_Z2lybC1zY291dC1jb29raWVzLXByZW1pdW0.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvQlBCaW80Z3Zwb001aHhSdUszMUU0Ui9zYW5kYm94L2R0bHUyOTFrV3NVNGFOTzVJcVpHOXotaW1nLTFfMTc3MDMzODE1NDAwMF9uYTFmbl9aMmx5YkMxelkyOTFkQzFqYjI5cmFXVnpMWEJ5WlcxcGRXMC5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=IPKhKV0QO-SbhmPc8PeDCfOJhYiDXznfq6sLNkviCO1JSnU2ZXCF3X6PgjEr4Pw9OLaKkVcxMvwyhwtdh0HD1kEJnmYYUxKHOsTeYrWIa7bdxEskbuf2WjhMPrHS1sQ4z3cMrRr8Yl1Pyz3G6UBamJAuAW-QJ11EpXpQ~JUKdzQQz5oRZZ-zLMdu7ECYN0L1oIHAcHAk-xxeBYynDnOmcztf~en9Z0hXN-09JzcNzUu9sZK9OGDeFvMcRY~7M3AMSSZYPD2-lQOxBAOA~-MJF~bpw4qiXyTZy0LFzicv~NdaA3W14LBc3lYbT4oM2K55ZhaYo8~Q5~9Dgn3VebiT-A__\"]\n8\tGelato #33\tNULL\n9\tWedding Cake\tNULL\n10\tJack Herer\tNULL\n11\tZkittlez\tNULL\n13\tGorilla Glue #4\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 73
+}

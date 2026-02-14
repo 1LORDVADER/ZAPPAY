@@ -365,6 +365,9 @@
 - [x] Add image optimization and responsive sizing
 - [x] Test all product pages for errors
 - [x] Verify no broken links or missing images
+- [x] Re-upload all images to permanent S3 CDN after sandbox reset
+- [x] Update database with permanent CDN URLs
+- [x] Verify all 10 product images load correctly in browser
 
 ### Feature Completion
 - [ ] Complete Stripe checkout flow (test mode)
