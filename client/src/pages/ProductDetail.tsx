@@ -120,13 +120,13 @@ export default function ProductDetail() {
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Product Image */}
-            <div className="bg-white rounded-2xl overflow-hidden border-2 border-slate-200 shadow-lg">
+            <div className="bg-white rounded-2xl overflow-hidden border-2 border-slate-200 shadow-lg aspect-square">
               {product.photos ? (
                 <img 
                   src={product.photos} 
                   alt={product.name}
                   loading="eager"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               ) : (
                 <div className="bg-gradient-to-br from-green-50 to-blue-50 p-12 flex items-center justify-center">

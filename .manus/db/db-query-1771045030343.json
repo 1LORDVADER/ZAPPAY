@@ -1,0 +1,13 @@
+{
+  "query": "SELECT COUNT(*) as total_products FROM products;\nSELECT name, COUNT(*) as count FROM products GROUP BY name HAVING COUNT(*) > 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT COUNT(*) as total_products FROM products;\nSELECT name, COUNT(*) as count FROM products GROUP BY name HAVING COUNT(*) > 1;",
+  "rows": [
+    {
+      "total_products": "16"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_products\n16\n",
+  "stderr": "",
+  "execution_time_ms": 62
+}

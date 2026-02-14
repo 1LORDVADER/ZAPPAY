@@ -297,13 +297,13 @@ export default function Home() {
                       <Link href={`/product/${product.id}`}>
                         <Card className="overflow-hidden h-full hover:shadow-xl transition-all cursor-pointer">
                         <CardHeader className="p-0">
-                          <div className="relative h-48 bg-white overflow-hidden">
+                          <div className="relative aspect-square bg-white overflow-hidden">
                             {product.photos ? (
                               <img 
                                 src={product.photos} 
                                 alt={product.name}
                                 loading="lazy"
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain p-4"
                               />
                             ) : (
                               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-100 to-blue-100">

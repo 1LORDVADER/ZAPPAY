@@ -1,0 +1,106 @@
+{
+  "query": "SELECT name, strain, category, COUNT(*) as count \nFROM products \nGROUP BY name, strain, category \nHAVING COUNT(*) > 1 \nORDER BY count DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT name, strain, category, COUNT(*) as count \nFROM products \nGROUP BY name, strain, category \nHAVING COUNT(*) > 1 \nORDER BY count DESC;",
+  "rows": [
+    {
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "count": "6"
+    },
+    {
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "count": "6"
+    },
+    {
+      "name": "Sour Diesel",
+      "strain": "Sativa",
+      "category": "flower",
+      "count": "5"
+    },
+    {
+      "name": "OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "count": "5"
+    },
+    {
+      "name": "Live Resin Cart - Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "vapes",
+      "count": "5"
+    },
+    {
+      "name": "Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "count": "5"
+    },
+    {
+      "name": "Wedding Cake",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "count": "4"
+    },
+    {
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "strain": "Sativa",
+      "category": "flower",
+      "count": "4"
+    },
+    {
+      "name": "Shatter - Sour Diesel",
+      "strain": "Sativa",
+      "category": "concentrates",
+      "count": "4"
+    },
+    {
+      "name": "Jack Herer",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "count": "3"
+    },
+    {
+      "name": "Gelato #33",
+      "strain": "Hybrid",
+      "category": "flower",
+      "count": "3"
+    },
+    {
+      "name": "Gorilla Glue #4",
+      "strain": "Hybrid",
+      "category": "flower",
+      "count": "3"
+    },
+    {
+      "name": "Granddaddy Purple",
+      "strain": "Indica",
+      "category": "flower",
+      "count": "3"
+    },
+    {
+      "name": "Gummy Bears - Mixed Fruit",
+      "strain": "Hybrid",
+      "category": "edibles",
+      "count": "2"
+    },
+    {
+      "name": "Pre-Roll Pack - OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "pre-rolls",
+      "count": "2"
+    },
+    {
+      "name": "Test Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "count": "2"
+    }
+  ],
+  "messages": [],
+  "stdout": "name\tstrain\tcategory\tcount\nZkittlez\tIndica-Dominant Hybrid\tflower\t6\nGirl Scout Cookies\tHybrid\tflower\t6\nSour Diesel\tSativa\tflower\t5\nOG Kush\tIndica-Dominant Hybrid\tflower\t5\nLive Resin Cart - Blue Dream\tSativa-Dominant Hybrid\tvapes\t5\nBlue Dream\tSativa-Dominant Hybrid\tflower\t5\nWedding Cake\tIndica-Dominant Hybrid\tflower\t4\nSummer 2025 Harvest - Purple Haze\tSativa\tflower\t4\nShatter - Sour Diesel\tSativa\tconcentrates\t4\nJack Herer\tSativa-Dominant Hybrid\tflower\t3\nGelato #33\tHybrid\tflower\t3\nGorilla Glue #4\tHybrid\tflower\t3\nGranddaddy Purple\tIndica\tflower\t3\nGummy Bears - Mixed Fruit\tHybrid\tedibles\t2\nPre-Roll Pack - OG Kush\tIndica-Dominant Hybrid\tpre-rolls\t2\nTest Blue Dream\tSativa-Dominant Hybrid\tflower\t2\n",
+  "stderr": "",
+  "execution_time_ms": 893
+}

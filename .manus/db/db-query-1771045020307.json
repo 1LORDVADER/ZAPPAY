@@ -1,0 +1,568 @@
+{
+  "query": "SELECT id, name, strain, category, price, farmerId, createdAt \nFROM products \nWHERE name IN (\n  SELECT name FROM products GROUP BY name HAVING COUNT(*) > 1\n)\nORDER BY name, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, strain, category, price, farmerId, createdAt \nFROM products \nWHERE name IN (\n  SELECT name FROM products GROUP BY name HAVING COUNT(*) > 1\n)\nORDER BY name, id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "15",
+      "name": "Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "36",
+      "name": "Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "107",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60001",
+      "name": "Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60022",
+      "name": "Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "107",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "102",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "21",
+      "name": "Gelato #33",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "102",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60008",
+      "name": "Gelato #33",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "102",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "101",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "7",
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "102",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "19",
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "101",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "20",
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "102",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60006",
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "101",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60007",
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "102",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "104",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "27",
+      "name": "Gorilla Glue #4",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "104",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60013",
+      "name": "Gorilla Glue #4",
+      "strain": "Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "104",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "strain": "Indica",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "101",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "18",
+      "name": "Granddaddy Purple",
+      "strain": "Indica",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "101",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60005",
+      "name": "Granddaddy Purple",
+      "strain": "Indica",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "101",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "30",
+      "name": "Gummy Bears - Mixed Fruit",
+      "strain": "Hybrid",
+      "category": "edibles",
+      "price": "12",
+      "farmerId": "105",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60016",
+      "name": "Gummy Bears - Mixed Fruit",
+      "strain": "Hybrid",
+      "category": "edibles",
+      "price": "12",
+      "farmerId": "105",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "10",
+      "name": "Jack Herer",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "103",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "24",
+      "name": "Jack Herer",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "103",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60010",
+      "name": "Jack Herer",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "103",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "14",
+      "name": "Live Resin Cart - Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "vapes",
+      "price": "25",
+      "farmerId": "105",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "28",
+      "name": "Live Resin Cart - Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "vapes",
+      "price": "25",
+      "farmerId": "104",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "29",
+      "name": "Live Resin Cart - Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "vapes",
+      "price": "25",
+      "farmerId": "105",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60014",
+      "name": "Live Resin Cart - Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "vapes",
+      "price": "25",
+      "farmerId": "104",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60015",
+      "name": "Live Resin Cart - Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "vapes",
+      "price": "25",
+      "farmerId": "105",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "16",
+      "name": "OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "37",
+      "name": "OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "107",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60002",
+      "name": "OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60023",
+      "name": "OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "107",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "33",
+      "name": "Pre-Roll Pack - OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "pre-rolls",
+      "price": "6",
+      "farmerId": "106",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60019",
+      "name": "Pre-Roll Pack - OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "pre-rolls",
+      "price": "6",
+      "farmerId": "106",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "31",
+      "name": "Shatter - Sour Diesel",
+      "strain": "Sativa",
+      "category": "concentrates",
+      "price": "18",
+      "farmerId": "105",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "32",
+      "name": "Shatter - Sour Diesel",
+      "strain": "Sativa",
+      "category": "concentrates",
+      "price": "18",
+      "farmerId": "106",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60017",
+      "name": "Shatter - Sour Diesel",
+      "strain": "Sativa",
+      "category": "concentrates",
+      "price": "18",
+      "farmerId": "105",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60018",
+      "name": "Shatter - Sour Diesel",
+      "strain": "Sativa",
+      "category": "concentrates",
+      "price": "18",
+      "farmerId": "106",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "4",
+      "name": "Sour Diesel",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "101",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "17",
+      "name": "Sour Diesel",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "101",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60003",
+      "name": "Sour Diesel",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60004",
+      "name": "Sour Diesel",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "101",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "34",
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "106",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "35",
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "107",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60020",
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "106",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60021",
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "strain": "Sativa",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "107",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "30001",
+      "name": "Test Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2025-12-25 04:12:56"
+    },
+    {
+      "id": "30002",
+      "name": "Test Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "100",
+      "createdAt": "2025-12-25 04:13:38"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "103",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "22",
+      "name": "Wedding Cake",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "102",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "23",
+      "name": "Wedding Cake",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "103",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60009",
+      "name": "Wedding Cake",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "4",
+      "farmerId": "103",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "103",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "12",
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "104",
+      "createdAt": "2025-12-23 12:17:00"
+    },
+    {
+      "id": "25",
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "103",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "26",
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "104",
+      "createdAt": "2025-12-23 12:17:15"
+    },
+    {
+      "id": "60011",
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "103",
+      "createdAt": "2026-01-21 01:21:44"
+    },
+    {
+      "id": "60012",
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "price": "3",
+      "farmerId": "104",
+      "createdAt": "2026-01-21 01:21:44"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tstrain\tcategory\tprice\tfarmerId\tcreatedAt\n1\tBlue Dream\tSativa-Dominant Hybrid\tflower\t3\t100\t2025-12-23 12:17:00\n15\tBlue Dream\tSativa-Dominant Hybrid\tflower\t3\t100\t2025-12-23 12:17:15\n36\tBlue Dream\tSativa-Dominant Hybrid\tflower\t3\t107\t2025-12-23 12:17:15\n60001\tBlue Dream\tSativa-Dominant Hybrid\tflower\t3\t100\t2026-01-21 01:21:44\n60022\tBlue Dream\tSativa-Dominant Hybrid\tflower\t3\t107\t2026-01-21 01:21:44\n8\tGelato #33\tHybrid\tflower\t4\t102\t2025-12-23 12:17:00\n21\tGelato #33\tHybrid\tflower\t4\t102\t2025-12-23 12:17:15\n60008\tGelato #33\tHybrid\tflower\t4\t102\t2026-01-21 01:21:44\n6\tGirl Scout Cookies\tHybrid\tflower\t4\t101\t2025-12-23 12:17:00\n7\tGirl Scout Cookies\tHybrid\tflower\t4\t102\t2025-12-23 12:17:00\n19\tGirl Scout Cookies\tHybrid\tflower\t4\t101\t2025-12-23 12:17:15\n20\tGirl Scout Cookies\tHybrid\tflower\t4\t102\t2025-12-23 12:17:15\n60006\tGirl Scout Cookies\tHybrid\tflower\t4\t101\t2026-01-21 01:21:44\n60007\tGirl Scout Cookies\tHybrid\tflower\t4\t102\t2026-01-21 01:21:44\n13\tGorilla Glue #4\tHybrid\tflower\t4\t104\t2025-12-23 12:17:00\n27\tGorilla Glue #4\tHybrid\tflower\t4\t104\t2025-12-23 12:17:15\n60013\tGorilla Glue #4\tHybrid\tflower\t4\t104\t2026-01-21 01:21:44\n5\tGranddaddy Purple\tIndica\tflower\t3\t101\t2025-12-23 12:17:00\n18\tGranddaddy Purple\tIndica\tflower\t3\t101\t2025-12-23 12:17:15\n60005\tGranddaddy Purple\tIndica\tflower\t3\t101\t2026-01-21 01:21:44\n30\tGummy Bears - Mixed Fruit\tHybrid\tedibles\t12\t105\t2025-12-23 12:17:15\n60016\tGummy Bears - Mixed Fruit\tHybrid\tedibles\t12\t105\t2026-01-21 01:21:44\n10\tJack Herer\tSativa-Dominant Hybrid\tflower\t3\t103\t2025-12-23 12:17:00\n24\tJack Herer\tSativa-Dominant Hybrid\tflower\t3\t103\t2025-12-23 12:17:15\n60010\tJack Herer\tSativa-Dominant Hybrid\tflower\t3\t103\t2026-01-21 01:21:44\n14\tLive Resin Cart - Blue Dream\tSativa-Dominant Hybrid\tvapes\t25\t105\t2025-12-23 12:17:00\n28\tLive Resin Cart - Blue Dream\tSativa-Dominant Hybrid\tvapes\t25\t104\t2025-12-23 12:17:15\n29\tLive Resin Cart - Blue Dream\tSativa-Dominant Hybrid\tvapes\t25\t105\t2025-12-23 12:17:15\n60014\tLive Resin Cart - Blue Dream\tSativa-Dominant Hybrid\tvapes\t25\t104\t2026-01-21 01:21:44\n60015\tLive Resin Cart - Blue Dream\tSativa-Dominant Hybrid\tvapes\t25\t105\t2026-01-21 01:21:44\n2\tOG Kush\tIndica-Dominant Hybrid\tflower\t3\t100\t2025-12-23 12:17:00\n16\tOG Kush\tIndica-Dominant Hybrid\tflower\t3\t100\t2025-12-23 12:17:15\n37\tOG Kush\tIndica-Dominant Hybrid\tflower\t3\t107\t2025-12-23 12:17:15\n60002\tOG Kush\tIndica-Dominant Hybrid\tflower\t3\t100\t2026-01-21 01:21:44\n60023\tOG Kush\tIndica-Dominant Hybrid\tflower\t3\t107\t2026-01-21 01:21:44\n33\tPre-Roll Pack - OG Kush\tIndica-Dominant Hybrid\tpre-rolls\t6\t106\t2025-12-23 12:17:15\n60019\tPre-Roll Pack - OG Kush\tIndica-Dominant Hybrid\tpre-rolls\t6\t106\t2026-01-21 01:21:44\n31\tShatter - Sour Diesel\tSativa\tconcentrates\t18\t105\t2025-12-23 12:17:15\n32\tShatter - Sour Diesel\tSativa\tconcentrates\t18\t106\t2025-12-23 12:17:15\n60017\tShatter - Sour Diesel\tSativa\tconcentrates\t18\t105\t2026-01-21 01:21:44\n60018\tShatter - Sour Diesel\tSativa\tconcentrates\t18\t106\t2026-01-21 01:21:44\n3\tSour Diesel\tSativa\tflower\t3\t100\t2025-12-23 12:17:00\n4\tSour Diesel\tSativa\tflower\t3\t101\t2025-12-23 12:17:00\n17\tSour Diesel\tSativa\tflower\t3\t101\t2025-12-23 12:17:15\n60003\tSour Diesel\tSativa\tflower\t3\t100\t2026-01-21 01:21:44\n60004\tSour Diesel\tSativa\tflower\t3\t101\t2026-01-21 01:21:44\n34\tSummer 2025 Harvest - Purple Haze\tSativa\tflower\t4\t106\t2025-12-23 12:17:15\n35\tSummer 2025 Harvest - Purple Haze\tSativa\tflower\t4\t107\t2025-12-23 12:17:15\n60020\tSummer 2025 Harvest - Purple Haze\tSativa\tflower\t4\t106\t2026-01-21 01:21:44\n60021\tSummer 2025 Harvest - Purple Haze\tSativa\tflower\t4\t107\t2026-01-21 01:21:44\n30001\tTest Blue Dream\tSativa-Dominant Hybrid\tflower\t3\t100\t2025-12-25 04:12:56\n30002\tTest Blue Dream\tSativa-Dominant Hybrid\tflower\t3\t100\t2025-12-25 04:13:38\n9\tWedding Cake\tIndica-Dominant Hybrid\tflower\t4\t103\t2025-12-23 12:17:00\n22\tWedding Cake\tIndica-Dominant Hybrid\tflower\t4\t102\t2025-12-23 12:17:15\n23\tWedding Cake\tIndica-Dominant Hybrid\tflower\t4\t103\t2025-12-23 12:17:15\n60009\tWedding Cake\tIndica-Dominant Hybrid\tflower\t4\t103\t2026-01-21 01:21:44\n11\tZkittlez\tIndica-Dominant Hybrid\tflower\t3\t103\t2025-12-23 12:17:00\n12\tZkittlez\tIndica-Dominant Hybrid\tflower\t3\t104\t2025-12-23 12:17:00\n25\tZkittlez\tIndica-Dominant Hybrid\tflower\t3\t103\t2025-12-23 12:17:15\n26\tZkittlez\tIndica-Dominant Hybrid\tflower\t3\t104\t2025-12-23 12:17:15\n60011\tZkittlez\tIndica-Dominant Hybrid\tflower\t3\t103\t2026-01-21 01:21:44\n60012\tZkittlez\tIndica-Dominant Hybrid\tflower\t3\t104\t2026-01-21 01:21:44\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}
