@@ -404,3 +404,33 @@
 - [ ] Research SAFE notes and convertible debt structures
 - [ ] Identify strategic partners for funding
 - [ ] Create investor outreach strategy
+
+
+## Production Catalog - 100+ Strains (Feb 15, 2026)
+- [ ] Research sources for high-quality non-copyright cannabis images
+- [ ] Source 100+ strain images (royalty-free or AI-generated)
+- [ ] Create comprehensive strain database with details:
+  - [ ] Strain names (100+ popular strains)
+  - [ ] THC% and CBD% levels
+  - [ ] Strain types (Indica, Sativa, Hybrid)
+  - [ ] Effects and descriptions
+  - [ ] Pricing ($3-4/gram competitive rates)
+- [ ] Upload all 100+ images to S3 CDN
+- [ ] Create seed script to populate database
+- [ ] Run seed script and verify database
+- [ ] Test all products display with images in browser
+- [ ] Remove old test products
+- [ ] Save checkpoint with production catalog
+
+
+## 24 New Strains + Reddit Ratings (Feb 15, 2026)
+- [x] Generate AI images for 24 new strains (White Widow, Pineapple Express, Northern Lights, etc.)
+- [x] Clean up old test/duplicate products from database (removed Jack Herer duplicate)
+- [x] Seed 24 new strains with randomized star ratings (3.8-5.0)
+- [x] Mark Girl Scout Cookies as ready-to-ship (farmer has it now)
+- [x] Update frontend to display star ratings and ready-to-ship badge
+- [x] Add status badges: Sold Out, Pre-Order, Being Cultivated, Ready to Ship
+- [x] Fix old product prices (were stored in dollars, now in cents)
+- [x] Verify all 33 products display correctly with images in browser
+- [ ] Push to GitHub
+- [ ] Save checkpoint

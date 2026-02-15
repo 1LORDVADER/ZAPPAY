@@ -85,7 +85,8 @@ export const products = mysqlTable("products", {
   flavor: text("flavor"),
   bestFor: text("bestFor"),
   photos: text("photos"), // JSON array of S3 URLs
-  status: mysqlEnum("status", ["active", "sold_out", "inactive"]).default("active").notNull(),
+  rating: varchar("rating", { length: 5 }), // e.g. "4.8" - community rating
+  status: mysqlEnum("status", ["active", "sold_out", "inactive", "growing"]).default("active").notNull(),
   isPreOrder: mysqlEnum("isPreOrder", ["yes", "no"]).default("no").notNull(),
   estimatedHarvestDate: timestamp("estimatedHarvestDate"),
   isFeatured: mysqlEnum("isFeatured", ["yes", "no"]).default("no").notNull(),

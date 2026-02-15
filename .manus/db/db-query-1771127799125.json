@@ -1,0 +1,80 @@
+{
+  "query": "SELECT id, name, price, retailPrice, LEFT(photos, 100) as photo_preview FROM products WHERE price < 100 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, price, retailPrice, LEFT(photos, 100) as photo_preview FROM products WHERE price < 100 ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "price": "3",
+      "retailPrice": "11",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.pn"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "price": "3",
+      "retailPrice": "11",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.pn"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "price": "3",
+      "retailPrice": "11",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.pn"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "price": "3",
+      "retailPrice": "11",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/zkIVWveFeSBvHmPT.pn"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "price": "4",
+      "retailPrice": "13",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.pn"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "price": "4",
+      "retailPrice": "13",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.pn"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "price": "4",
+      "retailPrice": "13",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.pn"
+    },
+    {
+      "id": "10",
+      "name": "Jack Herer",
+      "price": "3",
+      "retailPrice": "11",
+      "photo_preview": "NULL"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "price": "3",
+      "retailPrice": "11",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.pn"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "price": "4",
+      "retailPrice": "13",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.pn"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tprice\tretailPrice\tphoto_preview\n1\tBlue Dream\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.pn\n2\tOG Kush\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.pn\n3\tSour Diesel\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.pn\n5\tGranddaddy Purple\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/zkIVWveFeSBvHmPT.pn\n6\tGirl Scout Cookies\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.pn\n8\tGelato #33\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.pn\n9\tWedding Cake\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.pn\n10\tJack Herer\t3\t11\tNULL\n11\tZkittlez\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.pn\n13\tGorilla Glue #4\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.pn\n",
+  "stderr": "",
+  "execution_time_ms": 55
+}

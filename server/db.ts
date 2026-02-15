@@ -108,7 +108,27 @@ export async function getProductById(id: number) {
   if (!db) return undefined;
   
   const result = await db.select().from(products).where(eq(products.id, id)).limit(1);
-  return result.length > 0 ? result[0] : undefined;
+  if (result.length === 0) return undefined;
+  
+  const p = result[0];
+  let photoUrl = '';
+  if (p.photos) {
+    try {
+      const parsed = JSON.parse(p.photos);
+      photoUrl = Array.isArray(parsed) ? parsed[0] || '' : p.photos;
+    } catch {
+      photoUrl = p.photos;
+    }
+  }
+  return {
+    ...p,
+    photos: photoUrl,
+    price: p.price / 100,
+    retailPrice: p.retailPrice ? p.retailPrice / 100 : null,
+    isPreOrder: p.isPreOrder === 'yes',
+    isFeatured: p.isFeatured === 'yes',
+    isSponsored: p.isSponsored === 'yes',
+  };
 }
 
 export async function getProductsByFarmerId(farmerId: number) {
@@ -129,11 +149,33 @@ export async function getAllActiveProducts(filters?: {
   const db = await getDb();
   if (!db) return [];
   
-  let query = db.select().from(products).where(eq(products.status, 'active'));
+  // Return all non-inactive products (active, sold_out, growing, pre-order)
+  const allProducts = await db.select().from(products).orderBy(desc(products.isFeatured), desc(products.createdAt));
   
-  // Note: Advanced filtering would require building dynamic where clauses
-  // For MVP, we'll return all active products and filter client-side
-  return await query.orderBy(desc(products.createdAt));
+  // Filter out inactive and format photos
+  return allProducts
+    .filter(p => p.status !== 'inactive')
+    .map(p => {
+      // Parse photos JSON to get first image URL
+      let photoUrl = '';
+      if (p.photos) {
+        try {
+          const parsed = JSON.parse(p.photos);
+          photoUrl = Array.isArray(parsed) ? parsed[0] || '' : p.photos;
+        } catch {
+          photoUrl = p.photos;
+        }
+      }
+      return {
+        ...p,
+        photos: photoUrl,
+        price: p.price / 100, // Convert cents to dollars
+        retailPrice: p.retailPrice ? p.retailPrice / 100 : null,
+        isPreOrder: p.isPreOrder === 'yes',
+        isFeatured: p.isFeatured === 'yes',
+        isSponsored: p.isSponsored === 'yes',
+      };
+    });
 }
 
 export async function updateProduct(id: number, updates: Partial<InsertProduct>) {

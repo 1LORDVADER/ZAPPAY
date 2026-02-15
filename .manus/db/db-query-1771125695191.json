@@ -1,0 +1,106 @@
+{
+  "query": "SELECT id, name, category, \nCASE \n  WHEN photos IS NULL THEN 'NULL'\n  WHEN photos = '' THEN 'EMPTY'\n  WHEN photos LIKE '%manuscdn%' THEN 'HAS_CDN'\n  ELSE SUBSTRING(photos, 1, 30)\nEND as photo_status\nFROM products \nORDER BY category, name;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, \nCASE \n  WHEN photos IS NULL THEN 'NULL'\n  WHEN photos = '' THEN 'EMPTY'\n  WHEN photos LIKE '%manuscdn%' THEN 'HAS_CDN'\n  ELSE SUBSTRING(photos, 1, 30)\nEND as photo_status\nFROM products \nORDER BY category, name;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "10",
+      "name": "Jack Herer",
+      "category": "flower",
+      "photo_status": "NULL"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "34",
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "30001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "category": "flower",
+      "photo_status": "HAS_CDN"
+    },
+    {
+      "id": "30",
+      "name": "Gummy Bears - Mixed Fruit",
+      "category": "edibles",
+      "photo_status": "NULL"
+    },
+    {
+      "id": "31",
+      "name": "Shatter - Sour Diesel",
+      "category": "concentrates",
+      "photo_status": "NULL"
+    },
+    {
+      "id": "33",
+      "name": "Pre-Roll Pack - OG Kush",
+      "category": "pre-rolls",
+      "photo_status": "NULL"
+    },
+    {
+      "id": "14",
+      "name": "Live Resin Cart - Blue Dream",
+      "category": "vapes",
+      "photo_status": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tphoto_status\n1\tBlue Dream\tflower\tHAS_CDN\n8\tGelato #33\tflower\tHAS_CDN\n6\tGirl Scout Cookies\tflower\tHAS_CDN\n13\tGorilla Glue #4\tflower\tHAS_CDN\n5\tGranddaddy Purple\tflower\tHAS_CDN\n10\tJack Herer\tflower\tNULL\n2\tOG Kush\tflower\tHAS_CDN\n3\tSour Diesel\tflower\tHAS_CDN\n34\tSummer 2025 Harvest - Purple Haze\tflower\tHAS_CDN\n30001\tTest Blue Dream\tflower\tHAS_CDN\n9\tWedding Cake\tflower\tHAS_CDN\n11\tZkittlez\tflower\tHAS_CDN\n30\tGummy Bears - Mixed Fruit\tedibles\tNULL\n31\tShatter - Sour Diesel\tconcentrates\tNULL\n33\tPre-Roll Pack - OG Kush\tpre-rolls\tNULL\n14\tLive Resin Cart - Blue Dream\tvapes\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

@@ -70,8 +70,7 @@ export default function ProductDetail() {
     );
   }
 
-  const averageRating = 4.5; // TODO: Calculate from reviews
-  const totalReviews = 0; // TODO: Get from reviews
+  const averageRating = product.rating ? parseFloat(product.rating) : 4.5;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -82,7 +81,7 @@ export default function ProductDetail() {
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />
@@ -144,17 +143,17 @@ export default function ProductDetail() {
                 <Badge className="bg-green-100 text-green-800 hover:bg-green-200">
                   {product.category}
                 </Badge>
-                {product.isPreOrder === 'yes' && (
+                {product.isPreOrder && (
                   <Badge className="bg-orange-100 text-orange-800">
                     Pre-Order
                   </Badge>
                 )}
-                {product.isFeatured === 'yes' && (
+                {product.isFeatured && (
                   <Badge className="bg-blue-100 text-blue-800">
                     Featured
                   </Badge>
                 )}
-                {product.isSponsored === 'yes' && (
+                {product.isSponsored && (
                   <Badge className="bg-purple-100 text-purple-800">
                     Sponsored
                   </Badge>
@@ -183,8 +182,8 @@ export default function ProductDetail() {
                     />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">
-                  {averageRating} ({totalReviews} reviews)
+                <span className="text-sm font-medium text-slate-600">
+                  {averageRating}
                 </span>
               </div>
 
@@ -241,9 +240,14 @@ export default function ProductDetail() {
                   <div>
                     <span className="text-slate-600">Status:</span>
                     <span className={`ml-2 font-semibold ${
-                      product.status === 'active' ? 'text-green-600' : 'text-red-600'
+                      product.status === 'active' ? 'text-green-600' : 
+                      product.status === 'growing' ? 'text-amber-600' : 
+                      product.status === 'sold_out' ? 'text-red-600' : 'text-slate-600'
                     }`}>
-                      {product.status === 'active' ? 'In Stock' : 'Out of Stock'}
+                      {product.status === 'active' && product.isPreOrder ? 'Pre-Order' :
+                       product.status === 'active' ? 'Available Now' : 
+                       product.status === 'growing' ? 'Being Cultivated' : 
+                       product.status === 'sold_out' ? 'Sold Out' : product.status}
                     </span>
                   </div>
                 </div>

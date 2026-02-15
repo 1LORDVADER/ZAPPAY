@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut } from "lucide-react";
+import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut, Star } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
@@ -310,16 +310,36 @@ export default function Home() {
                                 <Leaf className="h-20 w-20 text-green-600 opacity-20" />
                               </div>
                             )}
-                            <div className="absolute top-3 left-3 flex gap-2">
+                            <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
                               <Badge variant="secondary" className="capitalize bg-white/90">
                                 {product.category}
                               </Badge>
-                              {product.isPreOrder && (
-                                <Badge variant="outline" className="bg-yellow-50">
+                              {product.status === 'sold_out' && (
+                                <Badge className="bg-red-600 text-white hover:bg-red-700">
+                                  Sold Out
+                                </Badge>
+                              )}
+                              {product.status === 'growing' && (
+                                <Badge className="bg-amber-500 text-white hover:bg-amber-600">
+                                  Being Cultivated
+                                </Badge>
+                              )}
+                              {product.isPreOrder && product.status !== 'sold_out' && (
+                                <Badge className="bg-orange-500 text-white hover:bg-orange-600">
                                   Pre-Order
                                 </Badge>
                               )}
+                              {product.isFeatured && (
+                                <Badge className="bg-blue-600 text-white hover:bg-blue-700">
+                                  Ready to Ship
+                                </Badge>
+                              )}
                             </div>
+                            {product.status === 'sold_out' && (
+                              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <span className="text-white font-bold text-2xl tracking-wider rotate-[-15deg]">SOLD OUT</span>
+                              </div>
+                            )}
                           </div>
                         </CardHeader>
                         <CardContent className="p-4">
@@ -347,22 +367,43 @@ export default function Home() {
                             )}
                           </div>
 
+                          {/* Star Rating */}
+                          {product.rating && (
+                            <div className="flex items-center gap-1 mb-2">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`h-3.5 w-3.5 ${
+                                    i < Math.floor(parseFloat(product.rating!))
+                                      ? "text-yellow-400 fill-yellow-400"
+                                      : i < parseFloat(product.rating!)
+                                      ? "text-yellow-400 fill-yellow-400 opacity-50"
+                                      : "text-slate-300"
+                                  }`}
+                                />
+                              ))}
+                              <span className="text-xs text-slate-500 ml-1">{product.rating}</span>
+                            </div>
+                          )}
+
                           <div className="flex items-center justify-between">
                             <div>
                               <span className="text-2xl font-bold text-slate-900">
-                                ${product.price}
+                                ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
                               </span>
                               <span className="text-sm text-slate-600 ml-1">/gram</span>
                             </div>
+                            {product.retailPrice && (
+                              <span className="text-sm text-slate-400 line-through">
+                                ${typeof product.retailPrice === 'number' ? product.retailPrice.toFixed(2) : product.retailPrice}
+                              </span>
+                            )}
                           </div>
 
-                          {product.quantity < 10 && product.quantity > 0 && (
+                          {product.quantity < 10 && product.quantity > 0 && product.status === 'active' && (
                             <p className="text-xs text-orange-600 mt-2">
                               Only {product.quantity} left in stock!
                             </p>
-                          )}
-                          {product.quantity === 0 && (
-                            <p className="text-xs text-red-600 mt-2">Out of stock</p>
                           )}
                         </CardContent>
                       </Card>

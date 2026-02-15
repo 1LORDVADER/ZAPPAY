@@ -1,0 +1,154 @@
+{
+  "query": "SELECT id, name, strain, category, status, isPreOrder, LEFT(photos, 50) as photoPreview FROM products ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, strain, category, status, isPreOrder, LEFT(photos, 50) as photoPreview FROM products ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "strain": "Sativa",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "strain": "Indica",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "strain": "Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "strain": "Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "10",
+      "name": "Jack Herer",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "NULL"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "strain": "Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "14",
+      "name": "Live Resin Cart - Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "vapes",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "NULL"
+    },
+    {
+      "id": "30",
+      "name": "Gummy Bears - Mixed Fruit",
+      "strain": "Hybrid",
+      "category": "edibles",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "NULL"
+    },
+    {
+      "id": "31",
+      "name": "Shatter - Sour Diesel",
+      "strain": "Sativa",
+      "category": "concentrates",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "NULL"
+    },
+    {
+      "id": "33",
+      "name": "Pre-Roll Pack - OG Kush",
+      "strain": "Indica-Dominant Hybrid",
+      "category": "pre-rolls",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "NULL"
+    },
+    {
+      "id": "34",
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "strain": "Sativa",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "yes",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    },
+    {
+      "id": "30001",
+      "name": "Test Blue Dream",
+      "strain": "Sativa-Dominant Hybrid",
+      "category": "flower",
+      "status": "active",
+      "isPreOrder": "no",
+      "photoPreview": "https://files.manuscdn.com/user_upload_by_module/s"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tstrain\tcategory\tstatus\tisPreOrder\tphotoPreview\n1\tBlue Dream\tSativa-Dominant Hybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n2\tOG Kush\tIndica-Dominant Hybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n3\tSour Diesel\tSativa\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n5\tGranddaddy Purple\tIndica\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n6\tGirl Scout Cookies\tHybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n8\tGelato #33\tHybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n9\tWedding Cake\tIndica-Dominant Hybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n10\tJack Herer\tSativa-Dominant Hybrid\tflower\tactive\tno\tNULL\n11\tZkittlez\tIndica-Dominant Hybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n13\tGorilla Glue #4\tHybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n14\tLive Resin Cart - Blue Dream\tSativa-Dominant Hybrid\tvapes\tactive\tno\tNULL\n30\tGummy Bears - Mixed Fruit\tHybrid\tedibles\tactive\tno\tNULL\n31\tShatter - Sour Diesel\tSativa\tconcentrates\tactive\tno\tNULL\n33\tPre-Roll Pack - OG Kush\tIndica-Dominant Hybrid\tpre-rolls\tactive\tno\tNULL\n34\tSummer 2025 Harvest - Purple Haze\tSativa\tflower\tactive\tyes\thttps://files.manuscdn.com/user_upload_by_module/s\n30001\tTest Blue Dream\tSativa-Dominant Hybrid\tflower\tactive\tno\thttps://files.manuscdn.com/user_upload_by_module/s\n",
+  "stderr": "",
+  "execution_time_ms": 176
+}

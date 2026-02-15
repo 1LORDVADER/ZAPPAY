@@ -1,0 +1,9 @@
+{
+  "query": "\nDELETE FROM products WHERE id = 10;\nUPDATE products SET isFeatured = 'yes' WHERE name = 'Girl Scout Cookies' AND id < 1000;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \nDELETE FROM products WHERE id = 10;\nUPDATE products SET isFeatured = 'yes' WHERE name = 'Girl Scout Cookies' AND id < 1000;\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 65
+}

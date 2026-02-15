@@ -1,0 +1,109 @@
+{
+  "query": "SELECT id, name, price, retailPrice, photos, status, rating FROM products WHERE name IN ('Girl Scout Cookies', 'Zkittlez', 'Blue Dream', 'OG Kush', 'Sour Diesel', 'Wedding Cake', 'Gelato #33', 'Gorilla Glue #4', 'Granddaddy Purple', 'Jack Herer') ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, price, retailPrice, photos, status, rating FROM products WHERE name IN ('Girl Scout Cookies', 'Zkittlez', 'Blue Dream', 'OG Kush', 'Sour Diesel', 'Wedding Cake', 'Gelato #33', 'Gorilla Glue #4', 'Granddaddy Purple', 'Jack Herer') ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "price": "3",
+      "retailPrice": "11",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.png",
+      "status": "active",
+      "rating": "4.7"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "price": "3",
+      "retailPrice": "11",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.png",
+      "status": "active",
+      "rating": "4.4"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "price": "3",
+      "retailPrice": "11",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.png",
+      "status": "active",
+      "rating": "4.5"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "price": "3",
+      "retailPrice": "11",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/zkIVWveFeSBvHmPT.png",
+      "status": "active",
+      "rating": "NULL"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "price": "4",
+      "retailPrice": "13",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.png",
+      "status": "active",
+      "rating": "4.9"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "price": "4",
+      "retailPrice": "13",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.png",
+      "status": "active",
+      "rating": "4.8"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "price": "4",
+      "retailPrice": "13",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.png",
+      "status": "active",
+      "rating": "4.7"
+    },
+    {
+      "id": "10",
+      "name": "Jack Herer",
+      "price": "3",
+      "retailPrice": "11",
+      "photos": "NULL",
+      "status": "active",
+      "rating": "4.6"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "price": "3",
+      "retailPrice": "11",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.png",
+      "status": "active",
+      "rating": "4.6"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "price": "4",
+      "retailPrice": "13",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.png",
+      "status": "active",
+      "rating": "4.5"
+    },
+    {
+      "id": "90004",
+      "name": "Jack Herer",
+      "price": "380",
+      "retailPrice": "1300",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/aBFviDCGSasMlKWH.png\"]",
+      "status": "active",
+      "rating": "4.6"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tprice\tretailPrice\tphotos\tstatus\trating\n1\tBlue Dream\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.png\tactive\t4.7\n2\tOG Kush\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.png\tactive\t4.4\n3\tSour Diesel\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.png\tactive\t4.5\n5\tGranddaddy Purple\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/zkIVWveFeSBvHmPT.png\tactive\tNULL\n6\tGirl Scout Cookies\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.png\tactive\t4.9\n8\tGelato #33\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.png\tactive\t4.8\n9\tWedding Cake\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.png\tactive\t4.7\n10\tJack Herer\t3\t11\tNULL\tactive\t4.6\n11\tZkittlez\t3\t11\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.png\tactive\t4.6\n13\tGorilla Glue #4\t4\t13\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.png\tactive\t4.5\n90004\tJack Herer\t380\t1300\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/aBFviDCGSasMlKWH.png\"]\tactive\t4.6\n",
+  "stderr": "",
+  "execution_time_ms": 69
+}
