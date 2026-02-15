@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, name, SUBSTRING(photos, 1, 100) as photo_preview FROM products LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, SUBSTRING(photos, 1, 100) as photo_preview FROM products LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.pn"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.pn"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.pn"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "photo_preview": "NULL"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.pn"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.pn"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.pn"
+    },
+    {
+      "id": "10",
+      "name": "Jack Herer",
+      "photo_preview": "NULL"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.pn"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "photo_preview": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.pn"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tphoto_preview\n1\tBlue Dream\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.pn\n2\tOG Kush\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/eCVCxvcQilPyKigQ.pn\n3\tSour Diesel\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/pWaUcirHIvHOTTuN.pn\n5\tGranddaddy Purple\tNULL\n6\tGirl Scout Cookies\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.pn\n8\tGelato #33\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/peJmbnDXQMjBIdTV.pn\n9\tWedding Cake\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.pn\n10\tJack Herer\tNULL\n11\tZkittlez\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/WGCDwzRCHunHsGdC.pn\n13\tGorilla Glue #4\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/MXRIQuTWDOwUNsdz.pn\n",
+  "stderr": "",
+  "execution_time_ms": 50
+}

@@ -1,0 +1,50 @@
+{
+  "query": "SELECT name, SUBSTRING(photos, 1, 80) as photo_url FROM products WHERE photos LIKE '%manuscdn%' LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT name, SUBSTRING(photos, 1, 80) as photo_url FROM products WHERE photos LIKE '%manuscdn%' LIMIT 10;",
+  "rows": [
+    {
+      "name": "Blue Dream",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "OG Kush",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Sour Diesel",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Granddaddy Purple",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Girl Scout Cookies",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Gelato #33",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Wedding Cake",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Zkittlez",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Gorilla Glue #4",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    },
+    {
+      "name": "Summer 2025 Harvest - Purple Haze",
+      "photo_url": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+    }
+  ],
+  "messages": [],
+  "stdout": "name\tphoto_url\nBlue Dream\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nOG Kush\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nSour Diesel\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nGranddaddy Purple\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nGirl Scout Cookies\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nGelato #33\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nWedding Cake\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nZkittlez\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nGorilla Glue #4\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\nSummer 2025 Harvest - Purple Haze\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}

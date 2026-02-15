@@ -1,0 +1,30 @@
+{
+  "query": "SELECT id, name, photos FROM products WHERE name IN ('Girl Scout Cookies', 'Blue Dream', 'Wedding Cake', 'Test Blue Dream') LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, photos FROM products WHERE name IN ('Girl Scout Cookies', 'Blue Dream', 'Wedding Cake', 'Test Blue Dream') LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.png"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.png"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.png"
+    },
+    {
+      "id": "30001",
+      "name": "Test Blue Dream",
+      "photos": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tphotos\n1\tBlue Dream\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/sZQSpzEmHRVrEbzL.png\n6\tGirl Scout Cookies\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/XHXpuvOGsmwvFJKv.png\n9\tWedding Cake\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZpehjdLodWdoZQhO.png\n30001\tTest Blue Dream\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 62
+}
