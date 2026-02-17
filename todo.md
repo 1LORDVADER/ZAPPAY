@@ -434,3 +434,13 @@
 - [x] Verify all 33 products display correctly with images in browser
 - [ ] Push to GitHub
 - [ ] Save checkpoint
+
+
+## Product Image Text Overlay Fixes (Feb 15, 2026)
+- [x] Generate clean Thin Mint Girl Scout Cookies image (no text)
+- [x] Generate clean Tropicana Cookies image (no text)
+- [x] Generate clean Strawberry Cough image (no text)
+- [x] Upload all 3 new images to CDN
+- [x] Update database with new CDN URLs
+- [x] Verify all images display correctly in browser
+- [ ] Save checkpoint
