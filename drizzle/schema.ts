@@ -253,3 +253,120 @@ export const commissions = mysqlTable("commissions", {
 
 export type Commission = typeof commissions.$inferSelect;
 export type InsertCommission = typeof commissions.$inferInsert;
+
+// Transportation Drivers
+export const drivers = mysqlTable("drivers", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"), // optional - if driver has user account
+  fullName: varchar("fullName", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 20 }).notNull(),
+  age: int("age").notNull(),
+  gender: mysqlEnum("gender", ["male", "female"]).notNull(),
+  licenseNumber: varchar("licenseNumber", { length: 100 }).notNull(),
+  licenseState: varchar("licenseState", { length: 2 }).notNull(),
+  vehicleType: varchar("vehicleType", { length: 100 }).notNull(),
+  vehicleMake: varchar("vehicleMake", { length: 100 }),
+  vehicleModel: varchar("vehicleModel", { length: 100 }),
+  vehicleYear: int("vehicleYear"),
+  licensePlate: varchar("licensePlate", { length: 20 }),
+  insuranceProvider: varchar("insuranceProvider", { length: 255 }),
+  insurancePolicyNumber: varchar("insurancePolicyNumber", { length: 100 }),
+  status: mysqlEnum("status", ["active", "inactive", "suspended", "pending_approval"]).default("pending_approval").notNull(),
+  verified: mysqlEnum("verified", ["yes", "no"]).default("no").notNull(),
+  rating: varchar("rating", { length: 5 }), // e.g. "4.9"
+  totalDeliveries: int("totalDeliveries").default(0).notNull(),
+  currentLatitude: varchar("currentLatitude", { length: 20 }),
+  currentLongitude: varchar("currentLongitude", { length: 20 }),
+  lastLocationUpdate: timestamp("lastLocationUpdate"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Driver = typeof drivers.$inferSelect;
+export type InsertDriver = typeof drivers.$inferInsert;
+
+// Shipments
+export const shipments = mysqlTable("shipments", {
+  id: int("id").autoincrement().primaryKey(),
+  orderId: int("orderId").notNull(),
+  driverId: int("driverId").notNull(),
+  farmerId: int("farmerId").notNull(),
+  farmerBusinessName: varchar("farmerBusinessName", { length: 255 }).notNull(),
+  consumerId: int("consumerId").notNull(),
+  trackingNumber: varchar("trackingNumber", { length: 100 }).notNull().unique(),
+  status: mysqlEnum("status", ["pending", "assigned", "picked_up", "in_transit", "delivered", "cancelled"]).default("pending").notNull(),
+  pickupAddress: text("pickupAddress").notNull(),
+  pickupCity: varchar("pickupCity", { length: 100 }).notNull(),
+  pickupState: varchar("pickupState", { length: 2 }).notNull(),
+  pickupZip: varchar("pickupZip", { length: 10 }).notNull(),
+  pickupLatitude: varchar("pickupLatitude", { length: 20 }).notNull(),
+  pickupLongitude: varchar("pickupLongitude", { length: 20 }).notNull(),
+  deliveryAddress: text("deliveryAddress").notNull(),
+  deliveryCity: varchar("deliveryCity", { length: 100 }).notNull(),
+  deliveryState: varchar("deliveryState", { length: 2 }).notNull(),
+  deliveryZip: varchar("deliveryZip", { length: 10 }).notNull(),
+  deliveryLatitude: varchar("deliveryLatitude", { length: 20 }).notNull(),
+  deliveryLongitude: varchar("deliveryLongitude", { length: 20 }).notNull(),
+  distanceMiles: varchar("distanceMiles", { length: 10 }),
+  estimatedDeliveryTime: timestamp("estimatedDeliveryTime"),
+  actualPickupTime: timestamp("actualPickupTime"),
+  actualDeliveryTime: timestamp("actualDeliveryTime"),
+  transportationFee: int("transportationFee").notNull(), // in cents
+  platformCommission: int("platformCommission").notNull(), // 5.2% of transportation fee in cents
+  driverPayout: int("driverPayout").notNull(), // transportation fee minus commission in cents
+  packageWeight: varchar("packageWeight", { length: 20 }),
+  packageValue: int("packageValue").notNull(), // in cents
+  specialInstructions: text("specialInstructions"),
+  signatureRequired: mysqlEnum("signatureRequired", ["yes", "no"]).default("yes").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Shipment = typeof shipments.$inferSelect;
+export type InsertShipment = typeof shipments.$inferInsert;
+
+// GPS Tracking History
+export const gpsTracking = mysqlTable("gpsTracking", {
+  id: int("id").autoincrement().primaryKey(),
+  shipmentId: int("shipmentId").notNull(),
+  driverId: int("driverId").notNull(),
+  latitude: varchar("latitude", { length: 20 }).notNull(),
+  longitude: varchar("longitude", { length: 20 }).notNull(),
+  speed: varchar("speed", { length: 10 }), // in mph
+  heading: varchar("heading", { length: 10 }), // compass direction in degrees
+  accuracy: varchar("accuracy", { length: 10 }), // GPS accuracy in meters
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
+export type GpsTracking = typeof gpsTracking.$inferSelect;
+export type InsertGpsTracking = typeof gpsTracking.$inferInsert;
+
+// Transportation Companies
+export const transportationCompanies = mysqlTable("transportationCompanies", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"), // company owner/admin
+  companyName: varchar("companyName", { length: 255 }).notNull(),
+  businessLicenseNumber: varchar("businessLicenseNumber", { length: 100 }).notNull(),
+  dotNumber: varchar("dotNumber", { length: 100 }), // Department of Transportation number
+  mcNumber: varchar("mcNumber", { length: 100 }), // Motor Carrier number
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 20 }).notNull(),
+  address: text("address").notNull(),
+  city: varchar("city", { length: 100 }).notNull(),
+  state: varchar("state", { length: 2 }).notNull(),
+  zipCode: varchar("zipCode", { length: 10 }).notNull(),
+  insuranceProvider: varchar("insuranceProvider", { length: 255 }).notNull(),
+  insurancePolicyNumber: varchar("insurancePolicyNumber", { length: 100 }).notNull(),
+  insuranceCoverage: int("insuranceCoverage").notNull(), // coverage amount in cents
+  status: mysqlEnum("status", ["active", "inactive", "suspended", "pending_approval"]).default("pending_approval").notNull(),
+  verified: mysqlEnum("verified", ["yes", "no"]).default("no").notNull(),
+  totalDrivers: int("totalDrivers").default(0).notNull(),
+  totalDeliveries: int("totalDeliveries").default(0).notNull(),
+  rating: varchar("rating", { length: 5 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type TransportationCompany = typeof transportationCompanies.$inferSelect;
+export type InsertTransportationCompany = typeof transportationCompanies.$inferInsert;

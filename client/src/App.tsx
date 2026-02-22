@@ -15,6 +15,9 @@ import FarmerRegistration from "./pages/FarmerRegistration";
 import Checkout from "./pages/Checkout";
 import TrackOrder from "./pages/TrackOrder";
 import LegalPage from "./pages/LegalPage";
+import AdminTransportation from "./pages/AdminTransportation";
+import DriverRegistration from "./pages/DriverRegistration";
+import CompanyRegistration from "./pages/CompanyRegistration";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -26,6 +29,9 @@ function Router() {
       <Route path="/farmer/dashboard" component={FarmerDashboard} />
       <Route path="/sales/dashboard" component={SalesRepDashboard} />
       <Route path="/admin/sales" component={AdminSalesPanel} />
+      <Route path="/admin/transportation" component={AdminTransportation} />
+      <Route path="/transportation/driver-register" component={DriverRegistration} />
+      <Route path="/transportation/company-register" component={CompanyRegistration} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/track/:id" component={TrackOrder} />
       <Route path="/legal/:page" component={LegalPage} />

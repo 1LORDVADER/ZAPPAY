@@ -98,6 +98,11 @@ export default function Home() {
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <a href="mailto:Zappay.co@gmail.com" className="text-white hover:text-red-400 font-medium transition-colors">
+                  Contact
+                </a>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/orders">
                   <a className="text-white hover:text-red-400 font-medium transition-colors">
                     My Orders
@@ -158,7 +163,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="py-12 px-4"
+        className="py-12 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50"
       >
         <div className="container mx-auto">
           <motion.div 
@@ -253,7 +258,7 @@ export default function Home() {
       </motion.section>
 
       {/* Products Section */}
-      <section className="py-8 px-4">
+      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50">
         <div className="container mx-auto">
           <Tabs defaultValue="all" className="w-full" onValueChange={setActiveCategory}>
             <motion.div
