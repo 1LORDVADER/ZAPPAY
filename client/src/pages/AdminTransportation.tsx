@@ -16,7 +16,7 @@ export default function AdminTransportation() {
   const { data: shipments, isLoading: shipmentsLoading } = trpc.transportation.getAllShipments.useQuery();
 
   useEffect(() => {
-    if (!authLoading && (!user || user.email !== "Adarium33@gmail.com")) {
+    if (!authLoading && (!user || user.email !== "Adariusm33@gmail.com")) {
       setLocation("/");
     }
   }, [user, authLoading, setLocation]);
@@ -32,7 +32,7 @@ export default function AdminTransportation() {
     );
   }
 
-  if (!user || user.email !== "Adarium33@gmail.com") {
+  if (!user || user.email !== "Adariusm33@gmail.com") {
     return null;
   }
 

@@ -654,3 +654,17 @@
 - [x] Add map controls (zoom, pan, satellite view)
 - [x] Custom circular markers with white borders and shadows
 - [x] Test map loads correctly with all shipment data
+
+
+## Debugging Transportation System Issues (Feb 22, 2026) 🐛
+
+- [x] Check browser console for JavaScript errors
+- [x] Verify admin transportation route is accessible
+- [x] Test if map loads correctly
+- [x] Verify shipment data is being fetched from database
+- [x] Check if markers are rendering on map
+- [x] Test driver registration form submission
+- [x] Test company registration form submission
+- [x] Verify all tRPC procedures are working
+- [x] Check database for test data
+- [x] Fix email mismatch issues (Adarium33 vs Adariusm33)

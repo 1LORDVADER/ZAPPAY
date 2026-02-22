@@ -8,7 +8,7 @@ export const transportationRouter = router({
   // Get all drivers (admin only)
   getAllDrivers: protectedProcedure
     .query(async ({ ctx }) => {
-      if (ctx.user.email !== "Adarium33@gmail.com") {
+      if (ctx.user.email !== "Adariusm33@gmail.com") {
         throw new Error("Unauthorized");
       }
       
@@ -21,7 +21,7 @@ export const transportationRouter = router({
   // Get all shipments (admin only)
   getAllShipments: protectedProcedure
     .query(async ({ ctx }) => {
-      if (ctx.user.email !== "Adarium33@gmail.com") {
+      if (ctx.user.email !== "Adariusm33@gmail.com") {
         throw new Error("Unauthorized");
       }
       
