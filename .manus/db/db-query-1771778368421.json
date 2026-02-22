@@ -1,0 +1,31 @@
+{
+  "query": "SHOW TABLES LIKE 'salesReps'; SHOW TABLES LIKE 'commissions'; SHOW TABLES LIKE 'referrals'; SHOW TABLES LIKE 'farmerSubscriptions';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SHOW TABLES LIKE 'salesReps'; SHOW TABLES LIKE 'commissions'; SHOW TABLES LIKE 'referrals'; SHOW TABLES LIKE 'farmerSubscriptions';",
+  "rows": [
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)": "salesReps"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)": "Tables_in_jWmfVYBaikHBYpPLbpiijG (commissions)"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)": "commissions"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)": "Tables_in_jWmfVYBaikHBYpPLbpiijG (referrals)"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)": "referrals"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)": "Tables_in_jWmfVYBaikHBYpPLbpiijG (farmerSubscriptions)"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)": "farmerSubscriptions"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_jWmfVYBaikHBYpPLbpiijG (salesReps)\nsalesReps\nTables_in_jWmfVYBaikHBYpPLbpiijG (commissions)\ncommissions\nTables_in_jWmfVYBaikHBYpPLbpiijG (referrals)\nreferrals\nTables_in_jWmfVYBaikHBYpPLbpiijG (farmerSubscriptions)\nfarmerSubscriptions\n",
+  "stderr": "",
+  "execution_time_ms": 68
+}

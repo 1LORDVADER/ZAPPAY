@@ -9,6 +9,9 @@ import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import FarmerDashboard from "./pages/FarmerDashboard";
+import SalesRepDashboard from "./pages/SalesRepDashboard";
+import AdminSalesPanel from "./pages/AdminSalesPanel";
+import FarmerRegistration from "./pages/FarmerRegistration";
 import Checkout from "./pages/Checkout";
 import TrackOrder from "./pages/TrackOrder";
 import LegalPage from "./pages/LegalPage";
@@ -19,7 +22,10 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path="/product/:id" component={ProductDetail} />
       <Route path="/cart" component={Cart} />
+      <Route path="/farmer/register" component={FarmerRegistration} />
       <Route path="/farmer/dashboard" component={FarmerDashboard} />
+      <Route path="/sales/dashboard" component={SalesRepDashboard} />
+      <Route path="/admin/sales" component={AdminSalesPanel} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/track/:id" component={TrackOrder} />
       <Route path="/legal/:page" component={LegalPage} />

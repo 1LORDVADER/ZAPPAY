@@ -36,7 +36,7 @@ export const farmerProfiles = mysqlTable("farmerProfiles", {
   zipCode: varchar("zipCode", { length: 10 }),
   bio: text("bio"),
   verified: mysqlEnum("verified", ["pending", "approved", "rejected"]).default("pending").notNull(),
-  subscriptionTier: mysqlEnum("subscriptionTier", ["free", "premium", "enterprise"]).default("free").notNull(),
+  subscriptionTier: mysqlEnum("subscriptionTier", ["trial", "standard", "premium", "enterprise"]).default("trial").notNull(), // trial = first year free, standard = $250/month, premium = $1,100/month, enterprise = legacy
   subscriptionStatus: mysqlEnum("subscriptionStatus", ["active", "cancelled", "expired"]).default("active").notNull(),
   subscriptionExpiresAt: timestamp("subscriptionExpiresAt"),
   monthlyRevenue: int("monthlyRevenue").default(0).notNull(), // in cents
@@ -179,3 +179,77 @@ export const cartItems = mysqlTable("cartItems", {
 
 export type CartItem = typeof cartItems.$inferSelect;
 export type InsertCartItem = typeof cartItems.$inferInsert;
+
+// Sales Representatives
+export const salesReps = mysqlTable("salesReps", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  referralCode: varchar("referralCode", { length: 20 }).notNull().unique(),
+  status: mysqlEnum("status", ["active", "inactive", "suspended"]).default("active").notNull(),
+  totalReferrals: int("totalReferrals").default(0).notNull(),
+  activeReferrals: int("activeReferrals").default(0).notNull(),
+  totalCommissionsEarned: int("totalCommissionsEarned").default(0).notNull(), // in cents
+  pendingCommissions: int("pendingCommissions").default(0).notNull(), // in cents
+  paidCommissions: int("paidCommissions").default(0).notNull(), // in cents
+  stripeAccountId: varchar("stripeAccountId", { length: 255 }), // for payouts
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SalesRep = typeof salesReps.$inferSelect;
+export type InsertSalesRep = typeof salesReps.$inferInsert;
+
+// Farmer Subscriptions
+export const farmerSubscriptions = mysqlTable("farmerSubscriptions", {
+  id: int("id").autoincrement().primaryKey(),
+  farmerId: int("farmerId").notNull(),
+  tier: mysqlEnum("tier", ["standard", "premium"]).notNull(), // $250/month or $1,100/month
+  status: mysqlEnum("status", ["active", "cancelled", "expired", "trial"]).default("trial").notNull(),
+  billingCycle: mysqlEnum("billingCycle", ["monthly", "annual"]).default("monthly").notNull(),
+  monthlyPrice: int("monthlyPrice").notNull(), // in cents (25000 or 110000)
+  trialEndsAt: timestamp("trialEndsAt"), // First year free
+  currentPeriodStart: timestamp("currentPeriodStart").notNull(),
+  currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
+  cancelledAt: timestamp("cancelledAt"),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }),
+  referredBy: int("referredBy"), // sales rep ID
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type FarmerSubscription = typeof farmerSubscriptions.$inferSelect;
+export type InsertFarmerSubscription = typeof farmerSubscriptions.$inferInsert;
+
+// Referrals
+export const referrals = mysqlTable("referrals", {
+  id: int("id").autoincrement().primaryKey(),
+  salesRepId: int("salesRepId").notNull(),
+  farmerId: int("farmerId").notNull(),
+  referralCode: varchar("referralCode", { length: 20 }).notNull(),
+  status: mysqlEnum("status", ["pending", "converted", "expired", "rejected"]).default("pending").notNull(),
+  convertedAt: timestamp("convertedAt"),
+  subscriptionTier: mysqlEnum("subscriptionTier", ["standard", "premium"]),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Referral = typeof referrals.$inferSelect;
+export type InsertReferral = typeof referrals.$inferInsert;
+
+// Commissions
+export const commissions = mysqlTable("commissions", {
+  id: int("id").autoincrement().primaryKey(),
+  salesRepId: int("salesRepId").notNull(),
+  farmerId: int("farmerId").notNull(),
+  type: mysqlEnum("type", ["signup_bonus", "recurring_monthly"]).notNull(),
+  amount: int("amount").notNull(), // in cents
+  status: mysqlEnum("status", ["pending", "approved", "paid", "cancelled"]).default("pending").notNull(),
+  subscriptionMonth: int("subscriptionMonth"), // 1-12 for recurring commissions
+  paidAt: timestamp("paidAt"),
+  stripePayoutId: varchar("stripePayoutId", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Commission = typeof commissions.$inferSelect;
+export type InsertCommission = typeof commissions.$inferInsert;

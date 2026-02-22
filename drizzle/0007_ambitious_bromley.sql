@@ -1,0 +1,1 @@
+ALTER TABLE `farmerProfiles` MODIFY COLUMN `subscriptionTier` enum('trial','standard','premium','enterprise') NOT NULL DEFAULT 'trial';

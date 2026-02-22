@@ -499,3 +499,20 @@
 - [x] Install react-markdown for rendering legal documents
 - [x] Test all legal pages load correctly (Terms of Service verified in browser)
 - [ ] Save checkpoint
+
+
+## Commission-Based Sales Force Platform (Feb 15, 2026)
+- [x] Design database schema (sales_reps, referrals, commissions, farmer_subscriptions)
+- [x] Add subscription tier fields to farmer schema ($250/month Standard, $1,100/month Premium)
+- [ ] Build sales rep registration and authentication
+- [ ] Create unique referral code generation system
+- [ ] Build sales rep dashboard with pipeline tracking
+- [ ] Add commission calculator (one-time bonus + recurring percentage)
+- [ ] Create farmer referral/onboarding flow with referral code tracking
+- [ ] Build admin panel for managing sales reps and approving farmers
+- [ ] Add commission payout management system
+- [ ] Create leaderboard showing top performers
+- [ ] Add analytics dashboard (conversions, revenue, active farmers)
+- [ ] Create downloadable sales materials section (pitch deck, one-pagers)
+- [ ] Test complete sales flow (rep sign-up → farmer referral → commission tracking)
+- [ ] Save checkpoint

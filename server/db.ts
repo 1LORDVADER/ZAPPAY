@@ -193,11 +193,54 @@ export async function deleteProduct(id: number) {
 }
 
 // Farmer Profile Management
-export async function createFarmerProfile(profile: InsertFarmerProfile) {
+export async function createFarmerProfile(profile: InsertFarmerProfile & { referralCode?: string }) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   
-  const result = await db.insert(farmerProfiles).values(profile);
+  const { referralCode, ...profileData } = profile;
+  
+  // Create farmer profile
+  const result = await db.insert(farmerProfiles).values(profileData);
+  const farmerId = result[0].insertId;
+  
+  // If referral code provided, track the referral
+  if (referralCode) {
+    const { getSalesRepByReferralCode, trackReferral, convertReferral } = await import("./salesReps");
+    const salesRep = await getSalesRepByReferralCode(referralCode);
+    
+    if (salesRep) {
+      // Track referral
+      await trackReferral(salesRep.id, farmerId, referralCode);
+      
+      // Convert referral immediately (farmer subscribed)
+      await convertReferral(farmerId, profileData.subscriptionTier as "standard" | "premium");
+    }
+  }
+  
+  // Create subscription record
+  const { farmerSubscriptions } = await import("../drizzle/schema");
+  const trialEndDate = new Date();
+  trialEndDate.setFullYear(trialEndDate.getFullYear() + 1); // 1 year free trial
+  
+  let referredById: number | undefined = undefined;
+  if (referralCode) {
+    const { getSalesRepByReferralCode } = await import("./salesReps");
+    const rep = await getSalesRepByReferralCode(referralCode);
+    referredById = rep?.id;
+  }
+  
+  await db.insert(farmerSubscriptions).values({
+    farmerId: Number(farmerId),
+    tier: profileData.subscriptionTier as "standard" | "premium",
+    status: "trial",
+    billingCycle: "monthly",
+    monthlyPrice: profileData.subscriptionTier === "premium" ? 110000 : 25000,
+    trialEndsAt: trialEndDate,
+    currentPeriodStart: new Date(),
+    currentPeriodEnd: trialEndDate,
+    referredBy: referredById,
+  });
+  
   return result;
 }
 
