@@ -416,6 +416,101 @@ export default function Home() {
           </Tabs>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-12 mt-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="font-bold text-lg mb-4">Legal</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="/legal/terms-of-service"
+                    className="text-sm hover:text-blue-400 transition-colors"
+                  >
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/legal/privacy-policy"
+                    className="text-sm hover:text-blue-400 transition-colors"
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/legal/refund-policy"
+                    className="text-sm hover:text-blue-400 transition-colors"
+                  >
+                    Refund Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/legal/age-verification-policy"
+                    className="text-sm hover:text-blue-400 transition-colors"
+                  >
+                    Age Verification
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/legal/prohibited-use-policy"
+                    className="text-sm hover:text-blue-400 transition-colors"
+                  >
+                    Prohibited Use
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-4">Contact</h3>
+              <ul className="space-y-2 text-sm">
+                <li>Email: support@zappay.com</li>
+                <li>Phone: 1-800-ZAPPAY-1</li>
+                <li>Privacy: privacy@zappay.com</li>
+                <li>Compliance: compliance@zappay.com</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-4">About ZAPPAY</h3>
+              <p className="text-sm text-slate-300">
+                America's premier cannabis marketplace connecting licensed farmers
+                with consumers nationwide. Just 5.2% commission.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-4">Platform</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-sm hover:text-blue-400 transition-colors">
+                    For Farmers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm hover:text-blue-400 transition-colors">
+                    For Transporters
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm hover:text-blue-400 transition-colors">
+                    How It Works
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-slate-700 text-center text-sm text-slate-400">
+            <p>© 2026 ZAPPAY. All rights reserved.</p>
+            <p className="mt-2">
+              For legal adult use only in states where cannabis is legal.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

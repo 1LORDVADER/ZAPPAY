@@ -11,6 +11,7 @@ import Cart from "./pages/Cart";
 import FarmerDashboard from "./pages/FarmerDashboard";
 import Checkout from "./pages/Checkout";
 import TrackOrder from "./pages/TrackOrder";
+import LegalPage from "./pages/LegalPage";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/farmer/dashboard" component={FarmerDashboard} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/track/:id" component={TrackOrder} />
+      <Route path="/legal/:page" component={LegalPage} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

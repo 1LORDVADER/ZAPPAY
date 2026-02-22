@@ -459,3 +459,43 @@
 - [x] Test all compliance scenarios (verified in browser - shows location, blocks access)
 - [x] Verify cannot be bypassed (modal blocks ESC and outside clicks)
 - [x] Save checkpoint
+
+
+## Legal Pages Implementation (Feb 15, 2026)
+- [ ] Research payment processor legal requirements (PCI DSS, financial disclosures)
+- [ ] Research cannabis marketplace compliance requirements
+- [ ] Research Stripe payment processor disclosure requirements
+- [ ] Create Terms of Service covering:
+  - [ ] Payment processing terms
+  - [ ] Marketplace operations (farmer-consumer-dispensary model)
+  - [ ] Cannabis compliance and age restrictions
+  - [ ] Pre-payment/crowdfunding model for strain growth
+  - [ ] Commission structure (5.2%)
+  - [ ] Prohibited uses and state restrictions
+- [ ] Create Privacy Policy covering:
+  - [ ] Payment data handling (Stripe integration)
+  - [ ] User information collection and storage
+  - [ ] Geolocation data for compliance
+  - [ ] Cookie usage
+  - [ ] Third-party data sharing
+- [ ] Create Refund Policy
+- [ ] Create Age Verification Policy
+- [ ] Create Prohibited Use Policy
+- [ ] Add legal pages to footer navigation
+- [ ] Verify all required disclosures are present
+- [ ] Save checkpoint
+
+
+## Legal Pages Implementation (Feb 15, 2026)
+- [x] Research payment processor legal requirements
+- [x] Research cannabis marketplace compliance requirements
+- [x] Create Terms of Service (comprehensive, covers payment processing, marketplace, cannabis compliance)
+- [x] Create Privacy Policy (CCPA/CPRA compliant, covers payment data, age verification, location tracking)
+- [x] Create Refund Policy (cannabis-specific, covers pre-orders, quality issues, platform commission)
+- [x] Create Age Verification Policy (21+ requirement, geolocation, ID at delivery)
+- [x] Create Prohibited Use Policy (underage access, interstate transport, illegal resale, fraud)
+- [x] Add legal pages to website navigation (route /legal/:page)
+- [x] Add footer with legal links to Home page
+- [x] Install react-markdown for rendering legal documents
+- [x] Test all legal pages load correctly (Terms of Service verified in browser)
+- [ ] Save checkpoint
