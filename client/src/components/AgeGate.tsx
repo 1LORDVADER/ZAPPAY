@@ -257,7 +257,7 @@ export function AgeGate() {
           {/* Logo */}
           <div className="h-20 w-20 flex items-center justify-center">
             <img
-              src="/zappay-logo.jpeg"
+              src="/logo.png"
               alt="ZAPPAY"
               className="h-20 w-20 object-contain"
             />
