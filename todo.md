@@ -458,4 +458,4 @@
 - [x] Integrate AgeGate into App.tsx
 - [x] Test all compliance scenarios (verified in browser - shows location, blocks access)
 - [x] Verify cannot be bypassed (modal blocks ESC and outside clicks)
-- [ ] Save checkpoint
+- [x] Save checkpoint

@@ -255,11 +255,11 @@ export function AgeGate() {
       >
         <div className="flex flex-col items-center gap-6 py-4">
           {/* Logo */}
-          <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center">
+          <div className="h-20 w-20 flex items-center justify-center">
             <img
               src="/zappay-logo.jpeg"
               alt="ZAPPAY"
-              className="h-12 w-12 rounded-full object-cover"
+              className="h-20 w-20 object-contain"
             />
           </div>
 
