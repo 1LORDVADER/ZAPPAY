@@ -626,3 +626,31 @@
 - [ ] Add shipment assignment workflow
 - [ ] Build driver performance metrics
 - [ ] Implement route optimization
+
+
+## Google Maps Integration (Feb 22, 2026) 🗺️
+
+### Admin Dashboard Map View
+- [ ] Add Google Maps component to AdminTransportation.tsx
+- [ ] Display all shipments as markers on map
+- [ ] Show driver current locations with GPS tracking
+- [ ] Draw routes between pickup and delivery locations
+- [ ] Add info windows with shipment details on marker click
+- [ ] Color-code markers by shipment status (pending, in_transit, delivered)
+- [ ] Add map controls (zoom, pan, satellite view)
+- [ ] Test map loads correctly with all shipment data
+- [ ] Save checkpoint with Google Maps integration
+
+
+## Google Maps Integration Complete (Feb 22, 2026) ✅
+
+- [x] Add Google Maps component to AdminTransportation.tsx
+- [x] Display all shipments as markers on map
+- [x] Show driver current locations with GPS tracking
+- [x] Draw routes between pickup and delivery locations
+- [x] Add info windows with shipment details on marker click
+- [x] Color-code markers by shipment status (green for pickup, red for delivery)
+- [x] Color-code route lines (green for delivered, blue for in_transit, gray for pending)
+- [x] Add map controls (zoom, pan, satellite view)
+- [x] Custom circular markers with white borders and shadows
+- [x] Test map loads correctly with all shipment data

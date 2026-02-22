@@ -4,8 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Truck, MapPin, Clock, Package, User, Phone, Mail } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "wouter";
+import { MapView } from "@/components/Map";
 
 export default function AdminTransportation() {
   const { user, loading: authLoading } = useAuth();
@@ -79,6 +80,109 @@ export default function AdminTransportation() {
           <h1 className="text-4xl font-bold text-slate-900 mb-2">Transportation Dashboard</h1>
           <p className="text-lg text-slate-600">Manage drivers, shipments, and GPS tracking</p>
         </div>
+
+        {/* Google Maps View */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Live Shipment Tracking</CardTitle>
+            <CardDescription>Real-time GPS locations of all active shipments</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <MapView
+              className="w-full h-[600px] rounded-lg"
+              initialCenter={{ lat: 39.8283, lng: -98.5795 }} // Center of USA
+              initialZoom={4}
+              onMapReady={(map) => {
+                // Add markers for all shipments
+                shipments?.forEach((shipment) => {
+                  const pickupLat = parseFloat(shipment.pickupLatitude);
+                  const pickupLng = parseFloat(shipment.pickupLongitude);
+                  const deliveryLat = parseFloat(shipment.deliveryLatitude);
+                  const deliveryLng = parseFloat(shipment.deliveryLongitude);
+
+                  // Create custom pickup marker (green circle)
+                  const pickupDiv = document.createElement('div');
+                  pickupDiv.style.width = '20px';
+                  pickupDiv.style.height = '20px';
+                  pickupDiv.style.borderRadius = '50%';
+                  pickupDiv.style.backgroundColor = '#22c55e';
+                  pickupDiv.style.border = '3px solid white';
+                  pickupDiv.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+
+                  const pickupMarker = new google.maps.marker.AdvancedMarkerElement({
+                    map,
+                    position: { lat: pickupLat, lng: pickupLng },
+                    title: `Pickup: ${shipment.farmerBusinessName}`,
+                    content: pickupDiv,
+                  });
+
+                  // Create custom delivery marker (red circle)
+                  const deliveryDiv = document.createElement('div');
+                  deliveryDiv.style.width = '20px';
+                  deliveryDiv.style.height = '20px';
+                  deliveryDiv.style.borderRadius = '50%';
+                  deliveryDiv.style.backgroundColor = '#ef4444';
+                  deliveryDiv.style.border = '3px solid white';
+                  deliveryDiv.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+
+                  const deliveryMarker = new google.maps.marker.AdvancedMarkerElement({
+                    map,
+                    position: { lat: deliveryLat, lng: deliveryLng },
+                    title: `Delivery: ${shipment.deliveryCity}, ${shipment.deliveryState}`,
+                    content: deliveryDiv,
+                  });
+
+                  // Draw route line
+                  const routeLine = new google.maps.Polyline({
+                    path: [
+                      { lat: pickupLat, lng: pickupLng },
+                      { lat: deliveryLat, lng: deliveryLng },
+                    ],
+                    geodesic: true,
+                    strokeColor: shipment.status === 'delivered' ? '#22c55e' : shipment.status === 'in_transit' ? '#3b82f6' : '#94a3b8',
+                    strokeOpacity: 0.7,
+                    strokeWeight: 3,
+                    map,
+                  });
+
+                  // Add info window for pickup
+                  const pickupInfoWindow = new google.maps.InfoWindow({
+                    content: `
+                      <div style="padding: 8px; max-width: 250px;">
+                        <h3 style="font-weight: bold; margin-bottom: 4px;">Pickup Location</h3>
+                        <p style="margin: 2px 0;"><strong>Farmer:</strong> ${shipment.farmerBusinessName}</p>
+                        <p style="margin: 2px 0;"><strong>Address:</strong> ${shipment.pickupAddress}, ${shipment.pickupCity}, ${shipment.pickupState}</p>
+                        <p style="margin: 2px 0;"><strong>Tracking:</strong> ${shipment.trackingNumber}</p>
+                        <p style="margin: 2px 0;"><strong>Status:</strong> ${shipment.status}</p>
+                      </div>
+                    `,
+                  });
+
+                  pickupMarker.addListener('click', () => {
+                    pickupInfoWindow.open(map, pickupMarker);
+                  });
+
+                  // Add info window for delivery
+                  const deliveryInfoWindow = new google.maps.InfoWindow({
+                    content: `
+                      <div style="padding: 8px; max-width: 250px;">
+                        <h3 style="font-weight: bold; margin-bottom: 4px;">Delivery Location</h3>
+                        <p style="margin: 2px 0;"><strong>Address:</strong> ${shipment.deliveryAddress}, ${shipment.deliveryCity}, ${shipment.deliveryState}</p>
+                        <p style="margin: 2px 0;"><strong>Distance:</strong> ${shipment.distanceMiles} miles</p>
+                        <p style="margin: 2px 0;"><strong>Package Value:</strong> $${(shipment.packageValue / 100).toLocaleString()}</p>
+                        <p style="margin: 2px 0;"><strong>Status:</strong> ${shipment.status}</p>
+                      </div>
+                    `,
+                  });
+
+                  deliveryMarker.addListener('click', () => {
+                    deliveryInfoWindow.open(map, deliveryMarker);
+                  });
+                });
+              }}
+            />
+          </CardContent>
+        </Card>
 
         {/* Stats Overview */}
         <div className="grid md:grid-cols-4 gap-6 mb-8">
