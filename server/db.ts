@@ -415,3 +415,23 @@ export async function getProductReviews(productId: number) {
   
   return await db.select().from(reviews).where(eq(reviews.productId, productId)).orderBy(desc(reviews.createdAt));
 }
+
+// Sales Rep Applications
+export async function createSalesRepApplication(application: {
+  fullName: string;
+  email: string;
+  phone: string;
+  location: string;
+  experience: string;
+  linkedinUrl: string | null;
+  resume: string | null;
+  whyJoin: string;
+  status: 'pending_approval' | 'approved' | 'rejected';
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const { salesRepApplications } = await import('../drizzle/schema');
+  const [result] = await db.insert(salesRepApplications).values(application);
+  return { id: result.insertId };
+}

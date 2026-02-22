@@ -668,3 +668,28 @@
 - [x] Verify all tRPC procedures are working
 - [x] Check database for test data
 - [x] Fix email mismatch issues (Adarium33 vs Adariusm33)
+
+
+## User Login Issues (Feb 22, 2026) 🚨
+
+- [x] Test login flow with user's Gmail account
+- [x] Check what features are not working after login
+- [x] Verify admin dashboard access with correct email
+- [x] Test transportation features (driver registration, company registration)
+- [ ] Check farmer dashboard access
+- [x] Test product browsing and cart functionality (working - added item to cart successfully)
+- [x] Verify all navigation links work
+- [x] Check console for authentication errors
+- [x] Fix missing /orders page (created Orders.tsx and added route)
+
+
+## Make Application Forms Accessible (Feb 22, 2026) 🎯
+
+- [x] Add "Apply Now" dropdown menu to header with links to all registration forms
+- [ ] Add prominent application CTAs to homepage for logged-in users
+- [ ] Create unified "Applications" page listing all available roles
+- [x] Link farmer registration form (/farmer/register)
+- [x] Link driver registration form (/transportation/driver-register)
+- [x] Link company registration form (/transportation/company-register)
+- [x] Create SaaS sales rep registration form (created /sales/register)
+- [x] Test all application forms are accessible from main navigation

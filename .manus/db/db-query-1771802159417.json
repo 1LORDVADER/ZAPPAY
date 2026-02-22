@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `salesRepApplications` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `fullName` varchar(255) NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `phone` varchar(20) NOT NULL,\n  `location` varchar(255) NOT NULL,\n  `experience` varchar(50) NOT NULL,\n  `linkedinUrl` text,\n  `resume` text,\n  `whyJoin` text NOT NULL,\n  `status` enum('pending_approval','approved','rejected') NOT NULL DEFAULT 'pending_approval',\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  `updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n  CONSTRAINT `salesRepApplications_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute CREATE TABLE IF NOT EXISTS `salesRepApplications` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `fullName` varchar(255) NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `phone` varchar(20) NOT NULL,\n  `location` varchar(255) NOT NULL,\n  `experience` varchar(50) NOT NULL,\n  `linkedinUrl` text,\n  `resume` text,\n  `whyJoin` text NOT NULL,\n  `status` enum('pending_approval','approved','rejected') NOT NULL DEFAULT 'pending_approval',\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  `updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n  CONSTRAINT `salesRepApplications_id` PRIMARY KEY(`id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 281
+}

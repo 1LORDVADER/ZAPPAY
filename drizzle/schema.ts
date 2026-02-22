@@ -370,3 +370,22 @@ export const transportationCompanies = mysqlTable("transportationCompanies", {
 
 export type TransportationCompany = typeof transportationCompanies.$inferSelect;
 export type InsertTransportationCompany = typeof transportationCompanies.$inferInsert;
+
+// Sales Rep Applications
+export const salesRepApplications = mysqlTable("salesRepApplications", {
+  id: int("id").autoincrement().primaryKey(),
+  fullName: varchar("fullName", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 20 }).notNull(),
+  location: varchar("location", { length: 255 }).notNull(),
+  experience: varchar("experience", { length: 50 }).notNull(),
+  linkedinUrl: text("linkedinUrl"),
+  resume: text("resume"),
+  whyJoin: text("whyJoin").notNull(),
+  status: mysqlEnum("status", ["pending_approval", "approved", "rejected"]).default("pending_approval").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SalesRepApplication = typeof salesRepApplications.$inferSelect;
+export type InsertSalesRepApplication = typeof salesRepApplications.$inferInsert;

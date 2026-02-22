@@ -5,7 +5,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut, Star } from "lucide-react";
+import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut, Star, ChevronDown, Briefcase, Truck, Sprout } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
@@ -108,6 +114,62 @@ export default function Home() {
                     My Orders
                   </a>
                 </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="text-white hover:text-red-400 hover:bg-white/10 font-medium">
+                      Apply Now
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56 bg-white">
+                    <DropdownMenuItem asChild>
+                      <Link href="/farmer/register">
+                        <a className="flex items-center gap-2 w-full cursor-pointer">
+                          <Sprout className="h-4 w-4 text-green-600" />
+                          <div>
+                            <div className="font-medium">Licensed Farmer</div>
+                            <div className="text-xs text-slate-500">Sell your cannabis products</div>
+                          </div>
+                        </a>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/transportation/driver-register">
+                        <a className="flex items-center gap-2 w-full cursor-pointer">
+                          <Truck className="h-4 w-4 text-blue-600" />
+                          <div>
+                            <div className="font-medium">Transportation Driver</div>
+                            <div className="text-xs text-slate-500">Deliver cannabis products</div>
+                          </div>
+                        </a>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/transportation/company-register">
+                        <a className="flex items-center gap-2 w-full cursor-pointer">
+                          <Package className="h-4 w-4 text-purple-600" />
+                          <div>
+                            <div className="font-medium">Transportation Company</div>
+                            <div className="text-xs text-slate-500">Partner with ZAPPAY</div>
+                          </div>
+                        </a>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/sales/register">
+                        <a className="flex items-center gap-2 w-full cursor-pointer">
+                          <Briefcase className="h-4 w-4 text-orange-600" />
+                          <div>
+                            <div className="font-medium">SaaS Sales Rep</div>
+                            <div className="text-xs text-slate-500">Join our sales team</div>
+                          </div>
+                        </a>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/cart">
