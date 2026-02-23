@@ -228,6 +228,14 @@ export const appRouter = router({
           ...input,
           userId: ctx.user.id,
         });
+        
+        // Send notification to admin
+        const { notifyOwner } = await import('./_core/notification');
+        await notifyOwner({
+          title: 'New Farmer Application',
+          content: `${input.businessName} has applied to join ZAPPAY as a licensed farmer. License: ${input.licenseNumber}, State: ${input.state}. Review at /admin/applications`
+        });
+        
         return { success: true };
       }),
     updateFarmerProfile: publicProcedure
@@ -260,6 +268,28 @@ export const appRouter = router({
         if (!ctx.user) throw new Error('Not authenticated');
         const { updateConsumerProfile } = await import('./db');
         await updateConsumerProfile(ctx.user.id, input);
+        return { success: true };
+      }),
+  }),
+
+  // Farmers
+  farmers: router({
+    getPendingApplications: publicProcedure.query(async () => {
+      const { getAllPendingFarmerProfiles } = await import('./db');
+      return await getAllPendingFarmerProfiles();
+    }),
+    approveApplication: publicProcedure
+      .input((val: unknown) => val as { id: number })
+      .mutation(async ({ input }) => {
+        const { approveFarmerProfile } = await import('./db');
+        await approveFarmerProfile(input.id);
+        return { success: true };
+      }),
+    rejectApplication: publicProcedure
+      .input((val: unknown) => val as { id: number })
+      .mutation(async ({ input }) => {
+        const { rejectFarmerProfile } = await import('./db');
+        await rejectFarmerProfile(input.id);
         return { success: true };
       }),
   }),

@@ -72,6 +72,14 @@ export const transportationRouter = router({
         verified: "no",
         totalDeliveries: 0,
       });
+      
+      // Send notification to admin
+      const { notifyOwner } = await import('./_core/notification');
+      await notifyOwner({
+        title: 'New Driver Application',
+        content: `${input.fullName} has applied to become a ZAPPAY driver. License: ${input.licenseNumber}, State: ${input.licenseState}. Review at /admin/applications`
+      });
+      
       return { success: true, driverId: driver.insertId };
     }),
 
@@ -102,6 +110,14 @@ export const transportationRouter = router({
         totalDrivers: 0,
         totalDeliveries: 0,
       });
+      
+      // Send notification to admin
+      const { notifyOwner } = await import('./_core/notification');
+      await notifyOwner({
+        title: 'New Transportation Company Application',
+        content: `${input.companyName} has applied to join ZAPPAY. License: ${input.businessLicenseNumber}. Review at /admin/applications`
+      });
+      
       return { success: true, companyId: company.insertId };
     }),
 
@@ -132,5 +148,74 @@ export const transportationRouter = router({
         shipment,
         currentLocation: latestLocation || null,
       };
+    }),
+
+  // Get all companies (admin only)
+  getAllCompanies: protectedProcedure
+    .query(async ({ ctx }) => {
+      if (ctx.user.email !== "Adariusm33@gmail.com") {
+        throw new Error("Unauthorized");
+      }
+      
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      const allCompanies = await db.select().from(transportationCompanies).orderBy(desc(transportationCompanies.createdAt));
+      return allCompanies;
+    }),
+
+  // Approve driver (admin only)
+  approveDriver: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      if (ctx.user.email !== "Adariusm33@gmail.com") {
+        throw new Error("Unauthorized");
+      }
+      
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      await db.update(drivers).set({ status: "active", verified: "yes" }).where(eq(drivers.id, input.id));
+      return { success: true };
+    }),
+
+  // Reject driver (admin only)
+  rejectDriver: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      if (ctx.user.email !== "Adariusm33@gmail.com") {
+        throw new Error("Unauthorized");
+      }
+      
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      await db.update(drivers).set({ status: "inactive" }).where(eq(drivers.id, input.id));
+      return { success: true };
+    }),
+
+  // Approve company (admin only)
+  approveCompany: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      if (ctx.user.email !== "Adariusm33@gmail.com") {
+        throw new Error("Unauthorized");
+      }
+      
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      await db.update(transportationCompanies).set({ status: "active", verified: "yes" }).where(eq(transportationCompanies.id, input.id));
+      return { success: true };
+    }),
+
+  // Reject company (admin only)
+  rejectCompany: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      if (ctx.user.email !== "Adariusm33@gmail.com") {
+        throw new Error("Unauthorized");
+      }
+      
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      await db.update(transportationCompanies).set({ status: "inactive" }).where(eq(transportationCompanies.id, input.id));
+      return { success: true };
     }),
 });

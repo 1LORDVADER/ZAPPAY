@@ -435,3 +435,57 @@ export async function createSalesRepApplication(application: {
   const [result] = await db.insert(salesRepApplications).values(application);
   return { id: result.insertId };
 }
+
+
+// Get all pending farmer profiles
+export async function getAllPendingFarmerProfiles() {
+  const db = await getDb();
+  if (!db) return [];
+  const { farmerProfiles } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  return await db.select().from(farmerProfiles).where(eq(farmerProfiles.verified, 'pending'));
+}
+
+// Approve farmer profile
+export async function approveFarmerProfile(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const { farmerProfiles } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  await db.update(farmerProfiles).set({ verified: 'approved' }).where(eq(farmerProfiles.id, id));
+}
+
+// Reject farmer profile
+export async function rejectFarmerProfile(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const { farmerProfiles } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  await db.update(farmerProfiles).set({ verified: 'rejected' }).where(eq(farmerProfiles.id, id));
+}
+
+// Get all sales rep applications
+export async function getAllSalesRepApplications() {
+  const db = await getDb();
+  if (!db) return [];
+  const { salesRepApplications } = await import('../drizzle/schema');
+  return await db.select().from(salesRepApplications);
+}
+
+// Approve sales rep application
+export async function approveSalesRepApplication(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const { salesRepApplications } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  await db.update(salesRepApplications).set({ status: 'approved' }).where(eq(salesRepApplications.id, id));
+}
+
+// Reject sales rep application
+export async function rejectSalesRepApplication(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const { salesRepApplications } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  await db.update(salesRepApplications).set({ status: 'rejected' }).where(eq(salesRepApplications.id, id));
+}

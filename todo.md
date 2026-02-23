@@ -693,3 +693,28 @@
 - [x] Link company registration form (/transportation/company-register)
 - [x] Create SaaS sales rep registration form (created /sales/register)
 - [x] Test all application forms are accessible from main navigation
+
+
+## Admin Application Review Dashboard (Feb 22, 2026) 🎯
+
+- [ ] Create /admin/applications page
+- [ ] Fetch all pending farmer applications
+- [ ] Fetch all pending driver applications
+- [ ] Fetch all pending company applications
+- [ ] Fetch all pending sales rep applications
+- [ ] Display applications in organized tabs/sections
+- [ ] Add approve button for each application
+- [ ] Add reject button for each application
+- [ ] Implement approve/reject backend procedures
+- [ ] Update application status in database
+- [ ] Test approval workflow
+
+## Email Notifications (Feb 22, 2026) 📧
+
+- [x] Research email sending options (using Manus built-in notifyOwner)
+- [x] Set up email service integration (using existing notification.ts)
+- [x] Send admin notification when farmer application submitted
+- [x] Send admin notification when driver application submitted
+- [x] Send admin notification when company application submitted
+- [x] Send admin notification when sales rep application submitted
+- [ ] Test all email notifications

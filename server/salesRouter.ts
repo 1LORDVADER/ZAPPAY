@@ -28,6 +28,35 @@ export const salesRouter = router({
         status: 'pending_approval'
       });
 
+      // Send notification to admin
+      const { notifyOwner } = await import('./_core/notification');
+      await notifyOwner({
+        title: 'New Sales Rep Application',
+        content: `${input.fullName} has applied to become a ZAPPAY sales representative. Experience: ${input.experience}. Review at /admin/applications`
+      });
+      
       return { success: true, applicationId: application.id };
-    })
+    }),
+
+  getAllApplications: publicProcedure
+    .query(async () => {
+      const { getAllSalesRepApplications } = await import('./db');
+      return await getAllSalesRepApplications();
+    }),
+
+  approveApplication: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ input }) => {
+      const { approveSalesRepApplication } = await import('./db');
+      await approveSalesRepApplication(input.id);
+      return { success: true };
+    }),
+
+  rejectApplication: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ input }) => {
+      const { rejectSalesRepApplication } = await import('./db');
+      await rejectSalesRepApplication(input.id);
+      return { success: true };
+    }),
 });
