@@ -311,14 +311,21 @@ export async function addToCart(item: InsertCartItem) {
   }
 }
 
-export async function updateCartItemQuantity(id: number, quantity: number) {
+export async function updateCartItemQuantity(id: number, quantity: number, isMixed?: 'yes' | 'no', mixedStrains?: string) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   
   if (quantity <= 0) {
     await db.delete(cartItems).where(eq(cartItems.id, id));
   } else {
-    await db.update(cartItems).set({ quantity }).where(eq(cartItems.id, id));
+    const updates: any = { quantity };
+    if (isMixed !== undefined) {
+      updates.isMixed = isMixed;
+    }
+    if (mixedStrains !== undefined) {
+      updates.mixedStrains = mixedStrains;
+    }
+    await db.update(cartItems).set(updates).where(eq(cartItems.id, id));
   }
 }
 

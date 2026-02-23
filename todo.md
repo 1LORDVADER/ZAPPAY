@@ -890,10 +890,13 @@
 - [x] Add FAQ section to pricing page
 - [x] Set minimum cart quantity to 1 gram (database schema updated)
 
-## Remaining Tasks for Strain Mixing Feature 🔄
+## Current Session Tasks (February 22, 2026 - Part 2) ✅
 
-- [ ] Update cart UI to show "Mix Strains" button when ordering 5+ grams
-- [ ] Create strain mixing modal/interface for selecting multiple strains from same farm
-- [ ] Update cart tRPC procedures to handle mixed strain orders
-- [ ] Test strain mixing with real product data
-- [ ] Add validation to ensure mixed strains are from same farm
+- [x] Add "Advertise" and "Pricing" links to main header navigation
+- [x] Implement strain mixing UI in cart page
+- [x] Add "Mix Strains" button for orders 5+ grams
+- [x] Create strain selection modal for mixing multiple strains
+- [x] Update cart tRPC procedures to handle mixed strain orders
+- [x] Add validation to ensure mixed strains are from same farm
+- [x] Test complete strain mixing workflow
+- [x] Write and pass vitest tests for strain mixing feature

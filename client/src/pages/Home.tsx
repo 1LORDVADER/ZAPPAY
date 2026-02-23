@@ -111,6 +111,20 @@ export default function Home() {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/pricing">
+                  <a className="text-white hover:text-red-400 font-medium transition-colors">
+                    Pricing
+                  </a>
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/advertise">
+                  <a className="text-white hover:text-red-400 font-medium transition-colors">
+                    Advertise
+                  </a>
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/orders">
                   <a className="text-white hover:text-red-400 font-medium transition-colors">
                     My Orders

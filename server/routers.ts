@@ -97,7 +97,7 @@ export const appRouter = router({
       .mutation(async ({ input, ctx }) => {
         if (!ctx.user) throw new Error('Not authenticated');
         const { updateCartItemQuantity } = await import('./db');
-        await updateCartItemQuantity(input.id, input.quantity);
+        await updateCartItemQuantity(input.id, input.quantity, input.isMixed, input.mixedStrains);
         return { success: true };
       }),
     clear: publicProcedure.mutation(async ({ ctx }) => {
