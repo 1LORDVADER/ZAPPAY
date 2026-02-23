@@ -172,7 +172,9 @@ export const cartItems = mysqlTable("cartItems", {
   id: int("id").autoincrement().primaryKey(),
   userId: int("userId").notNull(),
   productId: int("productId").notNull(),
-  quantity: int("quantity").notNull(),
+  quantity: int("quantity").notNull(), // minimum 1 gram
+  isMixed: mysqlEnum("isMixed", ["yes", "no"]).default("no").notNull(), // whether this is a mixed strain order
+  mixedStrains: text("mixedStrains"), // JSON array of {productId, quantity} for mixed orders (5+ grams total)
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

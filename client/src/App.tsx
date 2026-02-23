@@ -23,6 +23,8 @@ import SalesRepRegistration from "./pages/SalesRepRegistration";
 import AdminApplications from "./pages/AdminApplications";
 import AdminAnalytics from "./pages/AdminAnalytics";
 import MyApplications from "./pages/MyApplications";
+import Advertise from "@/pages/Advertise";
+import Pricing from "@/pages/Pricing";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -42,6 +44,8 @@ function Router() {
       <Route path="/transportation/company-register" component={CompanyRegistration} />
       <Route path="/sales/register" component={SalesRepRegistration} />
       <Route path="/my-applications" component={MyApplications} />
+      <Route path="/advertise" component={Advertise} />
+      <Route path="/pricing" component={Pricing} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/track/:id" component={TrackOrder} />
       <Route path="/legal/:page" component={LegalPage} />

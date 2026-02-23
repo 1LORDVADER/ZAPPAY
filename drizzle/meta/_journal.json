@@ -71,6 +71,13 @@
       "when": 1771802137222,
       "tag": "0009_lean_risque",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1771812214868,
+      "tag": "0010_handy_screwball",
+      "breakpoints": true
     }
   ]
 }

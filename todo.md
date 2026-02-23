@@ -862,3 +862,38 @@
 - [ ] Display real-time shipment tracking on Google Maps
 - [ ] Show driver locations and routes
 - [ ] Test admin dashboard and map functionality
+
+
+## Advertiser Portal & Strain Mixing (Feb 23, 2026) 📢
+
+- [ ] Create /advertise landing page explaining advertising tiers
+- [ ] Build advertiser application form with business verification
+- [ ] Create advertiser dashboard for campaign management
+- [ ] Implement ad creative upload system (images, videos)
+- [ ] Add budget setting and targeting options
+- [ ] Build analytics dashboard for advertisers
+- [ ] Implement strain mixing feature in cart (5+ grams from same farm)
+- [ ] Fix cart minimum quantity to 1 gram
+- [ ] Add strain selector UI for mixed orders
+- [ ] Test advertiser application flow
+- [ ] Test strain mixing cart functionality
+- [ ] Save checkpoint with all features
+
+
+## Latest Session Completions (February 22, 2026) ✅
+
+- [x] Build advertiser portal at /advertise with 5 tiers ($150/day to $25,000/day)
+- [x] Create advertiser application form with budget selection and creative upload
+- [x] Add database columns for strain mixing (isMixed, mixedStrains to cartItems table)
+- [x] Create pricing page at /pricing with all 4 farmer tiers (Free Trial, Premium, Pay-As-You-Go, Early Adopters)
+- [x] Add feature comparison table for all pricing tiers
+- [x] Add FAQ section to pricing page
+- [x] Set minimum cart quantity to 1 gram (database schema updated)
+
+## Remaining Tasks for Strain Mixing Feature 🔄
+
+- [ ] Update cart UI to show "Mix Strains" button when ordering 5+ grams
+- [ ] Create strain mixing modal/interface for selecting multiple strains from same farm
+- [ ] Update cart tRPC procedures to handle mixed strain orders
+- [ ] Test strain mixing with real product data
+- [ ] Add validation to ensure mixed strains are from same farm
