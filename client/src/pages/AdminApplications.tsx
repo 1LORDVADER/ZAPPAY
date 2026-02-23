@@ -8,10 +8,15 @@ import { Badge } from "@/components/ui/badge";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import { CheckCircle, XCircle, User, Truck, Building2, Briefcase, Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { PushNotificationManager } from "@/components/PushNotificationManager";
+import { useApplicationNotifications } from "@/hooks/useApplicationNotifications";
 
 export default function AdminApplications() {
   const { user, loading: authLoading } = useAuth();
   const [, setLocation] = useLocation();
+  
+  // Enable push notifications for new applications
+  useApplicationNotifications();
 
   // Redirect if not admin
   useEffect(() => {
@@ -143,6 +148,11 @@ export default function AdminApplications() {
               {totalPending} Pending Applications
             </Badge>
           )}
+        </div>
+
+        {/* Push Notification Manager */}
+        <div className="mb-6">
+          <PushNotificationManager />
         </div>
 
         <Tabs defaultValue="farmers" className="space-y-6">

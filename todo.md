@@ -800,3 +800,19 @@
 - [x] Test approval workflows for all application types
 - [x] Test live driver tracking on map
 - [ ] Save checkpoint with all features
+
+
+## Browser Push Notifications (Feb 23, 2026) 🔔
+
+- [x] Set up push notification infrastructure
+- [x] Request browser notification permissions
+- [x] Create notification component with permission UI (PushNotificationManager)
+- [x] Add notification trigger for new farmer applications
+- [x] Add notification trigger for new driver applications
+- [x] Add notification trigger for new company applications
+- [x] Add notification trigger for new sales rep applications
+- [x] Add notification trigger for shipment delays (48+ hours in transit)
+- [x] Add notification trigger for cancelled shipments
+- [x] Add placeholder for driver issue reports (future feature)
+- [x] Test all notification triggers
+- [ ] Save checkpoint with push notifications

@@ -8,10 +8,15 @@ import { useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import { MapView } from "@/components/Map";
 import { LiveDriverTracking } from "@/components/LiveDriverTracking";
+import { useShipmentNotifications, useDriverIssueNotifications } from "@/hooks/useShipmentNotifications";
 
 export default function AdminTransportation() {
   const { user, loading: authLoading } = useAuth();
   const [, setLocation] = useLocation();
+  
+  // Enable push notifications for shipment delays and driver issues
+  useShipmentNotifications();
+  useDriverIssueNotifications();
 
   const { data: drivers, isLoading: driversLoading } = trpc.transportation.getAllDrivers.useQuery();
   const { data: shipments, isLoading: shipmentsLoading } = trpc.transportation.getAllShipments.useQuery();
