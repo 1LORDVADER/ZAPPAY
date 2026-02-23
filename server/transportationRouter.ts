@@ -173,7 +173,21 @@ export const transportationRouter = router({
       
       const db = await getDb();
       if (!db) throw new Error("Database not available");
+      
+      // Get driver details before approving
+      const [driver] = await db.select().from(drivers).where(eq(drivers.id, input.id));
+      
       await db.update(drivers).set({ status: "active", verified: "yes" }).where(eq(drivers.id, input.id));
+      
+      // Send onboarding email
+      if (driver) {
+        const { notifyOwner } = await import('./_core/notification');
+        await notifyOwner({
+          title: 'Driver Onboarding - Welcome to ZAPPAY',
+          content: `${driver.fullName} has been approved as a ZAPPAY driver! Next steps: 1) Download the ZAPPAY Driver app 2) Complete vehicle inspection 3) Review delivery protocols 4) Start accepting deliveries! Contact: ${driver.email}, Phone: ${driver.phone}`
+        });
+      }
+      
       return { success: true };
     }),
 
@@ -201,7 +215,21 @@ export const transportationRouter = router({
       
       const db = await getDb();
       if (!db) throw new Error("Database not available");
+      
+      // Get company details before approving
+      const [company] = await db.select().from(transportationCompanies).where(eq(transportationCompanies.id, input.id));
+      
       await db.update(transportationCompanies).set({ status: "active", verified: "yes" }).where(eq(transportationCompanies.id, input.id));
+      
+      // Send onboarding email
+      if (company) {
+        const { notifyOwner } = await import('./_core/notification');
+        await notifyOwner({
+          title: 'Company Onboarding - Welcome to ZAPPAY',
+          content: `${company.companyName} has been approved! Next steps: 1) Set up your company dashboard 2) Add drivers to your fleet 3) Configure delivery zones 4) Start accepting shipments! Contact: ${company.email}, Phone: ${company.phone}`
+        });
+      }
+      
       return { success: true };
     }),
 

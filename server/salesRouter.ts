@@ -44,13 +44,24 @@ export const salesRouter = router({
       return await getAllSalesRepApplications();
     }),
 
-  approveApplication: publicProcedure
-    .input(z.object({ id: z.number() }))
-    .mutation(async ({ input }) => {
-      const { approveSalesRepApplication } = await import('./db');
-      await approveSalesRepApplication(input.id);
-      return { success: true };
-    }),
+    approveApplication: publicProcedure
+      .input((val: unknown) => val as { id: number })
+      .mutation(async ({ input }) => {
+        const { approveSalesRepApplication, getSalesRepApplicationById } = await import('./db');
+        const application = await getSalesRepApplicationById(input.id);
+        await approveSalesRepApplication(input.id);
+        
+        // Send onboarding email
+        if (application) {
+          const { notifyOwner } = await import('./_core/notification');
+          await notifyOwner({
+            title: 'Sales Rep Onboarding - Welcome to ZAPPAY',
+            content: `${application.fullName} has been approved as a ZAPPAY sales representative! Next steps: 1) Access your Sales Dashboard at /sales/dashboard 2) Review sales materials and pricing 3) Complete product training 4) Start reaching out to prospects! Contact: ${application.email}, Phone: ${application.phone}`
+          });
+        }
+        
+        return { success: true };
+      }),
 
   rejectApplication: publicProcedure
     .input(z.object({ id: z.number() }))

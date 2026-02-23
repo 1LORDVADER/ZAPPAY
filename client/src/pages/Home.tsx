@@ -116,6 +116,13 @@ export default function Home() {
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/my-applications">
+                  <a className="text-white hover:text-red-400 font-medium transition-colors">
+                    My Applications
+                  </a>
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="text-white hover:text-red-400 hover:bg-white/10 font-medium">

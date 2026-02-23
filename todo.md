@@ -718,3 +718,30 @@
 - [x] Send admin notification when company application submitted
 - [x] Send admin notification when sales rep application submitted
 - [ ] Test all email notifications
+
+
+## Application Status Tracking (Feb 23, 2026) 📊
+
+- [ ] Create /my-applications page for users
+- [ ] Add backend procedure to fetch user's farmer application status
+- [ ] Add backend procedure to fetch user's driver application status
+- [ ] Add backend procedure to fetch user's company application status
+- [ ] Add backend procedure to fetch user's sales rep application status
+- [ ] Display application status with visual indicators (pending, approved, rejected)
+- [ ] Show application submission date
+- [ ] Show approval/rejection date if applicable
+- [ ] Add link to /my-applications in header navigation
+- [ ] Test application status tracking page
+
+## Automated Onboarding Workflows (Feb 23, 2026) 🎓
+
+- [x] Create onboarding email template for approved farmers
+- [x] Create onboarding email template for approved drivers
+- [x] Create onboarding email template for approved companies
+- [x] Create onboarding email template for approved sales reps
+- [x] Send onboarding email when farmer application is approved
+- [x] Send onboarding email when driver application is approved
+- [x] Send onboarding email when company application is approved
+- [x] Send onboarding email when sales rep application is approved
+- [x] Include next steps and dashboard links in onboarding emails
+- [ ] Test all onboarding email workflows

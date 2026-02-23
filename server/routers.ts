@@ -272,6 +272,25 @@ export const appRouter = router({
       }),
   }),
 
+  // Applications
+  applications: router({
+    getMyDriverApplication: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return null;
+      const { getDriverByUserId } = await import('./db');
+      return await getDriverByUserId(ctx.user.id);
+    }),
+    getMyCompanyApplication: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return null;
+      const { getCompanyByUserId } = await import('./db');
+      return await getCompanyByUserId(ctx.user.id);
+    }),
+    getMySalesApplication: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return null;
+      const { getSalesApplicationByUserId } = await import('./db');
+      return await getSalesApplicationByUserId(ctx.user.id);
+    }),
+  }),
+
   // Farmers
   farmers: router({
     getPendingApplications: publicProcedure.query(async () => {
@@ -281,8 +300,27 @@ export const appRouter = router({
     approveApplication: publicProcedure
       .input((val: unknown) => val as { id: number })
       .mutation(async ({ input }) => {
-        const { approveFarmerProfile } = await import('./db');
+        const { approveFarmerProfile, getFarmerProfileById } = await import('./db');
+        const farmerProfile = await getFarmerProfileById(input.id);
         await approveFarmerProfile(input.id);
+        
+        // Send onboarding email
+        if (farmerProfile) {
+          const { notifyOwner } = await import('./_core/notification');
+          // Get user email from users table
+          const { getDb } = await import('./db');
+          const db = await getDb();
+          if (db) {
+            const { users } = await import('../drizzle/schema');
+            const { eq } = await import('drizzle-orm');
+            const [user] = await db.select().from(users).where(eq(users.id, farmerProfile.userId));
+            await notifyOwner({
+              title: 'Farmer Onboarding - Action Required',
+              content: `${farmerProfile.businessName} has been approved! Next steps: 1) Log in to your Farmer Dashboard at /farmer/dashboard 2) Complete your profile with product listings 3) Set up payment information 4) Start selling! Contact: ${user?.email || 'N/A'}`
+            });
+          }
+        }
+        
         return { success: true };
       }),
     rejectApplication: publicProcedure

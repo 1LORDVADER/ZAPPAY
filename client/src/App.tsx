@@ -21,6 +21,7 @@ import CompanyRegistration from "./pages/CompanyRegistration";
 import Orders from "./pages/Orders";
 import SalesRepRegistration from "./pages/SalesRepRegistration";
 import AdminApplications from "./pages/AdminApplications";
+import MyApplications from "./pages/MyApplications";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -38,6 +39,7 @@ function Router() {
       <Route path="/transportation/driver-register" component={DriverRegistration} />
       <Route path="/transportation/company-register" component={CompanyRegistration} />
       <Route path="/sales/register" component={SalesRepRegistration} />
+      <Route path="/my-applications" component={MyApplications} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/track/:id" component={TrackOrder} />
       <Route path="/legal/:page" component={LegalPage} />

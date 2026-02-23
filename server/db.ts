@@ -489,3 +489,62 @@ export async function rejectSalesRepApplication(id: number) {
   const { eq } = await import('drizzle-orm');
   await db.update(salesRepApplications).set({ status: 'rejected' }).where(eq(salesRepApplications.id, id));
 }
+
+
+// Get driver application by user ID
+export async function getDriverByUserId(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const { drivers } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  const [driver] = await db.select().from(drivers).where(eq(drivers.userId, userId));
+  return driver || null;
+}
+
+// Get company application by user ID  
+export async function getCompanyByUserId(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const { transportationCompanies } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  const [company] = await db.select().from(transportationCompanies).where(eq(transportationCompanies.userId, userId));
+  return company || null;
+}
+
+// Get sales application by user email (salesRepApplications doesn't have userId field)
+export async function getSalesApplicationByUserId(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  // Get user email first
+  const { users } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  const [user] = await db.select().from(users).where(eq(users.id, userId));
+  if (!user) return null;
+  
+  const { salesRepApplications } = await import('../drizzle/schema');
+  const applications = await db.select().from(salesRepApplications);
+  const application = applications.find(app => app.email === user.email);
+  return application || null;
+}
+
+
+// Get farmer profile by ID
+export async function getFarmerProfileById(id: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const { farmerProfiles } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  const [profile] = await db.select().from(farmerProfiles).where(eq(farmerProfiles.id, id));
+  return profile || null;
+}
+
+
+// Get sales rep application by ID
+export async function getSalesRepApplicationById(id: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const { salesRepApplications } = await import('../drizzle/schema');
+  const { eq } = await import('drizzle-orm');
+  const applications = await db.select().from(salesRepApplications);
+  return applications.find(app => app.id === id) || null;
+}
