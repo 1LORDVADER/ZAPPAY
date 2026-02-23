@@ -7,6 +7,7 @@ import { Truck, MapPin, Clock, Package, User, Phone, Mail } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import { MapView } from "@/components/Map";
+import { LiveDriverTracking } from "@/components/LiveDriverTracking";
 
 export default function AdminTransportation() {
   const { user, loading: authLoading } = useAuth();
@@ -81,11 +82,22 @@ export default function AdminTransportation() {
           <p className="text-lg text-slate-600">Manage drivers, shipments, and GPS tracking</p>
         </div>
 
+        {/* Live Driver Tracking */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Live Driver Tracking</CardTitle>
+            <CardDescription>Real-time GPS locations of active drivers (updates every 30 seconds)</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <LiveDriverTracking />
+          </CardContent>
+        </Card>
+
         {/* Google Maps View */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Live Shipment Tracking</CardTitle>
-            <CardDescription>Real-time GPS locations of all active shipments</CardDescription>
+            <CardTitle>Shipment Routes</CardTitle>
+            <CardDescription>All shipment pickup and delivery locations</CardDescription>
           </CardHeader>
           <CardContent>
             <MapView
