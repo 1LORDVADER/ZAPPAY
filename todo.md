@@ -816,3 +816,49 @@
 - [x] Add placeholder for driver issue reports (future feature)
 - [x] Test all notification triggers
 - [ ] Save checkpoint with push notifications
+
+
+## Critical Fixes (Feb 23, 2026) 🚨
+
+### Farmer & Transporter Registration
+- [ ] Fix farmer registration page functionality
+- [ ] Fix transporter (driver/company) registration functionality
+- [ ] Test all registration forms submit correctly
+
+### Auto-Login & Authentication
+- [ ] Remove automatic login on page load
+- [ ] Add proper login button/flow
+- [ ] Send email notification when someone logs into the website
+- [ ] Test login flow with email notifications
+
+### Orders & Products
+- [ ] Update order dates to 2026 (recent dates)
+- [ ] Match orders to sold-out products
+- [ ] Increase total order value to exceed $333,000
+- [ ] Fix delivery time estimates (use realistic current dates)
+- [ ] Test orders display correctly
+
+### Cart & Product Features
+- [ ] Fix cart quantity to start at minimum 1 gram
+- [ ] Add strain mixing feature (select multiple strains from same farm)
+- [ ] Example: 5g order = 5 different strains (1g each) from same farmer
+- [ ] Test cart and strain mixing functionality
+
+### Pricing Packages
+- [ ] Create Early Adopters Package ($3,379/month with advanced features including strain mixing)
+- [ ] Create Premium Pay-As-You-Go Package ($1,100/month paid from transaction fees, no upfront cost)
+- [ ] First 20 farmers get Early Adopters package automatically
+- [ ] Update website pricing page with all 4 packages
+- [ ] Test pricing package selection
+
+### Logo & Navigation
+- [ ] Fix ZAPPAY logo visibility on all pages and tabs
+- [ ] Add navigation/exit buttons to all pages
+- [ ] Ensure logo appears in header, dialogs, and all tabs
+- [ ] Test navigation flow
+
+### Admin UI & Tracking
+- [ ] Add admin UI with Google Maps tracking dashboard
+- [ ] Display real-time shipment tracking on Google Maps
+- [ ] Show driver locations and routes
+- [ ] Test admin dashboard and map functionality
