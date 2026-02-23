@@ -21,6 +21,7 @@ import CompanyRegistration from "./pages/CompanyRegistration";
 import Orders from "./pages/Orders";
 import SalesRepRegistration from "./pages/SalesRepRegistration";
 import AdminApplications from "./pages/AdminApplications";
+import AdminAnalytics from "./pages/AdminAnalytics";
 import MyApplications from "./pages/MyApplications";
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/admin/sales" component={AdminSalesPanel} />
       <Route path="/admin/transportation" component={AdminTransportation} />
       <Route path="/admin/applications" component={AdminApplications} />
+      <Route path="/admin/analytics" component={AdminAnalytics} />
       <Route path="/transportation/driver-register" component={DriverRegistration} />
       <Route path="/transportation/company-register" component={CompanyRegistration} />
       <Route path="/sales/register" component={SalesRepRegistration} />

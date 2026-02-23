@@ -17,6 +17,8 @@ import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
 import { motion } from "framer-motion";
 import { APP_LOGO, APP_TITLE } from "@/const";
+import { NotificationBell } from "@/components/NotificationBell";
+import { Toaster } from "sonner";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -88,7 +90,7 @@ export default function Home() {
             <div className="flex items-center">
               <Link href="/">
                 <img 
-                  src="/logo.png"
+                  src="/zappay-logo.jpeg"
                   alt="ZAPPAY Logo"
                   className="h-14 w-auto object-contain cursor-pointer"
                 />
@@ -202,8 +204,9 @@ export default function Home() {
             <div className="flex items-center gap-3">
               {isAuthenticated ? (
                 <>
+                  <NotificationBell />
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button variant="ghost" size="sm" className="gap-2 text-white hover:bg-white/10">
+                    <Button variant="outline" size="sm" className="gap-2 bg-white/10 text-white border-white/30 hover:bg-white/20">
                       <User className="h-4 w-4" />
                       <span className="hidden sm:inline">{user?.email}</span>
                     </Button>
@@ -585,6 +588,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <Toaster position="top-right" richColors />
     </div>
   );
 }

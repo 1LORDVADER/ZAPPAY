@@ -745,3 +745,42 @@
 - [x] Send onboarding email when sales rep application is approved
 - [x] Include next steps and dashboard links in onboarding emails
 - [ ] Test all onboarding email workflows
+
+
+## Dashboard Tours Implementation (Feb 23, 2026) 🎯
+
+- [ ] Install react-joyride package for interactive tours
+- [ ] Create farmer dashboard tour component
+- [ ] Create driver dashboard tour component
+- [ ] Create sales rep dashboard tour component
+- [ ] Add tour triggers on first login for each role
+- [ ] Test all dashboard tours
+
+## Real-Time Notifications (Feb 23, 2026) 🔔
+
+- [ ] Install sonner package for toast notifications
+- [ ] Create notification bell icon component in header
+- [ ] Add notification state management
+- [ ] Implement polling for application status changes
+- [ ] Show toast when application status changes
+- [ ] Add notification count badge
+- [ ] Test notification system
+
+## Admin Analytics Dashboard (Feb 23, 2026) 📊
+
+- [ ] Create /admin/analytics page
+- [ ] Add backend procedures for application metrics
+- [ ] Calculate application conversion rates
+- [ ] Calculate average approval time
+- [ ] Show applicant demographics (state, role type)
+- [ ] Create charts with recharts library
+- [ ] Add date range filters
+- [ ] Test analytics dashboard
+
+## ZAPPAY Logo Application (Feb 23, 2026) 🎨
+
+- [ ] Replace all logo references with /zappay-logo.jpeg
+- [ ] Update Home page header logo
+- [ ] Update age verification dialog logo
+- [ ] Update all other pages with logo
+- [ ] Test logo displays correctly everywhere

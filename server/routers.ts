@@ -274,6 +274,17 @@ export const appRouter = router({
 
   // Applications
   applications: router({
+    getMyApplications: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return { farmer: null, driver: null, company: null, salesRep: null };
+      const { getFarmerProfileByUserId, getDriverByUserId, getCompanyByUserId, getSalesApplicationByUserId } = await import('./db');
+      const [farmer, driver, company, salesRep] = await Promise.all([
+        getFarmerProfileByUserId(ctx.user.id),
+        getDriverByUserId(ctx.user.id),
+        getCompanyByUserId(ctx.user.id),
+        getSalesApplicationByUserId(ctx.user.id),
+      ]);
+      return { farmer, driver, company, salesRep };
+    }),
     getMyDriverApplication: publicProcedure.query(async ({ ctx }) => {
       if (!ctx.user) return null;
       const { getDriverByUserId } = await import('./db');
@@ -330,6 +341,89 @@ export const appRouter = router({
         await rejectFarmerProfile(input.id);
         return { success: true };
       }),
+  }),
+
+  // Admin Analytics
+  admin: router({
+    getAnalytics: publicProcedure.query(async () => {
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      
+      const { farmerProfiles, drivers, transportationCompanies, salesRepApplications } = await import('../drizzle/schema');
+      
+      // Get all applications
+      const [farmers, allDrivers, companies, salesReps] = await Promise.all([
+        db.select().from(farmerProfiles),
+        db.select().from(drivers),
+        db.select().from(transportationCompanies),
+        db.select().from(salesRepApplications),
+      ]);
+      
+      const totalApplications = farmers.length + allDrivers.length + companies.length + salesReps.length;
+      
+      // Count by status
+      const pendingFarmers = farmers.filter(f => f.verified === 'pending').length;
+      const pendingDrivers = allDrivers.filter(d => d.status === 'pending_approval').length;
+      const pendingCompanies = companies.filter(c => c.status === 'pending_approval').length;
+      const pendingSalesReps = salesReps.filter(s => s.status === 'pending_approval').length;
+      const pendingApplications = pendingFarmers + pendingDrivers + pendingCompanies + pendingSalesReps;
+      
+      const approvedFarmers = farmers.filter(f => f.verified === 'approved').length;
+      const approvedDrivers = allDrivers.filter(d => d.status === 'active').length;
+      const approvedCompanies = companies.filter(c => c.status === 'active').length;
+      const approvedSalesReps = salesReps.filter(s => s.status === 'approved').length;
+      const approvedApplications = approvedFarmers + approvedDrivers + approvedCompanies + approvedSalesReps;
+      
+      const rejectedFarmers = farmers.filter(f => f.verified === 'rejected').length;
+      const rejectedDrivers = allDrivers.filter(d => d.status === 'inactive').length;
+      const rejectedCompanies = companies.filter(c => c.status === 'inactive').length;
+      const rejectedSalesReps = salesReps.filter(s => s.status === 'rejected').length;
+      const rejectedApplications = rejectedFarmers + rejectedDrivers + rejectedCompanies + rejectedSalesReps;
+      
+      // Calculate conversion rate
+      const conversionRate = totalApplications > 0 
+        ? Math.round((approvedApplications / totalApplications) * 100) 
+        : 0;
+      
+      // Calculate average approval time (simplified - using 24 hours as placeholder)
+      const avgApprovalTime = 24;
+      
+      // Get top states
+      const stateCount: Record<string, number> = {};
+      farmers.forEach(f => {
+        stateCount[f.state] = (stateCount[f.state] || 0) + 1;
+      });
+      allDrivers.forEach(d => {
+        if (d.licenseState) {
+          stateCount[d.licenseState] = (stateCount[d.licenseState] || 0) + 1;
+        }
+      });
+      companies.forEach(c => {
+        if (c.state) {
+          stateCount[c.state] = (stateCount[c.state] || 0) + 1;
+        }
+      });
+      
+      const topStates = Object.entries(stateCount)
+        .map(([state, count]) => ({ state, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 5);
+      
+      return {
+        totalApplications,
+        pendingApplications,
+        approvedApplications,
+        rejectedApplications,
+        conversionRate,
+        avgApprovalTime,
+        totalFarmers: farmers.length,
+        totalDrivers: allDrivers.length,
+        totalCompanies: companies.length,
+        totalSalesReps: salesReps.length,
+        topStates,
+      };
+    }),
   }),
 });
 
