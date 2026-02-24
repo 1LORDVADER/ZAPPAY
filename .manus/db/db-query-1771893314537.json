@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/TTXvfRiNQrnZOQrI.png' WHERE id = 90024;\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/xbKjsgGgGgGayWsm.png' WHERE name LIKE '%Ice Cream Cake%';\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/PIFMvZYMiUaLOWMa.png' WHERE name LIKE '%OG Kush%';\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/zeprWLHaXisWyteC.png' WHERE name LIKE '%Purple Haze%';\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/imgnbJwoKExqbMZx.png' WHERE name LIKE '%Sour Diesel%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute UPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/TTXvfRiNQrnZOQrI.png' WHERE id = 90024;\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/xbKjsgGgGgGayWsm.png' WHERE name LIKE '%Ice Cream Cake%';\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/PIFMvZYMiUaLOWMa.png' WHERE name LIKE '%OG Kush%';\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/zeprWLHaXisWyteC.png' WHERE name LIKE '%Purple Haze%';\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/imgnbJwoKExqbMZx.png' WHERE name LIKE '%Sour Diesel%';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 182
+}
