@@ -1,0 +1,60 @@
+{
+  "query": "\n-- Update all products with stock cannabis photos (cycling through 5 images)\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg')\nWHERE id % 5 = 1;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg')\nWHERE id % 5 = 2;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg')\nWHERE id % 5 = 3;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg')\nWHERE id % 5 = 4;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg')\nWHERE id % 5 = 0;\n\n-- Verify updates\nSELECT id, name, photos FROM products LIMIT 10;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \n-- Update all products with stock cannabis photos (cycling through 5 images)\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg')\nWHERE id % 5 = 1;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg')\nWHERE id % 5 = 2;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg')\nWHERE id % 5 = 3;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg')\nWHERE id % 5 = 4;\n\nUPDATE products \nSET photos = JSON_ARRAY('https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg')\nWHERE id % 5 = 0;\n\n-- Verify updates\nSELECT id, name, photos FROM products LIMIT 10;\n",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tphotos\n1\tBlue Dream\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n2\tOG Kush\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]\n3\tSour Diesel\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n5\tGranddaddy Purple\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]\n6\tGirl Scout Cookies\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n8\tGelato #33\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n9\tWedding Cake\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]\n11\tZkittlez\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n13\tGorilla Glue #4\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n90001\tWhite Widow\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n",
+  "stderr": "",
+  "execution_time_ms": 470
+}
