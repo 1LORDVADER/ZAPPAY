@@ -90,7 +90,7 @@ export default function Home() {
             <div className="flex items-center">
               <Link href="/">
                 <img 
-                  src="/zappay-logo.jpeg"
+                  src="/logo.png"
                   alt="ZAPPAY Logo"
                   className="h-14 w-auto object-contain cursor-pointer"
                 />
@@ -395,7 +395,7 @@ export default function Home() {
                           <div className="relative aspect-square bg-white overflow-hidden">
                             {product.photos ? (
                               <img 
-                                src={product.photos} 
+                                src={typeof product.photos === 'string' ? JSON.parse(product.photos)[0] : product.photos[0]} 
                                 alt={product.name}
                                 loading="lazy"
                                 className="w-full h-full object-contain p-4"
