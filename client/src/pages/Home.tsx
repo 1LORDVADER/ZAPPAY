@@ -395,7 +395,14 @@ export default function Home() {
                           <div className="relative aspect-square bg-white overflow-hidden">
                             {product.photos ? (
                               <img 
-                                src={typeof product.photos === 'string' ? JSON.parse(product.photos)[0] : product.photos[0]} 
+                                src={(() => {
+                                  try {
+                                    const photos = typeof product.photos === 'string' ? JSON.parse(product.photos) : product.photos;
+                                    return Array.isArray(photos) ? photos[0] : product.photos;
+                                  } catch {
+                                    return product.photos;
+                                  }
+                                })()} 
                                 alt={product.name}
                                 loading="lazy"
                                 className="w-full h-full object-contain p-4"
