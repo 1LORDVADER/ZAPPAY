@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut, Star, ChevronDown, Briefcase, Truck, Sprout } from "lucide-react";
+import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut, Star, ChevronDown, Briefcase, Truck, Sprout, Store } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -111,13 +111,6 @@ export default function Home() {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/pricing">
-                  <a className="text-white hover:text-red-400 font-medium transition-colors">
-                    Pricing
-                  </a>
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/advertise">
                   <a className="text-white hover:text-red-400 font-medium transition-colors">
                     Advertise
@@ -154,6 +147,17 @@ export default function Home() {
                           <div>
                             <div className="font-medium">Licensed Farmer</div>
                             <div className="text-xs text-slate-500">Sell your cannabis products</div>
+                          </div>
+                        </a>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/dispensary-application">
+                        <a className="flex items-center gap-2 w-full cursor-pointer">
+                          <Store className="h-4 w-4 text-orange-600" />
+                          <div>
+                            <div className="font-medium">Dispensary Partner</div>
+                            <div className="text-xs text-slate-500">Connect with farmers</div>
                           </div>
                         </a>
                       </Link>
@@ -259,7 +263,7 @@ export default function Home() {
             className="text-center mb-8"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Premium Cannabis Marketplace
+              Secure Cannabis Payment Platform
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Direct from verified farmers. 5.2% fees. Sub-1s payments.
@@ -477,17 +481,24 @@ export default function Home() {
                             </div>
                           )}
 
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <span className="text-2xl font-bold text-slate-900">
-                                ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
-                              </span>
-                              <span className="text-sm text-slate-600 ml-1">/gram</span>
+                          <div className="space-y-1">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <span className="text-2xl font-bold text-slate-900">
+                                  ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
+                                </span>
+                                <span className="text-sm text-slate-600 ml-1">/gram</span>
+                              </div>
+                              {product.retailPrice && (
+                                <span className="text-sm text-slate-400 line-through">
+                                  ${typeof product.retailPrice === 'number' ? product.retailPrice.toFixed(2) : product.retailPrice}
+                                </span>
+                              )}
                             </div>
                             {product.retailPrice && (
-                              <span className="text-sm text-slate-400 line-through">
-                                ${typeof product.retailPrice === 'number' ? product.retailPrice.toFixed(2) : product.retailPrice}
-                              </span>
+                              <div className="text-xs font-semibold text-green-600">
+                                Save ${((typeof product.retailPrice === 'number' ? product.retailPrice : parseFloat(product.retailPrice)) - (typeof product.price === 'number' ? product.price : parseFloat(product.price))).toFixed(2)}/gram
+                              </div>
                             )}
                           </div>
 
@@ -569,8 +580,7 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-lg mb-4">About ZAPPAY</h3>
               <p className="text-sm text-slate-300">
-                America's premier cannabis marketplace connecting licensed farmers
-                with consumers nationwide. Just 5.2% commission.
+                Secure payment processing platform facilitating legal cannabis transactions between licensed farmers, dispensaries, and consumers nationwide. Just 5.2% commission.
               </p>
             </div>
             <div>

@@ -900,3 +900,21 @@
 - [x] Add validation to ensure mixed strains are from same farm
 - [x] Test complete strain mixing workflow
 - [x] Write and pass vitest tests for strain mixing feature
+
+
+## Critical Fixes Completed (February 23, 2026) ✅
+
+- [x] Upload professional cannabis product images to S3 (no text overlays)
+- [x] Replace Thin Mint GSC product image with clean version (Girl Scout Cookies)
+- [x] Upload Blue Dream, OG Kush, Purple Haze product images
+- [x] Change pricing display format to "$/gram" with clear labeling
+- [x] Add savings per gram calculation and display (green text below price)
+- [x] Write and add comprehensive product descriptions for all strains
+- [x] Update database with full descriptions for GSC, Blue Dream, OG Kush, Purple Haze
+- [x] Remove "Pricing" link from main navigation (only accessible via direct URL)
+- [x] Add dispensary application page at /dispensary-application
+- [x] Add "Dispensary Partner" option to Apply Now dropdown
+- [x] Update platform classification from "marketplace" to "payment platform"
+- [x] Update hero tagline to "Secure Cannabis Payment Platform"
+- [x] Update footer description to reflect payment processor role
+- [x] Logo visibility confirmed (ZAPPAY logo displays on all pages)

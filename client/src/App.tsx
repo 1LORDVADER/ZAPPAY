@@ -25,6 +25,7 @@ import AdminAnalytics from "./pages/AdminAnalytics";
 import MyApplications from "./pages/MyApplications";
 import Advertise from "@/pages/Advertise";
 import Pricing from "@/pages/Pricing";
+import DispensaryApplication from "@/pages/DispensaryApplication";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -46,6 +47,7 @@ function Router() {
       <Route path="/my-applications" component={MyApplications} />
       <Route path="/advertise" component={Advertise} />
       <Route path="/pricing" component={Pricing} />
+      <Route path="/dispensary-application" component={DispensaryApplication} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/track/:id" component={TrackOrder} />
       <Route path="/legal/:page" component={LegalPage} />
