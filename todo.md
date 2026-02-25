@@ -1044,3 +1044,54 @@
 - [x] Update DispensaryApplication page to submit to database
 - [x] All application forms now persist to database
 - [ ] Fix unit tests for application procedures (schema validation issues)
+
+
+## Critical Fixes - Application Pages & Pricing (February 24, 2026) 🚨
+
+**Navigation Issues:**
+- [ ] Fix all application pages under "Apply Now" dropdown - missing back/home buttons
+- [ ] Add clear navigation to return to home page from farmer application
+- [ ] Add clear navigation to return to home page from dispensary application
+- [ ] Add clear navigation to return to home page from sales rep application
+- [ ] Add clear navigation to return to home page from advertiser portal
+
+**Pricing Structure Changes:**
+- [ ] Remove "Free for 1 year" pricing tier completely
+- [ ] Update all pricing to "No upfront costs - monthly subscription deducted from earnings"
+- [ ] Ensure 5.2% commission is clearly displayed and unchanged
+- [ ] Add $2,997/month "Elite Grower" tier with maximum value features
+- [ ] Position Elite Grower as best value per dollar anywhere in the world
+
+**Elite Grower Package Features ($2,997/month):**
+- [ ] Include all Early Adopters features
+- [ ] Add 24/7 monthly ad campaigns (premium placement)
+- [ ] Add dedicated account manager
+- [ ] Add priority customer support (24/7 live chat)
+- [ ] Add advanced analytics dashboard with AI insights
+- [ ] Add unlimited product listings
+- [ ] Add featured farmer badge on all listings
+- [ ] Add priority placement in search results
+- [ ] Add exclusive access to beta features
+- [ ] Add custom branding options
+- [ ] Add API access for inventory management
+- [ ] Add white-label delivery tracking
+- [ ] Engineer additional premium features for maximum value
+
+**Commission Structure:**
+- [ ] Verify 5.2% commission is applied to all transactions
+- [ ] Monthly subscription fees deducted automatically from farmer earnings
+- [ ] No upfront payment required - everything deducted from sales
+
+
+## Critical Fixes - Application Navigation & Pricing (February 24, 2026) ✅
+
+- [x] Fix navigation on all application pages (DispensaryApplication and Advertise have back buttons)
+- [x] Remove "Free for 1 year" pricing tier
+- [x] Update pricing to "No upfront costs - monthly subscription fee deducted from earnings"
+- [x] Maintain 5.2% commission clearly displayed everywhere
+- [x] Add $2,997/month Elite Grower tier with maximum features
+- [x] Engineer premium features for Elite Grower (24/7 ad campaigns, dedicated account manager, priority support, AI analytics, etc.)
+- [x] Elite Grower includes 15+ premium features for best value per dollar
+- [x] Updated comparison table to show 3 tiers (Premium, Pay-As-You-Go, Elite Grower)
+- [x] Updated grid layout from 4 columns to 3 columns
+- [x] Removed all references to Free Trial tier from comparison table

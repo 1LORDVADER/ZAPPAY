@@ -7,28 +7,6 @@ import { Link } from "wouter";
 export default function Pricing() {
   const tiers = [
     {
-      name: "Free Trial",
-      price: "$0",
-      period: "First Year",
-      description: "Perfect for getting started with ZAPPAY",
-      color: "from-blue-500 to-blue-600",
-      icon: Sparkles,
-      features: [
-        { text: "List up to 10 products", included: true },
-        { text: "5.2% platform commission", included: true },
-        { text: "Basic product listings", included: true },
-        { text: "Standard customer support", included: true },
-        { text: "Mobile app access", included: true },
-        { text: "Basic analytics dashboard", included: true },
-        { text: "Search visibility", included: false },
-        { text: "Priority placement", included: false },
-        { text: "Advanced analytics", included: false },
-        { text: "Dedicated account manager", included: false },
-      ],
-      cta: "Start Free Trial",
-      highlight: false,
-    },
-    {
       name: "Premium",
       price: "$1,100",
       period: "per month",
@@ -73,28 +51,32 @@ export default function Pricing() {
       highlight: false,
     },
     {
-      name: "Early Adopters",
-      price: "$3,379",
+      name: "Elite Grower",
+      price: "$2,997",
       period: "per month",
-      description: "Exclusive benefits for the first 20 farmers",
-      color: "from-red-500 to-red-600",
+      description: "Maximum value - Best ROI anywhere in the world",
+      color: "from-purple-500 to-purple-600",
       icon: Crown,
       features: [
         { text: "Everything in Premium, PLUS:", included: true },
-        { text: "Permanent homepage placement", included: true },
-        { text: "Strain mixing feature (5+ grams)", included: true },
-        { text: "Demand forecasting AI", included: true },
-        { text: "Direct customer messaging", included: true },
-        { text: "Custom branded storefront", included: true },
-        { text: "Market intelligence reports", included: true },
-        { text: "Co-marketing campaigns", included: true },
-        { text: "Lifetime pricing lock", included: true },
-        { text: "Equity participation option", included: true },
-        { text: "3,970% ROI guarantee", included: true },
+        { text: "24/7 monthly ad campaigns (premium placement)", included: true },
+        { text: "Dedicated account manager", included: true },
+        { text: "Priority 24/7 live chat support", included: true },
+        { text: "AI-powered analytics & insights", included: true },
+        { text: "Featured farmer badge on all listings", included: true },
+        { text: "Top 3 search result placement", included: true },
+        { text: "Exclusive beta feature access", included: true },
+        { text: "API access for inventory management", included: true },
+        { text: "White-label delivery tracking", included: true },
+        { text: "Quarterly business strategy reviews", included: true },
+        { text: "Custom marketing materials", included: true },
+        { text: "Priority dispute resolution", included: true },
+        { text: "Advanced demand forecasting", included: true },
+        { text: "Multi-location management", included: true },
       ],
-      cta: "Claim Early Adopter",
+      cta: "Get Elite Grower",
       highlight: true,
-      badge: "Only 20 Spots",
+      badge: "BEST VALUE",
     },
   ];
 
@@ -123,7 +105,7 @@ export default function Pricing() {
             Farmer Pricing Plans
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Choose the plan that fits your farm's growth stage. All plans include access to 50M+ cannabis consumers.
+            No upfront costs. All subscription fees are automatically deducted from your monthly earnings. Start selling today with zero upfront investment.
           </p>
           <div className="flex items-center justify-center gap-4 text-sm">
             <Badge className="bg-green-600 text-white hover:bg-green-700">
@@ -145,7 +127,7 @@ export default function Pricing() {
       {/* Pricing Tiers */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {tiers.map((tier) => {
               const Icon = tier.icon;
               return (
@@ -229,16 +211,14 @@ export default function Pricing() {
               <thead>
                 <tr className="border-b-2 border-slate-200">
                   <th className="text-left p-4 text-slate-900 font-semibold">Feature</th>
-                  <th className="text-center p-4 text-slate-900 font-semibold">Free Trial</th>
                   <th className="text-center p-4 text-slate-900 font-semibold">Premium</th>
                   <th className="text-center p-4 text-slate-900 font-semibold">Pay-As-You-Go</th>
-                  <th className="text-center p-4 text-red-600 font-semibold">Early Adopters</th>
+                  <th className="text-center p-4 text-purple-600 font-semibold">Elite Grower</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Product Listings</td>
-                  <td className="text-center p-4 text-slate-600">Up to 10</td>
                   <td className="text-center p-4 text-slate-600">Unlimited</td>
                   <td className="text-center p-4 text-slate-600">Unlimited</td>
                   <td className="text-center p-4 text-slate-600">Unlimited</td>
@@ -246,66 +226,52 @@ export default function Pricing() {
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Platform Commission</td>
                   <td className="text-center p-4 text-slate-600">5.2%</td>
-                  <td className="text-center p-4 text-slate-600">5.2%</td>
                   <td className="text-center p-4 text-slate-600">5.2% + fees</td>
                   <td className="text-center p-4 text-slate-600">5.2%</td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Priority Search Placement</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Advanced Analytics</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Custom Storefront</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Permanent Homepage Placement</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Strain Mixing Feature</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
+                  <td className="p-4 text-slate-700">24/7 Ad Campaigns</td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Demand Forecasting AI</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
+                  <td className="p-4 text-slate-700">Dedicated Account Manager</td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Lifetime Pricing Lock</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr>
-                  <td className="p-4 text-slate-700">Equity Participation</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
+                  <td className="p-4 text-slate-700">Advanced Demand Forecasting</td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
                 </tr>
+                <tr className="border-b border-slate-100">
+                  <td className="p-4 text-slate-700">Priority 24/7 Support</td>
+                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
+                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                </tr>
+
               </tbody>
             </table>
           </div>
