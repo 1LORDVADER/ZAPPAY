@@ -4,7 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { salesRepsRouter } from "./salesRepsRouter";
 import { transportationRouter } from "./transportationRouter";
 import { salesRouter } from "./salesRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -300,6 +300,135 @@ export const appRouter = router({
       const { getSalesApplicationByUserId } = await import('./db');
       return await getSalesApplicationByUserId(ctx.user.id);
     }),
+    
+    // Dispensary Applications
+    submitDispensaryApplication: publicProcedure
+      .input((val: unknown) => val as any)
+      .mutation(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { dispensaryApplications } = await import('../drizzle/schema');
+        const [application] = await db.insert(dispensaryApplications).values({
+          businessName: input.businessName,
+          licenseNumber: input.licenseNumber,
+          licenseState: input.licenseState,
+          contactName: input.contactName,
+          email: input.email,
+          phone: input.phone,
+          address: input.address,
+          city: input.city,
+          state: input.state,
+          zipCode: input.zipCode,
+          yearsInBusiness: input.yearsInBusiness,
+          currentSuppliers: input.currentSuppliers,
+          monthlyVolume: input.monthlyVolume,
+          targetStrains: input.targetStrains,
+          status: "pending",
+        });
+        return application;
+      }),
+
+    getAllDispensaryApplications: protectedProcedure.query(async () => {
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) return [];
+      const { dispensaryApplications } = await import('../drizzle/schema');
+      return await db.select().from(dispensaryApplications);
+    }),
+
+    approveDispensaryApplication: protectedProcedure
+      .input((val: unknown) => val as { id: number })
+      .mutation(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { dispensaryApplications } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        await db
+          .update(dispensaryApplications)
+          .set({ status: "approved" })
+          .where(eq(dispensaryApplications.id, input.id));
+        return { success: true };
+      }),
+
+    rejectDispensaryApplication: protectedProcedure
+      .input((val: unknown) => val as { id: number })
+      .mutation(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { dispensaryApplications } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        await db
+          .update(dispensaryApplications)
+          .set({ status: "rejected" })
+          .where(eq(dispensaryApplications.id, input.id));
+        return { success: true };
+      }),
+
+    // Advertiser Applications
+    submitAdvertiserApplication: publicProcedure
+      .input((val: unknown) => val as any)
+      .mutation(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { advertiserApplications } = await import('../drizzle/schema');
+        const [application] = await db.insert(advertiserApplications).values({
+          companyName: input.companyName,
+          contactName: input.contactName,
+          email: input.email,
+          phone: input.phone,
+          website: input.website,
+          industry: input.industry,
+          tier: input.tier,
+          budget: input.budget,
+          targetAudience: input.targetAudience,
+          campaignGoals: input.campaignGoals,
+          adCreativeUrl: input.adCreativeUrl,
+          status: "pending",
+        });
+        return application;
+      }),
+
+    getAllAdvertiserApplications: protectedProcedure.query(async () => {
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) return [];
+      const { advertiserApplications } = await import('../drizzle/schema');
+      return await db.select().from(advertiserApplications);
+    }),
+
+    approveAdvertiserApplication: protectedProcedure
+      .input((val: unknown) => val as { id: number })
+      .mutation(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { advertiserApplications } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        await db
+          .update(advertiserApplications)
+          .set({ status: "approved" })
+          .where(eq(advertiserApplications.id, input.id));
+        return { success: true };
+      }),
+
+    rejectAdvertiserApplication: protectedProcedure
+      .input((val: unknown) => val as { id: number })
+      .mutation(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { advertiserApplications } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        await db
+          .update(advertiserApplications)
+          .set({ status: "rejected" })
+          .where(eq(advertiserApplications.id, input.id));
+        return { success: true };
+      }),
   }),
 
   // Farmers

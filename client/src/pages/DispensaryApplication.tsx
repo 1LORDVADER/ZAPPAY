@@ -8,11 +8,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Link } from "wouter";
 import { Store, MapPin, Users, TrendingUp, CheckCircle, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 export default function DispensaryApplication() {
   const [formData, setFormData] = useState({
     businessName: "",
-    ownerName: "",
+    contactName: "",
     email: "",
     phone: "",
     address: "",
@@ -20,17 +21,44 @@ export default function DispensaryApplication() {
     state: "",
     zipCode: "",
     licenseNumber: "",
+    licenseState: "",
     yearsInBusiness: "",
     monthlyVolume: "",
-    numberOfLocations: "",
-    additionalInfo: "",
+    currentSuppliers: "",
+    targetStrains: "",
+  });
+
+  const submitMutation = trpc.applications.submitDispensaryApplication.useMutation({
+    onSuccess: () => {
+      toast.success("Application submitted! We'll contact you within 48 hours.");
+      setFormData({
+        businessName: "",
+        contactName: "",
+        email: "",
+        phone: "",
+        address: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        licenseNumber: "",
+        licenseState: "",
+        yearsInBusiness: "",
+        monthlyVolume: "",
+        currentSuppliers: "",
+        targetStrains: "",
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to submit application");
+    },
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement actual submission logic
-    toast.success("Application submitted! We'll contact you within 48 hours.");
-    console.log("Dispensary Application:", formData);
+    submitMutation.mutate({
+      ...formData,
+      yearsInBusiness: parseInt(formData.yearsInBusiness) || 0,
+    });
   };
 
   const handleChange = (field: string, value: string) => {
@@ -140,12 +168,12 @@ export default function DispensaryApplication() {
                       </div>
 
                       <div>
-                        <Label htmlFor="ownerName">Owner/Manager Name *</Label>
+                        <Label htmlFor="contactName">Owner/Manager Name *</Label>
                         <Input
-                          id="ownerName"
+                          id="contactName"
                           required
-                          value={formData.ownerName}
-                          onChange={(e) => handleChange("ownerName", e.target.value)}
+                          value={formData.contactName}
+                          onChange={(e) => handleChange("contactName", e.target.value)}
                           placeholder="John Doe"
                         />
                       </div>
@@ -291,16 +319,23 @@ export default function DispensaryApplication() {
                       </div>
 
                       <div>
-                        <Label htmlFor="numberOfLocations">Number of Locations *</Label>
-                        <Select value={formData.numberOfLocations} onValueChange={(value) => handleChange("numberOfLocations", value)}>
+                        <Label htmlFor="licenseState">License State *</Label>
+                        <Select value={formData.licenseState} onValueChange={(value) => handleChange("licenseState", value)}>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select number" />
+                            <SelectValue placeholder="Select state" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="1">1 location</SelectItem>
-                            <SelectItem value="2-3">2-3 locations</SelectItem>
-                            <SelectItem value="4-5">4-5 locations</SelectItem>
-                            <SelectItem value="6+">6+ locations</SelectItem>
+                            <SelectItem value="CA">California</SelectItem>
+                            <SelectItem value="CO">Colorado</SelectItem>
+                            <SelectItem value="WA">Washington</SelectItem>
+                            <SelectItem value="OR">Oregon</SelectItem>
+                            <SelectItem value="NV">Nevada</SelectItem>
+                            <SelectItem value="MI">Michigan</SelectItem>
+                            <SelectItem value="MA">Massachusetts</SelectItem>
+                            <SelectItem value="IL">Illinois</SelectItem>
+                            <SelectItem value="AZ">Arizona</SelectItem>
+                            <SelectItem value="NJ">New Jersey</SelectItem>
+                            <SelectItem value="NY">New York</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -308,15 +343,27 @@ export default function DispensaryApplication() {
                   </div>
 
                   {/* Additional Information */}
-                  <div>
-                    <Label htmlFor="additionalInfo">Additional Information (Optional)</Label>
-                    <Textarea
-                      id="additionalInfo"
-                      value={formData.additionalInfo}
-                      onChange={(e) => handleChange("additionalInfo", e.target.value)}
-                      placeholder="Tell us about your dispensary, target customers, or any specific needs..."
-                      rows={4}
-                    />
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="currentSuppliers">Current Suppliers (Optional)</Label>
+                      <Textarea
+                        id="currentSuppliers"
+                        value={formData.currentSuppliers}
+                        onChange={(e) => handleChange("currentSuppliers", e.target.value)}
+                        placeholder="List your current cannabis suppliers..."
+                        rows={3}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="targetStrains">Target Strains/Products (Optional)</Label>
+                      <Textarea
+                        id="targetStrains"
+                        value={formData.targetStrains}
+                        onChange={(e) => handleChange("targetStrains", e.target.value)}
+                        placeholder="What specific strains or product types are you interested in?"
+                        rows={3}
+                      />
+                    </div>
                   </div>
 
                   {/* Submit Button */}

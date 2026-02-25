@@ -391,3 +391,50 @@ export const salesRepApplications = mysqlTable("salesRepApplications", {
 
 export type SalesRepApplication = typeof salesRepApplications.$inferSelect;
 export type InsertSalesRepApplication = typeof salesRepApplications.$inferInsert;
+
+// Dispensary Applications
+export const dispensaryApplications = mysqlTable("dispensaryApplications", {
+  id: int("id").autoincrement().primaryKey(),
+  businessName: varchar("businessName", { length: 255 }).notNull(),
+  licenseNumber: varchar("licenseNumber", { length: 100 }).notNull(),
+  licenseState: varchar("licenseState", { length: 2 }).notNull(),
+  contactName: varchar("contactName", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 20 }).notNull(),
+  address: text("address").notNull(),
+  city: varchar("city", { length: 100 }).notNull(),
+  state: varchar("state", { length: 2 }).notNull(),
+  zipCode: varchar("zipCode", { length: 10 }).notNull(),
+  yearsInBusiness: int("yearsInBusiness").notNull(),
+  currentSuppliers: text("currentSuppliers"),
+  monthlyVolume: varchar("monthlyVolume", { length: 50 }),
+  targetStrains: text("targetStrains"),
+  status: mysqlEnum("status", ["pending", "approved", "rejected"]).default("pending").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type DispensaryApplication = typeof dispensaryApplications.$inferSelect;
+export type InsertDispensaryApplication = typeof dispensaryApplications.$inferInsert;
+
+// Advertiser Applications
+export const advertiserApplications = mysqlTable("advertiserApplications", {
+  id: int("id").autoincrement().primaryKey(),
+  companyName: varchar("companyName", { length: 255 }).notNull(),
+  contactName: varchar("contactName", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 20 }).notNull(),
+  website: text("website"),
+  industry: varchar("industry", { length: 100 }).notNull(),
+  tier: mysqlEnum("tier", ["basic", "standard", "premium", "enterprise", "platinum"]).notNull(),
+  budget: int("budget").notNull(), // daily budget in cents
+  targetAudience: text("targetAudience").notNull(),
+  campaignGoals: text("campaignGoals").notNull(),
+  adCreativeUrl: text("adCreativeUrl"), // S3 URL for uploaded creative
+  status: mysqlEnum("status", ["pending", "approved", "rejected"]).default("pending").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AdvertiserApplication = typeof advertiserApplications.$inferSelect;
+export type InsertAdvertiserApplication = typeof advertiserApplications.$inferInsert;

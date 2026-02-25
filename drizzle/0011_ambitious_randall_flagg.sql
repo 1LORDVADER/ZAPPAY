@@ -1,0 +1,40 @@
+CREATE TABLE `advertiserApplications` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`companyName` varchar(255) NOT NULL,
+	`contactName` varchar(255) NOT NULL,
+	`email` varchar(320) NOT NULL,
+	`phone` varchar(20) NOT NULL,
+	`website` text,
+	`industry` varchar(100) NOT NULL,
+	`tier` enum('basic','standard','premium','enterprise','platinum') NOT NULL,
+	`budget` int NOT NULL,
+	`targetAudience` text NOT NULL,
+	`campaignGoals` text NOT NULL,
+	`adCreativeUrl` text,
+	`status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `advertiserApplications_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `dispensaryApplications` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`businessName` varchar(255) NOT NULL,
+	`licenseNumber` varchar(100) NOT NULL,
+	`licenseState` varchar(2) NOT NULL,
+	`contactName` varchar(255) NOT NULL,
+	`email` varchar(320) NOT NULL,
+	`phone` varchar(20) NOT NULL,
+	`address` text NOT NULL,
+	`city` varchar(100) NOT NULL,
+	`state` varchar(2) NOT NULL,
+	`zipCode` varchar(10) NOT NULL,
+	`yearsInBusiness` int NOT NULL,
+	`currentSuppliers` text,
+	`monthlyVolume` varchar(50),
+	`targetStrains` text,
+	`status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `dispensaryApplications_id` PRIMARY KEY(`id`)
+);

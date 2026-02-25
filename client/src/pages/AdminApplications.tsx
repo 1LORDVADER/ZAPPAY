@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
-import { CheckCircle, XCircle, User, Truck, Building2, Briefcase, Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { CheckCircle, XCircle, User, Truck, Building2, Briefcase, Mail, Phone, MapPin, Calendar, Store } from "lucide-react";
 import { PushNotificationManager } from "@/components/PushNotificationManager";
 import { useApplicationNotifications } from "@/hooks/useApplicationNotifications";
 
@@ -30,6 +30,8 @@ export default function AdminApplications() {
   const { data: driverApps = [], refetch: refetchDrivers } = trpc.transportation.getAllDrivers.useQuery();
   const { data: companyApps = [], refetch: refetchCompanies } = trpc.transportation.getAllCompanies.useQuery();
   const { data: salesApps = [], refetch: refetchSales } = trpc.sales.getAllApplications.useQuery();
+  const { data: dispensaryApps = [], refetch: refetchDispensaries } = trpc.applications.getAllDispensaryApplications.useQuery();
+  const { data: advertiserApps = [], refetch: refetchAdvertisers } = trpc.applications.getAllAdvertiserApplications.useQuery();
 
   // Approve/Reject mutations
   const approveFarmer = trpc.farmers.approveApplication.useMutation({
@@ -112,6 +114,46 @@ export default function AdminApplications() {
     }
   });
 
+  const approveDispensary = trpc.applications.approveDispensaryApplication.useMutation({
+    onSuccess: () => {
+      toast.success("Dispensary application approved!");
+      refetchDispensaries();
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to approve dispensary");
+    }
+  });
+
+  const rejectDispensary = trpc.applications.rejectDispensaryApplication.useMutation({
+    onSuccess: () => {
+      toast.success("Dispensary application rejected");
+      refetchDispensaries();
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to reject dispensary");
+    }
+  });
+
+  const approveAdvertiser = trpc.applications.approveAdvertiserApplication.useMutation({
+    onSuccess: () => {
+      toast.success("Advertiser application approved!");
+      refetchAdvertisers();
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to approve advertiser");
+    }
+  });
+
+  const rejectAdvertiser = trpc.applications.rejectAdvertiserApplication.useMutation({
+    onSuccess: () => {
+      toast.success("Advertiser application rejected");
+      refetchAdvertisers();
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to reject advertiser");
+    }
+  });
+
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -131,8 +173,10 @@ export default function AdminApplications() {
   const pendingDrivers = driverApps.filter((driver: any) => driver.status === "pending_approval");
   const pendingCompanies = companyApps.filter((company: any) => company.status === "pending_approval");
   const pendingSales = salesApps.filter((app: any) => app.status === "pending_approval");
+  const pendingDispensaries = dispensaryApps.filter((app: any) => app.status === "pending");
+  const pendingAdvertisers = advertiserApps.filter((app: any) => app.status === "pending");
 
-  const totalPending = pendingFarmers.length + pendingDrivers.length + pendingCompanies.length + pendingSales.length;
+  const totalPending = pendingFarmers.length + pendingDrivers.length + pendingCompanies.length + pendingSales.length + pendingDispensaries.length + pendingAdvertisers.length;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -156,7 +200,7 @@ export default function AdminApplications() {
         </div>
 
         <Tabs defaultValue="farmers" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="farmers" className="flex items-center gap-2">
               <User className="h-4 w-4" />
               Farmers ({pendingFarmers.length})
@@ -172,6 +216,14 @@ export default function AdminApplications() {
             <TabsTrigger value="sales" className="flex items-center gap-2">
               <Briefcase className="h-4 w-4" />
               Sales Reps ({pendingSales.length})
+            </TabsTrigger>
+            <TabsTrigger value="dispensaries" className="flex items-center gap-2">
+              <Store className="h-4 w-4" />
+              Dispensaries ({pendingDispensaries.length})
+            </TabsTrigger>
+            <TabsTrigger value="advertisers" className="flex items-center gap-2">
+              <Briefcase className="h-4 w-4" />
+              Advertisers ({pendingAdvertisers.length})
             </TabsTrigger>
           </TabsList>
 
@@ -459,6 +511,178 @@ export default function AdminApplications() {
                       <Button
                         onClick={() => rejectSales.mutate({ id: app.id })}
                         disabled={rejectSales.isPending}
+                        variant="destructive"
+                        className="flex-1"
+                      >
+                        <XCircle className="mr-2 h-4 w-4" />
+                        Reject
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+          </TabsContent>
+
+          {/* Dispensaries Tab */}
+          <TabsContent value="dispensaries" className="space-y-4">
+            {pendingDispensaries.length === 0 ? (
+              <Card>
+                <CardContent className="py-12 text-center text-slate-500">
+                  No pending dispensary applications
+                </CardContent>
+              </Card>
+            ) : (
+              pendingDispensaries.map((app: any) => (
+                <Card key={app.id} className="border-2">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-xl">{app.businessName}</CardTitle>
+                        <CardDescription className="mt-1">
+                          {app.city}, {app.state} • License: {app.licenseNumber}
+                        </CardDescription>
+                      </div>
+                      <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-300">
+                        Pending Review
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="flex items-center gap-2">
+                        <User className="h-4 w-4 text-slate-400" />
+                        <span>{app.contactName}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Mail className="h-4 w-4 text-slate-400" />
+                        <span>{app.email}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Phone className="h-4 w-4 text-slate-400" />
+                        <span>{app.phone}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-slate-400" />
+                        <span>Applied: {new Date(app.createdAt).toLocaleDateString()}</span>
+                      </div>
+                    </div>
+                    <div className="bg-slate-50 p-3 rounded-lg text-sm">
+                      <p><strong>Address:</strong> {app.address}, {app.city}, {app.state} {app.zipCode}</p>
+                      <p><strong>Years in Business:</strong> {app.yearsInBusiness}</p>
+                      <p><strong>Monthly Volume:</strong> {app.monthlyVolume || 'N/A'}</p>
+                    </div>
+                    {app.currentSuppliers && (
+                      <div className="bg-slate-50 p-3 rounded-lg">
+                        <p className="text-sm font-semibold mb-1">Current Suppliers:</p>
+                        <p className="text-sm text-slate-700">{app.currentSuppliers}</p>
+                      </div>
+                    )}
+                    {app.targetStrains && (
+                      <div className="bg-slate-50 p-3 rounded-lg">
+                        <p className="text-sm font-semibold mb-1">Target Strains:</p>
+                        <p className="text-sm text-slate-700">{app.targetStrains}</p>
+                      </div>
+                    )}
+                    <div className="flex gap-3 pt-2">
+                      <Button
+                        onClick={() => approveDispensary.mutate({ id: app.id })}
+                        disabled={approveDispensary.isPending}
+                        className="flex-1 bg-green-600 hover:bg-green-700"
+                      >
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Approve
+                      </Button>
+                      <Button
+                        onClick={() => rejectDispensary.mutate({ id: app.id })}
+                        disabled={rejectDispensary.isPending}
+                        variant="destructive"
+                        className="flex-1"
+                      >
+                        <XCircle className="mr-2 h-4 w-4" />
+                        Reject
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+          </TabsContent>
+
+          {/* Advertisers Tab */}
+          <TabsContent value="advertisers" className="space-y-4">
+            {pendingAdvertisers.length === 0 ? (
+              <Card>
+                <CardContent className="py-12 text-center text-slate-500">
+                  No pending advertiser applications
+                </CardContent>
+              </Card>
+            ) : (
+              pendingAdvertisers.map((app: any) => (
+                <Card key={app.id} className="border-2">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-xl">{app.companyName}</CardTitle>
+                        <CardDescription className="mt-1">
+                          {app.industry} • {app.tier} tier
+                        </CardDescription>
+                      </div>
+                      <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-300">
+                        Pending Review
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="flex items-center gap-2">
+                        <User className="h-4 w-4 text-slate-400" />
+                        <span>{app.contactName}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Mail className="h-4 w-4 text-slate-400" />
+                        <span>{app.email}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Phone className="h-4 w-4 text-slate-400" />
+                        <span>{app.phone}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-slate-400" />
+                        <span>Applied: {new Date(app.createdAt).toLocaleDateString()}</span>
+                      </div>
+                    </div>
+                    <div className="bg-slate-50 p-3 rounded-lg text-sm">
+                      <p><strong>Budget:</strong> ${app.budget.toLocaleString()}</p>
+                      {app.website && <p><strong>Website:</strong> <a href={app.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{app.website}</a></p>}
+                    </div>
+                    <div className="bg-slate-50 p-3 rounded-lg">
+                      <p className="text-sm font-semibold mb-1">Target Audience:</p>
+                      <p className="text-sm text-slate-700">{app.targetAudience}</p>
+                    </div>
+                    <div className="bg-slate-50 p-3 rounded-lg">
+                      <p className="text-sm font-semibold mb-1">Campaign Goals:</p>
+                      <p className="text-sm text-slate-700">{app.campaignGoals}</p>
+                    </div>
+                    {app.adCreativeUrl && (
+                      <div className="text-sm">
+                        <a href={app.adCreativeUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                          View Ad Creative →
+                        </a>
+                      </div>
+                    )}
+                    <div className="flex gap-3 pt-2">
+                      <Button
+                        onClick={() => approveAdvertiser.mutate({ id: app.id })}
+                        disabled={approveAdvertiser.isPending}
+                        className="flex-1 bg-green-600 hover:bg-green-700"
+                      >
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Approve
+                      </Button>
+                      <Button
+                        onClick={() => rejectAdvertiser.mutate({ id: app.id })}
+                        disabled={rejectAdvertiser.isPending}
                         variant="destructive"
                         className="flex-1"
                       >
