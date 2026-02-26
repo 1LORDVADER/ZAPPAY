@@ -124,13 +124,15 @@ export default function Home() {
                   </a>
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/my-applications">
-                  <a className="text-white hover:text-red-400 font-medium transition-colors">
-                    My Applications
-                  </a>
-                </Link>
-              </motion.div>
+              {user?.role !== 'admin' && (
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link href="/my-applications">
+                    <a className="text-white hover:text-red-400 font-medium transition-colors">
+                      My Applications
+                    </a>
+                  </Link>
+                </motion.div>
+              )}
               {user?.role === 'admin' && (
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link href="/admin/applications">
@@ -501,19 +503,19 @@ export default function Home() {
                             <div className="flex items-center justify-between">
                               <div>
                                 <span className="text-2xl font-bold text-slate-900">
-                                  ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
+                                  ${typeof product.price === 'number' ? (product.price / 100).toFixed(2) : product.price}
                                 </span>
                                 <span className="text-sm text-slate-600 ml-1">/gram</span>
                               </div>
                               {product.retailPrice && (
                                 <span className="text-sm text-slate-400 line-through">
-                                  ${typeof product.retailPrice === 'number' ? product.retailPrice.toFixed(2) : product.retailPrice}
+                                  ${typeof product.retailPrice === 'number' ? (product.retailPrice / 100).toFixed(2) : product.retailPrice}
                                 </span>
                               )}
                             </div>
                             {product.retailPrice && (
                               <div className="text-xs font-semibold text-green-600">
-                                Save ${((typeof product.retailPrice === 'number' ? product.retailPrice : parseFloat(product.retailPrice)) - (typeof product.price === 'number' ? product.price : parseFloat(product.price))).toFixed(2)}/gram
+                                Save ${((typeof product.retailPrice === 'number' ? product.retailPrice / 100 : parseFloat(product.retailPrice) / 100) - (typeof product.price === 'number' ? product.price / 100 : parseFloat(product.price) / 100)).toFixed(2)}/gram
                               </div>
                             )}
                           </div>
@@ -603,19 +605,25 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-4">Platform</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-sm hover:text-blue-400 transition-colors">
-                    For Farmers
-                  </a>
+                  <Link href="/farmer/register">
+                    <a className="text-sm hover:text-blue-400 transition-colors">
+                      For Farmers
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-sm hover:text-blue-400 transition-colors">
-                    For Transporters
-                  </a>
+                  <Link href="/transporter/register">
+                    <a className="text-sm hover:text-blue-400 transition-colors">
+                      For Transporters
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-sm hover:text-blue-400 transition-colors">
-                    How It Works
-                  </a>
+                  <Link href="/how-it-works">
+                    <a className="text-sm hover:text-blue-400 transition-colors">
+                      How It Works
+                    </a>
+                  </Link>
                 </li>
               </ul>
             </div>

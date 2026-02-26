@@ -7,8 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trpc } from "@/lib/trpc";
-import { Plus, Edit, Trash2, TrendingUp, DollarSign, Package, Star, LogOut } from "lucide-react";
+import { Plus, Edit, Trash2, TrendingUp, DollarSign, Package, Star, LogOut, TrendingDown, TrendingUp as TrendingUpIcon } from "lucide-react";
 import { useState } from "react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Slider } from "@/components/ui/slider";
 import { Link, useLocation } from "wouter";
 import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
@@ -17,6 +19,8 @@ export default function FarmerDashboard() {
   const { user, isAuthenticated, logout } = useAuth();
   const [, setLocation] = useLocation();
   const [showAddProduct, setShowAddProduct] = useState(false);
+  const [liveBrokerProduct, setLiveBrokerProduct] = useState<any>(null);
+  const [priceAdjustment, setPriceAdjustment] = useState(0); // Percentage adjustment
   const utils = trpc.useUtils();
   
   // Fetch farmer's products
@@ -32,6 +36,29 @@ export default function FarmerDashboard() {
       toast.success("Product deleted");
     },
   });
+
+  // Update price mutation for live brokering
+  const updatePriceMutation = trpc.products.updatePrice.useMutation({
+    onSuccess: () => {
+      utils.products.myProducts.invalidate();
+      toast.success("Price updated successfully!");
+      setLiveBrokerProduct(null);
+      setPriceAdjustment(0);
+    },
+    onError: (error: any) => {
+      toast.error("Failed to update price: " + error.message);
+    },
+  });
+
+  const handlePriceAdjust = () => {
+    if (!liveBrokerProduct) return;
+    const currentPrice = liveBrokerProduct.price;
+    const newPrice = Math.round(currentPrice * (1 + priceAdjustment / 100));
+    updatePriceMutation.mutate({
+      id: liveBrokerProduct.id,
+      price: newPrice,
+    });
+  };
 
   if (!isAuthenticated) {
     return (
@@ -253,29 +280,42 @@ export default function FarmerDashboard() {
                         <span className="font-semibold">{product.clicks || 0}</span>
                       </div>
                       
-                      <div className="flex gap-2 pt-3">
+                      <div className="space-y-2 pt-3">
                         <Button
-                          variant="outline"
                           size="sm"
-                          className="flex-1"
-                        >
-                          <Edit className="h-4 w-4 mr-2" />
-                          Edit
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="flex-1 text-red-600 hover:text-red-700"
+                          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
                           onClick={() => {
-                            if (confirm("Are you sure you want to delete this product?")) {
-                              deleteProductMutation.mutate({ id: product.id });
-                            }
+                            setLiveBrokerProduct(product);
+                            setPriceAdjustment(0);
                           }}
-                          disabled={deleteProductMutation.isPending}
                         >
-                          <Trash2 className="h-4 w-4 mr-2" />
-                          Delete
+                          <TrendingUpIcon className="h-4 w-4 mr-2" />
+                          Live Broker Price
                         </Button>
+                        <div className="flex gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1"
+                          >
+                            <Edit className="h-4 w-4 mr-2" />
+                            Edit
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 text-red-600 hover:text-red-700"
+                            onClick={() => {
+                              if (confirm("Are you sure you want to delete this product?")) {
+                                deleteProductMutation.mutate({ id: product.id });
+                              }
+                            }}
+                            disabled={deleteProductMutation.isPending}
+                          >
+                            <Trash2 className="h-4 w-4 mr-2" />
+                            Delete
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -285,6 +325,144 @@ export default function FarmerDashboard() {
           )}
         </div>
       </section>
+
+      {/* Live Broker Price Adjustment Dialog */}
+      <Dialog open={!!liveBrokerProduct} onOpenChange={(open) => !open && setLiveBrokerProduct(null)}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Live Broker - Adjust Price</DialogTitle>
+            <DialogDescription>
+              Dynamically adjust the price for <strong>{liveBrokerProduct?.name}</strong> to respond to market conditions
+            </DialogDescription>
+          </DialogHeader>
+          
+          {liveBrokerProduct && (
+            <div className="space-y-6 py-4">
+              {/* Current Price */}
+              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                <div className="text-sm text-slate-600 mb-1">Current Price</div>
+                <div className="text-3xl font-bold text-slate-900">
+                  ${(liveBrokerProduct.price / 100).toFixed(2)}/{liveBrokerProduct.unit}
+                </div>
+              </div>
+
+              {/* Price Adjustment Slider */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <Label className="text-base">Price Adjustment</Label>
+                  <Badge className={`text-lg px-3 py-1 ${
+                    priceAdjustment > 0 ? 'bg-green-100 text-green-800' :
+                    priceAdjustment < 0 ? 'bg-red-100 text-red-800' :
+                    'bg-slate-100 text-slate-800'
+                  }`}>
+                    {priceAdjustment > 0 ? '+' : ''}{priceAdjustment}%
+                  </Badge>
+                </div>
+                
+                <Slider
+                  value={[priceAdjustment]}
+                  onValueChange={(value) => setPriceAdjustment(value[0])}
+                  min={-50}
+                  max={50}
+                  step={1}
+                  className="w-full"
+                />
+                
+                <div className="flex justify-between text-xs text-slate-500">
+                  <span>-50% (Lower)</span>
+                  <span>0% (Current)</span>
+                  <span>+50% (Higher)</span>
+                </div>
+              </div>
+
+              {/* New Price Preview */}
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <div className="text-sm text-blue-600 mb-1">New Price</div>
+                <div className="text-3xl font-bold text-blue-900">
+                  ${(Math.round(liveBrokerProduct.price * (1 + priceAdjustment / 100)) / 100).toFixed(2)}/{liveBrokerProduct.unit}
+                </div>
+                <div className="text-xs text-blue-600 mt-1">
+                  {priceAdjustment > 0 ? (
+                    <span className="flex items-center gap-1">
+                      <TrendingUpIcon className="h-3 w-3" />
+                      Price increase of ${((liveBrokerProduct.price * priceAdjustment / 100) / 100).toFixed(2)}
+                    </span>
+                  ) : priceAdjustment < 0 ? (
+                    <span className="flex items-center gap-1">
+                      <TrendingDown className="h-3 w-3" />
+                      Price decrease of ${(Math.abs(liveBrokerProduct.price * priceAdjustment / 100) / 100).toFixed(2)}
+                    </span>
+                  ) : (
+                    <span>No change</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Quick Adjustment Buttons */}
+              <div className="grid grid-cols-5 gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setPriceAdjustment(-10)}
+                  className="text-xs"
+                >
+                  -10%
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setPriceAdjustment(-5)}
+                  className="text-xs"
+                >
+                  -5%
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setPriceAdjustment(0)}
+                  className="text-xs"
+                >
+                  Reset
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setPriceAdjustment(5)}
+                  className="text-xs"
+                >
+                  +5%
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setPriceAdjustment(10)}
+                  className="text-xs"
+                >
+                  +10%
+                </Button>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-2">
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => setLiveBrokerProduct(null)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                  onClick={handlePriceAdjust}
+                  disabled={updatePriceMutation.isPending || priceAdjustment === 0}
+                >
+                  {updatePriceMutation.isPending ? 'Updating...' : 'Apply New Price'}
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

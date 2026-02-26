@@ -1,0 +1,35 @@
+{
+  "query": "SELECT id, name, price FROM products LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, price FROM products LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "price": "300"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "price": "300"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "price": "300"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "price": "300"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "price": "400"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tprice\n1\tBlue Dream\t300\n2\tOG Kush\t300\n3\tSour Diesel\t300\n5\tGranddaddy Purple\t300\n6\tGirl Scout Cookies\t400\n",
+  "stderr": "",
+  "execution_time_ms": 60
+}

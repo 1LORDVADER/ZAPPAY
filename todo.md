@@ -1118,3 +1118,27 @@
 - [ ] Test admin can easily find and access submitted applications
 - [ ] Verify all submitted applications are visible (sales rep, farmer, dispensary, advertiser)
 - [ ] Save checkpoint with fixed navigation
+
+
+## CRITICAL BUGS & FEATURES (February 25, 2026) 🚨
+
+### Navigation Bugs
+- [ ] Fix "For Farmers" link redirecting to homepage instead of farmer registration/info page
+- [ ] Fix "Transporters" link redirecting to homepage instead of transporter info page
+- [ ] Fix "How It Works" link redirecting to homepage instead of explanation page
+- [ ] Remove "My Applications" link from admin navigation (should only be for regular users)
+
+### Cart Pricing Bug
+- [ ] Fix cart showing incorrect prices that don't match advertised product prices
+- [ ] Ensure cart calculates total correctly based on quantity and per-gram price
+- [ ] Test cart with multiple products to verify pricing consistency
+
+### New Features
+- [x] Create `/my-applications` page for applicants to track their application status
+- [x] Implement live brokering feature in farmer dashboard
+- [x] Allow farmers to dynamically adjust prices for specific strains
+- [x] Add real-time price adjustment UI in farmer dashboard with slider (-50% to +50%)
+- [x] Add quick adjustment buttons (-10%, -5%, Reset, +5%, +10%)
+- [x] Show current price, new price preview, and price change amount
+- [ ] Save price history for analytics and market insights (future enhancement)
+- [ ] Test live brokering with multiple farmers and products

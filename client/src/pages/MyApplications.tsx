@@ -11,12 +11,16 @@ export default function MyApplications() {
   const [, setLocation] = useLocation();
 
   // Fetch all application types for current user
-  const { data: farmerApp, isLoading: farmerLoading } = trpc.profile.getFarmerProfile.useQuery();
-  const { data: driverApp, isLoading: driverLoading } = trpc.applications.getMyDriverApplication.useQuery();
-  const { data: companyApp, isLoading: companyLoading } = trpc.applications.getMyCompanyApplication.useQuery();
-  const { data: salesApp, isLoading: salesLoading } = trpc.applications.getMySalesApplication.useQuery();
+  const { data: applications, isLoading: appsLoading } = trpc.applications.getMyApplications.useQuery();
 
-  const isLoading = authLoading || farmerLoading || driverLoading || companyLoading || salesLoading;
+  const farmerApp = applications?.farmer;
+  const driverApp = applications?.driver;
+  const companyApp = applications?.company;
+  const salesApp = applications?.salesRep;
+  const dispensaryApp = applications?.dispensary;
+  const advertiserApp = applications?.advertiser;
+
+  const isLoading = authLoading || appsLoading;
 
   if (authLoading) {
     return (
@@ -83,7 +87,7 @@ export default function MyApplications() {
     }
   };
 
-  const hasAnyApplication = farmerApp || driverApp || companyApp || salesApp;
+  const hasAnyApplication = farmerApp || driverApp || companyApp || salesApp || dispensaryApp || advertiserApp;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -234,6 +238,80 @@ export default function MyApplications() {
                     </div>
                   )}
                   {companyApp.status === "inactive" && (
+                    <div className="bg-red-50 p-3 rounded-lg border border-red-200">
+                      <p className="text-sm text-red-800">
+                        Unfortunately, your application was not approved. Please contact support for more information.
+                      </p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Dispensary Application */}
+            {dispensaryApp && (
+              <Card className="border-2">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="text-2xl">Dispensary Partner Application</CardTitle>
+                      <CardDescription className="mt-1">
+                        {dispensaryApp.businessName} • {dispensaryApp.city}, {dispensaryApp.state}
+                      </CardDescription>
+                    </div>
+                    {getStatusBadge(dispensaryApp.status || "pending")}
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-slate-600">
+                    <Calendar className="h-4 w-4" />
+                    <span>Submitted: {new Date(dispensaryApp.createdAt).toLocaleDateString()}</span>
+                  </div>
+                  {dispensaryApp.status === "approved" && (
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
+                        🎉 Congratulations! Your dispensary application has been approved. Check your email for next steps.
+                      </p>
+                    </div>
+                  )}
+                  {dispensaryApp.status === "rejected" && (
+                    <div className="bg-red-50 p-3 rounded-lg border border-red-200">
+                      <p className="text-sm text-red-800">
+                        Unfortunately, your application was not approved. Please contact support for more information.
+                      </p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Advertiser Application */}
+            {advertiserApp && (
+              <Card className="border-2">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="text-2xl">Advertiser Application</CardTitle>
+                      <CardDescription className="mt-1">
+                        {advertiserApp.companyName} • {advertiserApp.tier}
+                      </CardDescription>
+                    </div>
+                    {getStatusBadge(advertiserApp.status || "pending")}
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-slate-600">
+                    <Calendar className="h-4 w-4" />
+                    <span>Submitted: {new Date(advertiserApp.createdAt).toLocaleDateString()}</span>
+                  </div>
+                  {advertiserApp.status === "approved" && (
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
+                        🎉 Congratulations! Your advertiser application has been approved. Check your email for next steps.
+                      </p>
+                    </div>
+                  )}
+                  {advertiserApp.status === "rejected" && (
                     <div className="bg-red-50 p-3 rounded-lg border border-red-200">
                       <p className="text-sm text-red-800">
                         Unfortunately, your application was not approved. Please contact support for more information.

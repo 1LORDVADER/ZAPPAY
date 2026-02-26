@@ -71,6 +71,14 @@ export const appRouter = router({
         await deleteProduct(input.id);
         return { success: true };
       }),
+    updatePrice: publicProcedure
+      .input((val: unknown) => val as { id: number; price: number })
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user) throw new Error('Not authenticated');
+        const { updateProduct } = await import('./db');
+        await updateProduct(input.id, { price: input.price });
+        return { success: true };
+      }),
   }),
 
   // Shopping Cart
@@ -275,15 +283,33 @@ export const appRouter = router({
   // Applications
   applications: router({
     getMyApplications: publicProcedure.query(async ({ ctx }) => {
-      if (!ctx.user) return { farmer: null, driver: null, company: null, salesRep: null };
+      if (!ctx.user) return { farmer: null, driver: null, company: null, salesRep: null, dispensary: null, advertiser: null };
       const { getFarmerProfileByUserId, getDriverByUserId, getCompanyByUserId, getSalesApplicationByUserId } = await import('./db');
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      
       const [farmer, driver, company, salesRep] = await Promise.all([
         getFarmerProfileByUserId(ctx.user.id),
         getDriverByUserId(ctx.user.id),
         getCompanyByUserId(ctx.user.id),
         getSalesApplicationByUserId(ctx.user.id),
       ]);
-      return { farmer, driver, company, salesRep };
+
+      let dispensary = null;
+      let advertiser = null;
+      
+      if (db) {
+        const { dispensaryApplications, advertiserApplications } = await import('../drizzle/schema');
+        
+        // Get all applications and filter by email (same pattern as sales rep)
+        const allDispensaryApps = await db.select().from(dispensaryApplications);
+        const allAdvertiserApps = await db.select().from(advertiserApplications);
+        
+        dispensary = allDispensaryApps.find(app => app.email === ctx.user?.email) || null;
+        advertiser = allAdvertiserApps.find(app => app.email === ctx.user?.email) || null;
+      }
+      
+      return { farmer, driver, company, salesRep, dispensary, advertiser };
     }),
     getMyDriverApplication: publicProcedure.query(async ({ ctx }) => {
       if (!ctx.user) return null;
