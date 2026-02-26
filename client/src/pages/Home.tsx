@@ -131,6 +131,15 @@ export default function Home() {
                   </a>
                 </Link>
               </motion.div>
+              {user?.role === 'admin' && (
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link href="/admin/applications">
+                    <a className="text-white hover:text-red-400 font-medium transition-colors">
+                      Review Applications
+                    </a>
+                  </Link>
+                </motion.div>
+              )}
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>

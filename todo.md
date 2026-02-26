@@ -1095,3 +1095,26 @@
 - [x] Updated comparison table to show 3 tiers (Premium, Pay-As-You-Go, Elite Grower)
 - [x] Updated grid layout from 4 columns to 3 columns
 - [x] Removed all references to Free Trial tier from comparison table
+
+
+## Notification System Implementation (February 25, 2026) 🔔
+
+- [ ] Create notifications table in database schema
+- [ ] Add notification types (application_submitted, application_approved, application_rejected, order_placed, order_shipped, order_delivered, system_announcement)
+- [ ] Build backend tRPC procedures (createNotification, getUserNotifications, markAsRead, markAllAsRead, deleteNotification)
+- [ ] Create NotificationCenter component with bell icon and dropdown
+- [ ] Integrate admin notifications when applications are submitted
+- [ ] Integrate user notifications when applications are approved/rejected
+- [ ] Add order notifications for farmers and customers
+- [ ] Add real-time notification badge count
+- [ ] Test notification system end-to-end
+- [ ] Save checkpoint with complete notification system
+
+
+## URGENT - Admin Applications Navigation (February 25, 2026) ✅
+
+- [x] Add "Review Applications" link to main header navigation (visible for admin users only)
+- [x] Ensure link directs to /admin/applications page
+- [ ] Test admin can easily find and access submitted applications
+- [ ] Verify all submitted applications are visible (sales rep, farmer, dispensary, advertiser)
+- [ ] Save checkpoint with fixed navigation
