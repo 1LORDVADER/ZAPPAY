@@ -12,23 +12,32 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
 import { motion } from "framer-motion";
 import { APP_LOGO, APP_TITLE } from "@/const";
 import { NotificationBell } from "@/components/NotificationBell";
+import { getGuestCartCount } from "@/lib/cartPersistence";
 import { Toaster } from "sonner";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
+  const [guestCartCount, setGuestCartCount] = useState(0);
   
   // Fetch all products
   const { data: products = [], isLoading } = trpc.products.list.useQuery();
   
   // Fetch cart items
   const { data: cartItems = [] } = trpc.cart.getItems.useQuery();
+  
+  // Update guest cart count on mount and when cart changes
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setGuestCartCount(getGuestCartCount());
+    }
+  }, [isAuthenticated, cartItems]);
   
   // Filter products based on search and category
   const [activeCategory, setActiveCategory] = useState("all");
@@ -43,7 +52,10 @@ export default function Home() {
     return matchesSearch && matchesCategory;
   });
 
-  const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  // Use database cart for authenticated users, localStorage for guests
+  const cartItemCount = isAuthenticated 
+    ? cartItems.reduce((sum, item) => sum + item.quantity, 0)
+    : guestCartCount;
 
   // Animation variants
   const containerVariants = {

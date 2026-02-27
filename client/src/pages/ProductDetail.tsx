@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Link, useParams, useLocation } from "wouter";
 import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
+import { addToGuestCart } from "@/lib/cartPersistence";
 
 export default function ProductDetail() {
   const params = useParams();
@@ -36,7 +37,9 @@ export default function ProductDetail() {
   
   const handleAddToCart = () => {
     if (!isAuthenticated) {
-      window.location.href = getLoginUrl();
+      // Add to localStorage for guest users
+      addToGuestCart(product!.id, quantity);
+      toast.success("Added to cart! Login to checkout.");
       return;
     }
     

@@ -7,7 +7,8 @@ import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, ArrowRight, Shuffle } fro
 import { Link, useLocation } from "wouter";
 import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getGuestCart, updateGuestCartQuantity, removeFromGuestCart, clearGuestCart, type CartItem as GuestCartItem } from "@/lib/cartPersistence";
 import {
   Dialog,
   DialogContent,
@@ -22,12 +23,20 @@ export default function Cart() {
   const utils = trpc.useUtils();
   const [mixingItemId, setMixingItemId] = useState<number | null>(null);
   const [mixedStrains, setMixedStrains] = useState<Array<{ productId: number; quantity: number }>>([]);
+  const [guestCart, setGuestCart] = useState<GuestCartItem[]>([]);
   
   // Fetch cart items
   const { data: cartItems = [], isLoading } = trpc.cart.getItems.useQuery();
   
   // Fetch products for cart items
   const { data: products = [] } = trpc.products.list.useQuery();
+  
+  // Load guest cart from localStorage
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setGuestCart(getGuestCart());
+    }
+  }, [isAuthenticated]);
   
   // Update quantity mutation
   const updateQuantityMutation = trpc.cart.updateQuantity.useMutation({
@@ -56,15 +65,209 @@ export default function Cart() {
     },
   });
 
+  // Handle guest cart removal
+  const handleGuestRemove = (productId: number) => {
+    removeFromGuestCart(productId);
+    setGuestCart(getGuestCart());
+    toast.success("Item removed from cart");
+  };
+  
+  // Handle guest cart quantity update
+  const handleGuestQuantityUpdate = (productId: number, newQuantity: number) => {
+    if (newQuantity < 1) {
+      toast.error("Minimum order is 1 gram");
+      return;
+    }
+    updateGuestCartQuantity(productId, newQuantity);
+    setGuestCart(getGuestCart());
+    toast.success("Cart updated");
+  };
+  
+  // Handle guest cart clear
+  const handleGuestClear = () => {
+    clearGuestCart();
+    setGuestCart([]);
+    toast.success("Cart cleared");
+  };
+  
+  // If not authenticated, show guest cart
   if (!isAuthenticated) {
+    const guestCartWithProducts = guestCart.map(item => {
+      const product = products.find(p => p.id === item.productId);
+      return { ...item, product, id: item.productId };
+    }).filter(item => item.product);
+    
+    const guestSubtotal = guestCartWithProducts.reduce((sum, item) => {
+      return sum + (item.product!.price * item.quantity);
+    }, 0);
+    
+    const guestTax = guestSubtotal * 0.08;
+    const guestPlatformFee = guestSubtotal * 0.052;
+    const guestTotal = guestSubtotal + guestTax + guestPlatformFee;
+    
+    if (guestCart.length === 0) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center">
+          <div className="text-center">
+            <ShoppingCart className="h-16 w-16 text-slate-300 mx-auto mb-4" />
+            <p className="text-slate-600 text-lg mb-4">Your cart is empty</p>
+            <Link href="/">
+              <a>
+                <Button>Start Shopping</Button>
+              </a>
+            </Link>
+          </div>
+        </div>
+      );
+    }
+    
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center">
-        <div className="text-center">
-          <ShoppingCart className="h-16 w-16 text-slate-300 mx-auto mb-4" />
-          <p className="text-slate-600 text-lg mb-4">Please login to view your cart</p>
-          <Button onClick={() => window.location.href = getLoginUrl()}>
-            Login
-          </Button>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              <Link href="/">
+                <a className="flex items-center gap-3 cursor-pointer">
+                  <img src="/logo.png" alt="ZAPPAY Logo" className="h-12 w-auto object-contain" />
+                </a>
+              </Link>
+              <div className="flex items-center gap-4">
+                <Link href="/">
+                  <a>
+                    <Button variant="outline" size="sm">
+                      <ArrowLeft className="h-4 w-4 mr-2" />
+                      Continue Shopping
+                    </Button>
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        <div className="container mx-auto px-4 py-8">
+          <div className="mb-6">
+            <Link href="/">
+              <a className="text-blue-600 hover:text-blue-800 flex items-center gap-2">
+                <ArrowLeft className="h-4 w-4" />
+                Back to Marketplace
+              </a>
+            </Link>
+          </div>
+          
+          <h1 className="text-3xl font-bold text-slate-900 mb-8">Shopping Cart</h1>
+          
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-4">
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-slate-600">{guestCart.length} Items</p>
+                <Button variant="outline" size="sm" onClick={handleGuestClear}>
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Clear Cart
+                </Button>
+              </div>
+              
+              {guestCartWithProducts.map((item) => (
+                <Card key={item.productId}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-6">
+                      <img
+                        src={JSON.parse(item.product!.photos)[0] || '/placeholder.png'}
+                        alt={item.product!.name}
+                        className="w-24 h-24 object-cover rounded-lg"
+                      />
+                      
+                      <div className="flex-1">
+                        <Link href={`/product/${item.product!.id}`}>
+                          <a className="text-lg font-semibold text-slate-900 hover:text-blue-600">
+                            {item.product!.name}
+                          </a>
+                        </Link>
+                        <p className="text-sm text-slate-600">{item.product!.strain}</p>
+                        <p className="text-sm text-slate-500">THC: {item.product!.thcPercentage} CBD: {item.product!.cbdPercentage}</p>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleGuestQuantityUpdate(item.productId, item.quantity - 1)}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                        <span className="w-12 text-center font-medium">{item.quantity}g</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleGuestQuantityUpdate(item.productId, item.quantity + 1)}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      
+                      <div className="text-right">
+                        <p className="text-lg font-semibold text-slate-900">
+                          ${((item.product!.price * item.quantity) / 100).toFixed(2)}
+                        </p>
+                        <p className="text-sm text-slate-500">
+                          ${(item.product!.price / 100).toFixed(2)} per gram
+                        </p>
+                      </div>
+                      
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleGuestRemove(item.productId)}
+                      >
+                        <Trash2 className="h-4 w-4 text-red-600" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            <div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Order Summary</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between">
+                    <span className="text-slate-600">Subtotal</span>
+                    <span className="font-semibold">${(guestSubtotal / 100).toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-600">Tax (8%)</span>
+                    <span className="font-semibold">${(guestTax / 100).toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-600">Platform Fee (5.2%)</span>
+                    <span className="font-semibold">${(guestPlatformFee / 100).toFixed(2)}</span>
+                  </div>
+                  <div className="border-t pt-4">
+                    <div className="flex justify-between text-lg">
+                      <span className="font-bold">Total</span>
+                      <span className="font-bold text-blue-600">${(guestTotal / 100).toFixed(2)}</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    className="w-full" 
+                    size="lg"
+                    onClick={() => window.location.href = getLoginUrl()}
+                  >
+                    Login to Checkout
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  
+                  <p className="text-xs text-slate-500 text-center">
+                    Secure checkout powered by Stripe
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </div>
     );
