@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE products SET price = price * 100, retailPrice = retailPrice * 100 WHERE category IN ('vapes', 'edibles', 'concentrates', 'pre-rolls') AND price < 10000;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute UPDATE products SET price = price * 100, retailPrice = retailPrice * 100 WHERE category IN ('vapes', 'edibles', 'concentrates', 'pre-rolls') AND price < 10000;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 85
+}

@@ -27,6 +27,9 @@ import Advertise from "@/pages/Advertise";
 import Pricing from "@/pages/Pricing";
 import DispensaryApplication from "@/pages/DispensaryApplication";
 import CheckoutSuccess from "@/pages/CheckoutSuccess";
+import ForFarmers from "@/pages/ForFarmers";
+import ForTransporters from "@/pages/ForTransporters";
+import HowItWorks from "@/pages/HowItWorks";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -53,6 +56,9 @@ function Router() {
       <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/track/:id" component={TrackOrder} />
       <Route path="/legal/:page" component={LegalPage} />
+      <Route path="/for-farmers" component={ForFarmers} />
+      <Route path="/for-transporters" component={ForTransporters} />
+      <Route path="/how-it-works" component={HowItWorks} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

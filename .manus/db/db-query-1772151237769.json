@@ -1,0 +1,130 @@
+{
+  "query": "SELECT id, name, price, retailPrice, unit, category FROM products LIMIT 15;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, price, retailPrice, unit, category FROM products LIMIT 15;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "price": "300",
+      "retailPrice": "1100",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "price": "300",
+      "retailPrice": "1100",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "price": "300",
+      "retailPrice": "1100",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "price": "300",
+      "retailPrice": "1100",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "price": "400",
+      "retailPrice": "1300",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "price": "400",
+      "retailPrice": "1300",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "price": "400",
+      "retailPrice": "1300",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "price": "300",
+      "retailPrice": "1100",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "price": "400",
+      "retailPrice": "1300",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "price": "350",
+      "retailPrice": "1200",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "90002",
+      "name": "Pineapple Express",
+      "price": "400",
+      "retailPrice": "1400",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "90003",
+      "name": "Northern Lights",
+      "price": "320",
+      "retailPrice": "1100",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "90004",
+      "name": "Jack Herer",
+      "price": "380",
+      "retailPrice": "1300",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "90005",
+      "name": "Green Crack",
+      "price": "340",
+      "retailPrice": "1150",
+      "unit": "gram",
+      "category": "flower"
+    },
+    {
+      "id": "90006",
+      "name": "AK-47",
+      "price": "360",
+      "retailPrice": "1250",
+      "unit": "gram",
+      "category": "flower"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tprice\tretailPrice\tunit\tcategory\n1\tBlue Dream\t300\t1100\tgram\tflower\n2\tOG Kush\t300\t1100\tgram\tflower\n3\tSour Diesel\t300\t1100\tgram\tflower\n5\tGranddaddy Purple\t300\t1100\tgram\tflower\n6\tGirl Scout Cookies\t400\t1300\tgram\tflower\n8\tGelato #33\t400\t1300\tgram\tflower\n9\tWedding Cake\t400\t1300\tgram\tflower\n11\tZkittlez\t300\t1100\tgram\tflower\n13\tGorilla Glue #4\t400\t1300\tgram\tflower\n90001\tWhite Widow\t350\t1200\tgram\tflower\n90002\tPineapple Express\t400\t1400\tgram\tflower\n90003\tNorthern Lights\t320\t1100\tgram\tflower\n90004\tJack Herer\t380\t1300\tgram\tflower\n90005\tGreen Crack\t340\t1150\tgram\tflower\n90006\tAK-47\t360\t1250\tgram\tflower\n",
+  "stderr": "",
+  "execution_time_ms": 109
+}

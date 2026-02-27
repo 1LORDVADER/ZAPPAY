@@ -605,14 +605,14 @@ export default function Home() {
               <h3 className="font-bold text-lg mb-4">Platform</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/farmer/register">
+                  <Link href="/for-farmers">
                     <a className="text-sm hover:text-blue-400 transition-colors">
                       For Farmers
                     </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/transporter/register">
+                  <Link href="/for-transporters">
                     <a className="text-sm hover:text-blue-400 transition-colors">
                       For Transporters
                     </a>

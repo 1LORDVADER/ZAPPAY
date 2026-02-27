@@ -1142,3 +1142,23 @@
 - [x] Show current price, new price preview, and price change amount
 - [ ] Save price history for analytics and market insights (future enhancement)
 - [ ] Test live brokering with multiple farmers and products
+
+
+## User Requests (February 26, 2026) 🔥
+
+### Navigation Fixes
+- [x] Create "For Farmers" page with farmer information and registration
+- [x] Create "Transporters" page with transporter information
+- [x] Create "How It Works" page explaining platform workflow
+- [x] Remove "My Applications" link from admin navigation (keep for regular users only) - Already implemented
+
+### Product Issues
+- [ ] Revert product images to original with consistent exact white backgrounds (partially done - new products have white backgrounds)
+- [x] Fix pricing display bug showing $0.30 for 1g products - Fixed by multiplying all prices by 100
+- [x] Restore missing vapes products - Added 4 vape cartridges
+- [x] Restore missing edibles products - Added 4 gummy packs
+- [x] Restore missing concentrates products - Added 4 concentrates (wax, shatter, live resin, crumble)
+- [x] Restore missing pre-rolls products - Added 4 pre-rolls
+- [x] Verify cart pricing calculations match product prices - Tested with vape cart, all calculations correct
+- [x] Verify checkout flow pricing is correct - Checkout page shows correct pricing
+- [x] Test add to cart functionality with correct pricing - Add to cart working correctly
