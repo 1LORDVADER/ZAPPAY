@@ -159,3 +159,30 @@
 - [ ] Create admin license verification workflow (future enhancement)
 - [ ] Auto-verify against verified licenses database (future enhancement)
 - [ ] Add license status badges to applications (future enhancement)
+
+
+## User Request (February 27, 2026) - License Import, Email Templates, Stripe Integration
+
+### License Import
+- [x] Install Python dependencies (pandas, tabula-py, requests)
+- [x] Create license import script for all 50 states
+- [ ] Run license import script to populate verified_licenses table (ready to execute)
+- [ ] Verify 5000+ licenses imported successfully (after execution)
+- [ ] Test license verification against imported data (after import)
+
+### Email Templates
+- [x] Create HTML email template for order confirmation
+- [x] Create HTML email template for shipping updates
+- [x] Create HTML email template for welcome/registration
+- [ ] Integrate templates with built-in notification API (future enhancement)
+- [ ] Test email sending functionality (future enhancement)
+
+### Stripe Payment Integration
+- [x] Review Stripe integration requirements from template README
+- [x] Implement Stripe checkout session creation (already exists in routers.ts)
+- [x] Add Stripe webhook handler for payment events (server/stripeWebhook.ts)
+- [x] Register webhook route in Express server (before express.json())
+- [x] Handle checkout.session.completed with order processing and loyalty points
+- [ ] Create payment success/failure pages (future enhancement)
+- [ ] Test full payment flow with test card (requires Stripe test mode activation)
+- [ ] Verify webhook events are processed correctly (after Stripe setup)
