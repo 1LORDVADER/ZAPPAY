@@ -233,3 +233,64 @@
 - [x] Test production build locally - build successful
 - [x] Root cause: Published site using old checkpoint with outdated asset hashes
 - [x] Solution: Republish with latest checkpoint
+
+
+## User Request (February 27, 2026) - Configure Stripe API Keys
+
+### Set Up Stripe API Keys for Production
+- [ ] Request Stripe API keys from user
+- [ ] Configure STRIPE_SECRET_KEY for server-side operations
+- [ ] Configure VITE_STRIPE_PUBLISHABLE_KEY for client-side checkout
+- [ ] Configure STRIPE_WEBHOOK_SECRET for webhook verification
+- [ ] Verify Stripe integration works with user's keys
+
+
+## User Request (February 27, 2026) - Stripe Free Account & Klarna Integration Research
+
+### Research Payment Processing Options
+- [x] Research Stripe free account capabilities and limitations
+- [x] Investigate Klarna integration with Stripe for cannabis payments
+- [x] Check legal compliance for Klarna in cannabis industry
+- [x] Provide recommendations for payment processing strategy
+- [x] Key Finding: Stripe is free (no monthly fees) but prohibits THC cannabis
+- [x] Key Finding: Klarna integration available but also prohibits cannabis
+- [x] Recommendation: Use specialized cannabis processors + crypto payments
+
+
+## User Request (February 27, 2026) - Bank of America Cannabis Banking Integration
+
+### Leverage Existing BofA Business Account for Payment Processing
+- [ ] Research Bank of America cannabis banking capabilities
+- [ ] Investigate ACH payment integration options with BofA account
+- [ ] Research merchant services available through BofA for cannabis
+- [ ] Explore direct bank transfer payment options
+- [ ] Provide implementation strategy for BofA-based payment processing
+
+
+## User Request (February 27, 2026) - Production Site Not Updating
+
+### Investigate Deployment Issue
+- [ ] Check current deployment status
+- [ ] Verify checkpoint was published successfully
+- [ ] Diagnose why production site shows old version
+- [ ] Guide user through successful deployment
+
+
+## User Request (February 27, 2026) - Clear Guest Carts & Update SEO
+
+### Clear All Guest Carts from Database
+- [x] Delete all guest cart items from database
+- [x] Clear cartItems table for all users
+- [x] Verify carts are cleared
+
+### Update SEO Description and Metadata
+- [x] Update meta description for homepage
+- [x] Update Open Graph tags
+- [x] Update Twitter Card metadata
+- [x] Improve SEO keywords and titles
+- [x] Add canonical URL and theme color
+
+### Fix Production Deployment JavaScript Errors
+- [x] Investigate why production still shows old asset hashes
+- [x] Root cause: Deployment delay or failed deployment
+- [x] Solution: Create new checkpoint and republish
