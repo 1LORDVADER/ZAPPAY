@@ -584,6 +584,109 @@ export const appRouter = router({
       }),
   }),
 
+  // Loyalty Program
+  loyalty: router({
+    getMyPoints: protectedProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return null;
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) return null;
+      const { loyaltyPoints } = await import('../drizzle/schema');
+      const { eq } = await import('drizzle-orm');
+      
+      const [points] = await db
+        .select()
+        .from(loyaltyPoints)
+        .where(eq(loyaltyPoints.userId, ctx.user.id));
+      
+      // Create loyalty account if doesn't exist
+      if (!points) {
+        const [newPoints] = await db.insert(loyaltyPoints).values({
+          userId: ctx.user.id,
+          points: 0,
+          lifetimePoints: 0,
+          tier: 'bronze',
+        });
+        return {
+          id: newPoints.insertId,
+          userId: ctx.user.id,
+          points: 0,
+          lifetimePoints: 0,
+          tier: 'bronze' as const,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+      }
+      
+      return points;
+    }),
+    
+    getMyTransactions: protectedProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return [];
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) return [];
+      const { loyaltyTransactions } = await import('../drizzle/schema');
+      const { eq, desc } = await import('drizzle-orm');
+      
+      return await db
+        .select()
+        .from(loyaltyTransactions)
+        .where(eq(loyaltyTransactions.userId, ctx.user.id))
+        .orderBy(desc(loyaltyTransactions.createdAt));
+    }),
+    
+    getRewards: publicProcedure.query(async () => {
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) return [];
+      const { rewards } = await import('../drizzle/schema');
+      const { eq } = await import('drizzle-orm');
+      
+      return await db
+        .select()
+        .from(rewards)
+        .where(eq(rewards.isActive, 'yes'));
+    }),
+    
+    redeemReward: protectedProcedure
+      .input((val: unknown) => val as { rewardId: number })
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user) throw new Error('Not authenticated');
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { loyaltyPoints, loyaltyTransactions, rewards } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        
+        // Get reward details
+        const [reward] = await db.select().from(rewards).where(eq(rewards.id, input.rewardId));
+        if (!reward) throw new Error('Reward not found');
+        
+        // Get user points
+        const [points] = await db.select().from(loyaltyPoints).where(eq(loyaltyPoints.userId, ctx.user.id));
+        if (!points || points.points < reward.pointsCost) {
+          throw new Error('Insufficient points');
+        }
+        
+        // Deduct points
+        await db
+          .update(loyaltyPoints)
+          .set({ points: points.points - reward.pointsCost })
+          .where(eq(loyaltyPoints.userId, ctx.user.id));
+        
+        // Record transaction
+        await db.insert(loyaltyTransactions).values({
+          userId: ctx.user.id,
+          type: 'redeemed',
+          points: -reward.pointsCost,
+          description: `Redeemed: ${reward.name}`,
+        });
+        
+        return { success: true, reward };
+      }),
+  }),
+
   // Admin Analytics
   admin: router({
     getAnalytics: publicProcedure.query(async () => {

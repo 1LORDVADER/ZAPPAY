@@ -438,3 +438,48 @@ export const advertiserApplications = mysqlTable("advertiserApplications", {
 
 export type AdvertiserApplication = typeof advertiserApplications.$inferSelect;
 export type InsertAdvertiserApplication = typeof advertiserApplications.$inferInsert;
+
+// Loyalty Points
+export const loyaltyPoints = mysqlTable("loyaltyPoints", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  points: int("points").default(0).notNull(),
+  lifetimePoints: int("lifetimePoints").default(0).notNull(),
+  tier: mysqlEnum("tier", ["bronze", "silver", "gold", "platinum"]).default("bronze").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type LoyaltyPoints = typeof loyaltyPoints.$inferSelect;
+export type InsertLoyaltyPoints = typeof loyaltyPoints.$inferInsert;
+
+// Loyalty Transactions
+export const loyaltyTransactions = mysqlTable("loyaltyTransactions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  type: mysqlEnum("type", ["earned", "redeemed", "expired", "bonus"]).notNull(),
+  points: int("points").notNull(),
+  orderId: int("orderId"), // if earned from purchase
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type LoyaltyTransaction = typeof loyaltyTransactions.$inferSelect;
+export type InsertLoyaltyTransaction = typeof loyaltyTransactions.$inferInsert;
+
+// Rewards Catalog
+export const rewards = mysqlTable("rewards", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  pointsCost: int("pointsCost").notNull(),
+  discountType: mysqlEnum("discountType", ["percentage", "fixed_amount", "free_shipping"]).notNull(),
+  discountValue: int("discountValue").notNull(), // percentage or cents
+  minPurchase: int("minPurchase"), // minimum purchase in cents
+  isActive: mysqlEnum("isActive", ["yes", "no"]).default("yes").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Reward = typeof rewards.$inferSelect;
+export type InsertReward = typeof rewards.$inferInsert;

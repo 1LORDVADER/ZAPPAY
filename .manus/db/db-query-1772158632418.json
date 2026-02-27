@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `loyaltyTransactions` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `userId` int NOT NULL,\n  `type` enum('earned','redeemed','expired','bonus') NOT NULL,\n  `points` int NOT NULL,\n  `orderId` int,\n  `description` text,\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  CONSTRAINT `loyaltyTransactions_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute CREATE TABLE IF NOT EXISTS `loyaltyTransactions` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `userId` int NOT NULL,\n  `type` enum('earned','redeemed','expired','bonus') NOT NULL,\n  `points` int NOT NULL,\n  `orderId` int,\n  `description` text,\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  CONSTRAINT `loyaltyTransactions_id` PRIMARY KEY(`id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 187
+}

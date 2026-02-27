@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO rewards (name, description, pointsCost, discountType, discountValue, minPurchase, isActive) VALUES\n('$5 Off Your Order', 'Get $5 off any purchase of $25 or more', 500, 'fixed_amount', 500, 2500, 'yes'),\n('$10 Off Your Order', 'Get $10 off any purchase of $50 or more', 1000, 'fixed_amount', 1000, 5000, 'yes'),\n('10% Off Entire Order', 'Save 10% on your entire purchase', 750, 'percentage', 10, 0, 'yes'),\n('15% Off Entire Order', 'Save 15% on your entire purchase', 1500, 'percentage', 15, 0, 'yes'),\n('Free Shipping', 'Get free shipping on your next order', 300, 'free_shipping', 0, 0, 'yes'),\n('$25 Off Premium Order', 'Get $25 off any purchase of $100 or more', 2500, 'fixed_amount', 2500, 10000, 'yes');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute INSERT INTO rewards (name, description, pointsCost, discountType, discountValue, minPurchase, isActive) VALUES\n('$5 Off Your Order', 'Get $5 off any purchase of $25 or more', 500, 'fixed_amount', 500, 2500, 'yes'),\n('$10 Off Your Order', 'Get $10 off any purchase of $50 or more', 1000, 'fixed_amount', 1000, 5000, 'yes'),\n('10% Off Entire Order', 'Save 10% on your entire purchase', 750, 'percentage', 10, 0, 'yes'),\n('15% Off Entire Order', 'Save 15% on your entire purchase', 1500, 'percentage', 15, 0, 'yes'),\n('Free Shipping', 'Get free shipping on your next order', 300, 'free_shipping', 0, 0, 'yes'),\n('$25 Off Premium Order', 'Get $25 off any purchase of $100 or more', 2500, 'fixed_amount', 2500, 10000, 'yes');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 157
+}

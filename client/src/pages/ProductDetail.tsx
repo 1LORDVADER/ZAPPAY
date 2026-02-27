@@ -10,6 +10,7 @@ import { Link, useParams, useLocation } from "wouter";
 import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
 import { addToGuestCart } from "@/lib/cartPersistence";
+import { ProductReviews } from "@/components/ProductReviews";
 
 export default function ProductDetail() {
   const params = useParams();
@@ -424,6 +425,11 @@ export default function ProductDetail() {
                 <p className="text-3xl font-bold text-slate-900">{averageRating}/5</p>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Reviews Section */}
+          <div className="mt-12">
+            <ProductReviews productId={productId} />
           </div>
         </div>
       </section>
