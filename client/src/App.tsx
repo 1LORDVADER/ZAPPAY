@@ -33,6 +33,8 @@ import HowItWorks from "@/pages/HowItWorks";
 import Terms from "@/pages/Terms";
 import Privacy from "@/pages/Privacy";
 import TransporterDashboard from "@/pages/TransporterDashboard";
+import Rewards from "@/pages/Rewards";
+import FarmerAnalytics from "@/pages/FarmerAnalytics";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -43,6 +45,7 @@ function Router() {
       <Route path="/orders" component={Orders} />
       <Route path="/farmer/register" component={FarmerRegistration} />
       <Route path="/farmer/dashboard" component={FarmerDashboard} />
+      <Route path="/farmer/analytics" component={FarmerAnalytics} />
       <Route path="/sales/dashboard" component={SalesRepDashboard} />
       <Route path="/admin/sales" component={AdminSalesPanel} />
       <Route path="/admin/transportation" component={AdminTransportation} />
@@ -64,8 +67,8 @@ function Router() {
       <Route path="/for-transporters" component={ForTransporters} />
       <Route path="/how-it-works" component={HowItWorks} />
       <Route path="/terms" component={Terms} />
-      <Route path="/privacy" component={Privacy} />
-      <Route path={"/404"} component={NotFound} />
+            <Route path="/privacy" component={Privacy} />
+      <Route path="/rewards" component={Rewards} />
       {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>

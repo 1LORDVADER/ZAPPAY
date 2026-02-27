@@ -9,11 +9,20 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { STATE_COMPLIANCE } from "@shared/stateCompliance";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 export default function Checkout() {
   const { user, isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
   const [isProcessing, setIsProcessing] = useState(false);
+  const { userState, loading: geoLoading } = useGeolocation();
+  
+  // Check if user's state allows cannabis purchases
+  const stateInfo = userState ? STATE_COMPLIANCE[userState] : null;
+  const canPurchase = stateInfo?.recreational || stateInfo?.medical;
   
   // Fetch cart items
   const { data: cartItems = [] } = trpc.cart.getItems.useQuery();
@@ -75,6 +84,12 @@ export default function Checkout() {
 
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check state legality
+    if (!canPurchase) {
+      toast.error(`Cannabis purchases are not legal in ${userState || 'your state'}. Please check your location.`);
+      return;
+    }
     
     // Validate shipping info
     if (!shippingInfo.fullName || !shippingInfo.email || !shippingInfo.address || 
@@ -151,6 +166,18 @@ export default function Checkout() {
           </Link>
 
           <h1 className="text-4xl font-bold text-slate-900 mb-8">Checkout</h1>
+
+          {/* State Legality Warning */}
+          {!geoLoading && !canPurchase && (
+            <Alert variant="destructive" className="mb-6">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Cannabis Not Legal in Your State</AlertTitle>
+              <AlertDescription>
+                Cannabis purchases are not currently legal in {userState || 'your state'}. 
+                Please verify your location or contact support if you believe this is an error.
+              </AlertDescription>
+            </Alert>
+          )}
 
           <form onSubmit={handleCheckout}>
             <div className="grid lg:grid-cols-3 gap-8">
