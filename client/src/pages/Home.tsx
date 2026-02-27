@@ -20,9 +20,13 @@ import { APP_LOGO, APP_TITLE } from "@/const";
 import { NotificationBell } from "@/components/NotificationBell";
 import { getGuestCartCount } from "@/lib/cartPersistence";
 import { Toaster } from "sonner";
+import { StateSelector } from "@/components/StateSelector";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { AgeVerification } from "@/components/AgeVerification";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
+  const { userState, isLegal, stateInfo } = useGeolocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [guestCartCount, setGuestCartCount] = useState(0);
   
@@ -49,7 +53,10 @@ export default function Home() {
     
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
     
-    return matchesSearch && matchesCategory;
+    // Filter by state legality - only show products if cannabis is legal in user's state
+    const matchesState = !userState || isLegal;
+    
+    return matchesSearch && matchesCategory && matchesState;
   });
 
   // Use database cart for authenticated users, localStorage for guests
@@ -90,6 +97,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <AgeVerification />
       {/* Header */}
       <motion.header 
         initial={{ y: -100 }}
@@ -109,7 +117,8 @@ export default function Home() {
               </Link>
             </div>
 
-            <nav className="hidden md:flex items-center gap-6">
+            <nav className="hidden md:flex items-center gap-4">
+              <StateSelector />
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/">
                   <a className="text-white hover:text-red-400 font-medium transition-colors">
