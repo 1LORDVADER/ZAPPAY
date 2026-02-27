@@ -37,6 +37,17 @@ export default function Cart() {
     },
   });
   
+  // Remove item mutation
+  const removeItemMutation = trpc.cart.removeItem.useMutation({
+    onSuccess: () => {
+      utils.cart.getItems.invalidate();
+      toast.success("Item removed from cart");
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to remove item");
+    },
+  });
+  
   // Clear cart mutation
   const clearCartMutation = trpc.cart.clear.useMutation({
     onSuccess: () => {
@@ -338,8 +349,8 @@ export default function Cart() {
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => handleUpdateQuantity(item.id, 0)}
-                          disabled={updateQuantityMutation.isPending}
+                          onClick={() => removeItemMutation.mutate({ id: item.id })}
+                          disabled={removeItemMutation.isPending}
                         >
                           <Trash2 className="h-4 w-4 text-red-600" />
                         </Button>

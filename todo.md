@@ -1162,3 +1162,11 @@
 - [x] Verify cart pricing calculations match product prices - Tested with vape cart, all calculations correct
 - [x] Verify checkout flow pricing is correct - Checkout page shows correct pricing
 - [x] Test add to cart functionality with correct pricing - Add to cart working correctly
+
+
+## User Request (February 26, 2026 - Cart Bug)
+
+### Cart Functionality Bug
+- [x] Fix cart item removal error - Added separate removeItem mutation to bypass minimum quantity validation
+- [x] Allow users to remove individual items from cart without clearing entire cart - Working correctly
+- [x] Review and fix minimum order validation logic - Fixed by creating dedicated removeItem procedure

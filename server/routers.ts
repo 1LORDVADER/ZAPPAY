@@ -114,6 +114,14 @@ export const appRouter = router({
       await clearCart(ctx.user.id);
       return { success: true };
     }),
+    removeItem: publicProcedure
+      .input((val: unknown) => val as any)
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user) throw new Error('Not authenticated');
+        const { updateCartItemQuantity } = await import('./db');
+        await updateCartItemQuantity(input.id, 0); // Setting quantity to 0 will delete the item
+        return { success: true };
+      }),
   }),
 
   // Orders
