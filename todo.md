@@ -301,3 +301,17 @@
 ### Export Latest Code to ZAPPAY Repository
 - [ ] Export current codebase to GitHub repository 1LORDVADER/ZAPPAY
 - [ ] Verify export completed successfully
+
+
+## URGENT (February 27, 2026) - Cart Crash Bug Fix
+
+- [x] Identify root cause of cart crash/error message
+  - Root cause 1: Server returns photos as URL string, Cart.tsx tried JSON.parse on it again → SyntaxError crash
+  - Root cause 2: Price double-division bug (server divides by 100, UI divided by 100 again = 100x too small)
+  - Root cause 3: Stripe unit_amount was in dollars, needs to be in cents
+- [x] Clear all cart data from database completely (TRUNCATE cartItems)
+- [x] Fix Cart.tsx: photos now uses URL directly with onError fallback
+- [x] Fix Cart.tsx: removed double /100 price division
+- [x] Fix Checkout.tsx: removed double /100 price division
+- [x] Fix routers.ts: Stripe unit_amount now multiplied by 100 (dollars → cents)
+- [x] No TypeScript errors after all fixes

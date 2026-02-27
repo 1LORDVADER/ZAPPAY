@@ -78,8 +78,8 @@ export default function Checkout() {
     return sum + (item.product!.price * item.quantity);
   }, 0);
 
-  const tax = Math.round(subtotal * 0.08); // 8% tax
-  const platformFee = Math.round(subtotal * 0.052); // 5.2% platform fee
+  const tax = subtotal * 0.08; // 8% tax
+  const platformFee = subtotal * 0.052; // 5.2% platform fee
   const total = subtotal + tax;
 
   const handleCheckout = async (e: React.FormEvent) => {
@@ -282,7 +282,7 @@ export default function Checkout() {
                           </p>
                         </div>
                         <p className="font-semibold text-slate-900">
-                          ${((item.product!.price * item.quantity) / 100).toFixed(2)}
+                          ${(item.product!.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
                     ))}
@@ -300,21 +300,21 @@ export default function Checkout() {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Subtotal</span>
                       <span className="font-semibold text-slate-900">
-                        ${(subtotal / 100).toFixed(2)}
+                        ${subtotal.toFixed(2)}
                       </span>
                     </div>
                     
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Tax (8%)</span>
                       <span className="font-semibold text-slate-900">
-                        ${(tax / 100).toFixed(2)}
+                        ${tax.toFixed(2)}
                       </span>
                     </div>
                     
                     <div className="flex items-center justify-between text-sm text-green-600">
                       <span>Platform Fee (5.2%)</span>
                       <span className="font-semibold">
-                        ${(platformFee / 100).toFixed(2)}
+                        ${platformFee.toFixed(2)}
                       </span>
                     </div>
                     
@@ -322,7 +322,7 @@ export default function Checkout() {
                       <div className="flex items-center justify-between mb-6">
                         <span className="text-lg font-semibold text-slate-900">Total</span>
                         <span className="text-3xl font-bold text-slate-900">
-                          ${(total / 100).toFixed(2)}
+                          ${total.toFixed(2)}
                         </span>
                       </div>
                       

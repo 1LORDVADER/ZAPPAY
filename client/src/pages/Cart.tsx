@@ -171,10 +171,11 @@ export default function Cart() {
                 <Card key={item.productId}>
                   <CardContent className="p-6">
                     <div className="flex items-center gap-6">
-                      <img
-                        src={JSON.parse(item.product!.photos)[0] || '/placeholder.png'}
+                        <img
+                        src={item.product!.photos || '/placeholder.png'}
                         alt={item.product!.name}
                         className="w-24 h-24 object-cover rounded-lg"
+                        onError={(e) => { (e.target as HTMLImageElement).src = '/placeholder.png'; }}
                       />
                       
                       <div className="flex-1">
@@ -207,10 +208,10 @@ export default function Cart() {
                       
                       <div className="text-right">
                         <p className="text-lg font-semibold text-slate-900">
-                          ${((item.product!.price * item.quantity) / 100).toFixed(2)}
+                          ${(item.product!.price * item.quantity).toFixed(2)}
                         </p>
                         <p className="text-sm text-slate-500">
-                          ${(item.product!.price / 100).toFixed(2)} per gram
+                          ${item.product!.price.toFixed(2)} per gram
                         </p>
                       </div>
                       
@@ -235,20 +236,20 @@ export default function Cart() {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-slate-600">Subtotal</span>
-                    <span className="font-semibold">${(guestSubtotal / 100).toFixed(2)}</span>
+                    <span className="font-semibold">${guestSubtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-600">Tax (8%)</span>
-                    <span className="font-semibold">${(guestTax / 100).toFixed(2)}</span>
+                    <span className="font-semibold">${guestTax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-600">Platform Fee (5.2%)</span>
-                    <span className="font-semibold">${(guestPlatformFee / 100).toFixed(2)}</span>
+                    <span className="font-semibold">${guestPlatformFee.toFixed(2)}</span>
                   </div>
                   <div className="border-t pt-4">
                     <div className="flex justify-between text-lg">
                       <span className="font-bold">Total</span>
-                      <span className="font-bold text-blue-600">${(guestTotal / 100).toFixed(2)}</span>
+                      <span className="font-bold text-blue-600">${guestTotal.toFixed(2)}</span>
                     </div>
                   </div>
                   
@@ -283,8 +284,8 @@ export default function Cart() {
     return sum + (item.product!.price * item.quantity);
   }, 0);
 
-  const tax = Math.round(subtotal * 0.08); // 8% tax
-  const platformFee = Math.round(subtotal * 0.052); // 5.2% platform fee
+  const tax = subtotal * 0.08; // 8% tax
+  const platformFee = subtotal * 0.052; // 5.2% platform fee
   const total = subtotal + tax;
 
   const handleUpdateQuantity = (itemId: number, newQuantity: number) => {
@@ -541,10 +542,10 @@ export default function Cart() {
                         {/* Price */}
                         <div className="text-right">
                           <p className="text-2xl font-bold text-slate-900">
-                            ${((item.product!.price * item.quantity) / 100).toFixed(2)}
+                            ${(item.product!.price * item.quantity).toFixed(2)}
                           </p>
                           <p className="text-sm text-slate-500">
-                            ${(item.product!.price / 100).toFixed(2)} per gram
+                            ${item.product!.price.toFixed(2)} per gram
                           </p>
                         </div>
 
@@ -573,21 +574,21 @@ export default function Cart() {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Subtotal</span>
                       <span className="font-semibold text-slate-900">
-                        ${(subtotal / 100).toFixed(2)}
+                        ${subtotal.toFixed(2)}
                       </span>
                     </div>
                     
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Tax (8%)</span>
                       <span className="font-semibold text-slate-900">
-                        ${(tax / 100).toFixed(2)}
+                        ${(tax).toFixed(2)}
                       </span>
                     </div>
                     
                     <div className="flex items-center justify-between text-sm text-green-600">
                       <span>Platform Fee (5.2%)</span>
                       <span className="font-semibold">
-                        ${(platformFee / 100).toFixed(2)}
+                        ${(platformFee).toFixed(2)}
                       </span>
                     </div>
                     
@@ -595,7 +596,7 @@ export default function Cart() {
                       <div className="flex items-center justify-between mb-6">
                         <span className="text-lg font-semibold text-slate-900">Total</span>
                         <span className="text-3xl font-bold text-slate-900">
-                          ${(total / 100).toFixed(2)}
+                          ${total.toFixed(2)}
                         </span>
                       </div>
                       

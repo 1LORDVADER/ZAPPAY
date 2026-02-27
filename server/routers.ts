@@ -189,9 +189,9 @@ export const appRouter = router({
         const stripe = (await import('stripe')).default;
         const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY!);
         
-        // Calculate totals
+        // Calculate totals (prices are in dollars from client)
         const subtotal = input.items.reduce((sum: number, item: any) => sum + (item.price * item.quantity), 0);
-        const tax = Math.round(subtotal * 0.08);
+        const tax = subtotal * 0.08;
         const total = subtotal + tax;
         
         // Create Stripe checkout session
@@ -203,7 +203,7 @@ export const appRouter = router({
               product_data: {
                 name: item.name,
               },
-              unit_amount: item.price,
+              unit_amount: Math.round(item.price * 100), // Convert dollars to cents for Stripe
             },
             quantity: item.quantity,
           })),
