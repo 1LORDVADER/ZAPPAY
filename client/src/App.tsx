@@ -32,6 +32,7 @@ import ForTransporters from "@/pages/ForTransporters";
 import HowItWorks from "@/pages/HowItWorks";
 import Terms from "@/pages/Terms";
 import Privacy from "@/pages/Privacy";
+import TransporterDashboard from "@/pages/TransporterDashboard";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -49,6 +50,7 @@ function Router() {
       <Route path="/admin/analytics" component={AdminAnalytics} />
       <Route path="/transportation/driver-register" component={DriverRegistration} />
       <Route path="/transportation/company-register" component={CompanyRegistration} />
+      <Route path="/transportation/dashboard" component={TransporterDashboard} />
       <Route path="/sales/register" component={SalesRepRegistration} />
       <Route path="/my-applications" component={MyApplications} />
       <Route path="/advertise" component={Advertise} />

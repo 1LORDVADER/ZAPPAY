@@ -506,6 +506,84 @@ export const appRouter = router({
       }),
   }),
 
+  // Reviews
+  reviews: router({ 
+    getProductReviews: publicProcedure
+      .input((val: unknown) => val as { productId: number })
+      .query(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) return [];
+        const { reviews, users } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        
+        // Get reviews with user info
+        const productReviews = await db
+          .select({
+            id: reviews.id,
+            productId: reviews.productId,
+            consumerId: reviews.consumerId,
+            rating: reviews.rating,
+            comment: reviews.comment,
+            createdAt: reviews.createdAt,
+            userName: users.name,
+            userEmail: users.email,
+          })
+          .from(reviews)
+          .leftJoin(users, eq(reviews.consumerId, users.id))
+          .where(eq(reviews.productId, input.productId));
+        
+        return productReviews;
+      }),
+    
+    submitReview: protectedProcedure
+      .input((val: unknown) => val as { productId: number; rating: number; comment: string })
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user) throw new Error('Not authenticated');
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error("Database not available");
+        const { reviews } = await import('../drizzle/schema');
+        
+        // Insert review
+        const [review] = await db.insert(reviews).values({
+          productId: input.productId,
+          consumerId: ctx.user.id,
+          rating: input.rating,
+          comment: input.comment,
+        });
+        
+        return { success: true, reviewId: review.insertId };
+      }),
+    
+    getMyReviews: protectedProcedure
+      .query(async ({ ctx }) => {
+        if (!ctx.user) return [];
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) return [];
+        const { reviews, products } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        
+        // Get user's reviews with product info
+        const myReviews = await db
+          .select({
+            id: reviews.id,
+            productId: reviews.productId,
+            rating: reviews.rating,
+            comment: reviews.comment,
+            createdAt: reviews.createdAt,
+            productName: products.name,
+            productStrain: products.strain,
+          })
+          .from(reviews)
+          .leftJoin(products, eq(reviews.productId, products.id))
+          .where(eq(reviews.consumerId, ctx.user.id));
+        
+        return myReviews;
+      }),
+  }),
+
   // Admin Analytics
   admin: router({
     getAnalytics: publicProcedure.query(async () => {

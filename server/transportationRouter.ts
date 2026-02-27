@@ -246,4 +246,128 @@ export const transportationRouter = router({
       await db.update(transportationCompanies).set({ status: "inactive" }).where(eq(transportationCompanies.id, input.id));
       return { success: true };
     }),
+
+  // Get driver profile for logged-in user
+  getMyDriverProfile: protectedProcedure
+    .query(async ({ ctx }) => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      const [driver] = await db.select().from(drivers).where(eq(drivers.userId, ctx.user.id));
+      return driver || null;
+    }),
+
+  // Get available deliveries for drivers
+  getAvailableDeliveries: protectedProcedure
+    .query(async () => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      const available = await db
+        .select()
+        .from(shipments)
+        .where(eq(shipments.status, "pending"))
+        .orderBy(desc(shipments.createdAt));
+      return available;
+    }),
+
+  // Get my active deliveries
+  getMyDeliveries: protectedProcedure
+    .query(async ({ ctx }) => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      
+      // First get driver profile
+      const [driver] = await db.select().from(drivers).where(eq(drivers.userId, ctx.user.id));
+      if (!driver) return [];
+      
+      // Get deliveries assigned to this driver
+      const deliveries = await db
+        .select()
+        .from(shipments)
+        .where(eq(shipments.driverId, driver.id))
+        .orderBy(desc(shipments.createdAt));
+      return deliveries;
+    }),
+
+  // Get driver stats
+  getDriverStats: protectedProcedure
+    .query(async ({ ctx }) => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      
+      // Get driver profile
+      const [driver] = await db.select().from(drivers).where(eq(drivers.userId, ctx.user.id));
+      if (!driver) return { totalDeliveries: 0, activeDeliveries: 0, totalEarnings: 0 };
+      
+      // Get all deliveries for this driver
+      const allDeliveries = await db
+        .select()
+        .from(shipments)
+        .where(eq(shipments.driverId, driver.id));
+      
+      const activeDeliveries = allDeliveries.filter(d => 
+        d.status === "assigned" || d.status === "picked_up" || d.status === "in_transit"
+      ).length;
+      
+      const totalEarnings = allDeliveries
+        .filter(d => d.status === "delivered")
+        .reduce((sum, d) => sum + d.driverPayout, 0);
+      
+      return {
+        totalDeliveries: driver.totalDeliveries,
+        activeDeliveries,
+        totalEarnings,
+      };
+    }),
+
+  // Accept a delivery
+  acceptDelivery: protectedProcedure
+    .input(z.object({ shipmentId: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      
+      // Get driver profile
+      const [driver] = await db.select().from(drivers).where(eq(drivers.userId, ctx.user.id));
+      if (!driver) throw new Error("Driver profile not found");
+      
+      // Update shipment
+      await db.update(shipments).set({ 
+        driverId: driver.id,
+        status: "assigned" 
+      }).where(eq(shipments.id, input.shipmentId));
+      
+      return { success: true };
+    }),
+
+  // Update delivery status
+  updateDeliveryStatus: protectedProcedure
+    .input(z.object({ 
+      shipmentId: z.number(),
+      status: z.enum(["picked_up", "in_transit", "delivered"])
+    }))
+    .mutation(async ({ ctx, input }) => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      
+      const updateData: any = { status: input.status };
+      
+      // Set timestamps based on status
+      if (input.status === "picked_up") {
+        updateData.actualPickupTime = new Date();
+      } else if (input.status === "delivered") {
+        updateData.actualDeliveryTime = new Date();
+        
+        // Update driver's total deliveries
+        const [shipment] = await db.select().from(shipments).where(eq(shipments.id, input.shipmentId));
+        if (shipment) {
+          await db.update(drivers)
+            .set({ totalDeliveries: shipment.driverId })
+            .where(eq(drivers.id, shipment.driverId));
+        }
+      }
+      
+      await db.update(shipments).set(updateData).where(eq(shipments.id, input.shipmentId));
+      
+      return { success: true };
+    }),
 });

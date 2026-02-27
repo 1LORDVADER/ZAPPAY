@@ -23,12 +23,22 @@ import { Toaster } from "sonner";
 import { StateSelector } from "@/components/StateSelector";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { AgeVerification } from "@/components/AgeVerification";
+import { AdvancedFilters, type FilterState } from "@/components/AdvancedFilters";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
   const { userState, isLegal, stateInfo } = useGeolocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [guestCartCount, setGuestCartCount] = useState(0);
+  const [filters, setFilters] = useState<FilterState>({
+    thcMin: 0,
+    thcMax: 40,
+    cbdMin: 0,
+    cbdMax: 30,
+    strainTypes: [],
+    effects: [],
+    categories: [],
+  });
   
   // Fetch all products
   const { data: products = [], isLoading } = trpc.products.list.useQuery();
@@ -56,7 +66,26 @@ export default function Home() {
     // Filter by state legality - only show products if cannabis is legal in user's state
     const matchesState = !userState || isLegal;
     
-    return matchesSearch && matchesCategory && matchesState;
+    // Advanced filter: THC percentage
+    const thcValue = parseFloat(product.thcPercentage || "0") || 0;
+    const matchesTHC = thcValue >= filters.thcMin && thcValue <= filters.thcMax;
+    
+    // Advanced filter: CBD percentage
+    const cbdValue = parseFloat(product.cbdPercentage || "0") || 0;
+    const matchesCBD = cbdValue >= filters.cbdMin && cbdValue <= filters.cbdMax;
+    
+    // Advanced filter: Strain type
+    const matchesStrainType = filters.strainTypes.length === 0 || 
+      filters.strainTypes.some(type => product.strain.toLowerCase().includes(type.toLowerCase()));
+    
+    // Advanced filter: Effects (would need effects field in product schema)
+    const matchesEffects = filters.effects.length === 0; // Placeholder for now
+    
+    // Advanced filter: Categories
+    const matchesFilterCategory = filters.categories.length === 0 || 
+      filters.categories.includes(product.category);
+    
+    return matchesSearch && matchesCategory && matchesState && matchesTHC && matchesCBD && matchesStrainType && matchesEffects && matchesFilterCategory;
   });
 
   // Use database cart for authenticated users, localStorage for guests
@@ -365,15 +394,18 @@ export default function Home() {
             transition={{ delay: 0.4 }}
             className="max-w-2xl mx-auto mb-8"
           >
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-              <Input
-                type="text"
-                placeholder="Search by strain, THC%, or price..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-6 text-lg"
-              />
+            <div className="flex gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+                <Input
+                  type="text"
+                  placeholder="Search by strain, THC%, or price..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 py-6 text-lg"
+                />
+              </div>
+              <AdvancedFilters filters={filters} onFiltersChange={setFilters} />
             </div>
           </motion.div>
         </div>
