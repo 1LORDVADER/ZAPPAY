@@ -687,6 +687,98 @@ export const appRouter = router({
       }),
   }),
 
+  // Referral Program
+  referrals: router({
+    getMyReferralCode: protectedProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return null;
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) return null;
+      const { referralCodes } = await import('../drizzle/schema');
+      const { eq } = await import('drizzle-orm');
+      
+      // Check if user already has a referral code
+      const [existing] = await db
+        .select()
+        .from(referralCodes)
+        .where(eq(referralCodes.userId, ctx.user.id));
+      
+      if (existing) return existing;
+      
+      // Generate unique referral code
+      const code = `ZAPPAY${ctx.user.id}${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+      
+      const [newCode] = await db.insert(referralCodes).values({
+        userId: ctx.user.id,
+        referralCode: code,
+        referredCount: 0,
+        totalRewardsEarned: 0,
+      });
+      
+      return {
+        id: newCode.insertId,
+        userId: ctx.user.id,
+        referralCode: code,
+        referredCount: 0,
+        totalRewardsEarned: 0,
+        createdAt: new Date(),
+      };
+    }),
+    
+    getMyReferrals: protectedProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return [];
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) return [];
+      const { referralSignups, users } = await import('../drizzle/schema');
+      const { eq, desc } = await import('drizzle-orm');
+      
+      return await db
+        .select({
+          id: referralSignups.id,
+          referredUserName: users.name,
+          referredUserEmail: users.email,
+          rewardPoints: referralSignups.rewardPoints,
+          status: referralSignups.status,
+          createdAt: referralSignups.createdAt,
+          completedAt: referralSignups.completedAt,
+        })
+        .from(referralSignups)
+        .leftJoin(users, eq(referralSignups.referredUserId, users.id))
+        .where(eq(referralSignups.referrerUserId, ctx.user.id))
+        .orderBy(desc(referralSignups.createdAt));
+    }),
+    
+    verifyCode: publicProcedure
+      .input((val: unknown) => val as { code: string })
+      .query(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) return { valid: false };
+        const { referralCodes, users } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+        
+        const [code] = await db
+          .select({
+            id: referralCodes.id,
+            userId: referralCodes.userId,
+            referralCode: referralCodes.referralCode,
+            userName: users.name,
+          })
+          .from(referralCodes)
+          .leftJoin(users, eq(referralCodes.userId, users.id))
+          .where(eq(referralCodes.referralCode, input.code));
+        
+        if (!code) return { valid: false };
+        
+        return {
+          valid: true,
+          referrerName: code.userName,
+          referrerUserId: code.userId,
+        };
+      }),
+  }),
+
   // Admin Analytics
   admin: router({
     getAnalytics: publicProcedure.query(async () => {

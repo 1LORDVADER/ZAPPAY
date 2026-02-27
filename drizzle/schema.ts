@@ -483,3 +483,31 @@ export const rewards = mysqlTable("rewards", {
 
 export type Reward = typeof rewards.$inferSelect;
 export type InsertReward = typeof rewards.$inferInsert;
+
+// Referral Codes
+export const referralCodes = mysqlTable("referral_codes", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id").notNull(),
+  referralCode: varchar("referral_code", { length: 50 }).notNull().unique(),
+  referredCount: int("referred_count").default(0).notNull(),
+  totalRewardsEarned: int("total_rewards_earned").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type ReferralCode = typeof referralCodes.$inferSelect;
+export type InsertReferralCode = typeof referralCodes.$inferInsert;
+
+// Referral Signups
+export const referralSignups = mysqlTable("referral_signups", {
+  id: int("id").autoincrement().primaryKey(),
+  referrerUserId: int("referrer_user_id").notNull(),
+  referredUserId: int("referred_user_id").notNull(),
+  referralCode: varchar("referral_code", { length: 50 }).notNull(),
+  rewardPoints: int("reward_points").default(500).notNull(),
+  status: mysqlEnum("status", ["pending", "completed", "cancelled"]).default("pending").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  completedAt: timestamp("completed_at"),
+});
+
+export type ReferralSignup = typeof referralSignups.$inferSelect;
+export type InsertReferralSignup = typeof referralSignups.$inferInsert;

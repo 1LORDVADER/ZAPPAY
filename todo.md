@@ -133,3 +133,29 @@
 5. **Monitoring**: Set up error tracking (Sentry) and uptime monitoring
 6. **Documentation**: Create user guides for farmers, transporters, consumers
 7. **Marketing**: Launch marketing campaign and social media presence
+
+
+## User Request (February 27, 2026) - Email, Referrals, License Verification
+
+### Email Notifications
+- [ ] Create email notification system using built-in notification API (future enhancement)
+- [ ] Send order confirmation emails (future enhancement)
+- [ ] Send shipping update emails (future enhancement)
+- [ ] Send promotional emails (future enhancement)
+- [ ] Add email templates for different notification types (future enhancement)
+
+### Referral Program
+- [x] Create referral codes table in database
+- [x] Generate unique referral codes for users
+- [x] Track referral sign-ups and conversions
+- [x] Award referral bonuses (500 points per referral)
+- [x] Create referral dashboard page
+- [x] Add "Invite Friends" UI with share functionality
+
+### License Verification System
+- [x] Create verified licenses database table
+- [x] Create Python import script for 5000+ verified licenses from all 50 states
+- [ ] Add document upload to farmer/driver/dispensary applications (future enhancement)
+- [ ] Create admin license verification workflow (future enhancement)
+- [ ] Auto-verify against verified licenses database (future enhancement)
+- [ ] Add license status badges to applications (future enhancement)

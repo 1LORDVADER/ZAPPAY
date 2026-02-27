@@ -35,6 +35,7 @@ import Privacy from "@/pages/Privacy";
 import TransporterDashboard from "@/pages/TransporterDashboard";
 import Rewards from "@/pages/Rewards";
 import FarmerAnalytics from "@/pages/FarmerAnalytics";
+import Referrals from "@/pages/Referrals";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -69,6 +70,7 @@ function Router() {
       <Route path="/terms" component={Terms} />
             <Route path="/privacy" component={Privacy} />
       <Route path="/rewards" component={Rewards} />
+      <Route path="/referrals" component={Referrals} />
       {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
