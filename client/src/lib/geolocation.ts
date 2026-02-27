@@ -1,6 +1,6 @@
 /**
  * Geolocation service for detecting user's state
- * Uses ip-api.com free tier (45 requests/minute)
+ * Uses ipapi.co free tier (HTTPS-compatible)
  */
 
 export interface GeolocationData {
@@ -35,11 +35,26 @@ export async function getUserLocation(): Promise<GeolocationData | null> {
       }
     }
 
-    // Fetch from API
-    const response = await fetch('http://ip-api.com/json/?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp');
-    const data: GeolocationData = await response.json();
+    // Fetch from API (using ipapi.co for HTTPS support)
+    const response = await fetch('https://ipapi.co/json/');
+    const apiData = await response.json();
+    
+    // Map ipapi.co response to our GeolocationData interface
+    const data: GeolocationData = {
+      country: apiData.country_name || '',
+      countryCode: apiData.country_code || '',
+      region: apiData.region_code || '',
+      regionName: apiData.region || '',
+      city: apiData.city || '',
+      zip: apiData.postal || '',
+      lat: apiData.latitude || 0,
+      lon: apiData.longitude || 0,
+      timezone: apiData.timezone || '',
+      isp: apiData.org || '',
+      status: 'success',
+    };
 
-    if (data.status === 'success') {
+    if (data.countryCode) {
       // Cache the result
       localStorage.setItem(GEOLOCATION_CACHE_KEY, JSON.stringify({
         data,

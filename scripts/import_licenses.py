@@ -18,8 +18,10 @@ load_dotenv()
 # Database connection
 def get_db_connection():
     db_url = os.getenv('DATABASE_URL')
-    # Parse DATABASE_URL format: mysql://user:password@host:port/database
-    parts = db_url.replace('mysql://', '').split('@')
+    # Parse DATABASE_URL format: mysql://user:password@host:port/database?ssl=...
+    # Remove SSL parameters from URL
+    db_url_clean = db_url.split('?')[0]
+    parts = db_url_clean.replace('mysql://', '').split('@')
     user_pass = parts[0].split(':')
     host_db = parts[1].split('/')
     host_port = host_db[0].split(':')
@@ -29,7 +31,8 @@ def get_db_connection():
         port=int(host_port[1]) if len(host_port) > 1 else 3306,
         user=user_pass[0],
         password=user_pass[1],
-        database=host_db[1]
+        database=host_db[1],
+        ssl_disabled=False
     )
 
 # Function to fetch/parse license data
