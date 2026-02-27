@@ -1,0 +1,25 @@
+{
+  "query": "SELECT DISTINCT category FROM products ORDER BY category;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT DISTINCT category FROM products ORDER BY category;",
+  "rows": [
+    {
+      "category": "flower"
+    },
+    {
+      "category": "edibles"
+    },
+    {
+      "category": "concentrates"
+    },
+    {
+      "category": "pre-rolls"
+    },
+    {
+      "category": "vapes"
+    }
+  ],
+  "messages": [],
+  "stdout": "category\nflower\nedibles\nconcentrates\npre-rolls\nvapes\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

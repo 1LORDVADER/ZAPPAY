@@ -178,6 +178,11 @@ export const appRouter = router({
         await updateOrderStatus(input.id, input.status);
         return { success: true };
       }),
+    getAll: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user || ctx.user.role !== 'admin') return [];
+      const { getAllOrders } = await import('./db');
+      return await getAllOrders();
+    }),
   }),
 
   // Payment (Stripe)

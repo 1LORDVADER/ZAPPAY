@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { getLoginUrl } from "@/const";
 import { Link, useLocation } from "wouter";
 import { Package, Truck, CheckCircle, Clock, ArrowLeft } from "lucide-react";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function Orders() {
   const { user, loading } = useAuth();
@@ -276,30 +277,22 @@ export default function Orders() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-[#1e3a5f] text-white shadow-lg">
+      <NavHeader />
+      {/* Page Title Bar */}
+      <div className="bg-gradient-to-r from-[#1e3a5f] to-[#0f2744] text-white">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link href="/">
-                <Button variant="ghost" className="text-white hover:bg-white/10">
-                  <ArrowLeft className="h-5 w-5 mr-2" />
-                  Back to Home
-                </Button>
-              </Link>
-              <div>
-                <h1 className="text-3xl font-bold">My Orders</h1>
-                <p className="text-blue-200 mt-1">Track your cannabis deliveries</p>
-              </div>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold">My Orders</h1>
+              <p className="text-blue-200 text-sm mt-0.5">Track your cannabis deliveries</p>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-blue-200">Total Transaction Volume</p>
+            <div className="bg-white/10 rounded-xl px-5 py-3 text-right border border-white/20">
+              <p className="text-xs text-blue-300 uppercase tracking-wide font-medium">Total Transaction Volume</p>
               <p className="text-2xl font-bold text-green-300">${totalVolume.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-              <p className="text-xs text-blue-300 mt-1">Logged in as {user.name}</p>
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Orders List */}
       <div className="container mx-auto px-4 py-12">

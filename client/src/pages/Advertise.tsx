@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Check, TrendingUp, Target, Zap, Users, BarChart3 } from "lucide-react";
 import { Link } from "wouter";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function Advertise() {
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
@@ -102,21 +103,7 @@ export default function Advertise() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="bg-[#1e3a5f] text-white py-4 sticky top-0 z-50 shadow-md">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center gap-3">
-              <img src="/zappay-logo.jpeg" alt="ZAPPAY" className="h-12" />
-            </a>
-          </Link>
-          <Link href="/">
-            <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-[#1e3a5f]">
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <NavHeader />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white">

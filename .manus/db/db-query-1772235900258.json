@@ -1,0 +1,42 @@
+{
+  "query": "SELECT category, COUNT(*) as count FROM products GROUP BY category; SELECT id, name, category, SUBSTRING(photos, 1, 80) as photo FROM products LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT category, COUNT(*) as count FROM products GROUP BY category; SELECT id, name, category, SUBSTRING(photos, 1, 80) as photo FROM products LIMIT 10;",
+  "rows": [
+    {
+      "category": "vapes",
+      "count": "4"
+    },
+    {
+      "category": "flower",
+      "count": "34"
+    },
+    {
+      "category": "pre-rolls",
+      "count": "4"
+    },
+    {
+      "category": "edibles",
+      "count": "4"
+    },
+    {
+      "category": "concentrates",
+      "count": "4"
+    }
+  ],
+  "messages": [
+    "id\tname\tcategory\tphoto",
+    "1\tBlue Dream\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "2\tOG Kush\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "3\tSour Diesel\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "5\tGranddaddy Purple\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "6\tGirl Scout Cookies\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "8\tGelato #33\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "9\tWedding Cake\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "11\tZkittlez\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "13\tGorilla Glue #4\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876",
+    "90001\tWhite Widow\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876"
+  ],
+  "stdout": "category\tcount\nvapes\t4\nflower\t34\npre-rolls\t4\nedibles\t4\nconcentrates\t4\nid\tname\tcategory\tphoto\n1\tBlue Dream\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n2\tOG Kush\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n3\tSour Diesel\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n5\tGranddaddy Purple\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n6\tGirl Scout Cookies\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n8\tGelato #33\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n9\tWedding Cake\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n11\tZkittlez\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n13\tGorilla Glue #4\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n90001\tWhite Widow\tflower\thttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876\n",
+  "stderr": "",
+  "execution_time_ms": 53
+}

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Truck, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function DriverRegistration() {
   const [, setLocation] = useLocation();
@@ -82,23 +83,7 @@ export default function DriverRegistration() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <img 
-                src="/logo.png" 
-                alt="ZAPPAY Logo" 
-                className="h-12 w-auto object-contain"
-              />
-            </div>
-            <Button variant="outline" onClick={() => setLocation("/")}>
-              Back to Home
-            </Button>
-          </div>
-        </div>
-      </header>
+      <NavHeader />
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">

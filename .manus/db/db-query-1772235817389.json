@@ -1,0 +1,70 @@
+{
+  "query": "SELECT id, name, category, SUBSTRING(photos, 1, 100) as photo_url FROM products WHERE category IN ('flower', 'pre_roll', 'Pre-Roll', 'Flower') LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, SUBSTRING(photos, 1, 100) as photo_url FROM products WHERE category IN ('flower', 'pre_roll', 'Pre-Roll', 'Flower') LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN."
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn."
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg."
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM."
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN."
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg."
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA."
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN."
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg."
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "category": "flower",
+      "photo_url": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN."
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tphoto_url\n1\tBlue Dream\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.\n2\tOG Kush\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.\n3\tSour Diesel\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.\n5\tGranddaddy Purple\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.\n6\tGirl Scout Cookies\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.\n8\tGelato #33\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.\n9\tWedding Cake\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.\n11\tZkittlez\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.\n13\tGorilla Glue #4\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.\n90001\tWhite Widow\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.\n",
+  "stderr": "",
+  "execution_time_ms": 53
+}

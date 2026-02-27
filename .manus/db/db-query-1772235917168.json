@@ -1,0 +1,160 @@
+{
+  "query": "SELECT id, name, category FROM products ORDER BY category, id LIMIT 30;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category FROM products ORDER BY category, id LIMIT 30;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "category": "flower"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "category": "flower"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "category": "flower"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "category": "flower"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "category": "flower"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "category": "flower"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "category": "flower"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "category": "flower"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "category": "flower"
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "category": "flower"
+    },
+    {
+      "id": "90002",
+      "name": "Pineapple Express",
+      "category": "flower"
+    },
+    {
+      "id": "90003",
+      "name": "Northern Lights",
+      "category": "flower"
+    },
+    {
+      "id": "90004",
+      "name": "Jack Herer",
+      "category": "flower"
+    },
+    {
+      "id": "90005",
+      "name": "Green Crack",
+      "category": "flower"
+    },
+    {
+      "id": "90006",
+      "name": "AK-47",
+      "category": "flower"
+    },
+    {
+      "id": "90007",
+      "name": "Trainwreck",
+      "category": "flower"
+    },
+    {
+      "id": "90008",
+      "name": "Strawberry Cough",
+      "category": "flower"
+    },
+    {
+      "id": "90009",
+      "name": "Durban Poison",
+      "category": "flower"
+    },
+    {
+      "id": "90010",
+      "name": "Amnesia Haze",
+      "category": "flower"
+    },
+    {
+      "id": "90011",
+      "name": "Super Lemon Haze",
+      "category": "flower"
+    },
+    {
+      "id": "90012",
+      "name": "Chemdawg",
+      "category": "flower"
+    },
+    {
+      "id": "90013",
+      "name": "Bruce Banner",
+      "category": "flower"
+    },
+    {
+      "id": "90014",
+      "name": "Runtz",
+      "category": "flower"
+    },
+    {
+      "id": "90015",
+      "name": "Ice Cream Cake",
+      "category": "flower"
+    },
+    {
+      "id": "90016",
+      "name": "Do-Si-Dos",
+      "category": "flower"
+    },
+    {
+      "id": "90017",
+      "name": "Mimosa",
+      "category": "flower"
+    },
+    {
+      "id": "90018",
+      "name": "Ghost Train Haze",
+      "category": "flower"
+    },
+    {
+      "id": "90019",
+      "name": "London Pound Cake",
+      "category": "flower"
+    },
+    {
+      "id": "90020",
+      "name": "Tropicana Cookies",
+      "category": "flower"
+    },
+    {
+      "id": "90021",
+      "name": "Banana Kush",
+      "category": "flower"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\n1\tBlue Dream\tflower\n2\tOG Kush\tflower\n3\tSour Diesel\tflower\n5\tGranddaddy Purple\tflower\n6\tGirl Scout Cookies\tflower\n8\tGelato #33\tflower\n9\tWedding Cake\tflower\n11\tZkittlez\tflower\n13\tGorilla Glue #4\tflower\n90001\tWhite Widow\tflower\n90002\tPineapple Express\tflower\n90003\tNorthern Lights\tflower\n90004\tJack Herer\tflower\n90005\tGreen Crack\tflower\n90006\tAK-47\tflower\n90007\tTrainwreck\tflower\n90008\tStrawberry Cough\tflower\n90009\tDurban Poison\tflower\n90010\tAmnesia Haze\tflower\n90011\tSuper Lemon Haze\tflower\n90012\tChemdawg\tflower\n90013\tBruce Banner\tflower\n90014\tRuntz\tflower\n90015\tIce Cream Cake\tflower\n90016\tDo-Si-Dos\tflower\n90017\tMimosa\tflower\n90018\tGhost Train Haze\tflower\n90019\tLondon Pound Cake\tflower\n90020\tTropicana Cookies\tflower\n90021\tBanana Kush\tflower\n",
+  "stderr": "",
+  "execution_time_ms": 51
+}

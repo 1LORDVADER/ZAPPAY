@@ -315,3 +315,51 @@
 - [x] Fix Checkout.tsx: removed double /100 price division
 - [x] Fix routers.ts: Stripe unit_amount now multiplied by 100 (dollars → cents)
 - [x] No TypeScript errors after all fixes
+
+
+## PRODUCTION READINESS SPRINT (February 27, 2026)
+
+### Critical UI/UX Fixes
+- [ ] Fix 3rd payment option for farmers - not displaying on website
+- [ ] Fix logo not showing on Advertise page and all other pages that need it
+- [ ] Remove white rectangle around ZAPPAY logo - show only the logo word
+- [ ] Replace logout button with user email dropdown (settings, dark mode toggle, logout)
+- [ ] Fix Track Your Order page - 80% white background is painful on eyes, redesign
+- [ ] Fix My Orders page - header UI low quality, login/info top-right looks bad
+- [ ] Fix scrollbar overlap - user info in top right too close to scroll bar
+- [ ] Add return home navigation to all application pages
+- [ ] Fix Admin page - remove My Orders section, add payments-only UI
+- [ ] Fix transaction volume display and total volume UI fitment
+- [ ] Restore original product images (pre-roll missing, all products have same few images)
+- [ ] Fix pre-roll producer product images
+
+### UX Analysis & Production Improvements
+- [ ] Analyze full website UX and implement improvements
+- [ ] Ensure production-ready quality across all pages (excluding checkout/billing)
+
+### Repository Update
+- [ ] Push all changes to GitHub repository 1LORDVADER/ZAPPAY
+
+
+## PRODUCTION READINESS SPRINT COMPLETION (February 27, 2026)
+
+### Critical UI/UX Fixes - ALL COMPLETE
+- [x] Fix 3rd payment option for farmers - all 3 tiers visible with mobile horizontal scroll
+- [x] Fix logo not showing on Advertise page and all other pages - NavHeader used everywhere
+- [x] Remove white rectangle around ZAPPAY logo - NavHeader uses /logo.png directly
+- [x] Replace logout button with user email dropdown (dark mode toggle, sign out)
+- [x] Fix Track Your Order page - dark theme applied, map container and location labels dark
+- [x] Fix My Orders page - NavHeader replaces old header, consistent UI
+- [x] Fix scrollbar overlap - NavHeader has proper padding and layout
+- [x] Add return home navigation to all application pages
+- [x] Fix Admin page - removed My Orders section, added AdminPayments page at /admin/payments
+- [x] Restore original product images - flower and pre-roll categories updated with CDN images
+- [x] Fix pre-roll producer product images - updated with real pre-roll CDN images
+
+### UX Analysis & Production Improvements - COMPLETE
+- [x] Analyze full website UX and implement improvements
+- [x] Ensure production-ready quality across all pages (excluding checkout/billing)
+- [x] TypeScript: 0 errors after all changes
+
+### Repository Update
+- [ ] Push all changes to GitHub repository 1LORDVADER/ZAPPAY

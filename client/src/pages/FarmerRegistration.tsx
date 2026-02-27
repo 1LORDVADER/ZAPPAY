@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle2, AlertCircle, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useLocation } from "wouter";
+import { Link, useLocation } from "wouter";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function FarmerRegistration() {
   const [, setLocation] = useLocation();
@@ -106,7 +107,15 @@ export default function FarmerRegistration() {
   };
 
   return (
-    <div className="container max-w-4xl mx-auto py-12">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <NavHeader />
+      <div className="container max-w-4xl mx-auto py-12">
+      <Link href="/">
+        <button className="flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6 transition-colors">
+          <ArrowLeft className="h-4 w-4" />
+          <span className="text-sm">Back to Home</span>
+        </button>
+      </Link>
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-2">Join ZAPPAY as a Farmer</h1>
         <p className="text-muted-foreground">
@@ -322,6 +331,7 @@ export default function FarmerRegistration() {
           </form>
         </CardContent>
       </Card>
+    </div>
     </div>
   );
 }

@@ -1,0 +1,8 @@
+{
+  "query": "SELECT category, COUNT(*) as count, SUBSTRING(photos, 1, 80) as sample_photo FROM products GROUP BY category;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT category, COUNT(*) as count, SUBSTRING(photos, 1, 80) as sample_photo FROM products GROUP BY category;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1055 (42000) at line 1: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jWmfVYBaikHBYpPLbpiijG.products.photos' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by"
+  ]
+}

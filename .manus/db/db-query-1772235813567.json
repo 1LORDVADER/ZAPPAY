@@ -1,0 +1,130 @@
+{
+  "query": "SELECT id, name, category, photos FROM products LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, photos FROM products LIMIT 20;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "90002",
+      "name": "Pineapple Express",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]"
+    },
+    {
+      "id": "90003",
+      "name": "Northern Lights",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "90004",
+      "name": "Jack Herer",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]"
+    },
+    {
+      "id": "90005",
+      "name": "Green Crack",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]"
+    },
+    {
+      "id": "90006",
+      "name": "AK-47",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    },
+    {
+      "id": "90007",
+      "name": "Trainwreck",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]"
+    },
+    {
+      "id": "90008",
+      "name": "Strawberry Cough",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]"
+    },
+    {
+      "id": "90009",
+      "name": "Durban Poison",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]"
+    },
+    {
+      "id": "90010",
+      "name": "Amnesia Haze",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]"
+    },
+    {
+      "id": "90011",
+      "name": "Super Lemon Haze",
+      "category": "flower",
+      "photos": "[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tphotos\n1\tBlue Dream\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n2\tOG Kush\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]\n3\tSour Diesel\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n5\tGranddaddy Purple\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]\n6\tGirl Scout Cookies\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n8\tGelato #33\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n9\tWedding Cake\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]\n11\tZkittlez\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n13\tGorilla Glue #4\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n90001\tWhite Widow\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n90002\tPineapple Express\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]\n90003\tNorthern Lights\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n90004\tJack Herer\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]\n90005\tGreen Crack\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]\n90006\tAK-47\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n90007\tTrainwreck\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DBoIFXrMZuDSpwnn.jpg\"]\n90008\tStrawberry Cough\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZAZedDDQRlBsirbg.jpg\"]\n90009\tDurban Poison\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/GtaMHTzvVTaTUgaA.jpg\"]\n90010\tAmnesia Haze\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZgQRipfUzPSHiepM.jpg\"]\n90011\tSuper Lemon Haze\tflower\t[\"https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/OGvOZIRucBWdgHmN.jpg\"]\n",
+  "stderr": "",
+  "execution_time_ms": 966
+}

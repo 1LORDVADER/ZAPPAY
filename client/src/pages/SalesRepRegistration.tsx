@@ -9,6 +9,7 @@ import { Briefcase, ArrowLeft, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function SalesRepRegistration() {
   const [submitted, setSubmitted] = useState(false);
@@ -72,8 +73,9 @@ export default function SalesRepRegistration() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-slate-50 py-12 px-4">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-slate-50">
+      <NavHeader />
+      <div className="max-w-3xl mx-auto py-12 px-4">
         <Link href="/">
           <Button variant="ghost" className="mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" />

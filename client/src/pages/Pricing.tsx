@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, Sparkles, TrendingUp, Rocket, Crown } from "lucide-react";
+import { Check, X, TrendingUp, Rocket, Crown } from "lucide-react";
 import { Link } from "wouter";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function Pricing() {
   const tiers = [
@@ -82,21 +83,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="bg-[#1e3a5f] text-white py-4 sticky top-0 z-50 shadow-md">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center gap-3">
-              <img src="/zappay-logo.jpeg" alt="ZAPPAY" className="h-12" />
-            </a>
-          </Link>
-          <Link href="/">
-            <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-[#1e3a5f]">
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <NavHeader />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white">
@@ -127,13 +114,14 @@ export default function Pricing() {
       {/* Pricing Tiers */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Mobile: horizontal scroll; Desktop: 3-column grid */}
+          <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory md:snap-none">
             {tiers.map((tier) => {
               const Icon = tier.icon;
               return (
                 <Card
                   key={tier.name}
-                  className={`relative border-2 transition-all hover:shadow-2xl ${
+                  className={`relative border-2 transition-all hover:shadow-2xl flex-shrink-0 w-[300px] md:w-auto snap-center ${
                     tier.highlight
                       ? "border-red-500 shadow-xl ring-4 ring-red-200"
                       : "border-slate-200"

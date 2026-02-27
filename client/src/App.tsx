@@ -36,6 +36,7 @@ import TransporterDashboard from "@/pages/TransporterDashboard";
 import Rewards from "@/pages/Rewards";
 import FarmerAnalytics from "@/pages/FarmerAnalytics";
 import Referrals from "@/pages/Referrals";
+import AdminPayments from "@/pages/AdminPayments";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -52,6 +53,7 @@ function Router() {
       <Route path="/admin/transportation" component={AdminTransportation} />
       <Route path="/admin/applications" component={AdminApplications} />
       <Route path="/admin/analytics" component={AdminAnalytics} />
+      <Route path="/admin/payments" component={AdminPayments} />
       <Route path="/transportation/driver-register" component={DriverRegistration} />
       <Route path="/transportation/company-register" component={CompanyRegistration} />
       <Route path="/transportation/dashboard" component={TransporterDashboard} />
@@ -87,7 +89,7 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider
         defaultTheme="light"
-        // switchable
+        switchable
       >
         <TooltipProvider>
           <AgeGate />

@@ -1,0 +1,30 @@
+{
+  "query": "SELECT DISTINCT category, COUNT(*) as count FROM products GROUP BY category;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT DISTINCT category, COUNT(*) as count FROM products GROUP BY category;",
+  "rows": [
+    {
+      "category": "edibles",
+      "count": "4"
+    },
+    {
+      "category": "flower",
+      "count": "34"
+    },
+    {
+      "category": "pre-rolls",
+      "count": "4"
+    },
+    {
+      "category": "vapes",
+      "count": "4"
+    },
+    {
+      "category": "concentrates",
+      "count": "4"
+    }
+  ],
+  "messages": [],
+  "stdout": "category\tcount\nedibles\t4\nflower\t34\npre-rolls\t4\nvapes\t4\nconcentrates\t4\n",
+  "stderr": "",
+  "execution_time_ms": 55
+}

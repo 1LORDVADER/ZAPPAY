@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'wouter';
 import { motion } from 'framer-motion';
-import { MapPin, Package, Truck, CheckCircle, Clock } from 'lucide-react';
+import { MapPin, Package, Truck, CheckCircle, Clock, ArrowLeft } from 'lucide-react';
+import { Link } from 'wouter';
+import { NavHeader } from '@/components/NavHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -112,16 +114,23 @@ export default function TrackOrder() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 py-8">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f1f35] via-[#1e3a5f] to-[#0f2744]">
+      <NavHeader />
+      <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">Track Your Order</h1>
-          <p className="text-slate-600">Order #{orderId}</p>
+          <Link href="/">
+            <button className="flex items-center gap-2 text-blue-300 hover:text-white mb-4 transition-colors">
+              <ArrowLeft className="h-4 w-4" />
+              <span className="text-sm">Back to Home</span>
+            </button>
+          </Link>
+          <h1 className="text-4xl font-bold text-white mb-2">Track Your Order</h1>
+          <p className="text-blue-200">Order #{orderId}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -132,8 +141,8 @@ export default function TrackOrder() {
             transition={{ delay: 0.1 }}
             className="lg:col-span-2"
           >
-            <Card className="overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+            <Card className="overflow-hidden border-blue-800/50 bg-[#1a3050]/80 backdrop-blur-sm">
+              <CardHeader className="bg-gradient-to-r from-blue-700 to-blue-800 text-white">
                 <CardTitle className="flex items-center gap-2">
                   <MapPin className="h-5 w-5" />
                   Live GPS Tracking
@@ -141,7 +150,7 @@ export default function TrackOrder() {
               </CardHeader>
               <CardContent className="p-0">
                 {/* Map Container */}
-                <div className="relative h-[500px] bg-gradient-to-br from-blue-50 to-slate-100">
+                <div className="relative h-[500px] bg-gradient-to-br from-[#0f1f35] via-[#1a3050] to-[#0f2744]">
                   {/* Simulated Map with Route */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="relative w-full h-full">
@@ -204,14 +213,14 @@ export default function TrackOrder() {
                       </div>
 
                       {/* Location Labels */}
-                      <div className="absolute bg-white px-4 py-2 rounded-lg shadow-md" style={{ left: '320px', top: '160px' }}>
-                        <p className="text-sm font-semibold text-slate-900">Current Location</p>
-                        <p className="text-xs text-slate-600">{tracking.currentLocation.address}</p>
+                      <div className="absolute bg-[#1a3050]/90 border border-blue-700/50 px-4 py-2 rounded-lg shadow-md" style={{ left: '320px', top: '160px' }}>
+                        <p className="text-sm font-semibold text-white">Current Location</p>
+                        <p className="text-xs text-blue-300">{tracking.currentLocation.address}</p>
                       </div>
 
-                      <div className="absolute bg-white px-4 py-2 rounded-lg shadow-md" style={{ left: '520px', top: '280px' }}>
-                        <p className="text-sm font-semibold text-slate-900">Destination</p>
-                        <p className="text-xs text-slate-600">{tracking.destination.address}</p>
+                      <div className="absolute bg-[#1a3050]/90 border border-blue-700/50 px-4 py-2 rounded-lg shadow-md" style={{ left: '520px', top: '280px' }}>
+                        <p className="text-sm font-semibold text-white">Destination</p>
+                        <p className="text-xs text-blue-300">{tracking.destination.address}</p>
                       </div>
                     </div>
                   </div>
@@ -240,9 +249,9 @@ export default function TrackOrder() {
             className="space-y-6"
           >
             {/* Status Card */}
-            <Card>
+            <Card className="border-blue-800/50 bg-[#1a3050]/80 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle>Delivery Status</CardTitle>
+                <CardTitle className="text-white">Delivery Status</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
@@ -251,37 +260,37 @@ export default function TrackOrder() {
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-600 mb-1">Estimated Delivery</p>
-                  <p className="text-lg font-semibold text-slate-900">{tracking.estimatedDelivery}</p>
+                  <p className="text-sm text-blue-300 mb-1">Estimated Delivery</p>
+                  <p className="text-lg font-semibold text-white">{tracking.estimatedDelivery}</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* Driver Info Card */}
-            <Card>
+            <Card className="border-blue-800/50 bg-[#1a3050]/80 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle>Driver Information</CardTitle>
+                <CardTitle className="text-white">Driver Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div>
-                  <p className="text-sm text-slate-600">Name</p>
-                  <p className="font-semibold text-slate-900">{tracking.driver.name}</p>
+                  <p className="text-sm text-blue-300">Name</p>
+                  <p className="font-semibold text-white">{tracking.driver.name}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-600">Phone</p>
-                  <p className="font-semibold text-slate-900">{tracking.driver.phone}</p>
+                  <p className="text-sm text-blue-300">Phone</p>
+                  <p className="font-semibold text-white">{tracking.driver.phone}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-600">Vehicle</p>
-                  <p className="font-semibold text-slate-900">{tracking.driver.vehicle}</p>
+                  <p className="text-sm text-blue-300">Vehicle</p>
+                  <p className="font-semibold text-white">{tracking.driver.vehicle}</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* Timeline Card */}
-            <Card>
+            <Card className="border-blue-800/50 bg-[#1a3050]/80 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle>Tracking Timeline</CardTitle>
+                <CardTitle className="text-white">Tracking Timeline</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -294,10 +303,10 @@ export default function TrackOrder() {
                         )}
                       </div>
                       <div className="flex-1 pb-4">
-                        <p className={`font-semibold ${event.completed ? 'text-slate-900' : 'text-slate-500'}`}>
+                        <p className={`font-semibold ${event.completed ? 'text-white' : 'text-blue-400'}`}>
                           {event.location}
                         </p>
-                        <p className="text-sm text-slate-600">{event.timestamp}</p>
+                        <p className="text-sm text-blue-300">{event.timestamp}</p>
                       </div>
                     </div>
                   ))}

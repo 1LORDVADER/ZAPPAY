@@ -5,25 +5,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, User, LogOut, Star, ChevronDown, Briefcase, Truck, Sprout, Store } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { ShoppingCart, Search, Leaf, Package, Zap, Star } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { getLoginUrl } from "@/const";
 import { motion } from "framer-motion";
-import { APP_LOGO, APP_TITLE } from "@/const";
-import { NotificationBell } from "@/components/NotificationBell";
 import { getGuestCartCount } from "@/lib/cartPersistence";
-import { Toaster } from "sonner";
 import { StateSelector } from "@/components/StateSelector";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { AgeVerification } from "@/components/AgeVerification";
 import { AdvancedFilters, type FilterState } from "@/components/AdvancedFilters";
+import { NavHeader } from "@/components/NavHeader";
+import { Toaster } from "sonner";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -127,187 +119,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       <AgeVerification />
-      {/* Header */}
-      <motion.header 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring" as const, stiffness: 100 }}
-        className="sticky top-0 z-50 bg-[#1e3a5f]/95 backdrop-blur-sm border-b border-[#1e3a5f] shadow-lg"
-      >
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Link href="/">
-                <img 
-                  src="/logo.png"
-                  alt="ZAPPAY Logo"
-                  className="h-14 w-auto object-contain cursor-pointer"
-                />
-              </Link>
-            </div>
-
-            <nav className="hidden md:flex items-center gap-4">
-              <StateSelector />
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/">
-                  <a className="text-white hover:text-red-400 font-medium transition-colors">
-                    Browse
-                  </a>
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <a href="mailto:Zappay.co@gmail.com" className="text-white hover:text-red-400 font-medium transition-colors">
-                  Contact
-                </a>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/advertise">
-                  <a className="text-white hover:text-red-400 font-medium transition-colors">
-                    Advertise
-                  </a>
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/orders">
-                  <a className="text-white hover:text-red-400 font-medium transition-colors">
-                    My Orders
-                  </a>
-                </Link>
-              </motion.div>
-              {user?.role !== 'admin' && (
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link href="/my-applications">
-                    <a className="text-white hover:text-red-400 font-medium transition-colors">
-                      My Applications
-                    </a>
-                  </Link>
-                </motion.div>
-              )}
-              {user?.role === 'admin' && (
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link href="/admin/applications">
-                    <a className="text-white hover:text-red-400 font-medium transition-colors">
-                      Review Applications
-                    </a>
-                  </Link>
-                </motion.div>
-              )}
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="text-white hover:text-red-400 hover:bg-white/10 font-medium">
-                      Apply Now
-                      <ChevronDown className="ml-1 h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56 bg-white">
-                    <DropdownMenuItem asChild>
-                      <Link href="/farmer/register">
-                        <a className="flex items-center gap-2 w-full cursor-pointer">
-                          <Sprout className="h-4 w-4 text-green-600" />
-                          <div>
-                            <div className="font-medium">Licensed Farmer</div>
-                            <div className="text-xs text-slate-500">Sell your cannabis products</div>
-                          </div>
-                        </a>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/dispensary-application">
-                        <a className="flex items-center gap-2 w-full cursor-pointer">
-                          <Store className="h-4 w-4 text-orange-600" />
-                          <div>
-                            <div className="font-medium">Dispensary Partner</div>
-                            <div className="text-xs text-slate-500">Connect with farmers</div>
-                          </div>
-                        </a>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/transportation/driver-register">
-                        <a className="flex items-center gap-2 w-full cursor-pointer">
-                          <Truck className="h-4 w-4 text-blue-600" />
-                          <div>
-                            <div className="font-medium">Transportation Driver</div>
-                            <div className="text-xs text-slate-500">Deliver cannabis products</div>
-                          </div>
-                        </a>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/transportation/company-register">
-                        <a className="flex items-center gap-2 w-full cursor-pointer">
-                          <Package className="h-4 w-4 text-purple-600" />
-                          <div>
-                            <div className="font-medium">Transportation Company</div>
-                            <div className="text-xs text-slate-500">Partner with ZAPPAY</div>
-                          </div>
-                        </a>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/sales/register">
-                        <a className="flex items-center gap-2 w-full cursor-pointer">
-                          <Briefcase className="h-4 w-4 text-orange-600" />
-                          <div>
-                            <div className="font-medium">SaaS Sales Rep</div>
-                            <div className="text-xs text-slate-500">Join our sales team</div>
-                          </div>
-                        </a>
-                      </Link>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/cart">
-                  <a className="relative">
-                    <Button variant="outline" size="sm" className="gap-2 bg-white/10 text-white border-white/30 hover:bg-white/20">
-                      <ShoppingCart className="h-4 w-4" />
-                      Cart
-                      {cartItemCount > 0 && (
-                        <motion.span 
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-                        >
-                          {cartItemCount}
-                        </motion.span>
-                      )}
-                    </Button>
-                  </a>
-                </Link>
-              </motion.div>
-            </nav>
-
-            <div className="flex items-center gap-3">
-              {isAuthenticated ? (
-                <>
-                  <NotificationBell />
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button variant="outline" size="sm" className="gap-2 bg-white/10 text-white border-white/30 hover:bg-white/20">
-                      <User className="h-4 w-4" />
-                      <span className="hidden sm:inline">{user?.email}</span>
-                    </Button>
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button variant="outline" size="sm" onClick={logout} className="gap-2 bg-white/10 text-white border-white/30 hover:bg-white/20">
-                      <LogOut className="h-4 w-4" />
-                      <span className="hidden sm:inline">Logout</span>
-                    </Button>
-                  </motion.div>
-                </>
-              ) : (
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild size="sm">
-                    <a href={getLoginUrl()}>Login</a>
-                  </Button>
-                </motion.div>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.header>
+      {/* Header - using shared NavHeader for consistency */}
+      <NavHeader />
 
       {/* Hero Section */}
       <motion.section 

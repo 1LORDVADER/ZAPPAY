@@ -1,0 +1,19 @@
+{
+  "query": "\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/cAxdrtoCsPgFzUpW.jpg' WHERE category = 'flower' AND id % 3 = 1;\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZvolKgGMxGqGsYmb.jpg' WHERE category = 'flower' AND id % 3 = 2;\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DnWSyTTDFVxJFcJo.jpg' WHERE category = 'flower' AND id % 3 = 0;\nSELECT COUNT(*) as updated_flowers FROM products WHERE category = 'flower' AND photos LIKE '%manuscdn%';\nSELECT COUNT(*) as updated_prerolls FROM products WHERE category = 'pre-rolls' AND photos LIKE '%manuscdn%';\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/cAxdrtoCsPgFzUpW.jpg' WHERE category = 'flower' AND id % 3 = 1;\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZvolKgGMxGqGsYmb.jpg' WHERE category = 'flower' AND id % 3 = 2;\nUPDATE products SET photos = 'https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DnWSyTTDFVxJFcJo.jpg' WHERE category = 'flower' AND id % 3 = 0;\nSELECT COUNT(*) as updated_flowers FROM products WHERE category = 'flower' AND photos LIKE '%manuscdn%';\nSELECT COUNT(*) as updated_prerolls FROM products WHERE category = 'pre-rolls' AND photos LIKE '%manuscdn%';\n",
+  "rows": [
+    {
+      "updated_flowers": "34"
+    },
+    {
+      "updated_flowers": "updated_prerolls"
+    },
+    {
+      "updated_flowers": "4"
+    }
+  ],
+  "messages": [],
+  "stdout": "updated_flowers\n34\nupdated_prerolls\n4\n",
+  "stderr": "",
+  "execution_time_ms": 103
+}

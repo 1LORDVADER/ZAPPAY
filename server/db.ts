@@ -374,6 +374,12 @@ export async function updateOrderStatus(id: number, status: string) {
   await db.update(orders).set({ status: status as any }).where(eq(orders.id, id));
 }
 
+export async function getAllOrders() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(orders).orderBy(desc(orders.createdAt));
+}
+
 // Order Items
 export async function createOrderItem(item: InsertOrderItem) {
   const db = await getDb();

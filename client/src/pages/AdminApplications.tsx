@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { CheckCircle, XCircle, User, Truck, Building2, Briefcase, Mail, Phone, MapPin, Calendar, Store } from "lucide-react";
 import { PushNotificationManager } from "@/components/PushNotificationManager";
 import { useApplicationNotifications } from "@/hooks/useApplicationNotifications";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function AdminApplications() {
   const { user, loading: authLoading } = useAuth();
@@ -180,11 +181,20 @@ export default function AdminApplications() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <NavHeader />
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <Button variant="outline" onClick={() => setLocation("/")} className="mb-4">
-            ← Back to Home
-          </Button>
+          <div className="flex items-center gap-3 mb-4">
+            <Button variant="outline" onClick={() => setLocation("/")}>
+              ← Back to Home
+            </Button>
+            <Button variant="outline" onClick={() => setLocation("/admin/payments")} className="bg-green-50 border-green-300 text-green-700 hover:bg-green-100">
+              💳 View Payments
+            </Button>
+            <Button variant="outline" onClick={() => setLocation("/admin/analytics")} className="bg-blue-50 border-blue-300 text-blue-700 hover:bg-blue-100">
+              📊 Analytics
+            </Button>
+          </div>
           <h1 className="text-4xl font-bold text-slate-900 mb-2">Application Review Dashboard</h1>
           <p className="text-slate-600">Review and manage pending applications</p>
           {totalPending > 0 && (

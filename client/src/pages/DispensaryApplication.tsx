@@ -9,6 +9,7 @@ import { Link } from "wouter";
 import { Store, MapPin, Users, TrendingUp, CheckCircle, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function DispensaryApplication() {
   const [formData, setFormData] = useState({
@@ -67,22 +68,7 @@ export default function DispensaryApplication() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/">
-              <a className="flex items-center gap-3 cursor-pointer">
-                <img 
-                  src="/zappay-logo.jpeg" 
-                  alt="ZAPPAY Logo" 
-                  className="h-12 w-auto object-contain"
-                />
-              </a>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <NavHeader />
 
       {/* Main Content */}
       <section className="py-12">
