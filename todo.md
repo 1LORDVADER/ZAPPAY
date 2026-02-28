@@ -447,3 +447,11 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Darkened Home.tsx background to slate-900 with dark product cards (slate-800)
 - [x] Dark theme applied to hero section, stats cards, product grid, search bar
 - [x] TypeScript: 0 errors
+
+## Product Grid Redesign (Feb 28, 2026)
+- [x] Redesigned Home.tsx product cards: #141824 cards on #0a0e1a background with visible border + green glow on hover
+- [x] Updated global dark theme CSS variables to match deep navy design system
+- [x] Set defaultTheme="dark" in App.tsx so all pages inherit the correct dark theme
+- [x] Category tabs redesigned with green active state
+- [x] Hero section updated with live pricing badge, green gradient title, skeleton loading states
+- [x] TypeScript: 0 errors
