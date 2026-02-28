@@ -511,3 +511,25 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Fix category tab active state from green to ZAPPAY navy/red
 - [x] Fix any green badges (THC, status) to use brand-appropriate colors
 - [x] Audit all tsx files for any leftover green-* Tailwind classes — 24 files cleaned, 0 remaining
+
+
+## FUNCTIONAL FIXES (February 28, 2026)
+
+### Pricing Fixes
+- [x] Fixed double-division bug in ProductDetail.tsx (savings calculation was dividing by 100 twice)
+- [x] Fixed FarmerDashboard.tsx product price display (raw cents needed /100 for display)
+- [x] Fixed FarmerDashboard.tsx Live Broker current price display (raw cents needed /100)
+- [x] Fixed AdminPayments.tsx field name mismatch (totalAmount -> total) and added /100 conversion
+
+### Database Cleanup
+- [x] Removed 3 duplicate Test Blue Dream entries (kept 1 original)
+- [x] Marked remaining Test Blue Dream (farmerId=100) as inactive to hide from public marketplace
+
+### Test Fixes
+- [x] Fixed core.test.ts "list all active products" test (getAllActiveProducts returns non-inactive, not just active)
+- [x] Fixed applications.test.ts to use correct field names matching actual schema
+
+### Routes (Already Correct)
+- [x] Verified /farmer/register route is correct in App.tsx
+- [x] Verified /transportation/driver-register route is correct in App.tsx
+- [x] All navigation links use correct routes

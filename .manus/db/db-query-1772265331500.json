@@ -1,0 +1,9 @@
+{
+  "query": "SELECT name, COUNT(*) as count FROM products GROUP BY name HAVING COUNT(*) > 1 ORDER BY count DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT name, COUNT(*) as count FROM products GROUP BY name HAVING COUNT(*) > 1 ORDER BY count DESC LIMIT 10;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 51
+}

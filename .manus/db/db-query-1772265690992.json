@@ -1,0 +1,9 @@
+{
+  "query": "DELETE FROM products WHERE name = 'Test Blue Dream' AND id NOT IN (SELECT min_id FROM (SELECT MIN(id) as min_id FROM products WHERE name = 'Test Blue Dream') as t)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute DELETE FROM products WHERE name = 'Test Blue Dream' AND id NOT IN (SELECT min_id FROM (SELECT MIN(id) as min_id FROM products WHERE name = 'Test Blue Dream') as t)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 71
+}
