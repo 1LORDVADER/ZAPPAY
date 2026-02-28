@@ -422,3 +422,28 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Fixed cart total: now includes subtotal + 8% tax + 5.2% processing fee
 - [x] Fixed platform fee label from green 'Platform Fee' to neutral 'Processing Fee'
 - [x] Both authenticated and guest cart totals are now correct
+
+## Critical Fixes (Feb 28 Sprint 2)
+- [ ] Fix price display bug: $4.20/g × 4g = $16.80 base, not $13/g or $1000+ total
+- [ ] Restore unique product images per product (all showing same image)
+- [ ] Darken page backgrounds (too white / eye strain)
+- [ ] Remove janky animations causing frame rate drops
+
+## Price Revert to Reference Photo Values
+- [ ] Set all flower prices to $3.50-$4.20/gram (sale price) with retail $12-$14/gram as strikethrough
+- [ ] Show "Save $X.XX/gram" label on product cards matching reference photo
+- [ ] Fees and taxes ONLY shown at checkout, never on product card price display
+- [ ] Restore unique product images per product
+- [ ] Darken page backgrounds
+- [ ] Remove frame-drop animations
+
+## Critical Fixes (Feb 28 Sprint - Price/Image/Animation/Dark Theme)
+- [x] Reverted all product prices to original $3.50-$4.20/gram (sale) with $12-$14/gram retail strikethrough
+- [x] Vapes $8/unit sale ($35 retail), edibles $5/unit sale ($18 retail), concentrates $8/gram sale ($35 retail), pre-rolls $3.50/gram sale ($12 retail)
+- [x] Generated 25 unique AI images for each flower strain and uploaded to CDN
+- [x] Updated database with unique image URLs per product (no more duplicate images)
+- [x] Removed framer-motion from Home.tsx - replaced with CSS transitions (no more frame drops)
+- [x] Removed framer-motion from TrackOrder.tsx - replaced with CSS animate-ping/animate-pulse
+- [x] Darkened Home.tsx background to slate-900 with dark product cards (slate-800)
+- [x] Dark theme applied to hero section, stats cards, product grid, search bar
+- [x] TypeScript: 0 errors

@@ -1,0 +1,70 @@
+{
+  "query": "SELECT photos, COUNT(*) as cnt, GROUP_CONCAT(name SEPARATOR ', ') as products FROM products WHERE status='active' GROUP BY photos ORDER BY cnt DESC LIMIT 20",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT photos, COUNT(*) as cnt, GROUP_CONCAT(name SEPARATOR ', ') as products FROM products WHERE status='active' GROUP BY photos ORDER BY cnt DESC LIMIT 20",
+  "rows": [
+    {
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZvolKgGMxGqGsYmb.jpg",
+      "cnt": "12",
+      "products": "OG Kush, Granddaddy Purple, Gelato #33, Zkittlez, Pineapple Express, Green Crack, Strawberry Cough, Super Lemon Haze, Runtz, Mimosa, Tropicana Cookies, Forbidden Fruit"
+    },
+    {
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/cAxdrtoCsPgFzUpW.jpg",
+      "cnt": "10",
+      "products": "Blue Dream, Gorilla Glue #4, White Widow, Jack Herer, Trainwreck, Bruce Banner, Do-Si-Dos, London Pound Cake, Cherry Pie, Test Blue Dream"
+    },
+    {
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DnWSyTTDFVxJFcJo.jpg",
+      "cnt": "10",
+      "products": "Sour Diesel, Girl Scout Cookies, Wedding Cake, Northern Lights, AK-47, Durban Poison, Chemdawg, Ice Cream Cake, Banana Kush, Thin Mint GSC"
+    },
+    {
+      "photos": "/products/gummies-1.jpg",
+      "cnt": "2",
+      "products": "Indica Gummies 10-Pack, Hybrid Gummies 20-Pack"
+    },
+    {
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/HEGuXmdqrBAFoqLu.jpg",
+      "cnt": "2",
+      "products": "Blue Dream Pre-Roll 1g, Gelato Pre-Roll 1g"
+    },
+    {
+      "photos": "/products/gummies-2.jpg",
+      "cnt": "2",
+      "products": "Sativa Gummies 10-Pack, CBD Gummies 10-Pack"
+    },
+    {
+      "photos": "/products/concentrate-1.jpg",
+      "cnt": "2",
+      "products": "Blue Dream Wax, Gelato Live Resin"
+    },
+    {
+      "photos": "/products/vape-cart-1.jpg",
+      "cnt": "2",
+      "products": "Blue Dream Vape Cart, OG Kush Vape Cart"
+    },
+    {
+      "photos": "/products/concentrate-2.jpg",
+      "cnt": "2",
+      "products": "OG Kush Shatter, Sour Diesel Crumble"
+    },
+    {
+      "photos": "/products/vape-cart-2.jpg",
+      "cnt": "2",
+      "products": "Sour Diesel Vape, Gelato Vape Pen"
+    },
+    {
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/yWPCpNIqGMDqTlLD.jpg",
+      "cnt": "1",
+      "products": "OG Kush Pre-Roll 1g"
+    },
+    {
+      "photos": "https://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DjufDDHARmsVfAHk.jpg",
+      "cnt": "1",
+      "products": "Sour Diesel Pre-Roll 1g"
+    }
+  ],
+  "messages": [],
+  "stdout": "photos\tcnt\tproducts\nhttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/ZvolKgGMxGqGsYmb.jpg\t12\tOG Kush, Granddaddy Purple, Gelato #33, Zkittlez, Pineapple Express, Green Crack, Strawberry Cough, Super Lemon Haze, Runtz, Mimosa, Tropicana Cookies, Forbidden Fruit\nhttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/cAxdrtoCsPgFzUpW.jpg\t10\tBlue Dream, Gorilla Glue #4, White Widow, Jack Herer, Trainwreck, Bruce Banner, Do-Si-Dos, London Pound Cake, Cherry Pie, Test Blue Dream\nhttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DnWSyTTDFVxJFcJo.jpg\t10\tSour Diesel, Girl Scout Cookies, Wedding Cake, Northern Lights, AK-47, Durban Poison, Chemdawg, Ice Cream Cake, Banana Kush, Thin Mint GSC\n/products/gummies-1.jpg\t2\tIndica Gummies 10-Pack, Hybrid Gummies 20-Pack\nhttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/HEGuXmdqrBAFoqLu.jpg\t2\tBlue Dream Pre-Roll 1g, Gelato Pre-Roll 1g\n/products/gummies-2.jpg\t2\tSativa Gummies 10-Pack, CBD Gummies 10-Pack\n/products/concentrate-1.jpg\t2\tBlue Dream Wax, Gelato Live Resin\n/products/vape-cart-1.jpg\t2\tBlue Dream Vape Cart, OG Kush Vape Cart\n/products/concentrate-2.jpg\t2\tOG Kush Shatter, Sour Diesel Crumble\n/products/vape-cart-2.jpg\t2\tSour Diesel Vape, Gelato Vape Pen\nhttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/yWPCpNIqGMDqTlLD.jpg\t1\tOG Kush Pre-Roll 1g\nhttps://files.manuscdn.com/user_upload_by_module/session_file/310419663028620876/DjufDDHARmsVfAHk.jpg\t1\tSour Diesel Pre-Roll 1g\n",
+  "stderr": "",
+  "execution_time_ms": 114
+}

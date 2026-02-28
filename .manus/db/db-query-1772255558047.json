@@ -1,0 +1,94 @@
+{
+  "query": "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'products' ORDER BY ORDINAL_POSITION;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'products' ORDER BY ORDINAL_POSITION;",
+  "rows": [
+    {
+      "COLUMN_NAME": "id"
+    },
+    {
+      "COLUMN_NAME": "farmerId"
+    },
+    {
+      "COLUMN_NAME": "name"
+    },
+    {
+      "COLUMN_NAME": "strain"
+    },
+    {
+      "COLUMN_NAME": "category"
+    },
+    {
+      "COLUMN_NAME": "thcPercentage"
+    },
+    {
+      "COLUMN_NAME": "cbdPercentage"
+    },
+    {
+      "COLUMN_NAME": "price"
+    },
+    {
+      "COLUMN_NAME": "quantity"
+    },
+    {
+      "COLUMN_NAME": "unit"
+    },
+    {
+      "COLUMN_NAME": "description"
+    },
+    {
+      "COLUMN_NAME": "photos"
+    },
+    {
+      "COLUMN_NAME": "status"
+    },
+    {
+      "COLUMN_NAME": "isPreOrder"
+    },
+    {
+      "COLUMN_NAME": "estimatedHarvestDate"
+    },
+    {
+      "COLUMN_NAME": "createdAt"
+    },
+    {
+      "COLUMN_NAME": "updatedAt"
+    },
+    {
+      "COLUMN_NAME": "isFeatured"
+    },
+    {
+      "COLUMN_NAME": "isSponsored"
+    },
+    {
+      "COLUMN_NAME": "views"
+    },
+    {
+      "COLUMN_NAME": "clicks"
+    },
+    {
+      "COLUMN_NAME": "origin"
+    },
+    {
+      "COLUMN_NAME": "lore"
+    },
+    {
+      "COLUMN_NAME": "effects"
+    },
+    {
+      "COLUMN_NAME": "flavor"
+    },
+    {
+      "COLUMN_NAME": "bestFor"
+    },
+    {
+      "COLUMN_NAME": "retailPrice"
+    },
+    {
+      "COLUMN_NAME": "rating"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\nid\nfarmerId\nname\nstrain\ncategory\nthcPercentage\ncbdPercentage\nprice\nquantity\nunit\ndescription\nphotos\nstatus\nisPreOrder\nestimatedHarvestDate\ncreatedAt\nupdatedAt\nisFeatured\nisSponsored\nviews\nclicks\norigin\nlore\neffects\nflavor\nbestFor\nretailPrice\nrating\n",
+  "stderr": "",
+  "execution_time_ms": 55
+}

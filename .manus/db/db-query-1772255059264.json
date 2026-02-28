@@ -1,0 +1,220 @@
+{
+  "query": "SELECT id, name, category, price, retailPrice FROM products WHERE status='active' ORDER BY id LIMIT 30",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, price, retailPrice FROM products WHERE status='active' ORDER BY id LIMIT 30",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "category": "flower",
+      "price": "1000",
+      "retailPrice": "1400"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "category": "flower",
+      "price": "1200",
+      "retailPrice": "1600"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "category": "flower",
+      "price": "1100",
+      "retailPrice": "1500"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "category": "flower",
+      "price": "900",
+      "retailPrice": "1300"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "category": "flower",
+      "price": "1300",
+      "retailPrice": "1800"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "category": "flower",
+      "price": "1400",
+      "retailPrice": "1900"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "category": "flower",
+      "price": "1500",
+      "retailPrice": "2000"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "category": "flower",
+      "price": "1200",
+      "retailPrice": "1600"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "category": "flower",
+      "price": "1400",
+      "retailPrice": "1900"
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "category": "flower",
+      "price": "900",
+      "retailPrice": "120000"
+    },
+    {
+      "id": "90002",
+      "name": "Pineapple Express",
+      "category": "flower",
+      "price": "1100",
+      "retailPrice": "140000"
+    },
+    {
+      "id": "90003",
+      "name": "Northern Lights",
+      "category": "flower",
+      "price": "900",
+      "retailPrice": "110000"
+    },
+    {
+      "id": "90004",
+      "name": "Jack Herer",
+      "category": "flower",
+      "price": "1100",
+      "retailPrice": "1500"
+    },
+    {
+      "id": "90005",
+      "name": "Green Crack",
+      "category": "flower",
+      "price": "900",
+      "retailPrice": "115000"
+    },
+    {
+      "id": "90006",
+      "name": "AK-47",
+      "category": "flower",
+      "price": "900",
+      "retailPrice": "125000"
+    },
+    {
+      "id": "90007",
+      "name": "Trainwreck",
+      "category": "flower",
+      "price": "1100",
+      "retailPrice": "135000"
+    },
+    {
+      "id": "90008",
+      "name": "Strawberry Cough",
+      "category": "flower",
+      "price": "1000",
+      "retailPrice": "130000"
+    },
+    {
+      "id": "90009",
+      "name": "Durban Poison",
+      "category": "flower",
+      "price": "900",
+      "retailPrice": "120000"
+    },
+    {
+      "id": "90011",
+      "name": "Super Lemon Haze",
+      "category": "flower",
+      "price": "1100",
+      "retailPrice": "140000"
+    },
+    {
+      "id": "90012",
+      "name": "Chemdawg",
+      "category": "flower",
+      "price": "1300",
+      "retailPrice": "150000"
+    },
+    {
+      "id": "90013",
+      "name": "Bruce Banner",
+      "category": "flower",
+      "price": "1500",
+      "retailPrice": "160000"
+    },
+    {
+      "id": "90014",
+      "name": "Runtz",
+      "category": "flower",
+      "price": "1400",
+      "retailPrice": "155000"
+    },
+    {
+      "id": "90015",
+      "name": "Ice Cream Cake",
+      "category": "flower",
+      "price": "1200",
+      "retailPrice": "145000"
+    },
+    {
+      "id": "90016",
+      "name": "Do-Si-Dos",
+      "category": "flower",
+      "price": "1300",
+      "retailPrice": "150000"
+    },
+    {
+      "id": "90017",
+      "name": "Mimosa",
+      "category": "flower",
+      "price": "1100",
+      "retailPrice": "130000"
+    },
+    {
+      "id": "90019",
+      "name": "London Pound Cake",
+      "category": "flower",
+      "price": "1300",
+      "retailPrice": "150000"
+    },
+    {
+      "id": "90020",
+      "name": "Tropicana Cookies",
+      "category": "flower",
+      "price": "1200",
+      "retailPrice": "140000"
+    },
+    {
+      "id": "90021",
+      "name": "Banana Kush",
+      "category": "flower",
+      "price": "1000",
+      "retailPrice": "130000"
+    },
+    {
+      "id": "90022",
+      "name": "Cherry Pie",
+      "category": "flower",
+      "price": "1000",
+      "retailPrice": "135000"
+    },
+    {
+      "id": "90023",
+      "name": "Forbidden Fruit",
+      "category": "flower",
+      "price": "1200",
+      "retailPrice": "145000"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tprice\tretailPrice\n1\tBlue Dream\tflower\t1000\t1400\n2\tOG Kush\tflower\t1200\t1600\n3\tSour Diesel\tflower\t1100\t1500\n5\tGranddaddy Purple\tflower\t900\t1300\n6\tGirl Scout Cookies\tflower\t1300\t1800\n8\tGelato #33\tflower\t1400\t1900\n9\tWedding Cake\tflower\t1500\t2000\n11\tZkittlez\tflower\t1200\t1600\n13\tGorilla Glue #4\tflower\t1400\t1900\n90001\tWhite Widow\tflower\t900\t120000\n90002\tPineapple Express\tflower\t1100\t140000\n90003\tNorthern Lights\tflower\t900\t110000\n90004\tJack Herer\tflower\t1100\t1500\n90005\tGreen Crack\tflower\t900\t115000\n90006\tAK-47\tflower\t900\t125000\n90007\tTrainwreck\tflower\t1100\t135000\n90008\tStrawberry Cough\tflower\t1000\t130000\n90009\tDurban Poison\tflower\t900\t120000\n90011\tSuper Lemon Haze\tflower\t1100\t140000\n90012\tChemdawg\tflower\t1300\t150000\n90013\tBruce Banner\tflower\t1500\t160000\n90014\tRuntz\tflower\t1400\t155000\n90015\tIce Cream Cake\tflower\t1200\t145000\n90016\tDo-Si-Dos\tflower\t1300\t150000\n90017\tMimosa\tflower\t1100\t130000\n90019\tLondon Pound Cake\tflower\t1300\t150000\n90020\tTropicana Cookies\tflower\t1200\t140000\n90021\tBanana Kush\tflower\t1000\t130000\n90022\tCherry Pie\tflower\t1000\t135000\n90023\tForbidden Fruit\tflower\t1200\t145000\n",
+  "stderr": "",
+  "execution_time_ms": 54
+}

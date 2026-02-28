@@ -9,7 +9,7 @@ import { ShoppingCart, Search, Leaf, Package, Zap, Star, ArrowUpDown } from "luc
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+
 import { getGuestCartCount } from "@/lib/cartPersistence";
 import { StateSelector } from "@/components/StateSelector";
 import { useGeolocation } from "@/hooks/useGeolocation";
@@ -97,128 +97,73 @@ export default function Home() {
     ? cartItems.reduce((sum, item) => sum + item.quantity, 0)
     : guestCartCount;
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100
-      }
-    }
-  };
-
-  const logoVariants = {
-    initial: { scale: 1 },
-    hover: { 
-      scale: 1.05,
-      transition: { type: "spring" as const, stiffness: 400, damping: 10 }
-    }
-  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-slate-900">
       <AgeVerification />
       {/* Header - using shared NavHeader for consistency */}
       <NavHeader />
 
       {/* Hero Section */}
-      <motion.section 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="py-12 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50"
-      >
+      <section className="py-12 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-950">
         <div className="container mx-auto">
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-center mb-8"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Cannabis Payment Processing, Built for the Industry
             </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
               ZAPPAY processes payments between licensed farmers, dispensaries, and consumers — legally, instantly, and at just 5.2%. We don't sell products; we power the transactions.
             </p>
-          </motion.div>
+          </div>
 
           {/* Stats */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
-          >
-            <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
-              <Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <Card className="bg-slate-800 border-slate-700">
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-green-100 rounded-lg">
-                      <Leaf className="h-6 w-6 text-green-600" />
+                    <div className="p-3 bg-green-900/50 rounded-lg">
+                      <Leaf className="h-6 w-6 text-green-400" />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-slate-900">{products.length}+</p>
-                      <p className="text-sm text-slate-600">Listed Products</p>
+                      <p className="text-2xl font-bold text-white">{products.length}+</p>
+                      <p className="text-sm text-slate-400">Listed Products</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
 
-            <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
-              <Card>
+            <Card className="bg-slate-800 border-slate-700">
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 rounded-lg">
-                      <Zap className="h-6 w-6 text-blue-600" />
+                    <div className="p-3 bg-blue-900/50 rounded-lg">
+                      <Zap className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-slate-900">5.2%</p>
-                      <p className="text-sm text-slate-600">Processing Fee</p>
+                      <p className="text-2xl font-bold text-white">5.2%</p>
+                      <p className="text-sm text-slate-400">Processing Fee</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
 
-            <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
-              <Card>
+            <Card className="bg-slate-800 border-slate-700">
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-purple-100 rounded-lg">
-                      <Package className="h-6 w-6 text-purple-600" />
+                    <div className="p-3 bg-purple-900/50 rounded-lg">
+                      <Package className="h-6 w-6 text-purple-400" />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-slate-900">24/7</p>
-                      <p className="text-sm text-slate-600">Always Open</p>
+                      <p className="text-2xl font-bold text-white">24/7</p>
+                      <p className="text-sm text-slate-400">Always Open</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
-          </motion.div>
+          </div>
 
           {/* Search Bar */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="max-w-2xl mx-auto mb-8"
-          >
+          <div className="max-w-2xl mx-auto mb-8">
             <div className="flex gap-3">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
@@ -245,19 +190,15 @@ export default function Home() {
                 </SelectContent>
               </Select>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Products Section */}
-      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50">
+      <section className="py-8 px-4 bg-slate-900">
         <div className="container mx-auto">
           <Tabs defaultValue="all" className="w-full" onValueChange={setActiveCategory}>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
+            <div>
               <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 mb-8">
                 <TabsTrigger value="all">All Products</TabsTrigger>
                 <TabsTrigger value="flower">Flower</TabsTrigger>
@@ -266,7 +207,7 @@ export default function Home() {
                 <TabsTrigger value="pre-rolls">Pre-Rolls</TabsTrigger>
                 <TabsTrigger value="vapes">Vapes</TabsTrigger>
               </TabsList>
-            </motion.div>
+            </div>
 
             <TabsContent value={activeCategory} className="mt-0">
               {isLoading ? (
@@ -278,21 +219,11 @@ export default function Home() {
                   <p className="text-slate-600">No products found</p>
                 </div>
               ) : (
-                <motion.div 
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                >
-                  {filteredProducts.map((product, index) => (
-                    <motion.div
-                      key={product.id}
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.03, y: -5 }}
-                      transition={{ type: "spring" as const, stiffness: 300 }}
-                    >
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredProducts.map((product) => (
+                    <div key={product.id} className="transition-transform duration-200 hover:-translate-y-1">
                       <Link href={`/product/${product.id}`}>
-                        <Card className="overflow-hidden h-full hover:shadow-xl transition-all cursor-pointer">
+                        <Card className="overflow-hidden h-full hover:shadow-xl transition-all cursor-pointer bg-slate-800 border-slate-700">
                         <CardHeader className="p-0">
                           <div className="relative aspect-square bg-white overflow-hidden">
                             {product.photos ? (
@@ -347,24 +278,24 @@ export default function Home() {
                           </div>
                         </CardHeader>
                         <CardContent className="p-4">
-                          <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+                          <CardTitle className="text-lg mb-2 text-white">{product.name}</CardTitle>
                           <CardDescription className="mb-3">
-                            <span className="font-medium text-slate-700">{product.strain}</span>
+                            <span className="font-medium text-slate-300">{product.strain}</span>
                           </CardDescription>
                           
                           <div className="flex items-center gap-3 mb-3 text-sm">
                             {product.thcPercentage && (
                               <div>
-                                <span className="text-slate-500">THC:</span>
-                                <span className="ml-1 font-semibold text-green-600">
+                                <span className="text-slate-400">THC:</span>
+                                <span className="ml-1 font-semibold text-green-400">
                                   {product.thcPercentage}
                                 </span>
                               </div>
                             )}
                             {product.cbdPercentage && (
                               <div>
-                                <span className="text-slate-500">CBD:</span>
-                                <span className="ml-1 font-semibold text-blue-600">
+                                <span className="text-slate-400">CBD:</span>
+                                <span className="ml-1 font-semibold text-blue-400">
                                   {product.cbdPercentage}
                                 </span>
                               </div>
@@ -386,20 +317,20 @@ export default function Home() {
                                   }`}
                                 />
                               ))}
-                              <span className="text-xs text-slate-500 ml-1">{product.rating}</span>
+                              <span className="text-xs text-slate-400 ml-1">{product.rating}</span>
                             </div>
                           )}
 
                           <div className="space-y-1">
                             <div className="flex items-center justify-between">
                               <div>
-                                <span className="text-2xl font-bold text-slate-900">
+                                <span className="text-2xl font-bold text-white">
                                   ${typeof product.price === 'number' ? (product.price).toFixed(2) : product.price}
                                 </span>
-                                <span className="text-sm text-slate-600 ml-1">/gram</span>
+                                <span className="text-sm text-slate-400 ml-1">/gram</span>
                               </div>
                               {product.retailPrice && (
-                                <span className="text-sm text-slate-400 line-through">
+                                <span className="text-sm text-slate-500 line-through">
                                   ${typeof product.retailPrice === 'number' ? (product.retailPrice).toFixed(2) : product.retailPrice}
                                 </span>
                               )}
@@ -410,26 +341,26 @@ export default function Home() {
                               </div>
                             )}
                             <div className="flex items-center gap-2 pt-1">
-                              <span className="inline-flex items-center gap-1 bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+                              <span className="inline-flex items-center gap-1 bg-blue-900/50 border border-blue-700 text-blue-300 text-xs font-semibold px-2 py-0.5 rounded-full">
                                 4g min
                               </span>
-                              <span className="text-xs text-slate-500">
+                              <span className="text-xs text-slate-400">
                                 From ${typeof product.price === 'number' ? (product.price * 4).toFixed(2) : product.price} for 4g
                               </span>
                             </div>
                           </div>
 
                           {product.quantity < 10 && product.quantity > 0 && product.status === 'active' && (
-                            <p className="text-xs text-orange-600 mt-2">
+                            <p className="text-xs text-orange-400 mt-2">
                               Only {product.quantity} left in stock!
                             </p>
                           )}
                         </CardContent>
                       </Card>
                       </Link>
-                    </motion.div>
+                    </div>
                   ))}
-                </motion.div>
+                </div>
               )}
             </TabsContent>
           </Tabs>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'wouter';
-import { motion } from 'framer-motion';
+
 import { MapPin, Package, Truck, CheckCircle, Clock, ArrowLeft } from 'lucide-react';
 import { Link } from 'wouter';
 import { NavHeader } from '@/components/NavHeader';
@@ -118,11 +118,7 @@ export default function TrackOrder() {
       <NavHeader />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <Link href="/">
             <button className="flex items-center gap-2 text-blue-300 hover:text-white mb-4 transition-colors">
               <ArrowLeft className="h-4 w-4" />
@@ -131,16 +127,11 @@ export default function TrackOrder() {
           </Link>
           <h1 className="text-4xl font-bold text-white mb-2">Track Your Order</h1>
           <p className="text-blue-200">Order #{orderId}</p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Map Section */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
-            className="lg:col-span-2"
-          >
+          <div className="lg:col-span-2">
             <Card className="overflow-hidden border-blue-800/50 bg-[#1a3050]/80 backdrop-blur-sm">
               <CardHeader className="bg-gradient-to-r from-blue-700 to-blue-800 text-white">
                 <CardTitle className="flex items-center gap-2">
@@ -171,39 +162,17 @@ export default function TrackOrder() {
                         />
                       </svg>
 
-                      {/* Current Location Marker (animated) */}
-                      <motion.div
-                        animate={{
-                          x: [300, 320, 300],
-                          y: [200, 190, 200],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="absolute"
-                        style={{ left: '300px', top: '200px' }}
-                      >
+                      {/* Current Location Marker */}
+                      <div className="absolute" style={{ left: '300px', top: '200px' }}>
                         <div className="relative">
-                          {/* Pulsing circle */}
-                          <motion.div
-                            animate={{
-                              scale: [1, 1.5, 1],
-                              opacity: [0.5, 0, 0.5],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                            }}
-                            className="absolute -inset-4 bg-blue-500 rounded-full"
-                          />
+                          {/* Pulsing circle via CSS */}
+                          <div className="absolute -inset-4 bg-blue-500 rounded-full animate-ping opacity-30" />
                           {/* Truck icon */}
                           <div className="relative bg-blue-600 text-white p-3 rounded-full shadow-lg">
                             <Truck className="h-6 w-6" />
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
 
                       {/* Destination Marker */}
                       <div className="absolute" style={{ left: '500px', top: '300px' }}>
@@ -227,27 +196,18 @@ export default function TrackOrder() {
 
                   {/* Live Status Badge */}
                   <div className="absolute top-4 right-4">
-                    <motion.div
-                      animate={{ opacity: [1, 0.5, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="bg-red-600 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2"
-                    >
-                      <div className="w-2 h-2 bg-white rounded-full" />
+                    <div className="bg-red-600 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
                       <span className="text-sm font-semibold">LIVE</span>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
 
           {/* Tracking Details Sidebar */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="space-y-6"
-          >
+          <div className="space-y-6">
             {/* Status Card */}
             <Card className="border-blue-800/50 bg-[#1a3050]/80 backdrop-blur-sm">
               <CardHeader>
@@ -313,7 +273,7 @@ export default function TrackOrder() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
