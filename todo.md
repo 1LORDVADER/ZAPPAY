@@ -438,6 +438,11 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [ ] Update Pricing page to reflect new $99/month entry tier
 
 
+## Dark Mode Fix (Feb 28, 2026)
+- [x] Remove `switchable` from ThemeProvider so theme is always forced to light
+- [x] Clear stale localStorage dark theme on app startup in main.tsx
+- [x] Dark mode toggle in NavHeader auto-hides (guarded by `toggleTheme && ...`)
+
 ## 90-Day Adaptation Plan - Web Platform Features (Feb 28, 2026)
 
 ### Feature 1: Hemp / CBD Category

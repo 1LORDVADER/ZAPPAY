@@ -8,6 +8,10 @@ import App from "./App";
 import { getLoginUrl } from "./const";
 import "./index.css";
 
+// Always force light mode — clear any stale dark theme from localStorage
+localStorage.removeItem("theme");
+document.documentElement.classList.remove("dark");
+
 const queryClient = new QueryClient();
 
 const redirectToLoginIfUnauthorized = (error: unknown) => {
