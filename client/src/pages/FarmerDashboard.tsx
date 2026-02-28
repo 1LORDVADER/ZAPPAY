@@ -52,13 +52,11 @@ export default function FarmerDashboard() {
 
   const handlePriceAdjust = () => {
     if (!liveBrokerProduct) return;
-    // price from server is in dollars; convert to cents for storage
-    const currentPriceDollars = liveBrokerProduct.price;
-    const newPriceDollars = currentPriceDollars * (1 + priceAdjustment / 100);
-    const newPriceCents = Math.round(newPriceDollars * 100);
+    const currentPrice = liveBrokerProduct.price;
+    const newPrice = Math.round(currentPrice * (1 + priceAdjustment / 100));
     updatePriceMutation.mutate({
       id: liveBrokerProduct.id,
-      price: newPriceCents,
+      price: newPrice,
     });
   };
 
@@ -75,7 +73,7 @@ export default function FarmerDashboard() {
     );
   }
 
-  const totalRevenue = products.reduce((sum: number, p: any) => sum + (p.price * p.quantity), 0);
+  const totalRevenue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
   const activeProducts = products.filter(p => p.status === 'active').length;
   const totalViews = products.reduce((sum, p) => sum + (p.views || 0), 0);
 
@@ -88,7 +86,7 @@ export default function FarmerDashboard() {
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
                 <img 
-                  src="/logo.png" 
+                  src="/zappay-logo.jpeg" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />
@@ -154,7 +152,7 @@ export default function FarmerDashboard() {
                 <div className="flex items-center gap-2">
                   <DollarSign className="h-5 w-5 text-green-600" />
                   <span className="text-3xl font-bold text-slate-900">
-                    ${totalRevenue.toFixed(2)}
+                    ${(totalRevenue / 100).toFixed(2)}
                   </span>
                 </div>
               </CardContent>
@@ -266,7 +264,7 @@ export default function FarmerDashboard() {
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-slate-600">Price:</span>
                         <span className="font-semibold text-slate-900">
-                          ${(product.price).toFixed(2)}/{product.unit}
+                          ${(product.price / 100).toFixed(2)}/{product.unit}
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
@@ -344,7 +342,7 @@ export default function FarmerDashboard() {
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="text-sm text-slate-600 mb-1">Current Price</div>
                 <div className="text-3xl font-bold text-slate-900">
-                  ${(liveBrokerProduct.price).toFixed(2)}/{liveBrokerProduct.unit}
+                  ${(liveBrokerProduct.price / 100).toFixed(2)}/{liveBrokerProduct.unit}
                 </div>
               </div>
 

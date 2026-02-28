@@ -1,5 +1,4 @@
 import { trpc } from "@/lib/trpc";
-import { NavHeader } from "@/components/NavHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -42,9 +41,7 @@ export default function AdminSalesPanel() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <NavHeader />
-      <div className="container mx-auto py-8 space-y-8">
+    <div className="container mx-auto py-8 space-y-8">
       <div>
         <h1 className="text-3xl font-bold">Sales Force Admin Panel</h1>
         <p className="text-muted-foreground">Manage sales reps and commissions</p>
@@ -185,7 +182,6 @@ export default function AdminSalesPanel() {
           </div>
         </CardContent>
       </Card>
-      </div>
     </div>
   );
 }

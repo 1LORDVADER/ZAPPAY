@@ -48,11 +48,10 @@ export default function FarmerAnalytics() {
   const totalProducts = products.length;
   const activeProducts = products.filter((p: any) => p.stock > 0).length;
   
-  // Calculate total revenue from orders (order.total is in cents)
-  const totalRevenueCents = orders.reduce((sum: number, order: any) => sum + (order.total || 0), 0);
-  const totalRevenue = totalRevenueCents / 100;
+  // Calculate total revenue from orders
+  const totalRevenue = orders.reduce((sum: number, order: any) => sum + (order.total || 0), 0);
   
-  // Calculate average order value in dollars
+  // Calculate average order value
   const avgOrderValue = orders.length > 0 ? totalRevenue / orders.length : 0;
   
   // Get top selling products
@@ -68,7 +67,7 @@ export default function FarmerAnalytics() {
     return {
       ...product,
       totalSold,
-      revenue: totalSold * product.price // product.price is already in dollars from server
+      revenue: totalSold * product.price
     };
   }).sort((a: any, b: any) => b.totalSold - a.totalSold);
 
@@ -83,7 +82,7 @@ export default function FarmerAnalytics() {
             <Link href="/">
               <a className="flex items-center gap-3">
                 <img 
-                  src="/logo.png" 
+                  src="/zappay-logo.jpeg" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />
@@ -125,7 +124,7 @@ export default function FarmerAnalytics() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold text-green-600">
-                  ${totalRevenue.toFixed(2)}
+                  ${(totalRevenue / 100).toFixed(2)}
                 </p>
                 <p className="text-xs text-slate-600 mt-1">All time</p>
               </CardContent>
@@ -170,7 +169,7 @@ export default function FarmerAnalytics() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold text-orange-600">
-                  ${avgOrderValue.toFixed(2)}
+                  ${(avgOrderValue / 100).toFixed(2)}
                 </p>
                 <p className="text-xs text-slate-600 mt-1">Per order</p>
               </CardContent>
@@ -199,7 +198,7 @@ export default function FarmerAnalytics() {
                       </div>
                       <div className="text-right">
                         <p className="font-semibold text-slate-900">{product.totalSold} sold</p>
-                        <p className="text-sm text-green-600">${product.revenue.toFixed(2)} revenue</p>
+                        <p className="text-sm text-green-600">${(product.revenue / 100).toFixed(2)} revenue</p>
                       </div>
                     </div>
                   ))}

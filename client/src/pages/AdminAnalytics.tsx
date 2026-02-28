@@ -1,5 +1,4 @@
 import { useAuth } from "@/_core/hooks/useAuth";
-import { NavHeader } from "@/components/NavHeader";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
@@ -47,7 +46,6 @@ export default function AdminAnalytics() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <NavHeader />
       {/* Header */}
       <div className="bg-[#1e3a5f] text-white py-8">
         <div className="container mx-auto px-4">

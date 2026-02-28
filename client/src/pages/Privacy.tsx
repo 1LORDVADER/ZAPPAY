@@ -1,13 +1,17 @@
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { NavHeader } from '@/components/NavHeader';
 
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      <NavHeader />
       <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <Link href="/">
+          <Button variant="ghost" className="mb-8">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Home
+          </Button>
+        </Link>
 
         <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
         <p className="text-sm text-muted-foreground mb-8">Last Updated: February 26, 2026</p>

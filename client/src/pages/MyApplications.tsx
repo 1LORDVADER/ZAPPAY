@@ -1,6 +1,5 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { NavHeader } from "@/components/NavHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -92,9 +91,11 @@ export default function MyApplications() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <NavHeader />
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
+          <Button variant="outline" onClick={() => setLocation("/")} className="mb-4">
+            ← Back to Home
+          </Button>
           <h1 className="text-4xl font-bold text-slate-900 mb-2">My Applications</h1>
           <p className="text-slate-600">Track the status of your applications to join ZAPPAY</p>
         </div>

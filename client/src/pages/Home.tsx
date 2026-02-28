@@ -369,19 +369,19 @@ export default function Home() {
                             <div className="flex items-center justify-between">
                               <div>
                                 <span className="text-2xl font-bold text-slate-900">
-                                  ${typeof product.price === 'number' ? product.price.toFixed(2) : parseFloat(product.price as string).toFixed(2)}
+                                  ${typeof product.price === 'number' ? (product.price / 100).toFixed(2) : product.price}
                                 </span>
                                 <span className="text-sm text-slate-600 ml-1">/gram</span>
                               </div>
                               {product.retailPrice && (
                                 <span className="text-sm text-slate-400 line-through">
-                                  ${typeof product.retailPrice === 'number' ? product.retailPrice.toFixed(2) : parseFloat(product.retailPrice as string).toFixed(2)}
+                                  ${typeof product.retailPrice === 'number' ? (product.retailPrice / 100).toFixed(2) : product.retailPrice}
                                 </span>
                               )}
                             </div>
                             {product.retailPrice && (
-                              <div className="text-xs font-semibold text-orange-600">
-                                Save ${((typeof product.retailPrice === 'number' ? product.retailPrice : parseFloat(product.retailPrice as string)) - (typeof product.price === 'number' ? product.price : parseFloat(product.price as string))).toFixed(2)}/gram
+                              <div className="text-xs font-semibold text-green-600">
+                                Save ${((typeof product.retailPrice === 'number' ? product.retailPrice / 100 : parseFloat(product.retailPrice) / 100) - (typeof product.price === 'number' ? product.price / 100 : parseFloat(product.price) / 100)).toFixed(2)}/gram
                               </div>
                             )}
                           </div>
