@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
+import { NavHeader } from "@/components/NavHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -59,7 +60,9 @@ export default function Referrals() {
   }
 
   return (
-    <div className="container max-w-6xl mx-auto py-12">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <NavHeader />
+      <div className="container max-w-6xl mx-auto py-12">
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">Referral Program</h1>
         <p className="text-muted-foreground">
@@ -195,6 +198,7 @@ export default function Referrals() {
           )}
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

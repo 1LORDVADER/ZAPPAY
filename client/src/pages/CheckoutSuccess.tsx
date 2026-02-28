@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, Package, Home } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { NavHeader } from "@/components/NavHeader";
 
 export default function CheckoutSuccess() {
   const [location] = useLocation();
@@ -22,7 +23,9 @@ export default function CheckoutSuccess() {
   }, [sessionId, utils]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <NavHeader />
+      <div className="flex items-center justify-center p-4 py-12">
       <Card className="max-w-2xl w-full">
         <CardHeader className="text-center">
           <div className="mx-auto mb-6 h-20 w-20 rounded-full bg-green-100 flex items-center justify-center">
@@ -85,6 +88,7 @@ export default function CheckoutSuccess() {
           </p>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

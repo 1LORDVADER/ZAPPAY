@@ -541,3 +541,12 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Verify search/filter on Browse page works
 - [x] Verify footer links work (Terms, Privacy)
 - [x] Verify login/logout flow works
+
+## User Request (February 28, 2026) — Remove Duplicate Products & Fix Logo Sitewide
+
+- [x] Remove all duplicate "Test Blue Dream" product entries from database (8 duplicates deleted)
+- [x] Audit all products for other duplicates and remove them — 0 duplicates remaining
+- [x] Ensure ZAPPAY logo appears in NavHeader on all pages — added NavHeader to 9 pages missing it
+- [x] Fix /zappay-logo.jpeg references to /logo.png across all pages
+- [x] Add NavHeader to: CheckoutSuccess, MyApplications, Referrals, SalesRepDashboard, TransporterDashboard, AdminAnalytics, AdminSalesPanel, Terms, Privacy
+- [x] Run full test suite — 51/51 tests pass

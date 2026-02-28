@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { trpc } from "@/lib/trpc";
+import { NavHeader } from "@/components/NavHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -139,16 +140,15 @@ export default function SalesRepDashboard() {
   const paidCommissions = dashboard?.commissions.filter((c) => c.status === "paid") || [];
 
   return (
-    <div className="container mx-auto py-8 space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <NavHeader />
+      <div className="container mx-auto py-8 space-y-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Sales Rep Dashboard</h1>
           <p className="text-muted-foreground">Track your referrals and commissions</p>
         </div>
-        <Link href="/">
-          <Button variant="outline">Back to Home</Button>
-        </Link>
       </div>
 
       {/* Referral Code Card */}
@@ -315,6 +315,7 @@ export default function SalesRepDashboard() {
           )}
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

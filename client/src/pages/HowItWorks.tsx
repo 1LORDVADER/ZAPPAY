@@ -18,7 +18,7 @@ export default function HowItWorks() {
             <Link href="/">
               <a className="flex items-center gap-3">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />
