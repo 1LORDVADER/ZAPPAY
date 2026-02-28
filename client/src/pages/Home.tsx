@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Zap, Star, ArrowUpDown, TrendingDown, Shield, Clock, CreditCard, Leaf } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { ShoppingCart, Search, Star, ArrowUpDown, TrendingDown, Shield, Clock, CreditCard, Leaf } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getGuestCartCount } from "@/lib/cartPersistence";
@@ -28,33 +28,33 @@ const ADVANTAGES = [
     icon: <Clock className="h-5 w-5" />,
     title: "Sub-1 Second Settlement",
     desc: "Transactions confirmed and settled in under one second — faster than any bank.",
-    color: "#22c55e",
-    bg: "rgba(34,197,94,0.08)",
-    border: "rgba(34,197,94,0.18)",
+    color: "#16a34a",
+    bg: "#f0fdf4",
+    border: "#bbf7d0",
   },
   {
     icon: <Shield className="h-5 w-5" />,
     title: "Insurance Payments",
     desc: "ZAPPAY supports insurance payment processing for medical cannabis patients.",
-    color: "#60a5fa",
-    bg: "rgba(96,165,250,0.08)",
-    border: "rgba(96,165,250,0.18)",
+    color: "#1d4ed8",
+    bg: "#eff6ff",
+    border: "#bfdbfe",
   },
   {
     icon: <TrendingDown className="h-5 w-5" />,
     title: "Live Broker Pricing",
     desc: "Dynamic real-time pricing direct from licensed farmers — no dispensary markup.",
-    color: "#a78bfa",
-    bg: "rgba(167,139,250,0.08)",
-    border: "rgba(167,139,250,0.18)",
+    color: "#7c3aed",
+    bg: "#faf5ff",
+    border: "#ddd6fe",
   },
   {
     icon: <CreditCard className="h-5 w-5" />,
     title: "Just 5.2% Per Transaction",
     desc: "The lowest processing fee in the cannabis industry. Farmers keep 94.8%.",
-    color: "#fb923c",
-    bg: "rgba(251,146,60,0.08)",
-    border: "rgba(251,146,60,0.18)",
+    color: "#c2410c",
+    bg: "#fff7ed",
+    border: "#fed7aa",
   },
 ];
 
@@ -135,7 +135,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: '#080c14' }}>
+    <div className="min-h-screen" style={{ background: '#f8fafc' }}>
       <AgeVerification />
       <NavHeader />
 
@@ -147,7 +147,7 @@ export default function Home() {
           borderBottom: '1px solid rgba(255,255,255,0.06)',
         }}
       >
-        {/* Ambient glow blobs — GPU-composited, no layout impact */}
+        {/* Ambient glow blobs */}
         <div
           className="pointer-events-none absolute"
           style={{
@@ -216,7 +216,7 @@ export default function Home() {
                 How It Works
               </Button>
             </Link>
-            <Link href="/apply">
+            <Link href="/farmer/register">
               <Button
                 size="lg"
                 variant="outline"
@@ -234,9 +234,9 @@ export default function Home() {
               <div
                 key={i}
                 className="rounded-2xl p-5 transition-transform duration-300 hover:-translate-y-1"
-                style={{ background: adv.bg, border: `1px solid ${adv.border}` }}
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
               >
-                <div className="mb-3" style={{ color: adv.color }}>{adv.icon}</div>
+                <div className="mb-3" style={{ color: adv.color === '#16a34a' ? '#4ade80' : adv.color === '#1d4ed8' ? '#60a5fa' : adv.color === '#7c3aed' ? '#a78bfa' : '#fb923c' }}>{adv.icon}</div>
                 <p className="font-bold text-white text-sm mb-1">{adv.title}</p>
                 <p className="text-xs leading-relaxed" style={{ color: '#64748b' }}>{adv.desc}</p>
               </div>
@@ -246,29 +246,25 @@ export default function Home() {
       </section>
 
       {/* ─── PRODUCT SECTION ─── */}
-      <section className="py-12 px-4" style={{ background: '#080c14' }}>
+      <section className="py-12 px-4" style={{ background: '#f8fafc' }}>
         <div className="container mx-auto">
 
           {/* Search + Filters row */}
           <div className="flex flex-wrap gap-3 mb-8">
             <div className="relative flex-1 min-w-[200px]">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <Input
                 type="text"
                 placeholder="Search strains, THC%, effects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-11 text-sm text-white placeholder:text-gray-500"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                className="pl-10 h-11 text-sm text-slate-800 placeholder:text-slate-400 bg-white border-slate-200 focus:border-blue-400 shadow-sm"
               />
             </div>
             <AdvancedFilters filters={filters} onFiltersChange={setFilters} />
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger
-                className="w-44 h-11 text-sm font-medium"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#e2e8f0' }}
-              >
-                <ArrowUpDown className="h-3.5 w-3.5 mr-2 text-gray-400" />
+              <SelectTrigger className="w-44 h-11 text-sm font-medium bg-white border-slate-200 text-slate-700 shadow-sm">
+                <ArrowUpDown className="h-3.5 w-3.5 mr-2 text-slate-400" />
                 <SelectValue placeholder="Sort" />
               </SelectTrigger>
               <SelectContent>
@@ -291,15 +287,16 @@ export default function Home() {
                 style={
                   activeCategory === cat.value
                     ? {
-                        background: '#22c55e',
-                        color: '#000',
-                        border: '1px solid #22c55e',
-                        boxShadow: '0 0 16px rgba(34,197,94,0.35)',
+                        background: '#1e3a5f',
+                        color: '#ffffff',
+                        border: '1px solid #1e3a5f',
+                        boxShadow: '0 2px 8px rgba(30,58,95,0.25)',
                       }
                     : {
-                        background: 'rgba(255,255,255,0.05)',
-                        color: '#94a3b8',
-                        border: '1px solid rgba(255,255,255,0.1)',
+                        background: '#ffffff',
+                        color: '#475569',
+                        border: '1px solid #e2e8f0',
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
                       }
                 }
               >
@@ -315,7 +312,7 @@ export default function Home() {
 
           {/* Product count */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-sm" style={{ color: '#64748b' }}>
+            <p className="text-sm text-slate-500">
               {isLoading ? "Loading..." : `${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''} available`}
             </p>
             {userState && (
@@ -331,23 +328,22 @@ export default function Home() {
               {[...Array(8)].map((_, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl overflow-hidden animate-pulse"
-                  style={{ background: '#111827', border: '1px solid rgba(255,255,255,0.06)' }}
+                  className="rounded-2xl overflow-hidden animate-pulse bg-white border border-slate-200 shadow-sm"
                 >
-                  <div className="aspect-square" style={{ background: '#1a2234' }} />
+                  <div className="aspect-square bg-slate-100" />
                   <div className="p-4 space-y-3">
-                    <div className="h-4 rounded-lg" style={{ background: '#1a2234', width: '70%' }} />
-                    <div className="h-3 rounded-lg" style={{ background: '#1a2234', width: '50%' }} />
-                    <div className="h-6 rounded-lg" style={{ background: '#1a2234', width: '40%' }} />
+                    <div className="h-4 rounded-lg bg-slate-100" style={{ width: '70%' }} />
+                    <div className="h-3 rounded-lg bg-slate-100" style={{ width: '50%' }} />
+                    <div className="h-6 rounded-lg bg-slate-100" style={{ width: '40%' }} />
                   </div>
                 </div>
               ))}
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="text-center py-24">
-              <Leaf className="h-14 w-14 mx-auto mb-4" style={{ color: '#1e3a2f' }} />
-              <p className="text-lg font-semibold text-white mb-1">No products found</p>
-              <p className="text-sm" style={{ color: '#64748b' }}>Try adjusting your filters or search query</p>
+              <Leaf className="h-14 w-14 mx-auto mb-4 text-slate-300" />
+              <p className="text-lg font-semibold text-slate-700 mb-1">No products found</p>
+              <p className="text-sm text-slate-400">Try adjusting your filters or search query</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -363,11 +359,10 @@ export default function Home() {
                 return (
                   <Link key={product.id} href={`/product/${product.id}`}>
                     <div
-                      className="group rounded-2xl overflow-hidden cursor-pointer"
+                      className="group rounded-2xl overflow-hidden cursor-pointer bg-white"
                       style={{
-                        background: '#111827',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                        boxShadow: '0 2px 12px rgba(0,0,0,0.5)',
+                        border: '1.5px solid #e2e8f0',
+                        boxShadow: '0 1px 6px rgba(0,0,0,0.06), 0 0 0 0 transparent',
                         transition: 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
                         animation: `fadeSlideUp 0.4s ease both`,
                         animationDelay: `${Math.min(idx * 40, 400)}ms`,
@@ -375,18 +370,18 @@ export default function Home() {
                       onMouseEnter={e => {
                         const el = e.currentTarget as HTMLDivElement;
                         el.style.transform = 'translateY(-4px)';
-                        el.style.borderColor = 'rgba(34,197,94,0.4)';
-                        el.style.boxShadow = '0 12px 40px rgba(34,197,94,0.12)';
+                        el.style.borderColor = '#1e3a5f';
+                        el.style.boxShadow = '0 8px 30px rgba(30,58,95,0.12), 0 0 0 1px #1e3a5f';
                       }}
                       onMouseLeave={e => {
                         const el = e.currentTarget as HTMLDivElement;
                         el.style.transform = 'translateY(0)';
-                        el.style.borderColor = 'rgba(255,255,255,0.08)';
-                        el.style.boxShadow = '0 2px 12px rgba(0,0,0,0.5)';
+                        el.style.borderColor = '#e2e8f0';
+                        el.style.boxShadow = '0 1px 6px rgba(0,0,0,0.06), 0 0 0 0 transparent';
                       }}
                     >
                       {/* Image */}
-                      <div className="relative aspect-square overflow-hidden" style={{ background: '#1a2234' }}>
+                      <div className="relative aspect-square overflow-hidden bg-slate-50">
                         {imgSrc ? (
                           <img
                             src={imgSrc}
@@ -399,7 +394,7 @@ export default function Home() {
                           />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <Leaf className="h-16 w-16 opacity-20" style={{ color: '#22c55e' }} />
+                            <Leaf className="h-16 w-16 text-slate-200" />
                           </div>
                         )}
 
@@ -407,22 +402,22 @@ export default function Home() {
                         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
                           <span
                             className="text-xs font-semibold px-2.5 py-1 rounded-full capitalize"
-                            style={{ background: 'rgba(0,0,0,0.72)', color: '#cbd5e1', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.12)' }}
+                            style={{ background: 'rgba(255,255,255,0.92)', color: '#334155', backdropFilter: 'blur(8px)', border: '1px solid rgba(0,0,0,0.08)' }}
                           >
                             {product.category}
                           </span>
                           {product.isPreOrder && product.status !== 'sold_out' && (
-                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(234,88,12,0.92)', color: 'white' }}>
+                            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-orange-500 text-white">
                               Pre-Order
                             </span>
                           )}
                           {product.isFeatured && (
-                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(37,99,235,0.92)', color: 'white' }}>
+                            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-600 text-white">
                               Ready to Ship
                             </span>
                           )}
                           {product.status === 'growing' && (
-                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(217,119,6,0.92)', color: 'white' }}>
+                            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500 text-white">
                               Being Cultivated
                             </span>
                           )}
@@ -431,10 +426,7 @@ export default function Home() {
                         {/* Savings badge */}
                         {savings && (
                           <div className="absolute top-3 right-3">
-                            <span
-                              className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"
-                              style={{ background: 'rgba(22,163,74,0.92)', color: 'white' }}
-                            >
+                            <span className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 bg-green-600 text-white">
                               <TrendingDown className="h-3 w-3" />
                               -{savings}/g
                             </span>
@@ -443,32 +435,26 @@ export default function Home() {
 
                         {/* Sold out overlay */}
                         {product.status === 'sold_out' && (
-                          <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.65)' }}>
-                            <span className="text-white font-black text-xl tracking-widest rotate-[-12deg] px-4 py-2 rounded border-2 border-white/60">SOLD OUT</span>
+                          <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+                            <span className="text-slate-700 font-black text-xl tracking-widest rotate-[-12deg] px-4 py-2 rounded border-2 border-slate-400">SOLD OUT</span>
                           </div>
                         )}
                       </div>
 
                       {/* Card body */}
                       <div className="p-4">
-                        <h3 className="font-bold text-white text-base mb-0.5 truncate">{product.name}</h3>
-                        <p className="text-sm mb-2.5 truncate" style={{ color: '#64748b' }}>{product.strain}</p>
+                        <h3 className="font-bold text-slate-900 text-base mb-0.5 truncate">{product.name}</h3>
+                        <p className="text-sm mb-2.5 truncate text-slate-500">{product.strain}</p>
 
                         {/* THC / CBD */}
                         <div className="flex items-center gap-2 mb-2.5 flex-wrap">
                           {product.thcPercentage && (
-                            <span
-                              className="text-xs font-semibold px-2 py-0.5 rounded"
-                              style={{ background: 'rgba(34,197,94,0.1)', color: '#4ade80', border: '1px solid rgba(34,197,94,0.2)' }}
-                            >
+                            <span className="text-xs font-semibold px-2 py-0.5 rounded bg-green-50 text-green-700 border border-green-200">
                               THC {product.thcPercentage}
                             </span>
                           )}
                           {product.cbdPercentage && (
-                            <span
-                              className="text-xs font-semibold px-2 py-0.5 rounded"
-                              style={{ background: 'rgba(96,165,250,0.1)', color: '#60a5fa', border: '1px solid rgba(96,165,250,0.2)' }}
-                            >
+                            <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
                               CBD {product.cbdPercentage}
                             </span>
                           )}
@@ -480,43 +466,40 @@ export default function Home() {
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={`h-3 w-3 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-700"}`}
+                                className={`h-3 w-3 ${i < Math.floor(rating) ? "fill-amber-400 text-amber-400" : "text-slate-200"}`}
                               />
                             ))}
-                            <span className="text-xs ml-1" style={{ color: '#94a3b8' }}>{product.rating}</span>
+                            <span className="text-xs ml-1 text-slate-400">{product.rating}</span>
                           </div>
                         )}
 
-                        <div className="mb-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} />
+                        <div className="mb-3 border-t border-slate-100" />
 
                         {/* Price */}
                         <div className="flex items-end justify-between">
                           <div>
                             <div className="flex items-baseline gap-1.5">
-                              <span className="text-2xl font-black text-white">${price.toFixed(2)}</span>
-                              <span className="text-sm" style={{ color: '#64748b' }}>/gram</span>
+                              <span className="text-2xl font-black text-slate-900">${price.toFixed(2)}</span>
+                              <span className="text-sm text-slate-400">/gram</span>
                             </div>
                             {retailPrice && (
-                              <span className="text-xs line-through" style={{ color: '#374151' }}>
+                              <span className="text-xs line-through text-slate-300">
                                 ${retailPrice.toFixed(2)}/g
                               </span>
                             )}
                           </div>
                           <div className="text-right">
-                            <div
-                              className="text-xs font-bold px-2 py-1 rounded-lg"
-                              style={{ background: 'rgba(96,165,250,0.1)', color: '#60a5fa', border: '1px solid rgba(96,165,250,0.2)' }}
-                            >
+                            <div className="text-xs font-bold px-2 py-1 rounded-lg bg-blue-50 text-blue-700 border border-blue-200">
                               4g min
                             </div>
-                            <p className="text-xs mt-1" style={{ color: '#64748b' }}>
+                            <p className="text-xs mt-1 text-slate-400">
                               From ${(price * 4).toFixed(2)}
                             </p>
                           </div>
                         </div>
 
                         {product.quantity < 10 && product.quantity > 0 && product.status === 'active' && (
-                          <p className="text-xs mt-2 font-semibold" style={{ color: '#f97316' }}>
+                          <p className="text-xs mt-2 font-semibold text-orange-500">
                             ⚠ Only {product.quantity} left
                           </p>
                         )}
@@ -531,7 +514,7 @@ export default function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="py-14 mt-6" style={{ background: '#060a10', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <footer className="py-14 mt-6 bg-slate-900 border-t border-slate-800">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div>
@@ -545,7 +528,7 @@ export default function Home() {
                   { href: "/legal/prohibited-use-policy", label: "Prohibited Use" },
                 ].map(link => (
                   <li key={link.href}>
-                    <a href={link.href} className="text-sm transition-colors hover:text-blue-400" style={{ color: '#64748b' }}>
+                    <a href={link.href} className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
                       {link.label}
                     </a>
                   </li>
@@ -554,7 +537,7 @@ export default function Home() {
             </div>
             <div>
               <h3 className="font-bold text-white text-xs uppercase tracking-widest mb-4">Contact</h3>
-              <ul className="space-y-2 text-sm" style={{ color: '#64748b' }}>
+              <ul className="space-y-2 text-sm text-slate-400">
                 <li>support@zappay.com</li>
                 <li>1-800-ZAPPAY-1</li>
                 <li>privacy@zappay.com</li>
@@ -563,7 +546,7 @@ export default function Home() {
             </div>
             <div>
               <h3 className="font-bold text-white text-xs uppercase tracking-widest mb-4">About ZAPPAY</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#64748b' }}>
+              <p className="text-sm leading-relaxed text-slate-400">
                 ZAPPAY is a payment processor engineered for the cannabis industry. We facilitate legal transactions between licensed farmers, dispensaries, and consumers — we do not sell, distribute, or handle cannabis products. Just 5.2% per transaction.
               </p>
             </div>
@@ -579,7 +562,7 @@ export default function Home() {
                 ].map(link => (
                   <li key={link.href}>
                     <Link href={link.href}>
-                      <span className="text-sm cursor-pointer transition-colors hover:text-blue-400" style={{ color: '#64748b' }}>
+                      <span className="text-sm cursor-pointer text-slate-400 hover:text-blue-400 transition-colors">
                         {link.label}
                       </span>
                     </Link>
@@ -588,7 +571,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="pt-8 text-center text-xs" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', color: '#374151' }}>
+          <div className="pt-8 text-center text-xs text-slate-600 border-t border-slate-800">
             <p>© 2026 ZAPPAY. All rights reserved. For legal adult use only in states where cannabis is legal.</p>
           </div>
         </div>

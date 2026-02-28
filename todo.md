@@ -466,3 +466,26 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [ ] Implement smooth GPU-accelerated Framer Motion animations
 - [ ] Fix dark mode consistency across all pages
 - [ ] Full dark/light toggle working correctly
+
+
+## User Request (February 28, 2026) - Hyper-Realistic Product Photos & Light Theme
+
+### Hyper-Realistic Product Photos
+- [x] Regenerate all edible product images (4 images) with hyper-realistic studio photography
+- [x] Generate hyper-realistic pre-roll product images (4 images)
+- [x] Generate hyper-realistic vape cartridge product images (4 images)
+- [x] Generate hyper-realistic concentrate product images (4 images)
+- [x] Generate hyper-realistic flower strain images (24 images)
+- [x] Upload all new images to CDN
+- [x] Update all product records in database with new CDN image URLs
+
+### Light/White Theme Redesign
+- [x] Switch default theme from dark to light (white/slate background)
+- [x] Redesign product cards with white background and high-contrast navy blue outlines
+- [x] Update card hover states with navy blue border and shadow
+- [x] Update category tabs for light mode (white background, navy active state)
+- [x] Update search/filter inputs for light mode
+- [x] Update NavHeader to white background with dark text in light mode
+- [x] Preserve dark navy theme as dark mode (accessible via theme toggle)
+- [x] Keep hero section dark for visual contrast and impact
+- [x] Update footer to dark slate for visual grounding

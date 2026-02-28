@@ -49,7 +49,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
       : getGuestCartCount();
 
   return (
-    <header className="sticky top-0 z-50 bg-[#1e3a5f]/98 backdrop-blur-sm border-b border-[#1e3a5f]/50 shadow-lg">
+    <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm dark:bg-[#1e3a5f]/98 dark:border-[#1e3a5f]/50 dark:shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           {/* Logo - clean, no white rectangle */}
@@ -67,27 +67,27 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
             <Link href="/">
-              <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+              <Button variant="ghost" size="sm" className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10">
                 Browse
               </Button>
             </Link>
             <Link href="/pricing">
-              <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+              <Button variant="ghost" size="sm" className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10">
                 Pricing
               </Button>
             </Link>
             <Link href="/advertise">
-              <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+              <Button variant="ghost" size="sm" className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10">
                 Advertise
               </Button>
             </Link>
             <Link href="/how-it-works">
-              <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+              <Button variant="ghost" size="sm" className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10">
                 How It Works
               </Button>
             </Link>
             <a href="mailto:Zappay.co@gmail.com">
-              <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+              <Button variant="ghost" size="sm" className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10">
                 Contact
               </Button>
             </a>
@@ -95,7 +95,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
             {/* Apply Now Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+                <Button variant="ghost" size="sm" className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10">
                   Apply Now
                   <ChevronDown className="ml-1 h-3.5 w-3.5" />
                 </Button>
@@ -162,7 +162,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
             {/* Admin link */}
             {user?.role === "admin" && (
               <Link href="/admin/applications">
-                <Button variant="ghost" size="sm" className="text-yellow-300 hover:text-yellow-200 hover:bg-white/10">
+                <Button variant="ghost" size="sm" className="text-amber-600 hover:text-amber-700 hover:bg-amber-50 dark:text-yellow-300 dark:hover:text-yellow-200 dark:hover:bg-white/10">
                   Admin
                 </Button>
               </Link>
@@ -171,7 +171,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
             {/* My Applications */}
             {isAuthenticated && user?.role !== "admin" && (
               <Link href="/my-applications">
-                <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+                <Button variant="ghost" size="sm" className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10">
                   My Applications
                 </Button>
               </Link>
@@ -186,7 +186,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="relative text-white hover:text-red-400 hover:bg-white/10"
+                  className="relative text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10"
                 >
                   <ShoppingCart className="h-4 w-4" />
                   {resolvedCartCount > 0 && (
@@ -207,7 +207,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-white hover:text-red-400 hover:bg-white/10 max-w-[200px] pr-2"
+                      className="text-slate-700 hover:text-blue-900 hover:bg-slate-100 dark:text-white dark:hover:text-red-400 dark:hover:bg-white/10 max-w-[200px] pr-2"
                     >
                       <User className="h-4 w-4 mr-1.5 flex-shrink-0" />
                       <span className="truncate text-xs hidden sm:inline">{user?.email}</span>
