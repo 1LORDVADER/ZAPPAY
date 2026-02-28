@@ -147,7 +147,7 @@ const OptimizedOnboarding = ({ initialType = '', onBack }: OptimizedOnboardingPr
                           <p className="text-sm text-gray-600">{type.description}</p>
                         </div>
                         {userType === type.value && (
-                          <CheckCircle className="h-5 w-5 text-green-600 ml-auto" />
+                          <CheckCircle className="h-5 w-5 text-[#0D1B2A] ml-auto" />
                         )}
                       </div>
                     </div>
@@ -325,7 +325,7 @@ const OptimizedOnboarding = ({ initialType = '', onBack }: OptimizedOnboardingPr
                 Next Step
               </Button>
             ) : (
-              <Button className="bg-green-600 hover:bg-green-700">
+              <Button className="bg-[#E8231A] hover:bg-[#c41d15]">
                 Submit Application
               </Button>
             )}

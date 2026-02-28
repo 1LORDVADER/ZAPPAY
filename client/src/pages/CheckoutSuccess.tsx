@@ -36,8 +36,8 @@ export default function CheckoutSuccess() {
       <div className="flex items-center justify-center p-4 pt-8">
         <Card className="max-w-2xl w-full">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-6 h-20 w-20 rounded-full bg-green-100 flex items-center justify-center">
-              <CheckCircle className="h-12 w-12 text-green-600" />
+            <div className="mx-auto mb-6 h-20 w-20 rounded-full bg-[#fde8e7] flex items-center justify-center">
+              <CheckCircle className="h-12 w-12 text-[#0D1B2A]" />
             </div>
             <CardTitle className="text-3xl mb-2">Order Confirmed!</CardTitle>
             <CardDescription className="text-lg">
@@ -123,8 +123,8 @@ export default function CheckoutSuccess() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-green-50 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-4 p-4 bg-[#f0f4f8] rounded-lg">
+                <CheckCircle className="h-6 w-6 text-[#0D1B2A] flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-slate-900 mb-1">Direct from Farmers</h3>
                   <p className="text-sm text-slate-600">

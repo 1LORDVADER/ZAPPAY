@@ -59,7 +59,7 @@ export default function SalesRepDashboard() {
           <CardContent className="space-y-6">
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <DollarSign className="h-5 w-5 text-green-600 mt-1" />
+                <DollarSign className="h-5 w-5 text-[#0D1B2A] mt-1" />
                 <div>
                   <h3 className="font-semibold">Lucrative Commissions</h3>
                   <p className="text-sm text-muted-foreground">
@@ -194,7 +194,7 @@ export default function SalesRepDashboard() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-600" />
+              <CheckCircle2 className="h-5 w-5 text-[#0D1B2A]" />
               <span className="text-3xl font-bold">{stats.activeReferrals}</span>
             </div>
           </CardContent>

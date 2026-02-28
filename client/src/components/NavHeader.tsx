@@ -104,7 +104,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 <DropdownMenuItem asChild>
                   <Link href="/farmer/register">
                     <div className="flex items-center gap-2 w-full cursor-pointer py-1">
-                      <Sprout className="h-4 w-4 text-green-600 flex-shrink-0" />
+                      <Sprout className="h-4 w-4 text-[#E8231A] flex-shrink-0" />
                       <div>
                         <div className="font-medium text-sm">Licensed Farmer</div>
                         <div className="text-xs text-slate-500">Sell your cannabis products</div>

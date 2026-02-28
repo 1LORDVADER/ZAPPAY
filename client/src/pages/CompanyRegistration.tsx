@@ -59,8 +59,8 @@ export default function CompanyRegistration() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-4">
         <Card className="max-w-md w-full">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 h-16 w-16 bg-green-100 rounded-full flex items-center justify-center">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+            <div className="mx-auto mb-4 h-16 w-16 bg-[#fde8e7] rounded-full flex items-center justify-center">
+              <CheckCircle className="h-8 w-8 text-[#0D1B2A]" />
             </div>
             <CardTitle className="text-2xl">Application Submitted!</CardTitle>
             <CardDescription>

@@ -29,7 +29,7 @@ export default function AdminAnalytics() {
     );
   }
 
-  const COLORS = ['#1e3a5f', '#dc2626', '#16a34a', '#ea580c'];
+  const COLORS = ['#1e3a5f', '#dc2626', '#c41d15', '#ea580c'];
 
   const applicationsByType = [
     { name: 'Farmers', value: analytics.totalFarmers },
@@ -86,10 +86,10 @@ export default function AdminAnalytics() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Approved</CardTitle>
-              <CheckCircle className="h-4 w-4 text-green-600" />
+              <CheckCircle className="h-4 w-4 text-[#0D1B2A]" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">{analytics.approvedApplications}</div>
+              <div className="text-2xl font-bold text-[#0D1B2A]">{analytics.approvedApplications}</div>
               <p className="text-xs text-muted-foreground mt-1">
                 {analytics.conversionRate}% conversion rate
               </p>

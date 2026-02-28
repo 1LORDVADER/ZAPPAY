@@ -34,7 +34,7 @@ export default function AdminPayments() {
       case "paid":
       case "completed":
       case "delivered":
-        return <CheckCircle2 className="h-4 w-4 text-green-500" />;
+        return <CheckCircle2 className="h-4 w-4 text-[#0D1B2A]" />;
       case "pending":
         return <Clock className="h-4 w-4 text-yellow-500" />;
       case "cancelled":
@@ -50,7 +50,7 @@ export default function AdminPayments() {
       case "paid":
       case "completed":
       case "delivered":
-        return "bg-green-100 text-green-800 border-green-200";
+        return "bg-[#fde8e7] text-[#0D1B2A] border-[#c5d0dc]";
       case "pending":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "cancelled":
@@ -90,7 +90,7 @@ export default function AdminPayments() {
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
-                <DollarSign className="h-5 w-5 text-green-400" />
+                <DollarSign className="h-5 w-5 text-[#1e3a5f]" />
                 <span className="text-2xl font-bold text-white">${totalRevenue.toFixed(2)}</span>
               </div>
             </CardContent>
@@ -126,7 +126,7 @@ export default function AdminPayments() {
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-green-400" />
+                <CheckCircle2 className="h-5 w-5 text-[#1e3a5f]" />
                 <span className="text-2xl font-bold text-white">{paidOrders}</span>
                 <span className="text-slate-500">/</span>
                 <span className="text-xl font-bold text-yellow-400">{pendingOrders}</span>
@@ -180,7 +180,7 @@ export default function AdminPayments() {
                           </div>
                         </td>
                         <td className="py-3 px-4">
-                          <span className="text-green-400 font-semibold">${(order.totalAmount || 0).toFixed(2)}</span>
+                          <span className="text-[#1e3a5f] font-semibold">${(order.totalAmount || 0).toFixed(2)}</span>
                         </td>
                         <td className="py-3 px-4">
                           <span className="text-red-400 text-sm">${((order.totalAmount || 0) * 0.052).toFixed(2)}</span>

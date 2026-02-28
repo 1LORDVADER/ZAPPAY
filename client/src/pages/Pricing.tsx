@@ -34,7 +34,7 @@ export default function Pricing() {
       price: "$1,100",
       period: "paid from fees",
       description: "No upfront cost - pay from your earnings",
-      color: "from-green-500 to-green-600",
+      color: "from-[#E8231A] to-[#c41d15]",
       icon: Rocket,
       features: [
         { text: "Unlimited product listings", included: true },
@@ -95,7 +95,7 @@ export default function Pricing() {
             ZAPPAY processes payments for your cannabis sales. No upfront costs — all subscription fees are automatically deducted from your processed transaction earnings. List your products and let us handle the payment infrastructure.
           </p>
           <div className="flex items-center justify-center gap-4 text-sm">
-            <Badge className="bg-green-600 text-white hover:bg-green-700">
+            <Badge className="bg-[#E8231A] text-white hover:bg-[#c41d15]">
               <Check className="mr-2 h-4 w-4" />
               No Setup Fees
             </Badge>
@@ -152,7 +152,7 @@ export default function Pricing() {
                       {tier.features.map((feature, index) => (
                         <li key={index} className="flex items-start gap-2">
                           {feature.included ? (
-                            <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                            <Check className="h-5 w-5 text-[#0D1B2A] flex-shrink-0 mt-0.5" />
                           ) : (
                             <X className="h-5 w-5 text-slate-300 flex-shrink-0 mt-0.5" />
                           )}
@@ -219,45 +219,45 @@ export default function Pricing() {
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Priority Search Placement</td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Advanced Analytics</td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Custom Storefront</td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">24/7 Ad Campaigns</td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Dedicated Account Manager</td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Advanced Demand Forecasting</td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-slate-100">
                   <td className="p-4 text-slate-700">Priority 24/7 Support</td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
                   <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="h-5 w-5 text-[#0D1B2A] mx-auto" /></td>
                 </tr>
 
               </tbody>

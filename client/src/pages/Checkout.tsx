@@ -272,8 +272,8 @@ export default function Checkout() {
                   <CardContent className="space-y-4">
                     {cartWithProducts.map((item) => (
                       <div key={item.id} className="flex items-center gap-4 pb-4 border-b last:border-0">
-                        <div className="h-16 w-16 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <ShoppingCart className="h-6 w-6 text-green-600" />
+                        <div className="h-16 w-16 bg-gradient-to-br from-[#f0f4f8] to-[#e8edf3] rounded-lg flex items-center justify-center flex-shrink-0">
+                          <ShoppingCart className="h-6 w-6 text-[#0D1B2A]" />
                         </div>
                         <div className="flex-grow">
                           <p className="font-semibold text-slate-900">{item.product!.name}</p>
@@ -311,7 +311,7 @@ export default function Checkout() {
                       </span>
                     </div>
                     
-                    <div className="flex items-center justify-between text-sm text-green-600">
+                    <div className="flex items-center justify-between text-sm text-[#0D1B2A]">
                       <span>Platform Fee (5.2%)</span>
                       <span className="font-semibold">
                         ${platformFee.toFixed(2)}
@@ -338,15 +338,15 @@ export default function Checkout() {
                       
                       <div className="mt-4 space-y-2">
                         <div className="flex items-center gap-2 text-xs text-slate-500">
-                          <CheckCircle className="h-4 w-4 text-green-600" />
+                          <CheckCircle className="h-4 w-4 text-[#0D1B2A]" />
                           <span>Secure checkout powered by Stripe</span>
                         </div>
                         <div className="flex items-center gap-2 text-xs text-slate-500">
-                          <CheckCircle className="h-4 w-4 text-green-600" />
+                          <CheckCircle className="h-4 w-4 text-[#0D1B2A]" />
                           <span>Your payment information is encrypted</span>
                         </div>
                         <div className="flex items-center gap-2 text-xs text-slate-500">
-                          <CheckCircle className="h-4 w-4 text-green-600" />
+                          <CheckCircle className="h-4 w-4 text-[#0D1B2A]" />
                           <span>Direct from licensed cannabis farmers</span>
                         </div>
                       </div>

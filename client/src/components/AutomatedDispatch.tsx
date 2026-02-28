@@ -112,7 +112,7 @@ const AutomatedDispatch = () => {
     switch (priority) {
       case 'High': return 'bg-red-500'
       case 'Medium': return 'bg-yellow-500'
-      case 'Low': return 'bg-green-500'
+      case 'Low': return 'bg-[#E8231A]'
       default: return 'bg-gray-500'
     }
   }
@@ -121,7 +121,7 @@ const AutomatedDispatch = () => {
     switch (status) {
       case 'Pending Assignment': return 'bg-orange-500'
       case 'Assigned': return 'bg-blue-500'
-      case 'Completed': return 'bg-green-500'
+      case 'Completed': return 'bg-[#E8231A]'
       default: return 'bg-gray-500'
     }
   }
@@ -254,12 +254,12 @@ const AutomatedDispatch = () => {
               )}
 
               {dispatchStatus === 'matched' && (
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <div className="flex items-center gap-2 text-green-800 mb-2">
+                <div className="bg-[#f0f4f8] p-4 rounded-lg">
+                  <div className="flex items-center gap-2 text-[#0D1B2A] mb-2">
                     <CheckCircle className="h-5 w-5" />
                     <span className="font-medium">Best Match Found!</span>
                   </div>
-                  <p className="text-sm text-green-700">
+                  <p className="text-sm text-[#1e3a5f]">
                     Green Valley Transport has been automatically assigned to this request.
                     Notification sent to driver Mike Johnson.
                   </p>
@@ -314,7 +314,7 @@ const AutomatedDispatch = () => {
                   key={transporter.id}
                   className={`p-4 border rounded-lg ${
                     index === 0 && dispatchStatus === 'matched' 
-                      ? 'border-green-500 bg-green-50' 
+                      ? 'border-[#c5d0dc] bg-[#f0f4f8]' 
                       : 'border-gray-200'
                   }`}
                 >
@@ -329,7 +329,7 @@ const AutomatedDispatch = () => {
                       </Badge>
                       {index === 0 && dispatchStatus === 'matched' && (
                         <div className="mt-1">
-                          <Badge className="bg-green-600 text-xs">
+                          <Badge className="bg-[#E8231A] text-xs">
                             <CheckCircle className="h-3 w-3 mr-1" />
                             Assigned
                           </Badge>
@@ -369,7 +369,7 @@ const AutomatedDispatch = () => {
                       <span className="text-gray-600">Availability:</span>
                       <span className={`font-medium ${
                         transporter.availability === 'Available Now' 
-                          ? 'text-green-600' 
+                          ? 'text-[#0D1B2A]' 
                           : 'text-yellow-600'
                       }`}>
                         {transporter.availability}
@@ -406,9 +406,9 @@ const AutomatedDispatch = () => {
                 <div className="text-2xl font-bold text-blue-600">12</div>
                 <div className="text-sm text-blue-800">Pending</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">8</div>
-                <div className="text-sm text-green-800">In Transit</div>
+              <div className="text-center p-4 bg-[#f0f4f8] rounded-lg">
+                <div className="text-2xl font-bold text-[#0D1B2A]">8</div>
+                <div className="text-sm text-[#0D1B2A]">In Transit</div>
               </div>
               <div className="text-center p-4 bg-yellow-50 rounded-lg">
                 <div className="text-2xl font-bold text-yellow-600">3</div>
@@ -433,7 +433,7 @@ const AutomatedDispatch = () => {
                 ].map((activity, index) => (
                   <div key={index} className="flex items-center gap-3 text-sm">
                     <div className={`w-2 h-2 rounded-full ${
-                      activity.type === 'success' ? 'bg-green-500' :
+                      activity.type === 'success' ? 'bg-[#E8231A]' :
                       activity.type === 'warning' ? 'bg-yellow-500' :
                       'bg-blue-500'
                     }`}></div>

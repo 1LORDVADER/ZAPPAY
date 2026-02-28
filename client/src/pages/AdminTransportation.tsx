@@ -46,7 +46,7 @@ export default function AdminTransportation() {
     switch (status) {
       case "active":
       case "delivered":
-        return "bg-green-100 text-green-800";
+        return "bg-[#fde8e7] text-[#0D1B2A]";
       case "in_transit":
       case "pending_approval":
         return "bg-yellow-100 text-yellow-800";
@@ -122,7 +122,7 @@ export default function AdminTransportation() {
                   pickupDiv.style.width = '20px';
                   pickupDiv.style.height = '20px';
                   pickupDiv.style.borderRadius = '50%';
-                  pickupDiv.style.backgroundColor = '#22c55e';
+                  pickupDiv.style.backgroundColor = '#E8231A';
                   pickupDiv.style.border = '3px solid white';
                   pickupDiv.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
 
@@ -156,7 +156,7 @@ export default function AdminTransportation() {
                       { lat: deliveryLat, lng: deliveryLng },
                     ],
                     geodesic: true,
-                    strokeColor: shipment.status === 'delivered' ? '#22c55e' : shipment.status === 'in_transit' ? '#3b82f6' : '#94a3b8',
+                    strokeColor: shipment.status === 'delivered' ? '#E8231A' : shipment.status === 'in_transit' ? '#3b82f6' : '#94a3b8',
                     strokeOpacity: 0.7,
                     strokeWeight: 3,
                     map,
@@ -228,7 +228,7 @@ export default function AdminTransportation() {
               <CardTitle className="text-sm font-medium text-slate-600">Delivered Today</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-green-600">
+              <div className="text-3xl font-bold text-[#0D1B2A]">
                 {shipments?.filter(s => {
                   if (!s.actualDeliveryTime) return false;
                   const today = new Date();
@@ -385,7 +385,7 @@ export default function AdminTransportation() {
                         </div>
                       </div>
                       {shipment.actualDeliveryTime && (
-                        <div className="text-green-600 font-semibold">
+                        <div className="text-[#0D1B2A] font-semibold">
                           Delivered: {new Date(shipment.actualDeliveryTime).toLocaleString()}
                         </div>
                       )}

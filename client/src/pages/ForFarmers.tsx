@@ -66,13 +66,13 @@ export default function ForFarmers() {
         
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 bg-green-100 text-green-800 hover:bg-green-200 border-green-300 text-lg px-6 py-2">
+            <Badge className="mb-6 bg-[#e8edf3] text-[#0D1B2A] hover:bg-[#fbd5d3] border-[#b0bfcc] text-lg px-6 py-2">
               For Licensed Cannabis Farmers
             </Badge>
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               Get Paid Instantly
-              <span className="block bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-[#E8231A] to-[#c41d15] bg-clip-text text-transparent">
                 Across America
               </span>
             </h1>
@@ -86,7 +86,7 @@ export default function ForFarmers() {
               <Button 
                 size="lg"
                 onClick={() => setLocation("/farmer/registration")}
-                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-8 py-6 shadow-2xl"
+                className="bg-gradient-to-r from-[#E8231A] to-[#c41d15] hover:from-[#c41d15] hover:to-[#a81812] text-white text-lg px-8 py-6 shadow-2xl"
               >
                 List Your Products
               </Button>
@@ -117,10 +117,10 @@ export default function ForFarmers() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <Card className="border-2 border-slate-200 hover:border-green-500 transition-all hover:shadow-xl">
+              <Card className="border-2 border-slate-200 hover:border-[#E8231A] transition-all hover:shadow-xl">
                 <CardHeader>
-                  <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                    <Target className="h-6 w-6 text-green-600" />
+                  <div className="h-12 w-12 bg-[#fde8e7] rounded-lg flex items-center justify-center mb-4">
+                    <Target className="h-6 w-6 text-[#0D1B2A]" />
                   </div>
                   <CardTitle className="text-2xl">Nationwide Reach</CardTitle>
                   <CardDescription className="text-base">
@@ -214,7 +214,7 @@ export default function ForFarmers() {
                     <span>ZAPPAY Commission (5.2%):</span>
                     <span className="font-semibold">-$6.24</span>
                   </div>
-                  <div className="flex justify-between border-t pt-3 text-green-600 text-xl">
+                  <div className="flex justify-between border-t pt-3 text-[#0D1B2A] text-xl">
                     <span className="font-bold">You Receive:</span>
                     <span className="font-bold">$114.00</span>
                   </div>
@@ -229,7 +229,7 @@ export default function ForFarmers() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-green-50 to-blue-50">
+      <section className="py-24 bg-gradient-to-br from-[#f0f4f8] to-[#e8edf3]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
@@ -241,7 +241,7 @@ export default function ForFarmers() {
             <Button 
               size="lg"
               onClick={() => setLocation("/farmer/registration")}
-              className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-12 py-6"
+              className="bg-gradient-to-r from-[#E8231A] to-[#c41d15] hover:from-[#c41d15] hover:to-[#a81812] text-white text-lg px-12 py-6"
             >
               List Your Products Today
             </Button>

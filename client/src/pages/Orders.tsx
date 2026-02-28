@@ -255,7 +255,7 @@ export default function Orders() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "delivered":
-        return <CheckCircle className="h-5 w-5 text-green-600" />;
+        return <CheckCircle className="h-5 w-5 text-[#0D1B2A]" />;
       case "in_transit":
         return <Truck className="h-5 w-5 text-blue-600" />;
       case "processing":
@@ -267,7 +267,7 @@ export default function Orders() {
 
   const getStatusBadge = (status: string) => {
     const variants: Record<string, { label: string; className: string }> = {
-      delivered: { label: "Delivered", className: "bg-green-100 text-green-800 border-green-300" },
+      delivered: { label: "Delivered", className: "bg-[#fde8e7] text-[#0D1B2A] border-[#c5d0dc]" },
       in_transit: { label: "In Transit", className: "bg-blue-100 text-blue-800 border-blue-300" },
       processing: { label: "Processing", className: "bg-yellow-100 text-yellow-800 border-yellow-300" }
     };
@@ -288,7 +288,7 @@ export default function Orders() {
             </div>
             <div className="bg-white/10 rounded-xl px-5 py-3 text-right border border-white/20">
               <p className="text-xs text-blue-300 uppercase tracking-wide font-medium">Total Transaction Volume</p>
-              <p className="text-2xl font-bold text-green-300">${totalVolume.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              <p className="text-2xl font-bold text-[#0D1B2A]">${totalVolume.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
           </div>
         </div>

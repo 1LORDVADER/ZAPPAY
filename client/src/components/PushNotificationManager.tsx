@@ -49,13 +49,13 @@ export function PushNotificationManager() {
 
   if (permission === "granted") {
     return (
-      <Card className="border-green-200 bg-green-50">
+      <Card className="border-[#c5d0dc] bg-[#f0f4f8]">
         <CardHeader>
           <div className="flex items-center gap-2">
-            <Bell className="h-5 w-5 text-green-600" />
-            <CardTitle className="text-green-900">Push Notifications Enabled</CardTitle>
+            <Bell className="h-5 w-5 text-[#0D1B2A]" />
+            <CardTitle className="text-[#0D1B2A]">Push Notifications Enabled</CardTitle>
           </div>
-          <CardDescription className="text-green-700">
+          <CardDescription className="text-[#1e3a5f]">
             You'll receive instant alerts for new applications, shipment delays, and driver issues
           </CardDescription>
         </CardHeader>

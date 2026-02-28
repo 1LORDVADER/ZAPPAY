@@ -504,3 +504,10 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Update all hover/focus states to match brand palette
 - [x] Update AgeVerification button from green to ZAPPAY red
 - [x] Update AgeGate button and location badge to ZAPPAY brand colors
+
+## User Request (February 28, 2026) - Keep Light Design, Fix Remaining Green Accents
+
+- [x] Remove all remaining green hover glows on product cards (rgba(34,197,94,...))
+- [x] Fix category tab active state from green to ZAPPAY navy/red
+- [x] Fix any green badges (THC, status) to use brand-appropriate colors
+- [x] Audit all tsx files for any leftover green-* Tailwind classes — 24 files cleaned, 0 remaining

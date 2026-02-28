@@ -189,7 +189,7 @@ export default function TransporterDashboard() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm text-muted-foreground">Your Payout</p>
-                        <p className="text-2xl font-bold text-green-600">
+                        <p className="text-2xl font-bold text-[#0D1B2A]">
                           ${(delivery.driverPayout / 100).toFixed(2)}
                         </p>
                       </div>

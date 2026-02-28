@@ -87,14 +87,14 @@ export default function TrackOrder() {
     
     switch (status) {
       case "order_placed":
-        return <CheckCircle className="h-5 w-5 text-green-600" />;
+        return <CheckCircle className="h-5 w-5 text-[#0D1B2A]" />;
       case "processing":
-        return <Package className="h-5 w-5 text-green-600" />;
+        return <Package className="h-5 w-5 text-[#0D1B2A]" />;
       case "picked_up":
       case "in_transit":
-        return <Truck className="h-5 w-5 text-green-600" />;
+        return <Truck className="h-5 w-5 text-[#0D1B2A]" />;
       case "delivered":
-        return <CheckCircle className="h-5 w-5 text-green-600" />;
+        return <CheckCircle className="h-5 w-5 text-[#0D1B2A]" />;
       default:
         return <Clock className="h-5 w-5 text-gray-400" />;
     }
@@ -105,7 +105,7 @@ export default function TrackOrder() {
       case "in_transit":
         return "bg-blue-100 text-blue-800";
       case "delivered":
-        return "bg-green-100 text-green-800";
+        return "bg-[#fde8e7] text-[#0D1B2A]";
       case "processing":
         return "bg-yellow-100 text-yellow-800";
       default:
@@ -176,7 +176,7 @@ export default function TrackOrder() {
 
                       {/* Destination Marker */}
                       <div className="absolute" style={{ left: '500px', top: '300px' }}>
-                        <div className="bg-green-600 text-white p-3 rounded-full shadow-lg">
+                        <div className="bg-[#E8231A] text-white p-3 rounded-full shadow-lg">
                           <MapPin className="h-6 w-6" />
                         </div>
                       </div>
@@ -259,7 +259,7 @@ export default function TrackOrder() {
                       <div className="flex flex-col items-center">
                         {getStatusIcon(event.status, event.completed)}
                         {index < tracking.timeline.length - 1 && (
-                          <div className={`w-0.5 h-12 ${event.completed ? 'bg-green-600' : 'bg-gray-300'}`} />
+                          <div className={`w-0.5 h-12 ${event.completed ? 'bg-[#E8231A]' : 'bg-gray-300'}`} />
                         )}
                       </div>
                       <div className="flex-1 pb-4">

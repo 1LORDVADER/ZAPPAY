@@ -62,7 +62,7 @@ const GPSTracking = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'In Transit': return 'bg-blue-500'
-      case 'Delivered': return 'bg-green-500'
+      case 'Delivered': return 'bg-[#E8231A]'
       case 'Delayed': return 'bg-yellow-500'
       default: return 'bg-gray-500'
     }
@@ -141,7 +141,7 @@ const GPSTracking = () => {
           <CardContent>
             {/* Simulated Map */}
             <div className="bg-gray-100 rounded-lg h-64 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-blue-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#e8edf3] to-[#dce6f0]">
                 {/* Route Line */}
                 <svg className="absolute inset-0 w-full h-full">
                   <path
@@ -158,7 +158,7 @@ const GPSTracking = () => {
                   <div
                     key={index}
                     className={`absolute w-4 h-4 rounded-full border-2 border-white ${
-                      point.status === 'completed' ? 'bg-green-500' :
+                      point.status === 'completed' ? 'bg-[#E8231A]' :
                       point.status === 'current' ? 'bg-blue-500 animate-pulse' :
                       'bg-gray-300'
                     }`}
@@ -208,7 +208,7 @@ const GPSTracking = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Route className="h-5 w-5 text-green-600" />
+              <Route className="h-5 w-5 text-[#0D1B2A]" />
               Shipment Details
             </CardTitle>
             <CardDescription>
@@ -239,7 +239,7 @@ const GPSTracking = () => {
               <h4 className="font-medium mb-2">Route Information</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-[#E8231A] rounded-full"></div>
                   <span>Pickup: {currentShipment?.from}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -256,11 +256,11 @@ const GPSTracking = () => {
             <div className="border-t pt-4">
               <h4 className="font-medium mb-2">Geofencing Alerts</h4>
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-green-600">
+                <div className="flex items-center gap-2 text-sm text-[#0D1B2A]">
                   <CheckCircle className="h-4 w-4" />
                   <span>Entered pickup zone - 10:15 AM</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-green-600">
+                <div className="flex items-center gap-2 text-sm text-[#0D1B2A]">
                   <CheckCircle className="h-4 w-4" />
                   <span>Exited pickup zone - 10:45 AM</span>
                 </div>
@@ -297,7 +297,7 @@ const GPSTracking = () => {
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-4">
                 <div className={`w-3 h-3 rounded-full ${
-                  item.status === 'completed' ? 'bg-green-500' :
+                  item.status === 'completed' ? 'bg-[#E8231A]' :
                   item.status === 'current' ? 'bg-blue-500 animate-pulse' :
                   'bg-gray-300'
                 }`}></div>

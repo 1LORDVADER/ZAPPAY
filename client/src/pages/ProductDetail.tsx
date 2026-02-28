@@ -133,9 +133,9 @@ export default function ProductDetail() {
                   className="w-full h-full object-contain"
                 />
               ) : (
-                <div className="bg-gradient-to-br from-green-50 to-blue-50 p-12 flex items-center justify-center">
+                <div className="bg-gradient-to-br from-[#E8231A] to-blue-50 p-12 flex items-center justify-center">
                   <div className="text-center">
-                    <Leaf className="h-48 w-48 text-green-600 mx-auto mb-4" />
+                    <Leaf className="h-48 w-48 text-[#0D1B2A] mx-auto mb-4" />
                     <p className="text-slate-500 text-sm">Product image coming soon</p>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export default function ProductDetail() {
             {/* Product Info */}
             <div>
               <div className="flex items-start gap-3 mb-4">
-                <Badge className="bg-green-100 text-green-800 hover:bg-green-200">
+                <Badge className="bg-[#fde8e7] text-[#0D1B2A] hover:bg-[#fbd5d3]">
                   {product.category}
                 </Badge>
                 {product.isPreOrder && (
@@ -193,16 +193,16 @@ export default function ProductDetail() {
               </div>
 
               {/* Price with Comparison */}
-              <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200 mb-6">
+              <div className="bg-gradient-to-br from-[#E8231A] to-blue-50 rounded-xl p-6 border-2 border-[#c5d0dc] mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-5xl font-bold text-green-700">
+                  <span className="text-5xl font-bold text-[#0D1B2A]">
                     ${(product.price).toFixed(2)}
                   </span>
                   <span className="text-2xl font-semibold text-slate-700">/gram</span>
                 </div>
                 
                 {product.retailPrice && (
-                  <div className="mt-4 pt-4 border-t border-green-200">
+                  <div className="mt-4 pt-4 border-t border-[#c5d0dc]">
                     <div className="flex items-center justify-between">
                       <span className="text-lg text-slate-600">Typical Retail Price:</span>
                       <span className="text-lg font-semibold text-slate-700 line-through">
@@ -210,8 +210,8 @@ export default function ProductDetail() {
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-green-700">Your ZAPPAY Savings:</span>
-                      <span className="text-2xl font-bold text-green-600">
+                      <span className="text-sm font-semibold text-[#0D1B2A]">Your ZAPPAY Savings:</span>
+                      <span className="text-2xl font-bold text-[#0D1B2A]">
                         ${((product.retailPrice - product.price)).toFixed(2)}
                       </span>
                     </div>
@@ -226,7 +226,7 @@ export default function ProductDetail() {
                 <div className="grid grid-cols-2 gap-4 text-sm mt-4">
                   <div>
                     <span className="text-slate-600">THC:</span>
-                    <span className="ml-2 font-semibold text-green-600">
+                    <span className="ml-2 font-semibold text-[#0D1B2A]">
                       {product.thcPercentage || 'N/A'}
                     </span>
                   </div>
@@ -245,7 +245,7 @@ export default function ProductDetail() {
                   <div>
                     <span className="text-slate-600">Status:</span>
                     <span className={`ml-2 font-semibold ${
-                      product.status === 'active' ? 'text-green-600' : 
+                      product.status === 'active' ? 'text-[#0D1B2A]' : 
                       product.status === 'growing' ? 'text-amber-600' : 
                       product.status === 'sold_out' ? 'text-red-600' : 'text-slate-600'
                     }`}>
@@ -305,7 +305,7 @@ export default function ProductDetail() {
                 {product.origin && (
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2 flex items-center gap-2">
-                      <Leaf className="h-5 w-5 text-green-600" />
+                      <Leaf className="h-5 w-5 text-[#0D1B2A]" />
                       Origin Story
                     </h3>
                     <p className="text-slate-600 leading-relaxed">
@@ -372,12 +372,12 @@ export default function ProductDetail() {
               </div>
 
               {/* Farmer Info */}
-              <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 border-2 border-slate-200">
+              <div className="mt-8 bg-gradient-to-r from-[#E8231A] to-blue-50 rounded-xl p-6 border-2 border-slate-200">
                 <h3 className="text-lg font-semibold text-slate-900 mb-3">
                   Sold by Licensed Farmer
                 </h3>
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 bg-green-600 rounded-full flex items-center justify-center">
+                  <div className="h-12 w-12 bg-[#E8231A] rounded-full flex items-center justify-center">
                     <Leaf className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -394,7 +394,7 @@ export default function ProductDetail() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-green-600" />
+                  <TrendingUp className="h-5 w-5 text-[#0D1B2A]" />
                   Views
                 </CardTitle>
               </CardHeader>

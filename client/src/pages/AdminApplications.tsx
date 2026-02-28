@@ -188,7 +188,7 @@ export default function AdminApplications() {
             <Button variant="outline" onClick={() => setLocation("/")}>
               ← Back to Home
             </Button>
-            <Button variant="outline" onClick={() => setLocation("/admin/payments")} className="bg-green-50 border-green-300 text-green-700 hover:bg-green-100">
+            <Button variant="outline" onClick={() => setLocation("/admin/payments")} className="bg-[#f0f4f8] border-[#b0bfcc] text-[#1e3a5f] hover:bg-[#e8edf3]">
               💳 View Payments
             </Button>
             <Button variant="outline" onClick={() => setLocation("/admin/analytics")} className="bg-blue-50 border-blue-300 text-blue-700 hover:bg-blue-100">
@@ -281,7 +281,7 @@ export default function AdminApplications() {
                       <Button
                         onClick={() => approveFarmer.mutate({ id: app.id })}
                         disabled={approveFarmer.isPending}
-                        className="flex-1 bg-green-600 hover:bg-green-700"
+                        className="flex-1 bg-[#E8231A] hover:bg-[#c41d15]"
                       >
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Approve
@@ -354,7 +354,7 @@ export default function AdminApplications() {
                       <Button
                         onClick={() => approveDriver.mutate({ id: driver.id })}
                         disabled={approveDriver.isPending}
-                        className="flex-1 bg-green-600 hover:bg-green-700"
+                        className="flex-1 bg-[#E8231A] hover:bg-[#c41d15]"
                       >
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Approve
@@ -429,7 +429,7 @@ export default function AdminApplications() {
                       <Button
                         onClick={() => approveCompany.mutate({ id: company.id })}
                         disabled={approveCompany.isPending}
-                        className="flex-1 bg-green-600 hover:bg-green-700"
+                        className="flex-1 bg-[#E8231A] hover:bg-[#c41d15]"
                       >
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Approve
@@ -513,7 +513,7 @@ export default function AdminApplications() {
                       <Button
                         onClick={() => approveSales.mutate({ id: app.id })}
                         disabled={approveSales.isPending}
-                        className="flex-1 bg-green-600 hover:bg-green-700"
+                        className="flex-1 bg-[#E8231A] hover:bg-[#c41d15]"
                       >
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Approve
@@ -598,7 +598,7 @@ export default function AdminApplications() {
                       <Button
                         onClick={() => approveDispensary.mutate({ id: app.id })}
                         disabled={approveDispensary.isPending}
-                        className="flex-1 bg-green-600 hover:bg-green-700"
+                        className="flex-1 bg-[#E8231A] hover:bg-[#c41d15]"
                       >
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Approve
@@ -685,7 +685,7 @@ export default function AdminApplications() {
                       <Button
                         onClick={() => approveAdvertiser.mutate({ id: app.id })}
                         disabled={approveAdvertiser.isPending}
-                        className="flex-1 bg-green-600 hover:bg-green-700"
+                        className="flex-1 bg-[#E8231A] hover:bg-[#c41d15]"
                       >
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Approve

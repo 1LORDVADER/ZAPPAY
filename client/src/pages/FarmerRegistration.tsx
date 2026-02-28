@@ -135,7 +135,7 @@ export default function FarmerRegistration() {
                 </>
               ) : verifiedRep ? (
                 <>
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  <CheckCircle2 className="h-5 w-5 text-[#0D1B2A]" />
                   <span className="font-semibold">
                     Valid referral code! You were referred by a ZAPPAY sales representative.
                   </span>
@@ -180,7 +180,7 @@ export default function FarmerRegistration() {
                       <ul className="space-y-2 text-sm">
                         {tierPricing[tier].features.map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                            <CheckCircle2 className="h-4 w-4 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
                             <span>{feature}</span>
                           </li>
                         ))}
