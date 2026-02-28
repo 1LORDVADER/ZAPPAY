@@ -1,0 +1,76 @@
+{
+  "query": "\n-- Remove all Test Blue Dream entries (test artifacts with farmerId=100)\nDELETE FROM products WHERE name LIKE '%Test%' OR name LIKE '%test%' OR farmerId = 100;\n\n-- Verify cleanup\nSELECT COUNT(*) as remaining_products FROM products;\nSELECT id, name, category, status, farmerId FROM products ORDER BY id LIMIT 20;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \n-- Remove all Test Blue Dream entries (test artifacts with farmerId=100)\nDELETE FROM products WHERE name LIKE '%Test%' OR name LIKE '%test%' OR farmerId = 100;\n\n-- Verify cleanup\nSELECT COUNT(*) as remaining_products FROM products;\nSELECT id, name, category, status, farmerId FROM products ORDER BY id LIMIT 20;\n",
+  "rows": [
+    {
+      "remaining_products": "46"
+    },
+    {
+      "remaining_products": "id\tname\tcategory\tstatus\tfarmerId"
+    },
+    {
+      "remaining_products": "5\tGranddaddy Purple\tflower\tactive\t101"
+    },
+    {
+      "remaining_products": "6\tGirl Scout Cookies\tflower\tactive\t101"
+    },
+    {
+      "remaining_products": "8\tGelato #33\tflower\tactive\t102"
+    },
+    {
+      "remaining_products": "9\tWedding Cake\tflower\tactive\t103"
+    },
+    {
+      "remaining_products": "11\tZkittlez\tflower\tactive\t103"
+    },
+    {
+      "remaining_products": "13\tGorilla Glue #4\tflower\tactive\t104"
+    },
+    {
+      "remaining_products": "90001\tWhite Widow\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90002\tPineapple Express\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90003\tNorthern Lights\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90004\tJack Herer\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90005\tGreen Crack\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90006\tAK-47\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90007\tTrainwreck\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90008\tStrawberry Cough\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90009\tDurban Poison\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90010\tAmnesia Haze\tflower\tsold_out\t1"
+    },
+    {
+      "remaining_products": "90011\tSuper Lemon Haze\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90012\tChemdawg\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90013\tBruce Banner\tflower\tactive\t1"
+    },
+    {
+      "remaining_products": "90014\tRuntz\tflower\tactive\t1"
+    }
+  ],
+  "messages": [],
+  "stdout": "remaining_products\n46\nid\tname\tcategory\tstatus\tfarmerId\n5\tGranddaddy Purple\tflower\tactive\t101\n6\tGirl Scout Cookies\tflower\tactive\t101\n8\tGelato #33\tflower\tactive\t102\n9\tWedding Cake\tflower\tactive\t103\n11\tZkittlez\tflower\tactive\t103\n13\tGorilla Glue #4\tflower\tactive\t104\n90001\tWhite Widow\tflower\tactive\t1\n90002\tPineapple Express\tflower\tactive\t1\n90003\tNorthern Lights\tflower\tactive\t1\n90004\tJack Herer\tflower\tactive\t1\n90005\tGreen Crack\tflower\tactive\t1\n90006\tAK-47\tflower\tactive\t1\n90007\tTrainwreck\tflower\tactive\t1\n90008\tStrawberry Cough\tflower\tactive\t1\n90009\tDurban Poison\tflower\tactive\t1\n90010\tAmnesia Haze\tflower\tsold_out\t1\n90011\tSuper Lemon Haze\tflower\tactive\t1\n90012\tChemdawg\tflower\tactive\t1\n90013\tBruce Banner\tflower\tactive\t1\n90014\tRuntz\tflower\tactive\t1\n",
+  "stderr": "",
+  "execution_time_ms": 153
+}

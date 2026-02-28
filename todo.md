@@ -486,3 +486,17 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Verified FarmerDashboard /100 divisions are CORRECT (myProducts returns raw cents)
 - [x] Verified FarmerAnalytics /100 divisions are CORRECT (orders.total stored in cents)
 - [x] All 37 tests pass
+
+
+## Production Readiness Sprint (Feb 28, 2026)
+- [ ] Remove all Test Blue Dream entries and test artifacts from database
+- [ ] Seed 50+ production-ready hemp/CBD product listings
+- [ ] Wire Stripe subscription webhook (customer.subscription.created/updated/deleted)
+
+
+## Production Readiness Sprint (Feb 28, 2026)
+- [x] Remove all Test Blue Dream duplicates and test artifacts from DB (22 entries removed)
+- [x] Seed 56 production-ready hemp/CBD product listings (flowers, pre-rolls, concentrates, edibles, topicals, vapes, tinctures, pet products)
+- [x] Wire Stripe subscription webhook: customer.subscription.created/updated/deleted, invoice.payment_succeeded/failed
+- [x] Add farmer_id to subscription_data.metadata so webhook can identify which farmer to update
+- [x] All 37 tests pass

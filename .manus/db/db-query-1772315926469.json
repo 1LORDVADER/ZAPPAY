@@ -1,0 +1,154 @@
+{
+  "query": "SELECT COUNT(*) as total FROM products; SELECT id, name, category, status, farmerId FROM products ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT COUNT(*) as total FROM products; SELECT id, name, category, status, farmerId FROM products ORDER BY id;",
+  "rows": [
+    {
+      "total": "46"
+    },
+    {
+      "total": "id\tname\tcategory\tstatus\tfarmerId"
+    },
+    {
+      "total": "5\tGranddaddy Purple\tflower\tactive\t101"
+    },
+    {
+      "total": "6\tGirl Scout Cookies\tflower\tactive\t101"
+    },
+    {
+      "total": "8\tGelato #33\tflower\tactive\t102"
+    },
+    {
+      "total": "9\tWedding Cake\tflower\tactive\t103"
+    },
+    {
+      "total": "11\tZkittlez\tflower\tactive\t103"
+    },
+    {
+      "total": "13\tGorilla Glue #4\tflower\tactive\t104"
+    },
+    {
+      "total": "90001\tWhite Widow\tflower\tactive\t1"
+    },
+    {
+      "total": "90002\tPineapple Express\tflower\tactive\t1"
+    },
+    {
+      "total": "90003\tNorthern Lights\tflower\tactive\t1"
+    },
+    {
+      "total": "90004\tJack Herer\tflower\tactive\t1"
+    },
+    {
+      "total": "90005\tGreen Crack\tflower\tactive\t1"
+    },
+    {
+      "total": "90006\tAK-47\tflower\tactive\t1"
+    },
+    {
+      "total": "90007\tTrainwreck\tflower\tactive\t1"
+    },
+    {
+      "total": "90008\tStrawberry Cough\tflower\tactive\t1"
+    },
+    {
+      "total": "90009\tDurban Poison\tflower\tactive\t1"
+    },
+    {
+      "total": "90010\tAmnesia Haze\tflower\tsold_out\t1"
+    },
+    {
+      "total": "90011\tSuper Lemon Haze\tflower\tactive\t1"
+    },
+    {
+      "total": "90012\tChemdawg\tflower\tactive\t1"
+    },
+    {
+      "total": "90013\tBruce Banner\tflower\tactive\t1"
+    },
+    {
+      "total": "90014\tRuntz\tflower\tactive\t1"
+    },
+    {
+      "total": "90015\tIce Cream Cake\tflower\tactive\t1"
+    },
+    {
+      "total": "90016\tDo-Si-Dos\tflower\tactive\t1"
+    },
+    {
+      "total": "90017\tMimosa\tflower\tactive\t1"
+    },
+    {
+      "total": "90018\tGhost Train Haze\tflower\tsold_out\t1"
+    },
+    {
+      "total": "90019\tLondon Pound Cake\tflower\tactive\t1"
+    },
+    {
+      "total": "90020\tTropicana Cookies\tflower\tactive\t1"
+    },
+    {
+      "total": "90021\tBanana Kush\tflower\tactive\t1"
+    },
+    {
+      "total": "90022\tCherry Pie\tflower\tactive\t1"
+    },
+    {
+      "total": "90023\tForbidden Fruit\tflower\tactive\t1"
+    },
+    {
+      "total": "90024\tThin Mint GSC\tflower\tactive\t1"
+    },
+    {
+      "total": "150001\tBlue Dream Vape Cart\tvapes\tactive\t1"
+    },
+    {
+      "total": "150002\tSour Diesel Vape\tvapes\tactive\t1"
+    },
+    {
+      "total": "150003\tOG Kush Vape Cart\tvapes\tactive\t1"
+    },
+    {
+      "total": "150004\tGelato Vape Pen\tvapes\tactive\t1"
+    },
+    {
+      "total": "150005\tIndica Gummies 10-Pack\tedibles\tactive\t1"
+    },
+    {
+      "total": "150006\tSativa Gummies 10-Pack\tedibles\tactive\t1"
+    },
+    {
+      "total": "150007\tHybrid Gummies 20-Pack\tedibles\tactive\t1"
+    },
+    {
+      "total": "150008\tCBD Gummies 10-Pack\tedibles\tactive\t1"
+    },
+    {
+      "total": "150009\tBlue Dream Wax\tconcentrates\tactive\t1"
+    },
+    {
+      "total": "150010\tOG Kush Shatter\tconcentrates\tactive\t1"
+    },
+    {
+      "total": "150011\tGelato Live Resin\tconcentrates\tactive\t1"
+    },
+    {
+      "total": "150012\tSour Diesel Crumble\tconcentrates\tactive\t1"
+    },
+    {
+      "total": "150013\tBlue Dream Pre-Roll 1g\tpre-rolls\tactive\t1"
+    },
+    {
+      "total": "150014\tOG Kush Pre-Roll 1g\tpre-rolls\tactive\t1"
+    },
+    {
+      "total": "150015\tSour Diesel Pre-Roll 1g\tpre-rolls\tactive\t1"
+    },
+    {
+      "total": "150016\tGelato Pre-Roll 1g\tpre-rolls\tactive\t1"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\n46\nid\tname\tcategory\tstatus\tfarmerId\n5\tGranddaddy Purple\tflower\tactive\t101\n6\tGirl Scout Cookies\tflower\tactive\t101\n8\tGelato #33\tflower\tactive\t102\n9\tWedding Cake\tflower\tactive\t103\n11\tZkittlez\tflower\tactive\t103\n13\tGorilla Glue #4\tflower\tactive\t104\n90001\tWhite Widow\tflower\tactive\t1\n90002\tPineapple Express\tflower\tactive\t1\n90003\tNorthern Lights\tflower\tactive\t1\n90004\tJack Herer\tflower\tactive\t1\n90005\tGreen Crack\tflower\tactive\t1\n90006\tAK-47\tflower\tactive\t1\n90007\tTrainwreck\tflower\tactive\t1\n90008\tStrawberry Cough\tflower\tactive\t1\n90009\tDurban Poison\tflower\tactive\t1\n90010\tAmnesia Haze\tflower\tsold_out\t1\n90011\tSuper Lemon Haze\tflower\tactive\t1\n90012\tChemdawg\tflower\tactive\t1\n90013\tBruce Banner\tflower\tactive\t1\n90014\tRuntz\tflower\tactive\t1\n90015\tIce Cream Cake\tflower\tactive\t1\n90016\tDo-Si-Dos\tflower\tactive\t1\n90017\tMimosa\tflower\tactive\t1\n90018\tGhost Train Haze\tflower\tsold_out\t1\n90019\tLondon Pound Cake\tflower\tactive\t1\n90020\tTropicana Cookies\tflower\tactive\t1\n90021\tBanana Kush\tflower\tactive\t1\n90022\tCherry Pie\tflower\tactive\t1\n90023\tForbidden Fruit\tflower\tactive\t1\n90024\tThin Mint GSC\tflower\tactive\t1\n150001\tBlue Dream Vape Cart\tvapes\tactive\t1\n150002\tSour Diesel Vape\tvapes\tactive\t1\n150003\tOG Kush Vape Cart\tvapes\tactive\t1\n150004\tGelato Vape Pen\tvapes\tactive\t1\n150005\tIndica Gummies 10-Pack\tedibles\tactive\t1\n150006\tSativa Gummies 10-Pack\tedibles\tactive\t1\n150007\tHybrid Gummies 20-Pack\tedibles\tactive\t1\n150008\tCBD Gummies 10-Pack\tedibles\tactive\t1\n150009\tBlue Dream Wax\tconcentrates\tactive\t1\n150010\tOG Kush Shatter\tconcentrates\tactive\t1\n150011\tGelato Live Resin\tconcentrates\tactive\t1\n150012\tSour Diesel Crumble\tconcentrates\tactive\t1\n150013\tBlue Dream Pre-Roll 1g\tpre-rolls\tactive\t1\n150014\tOG Kush Pre-Roll 1g\tpre-rolls\tactive\t1\n150015\tSour Diesel Pre-Roll 1g\tpre-rolls\tactive\t1\n150016\tGelato Pre-Roll 1g\tpre-rolls\tactive\t1\n",
+  "stderr": "",
+  "execution_time_ms": 58
+}

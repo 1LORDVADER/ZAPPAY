@@ -64,6 +64,31 @@ export async function handleStripeWebhook(req: Request, res: Response) {
         break;
       }
 
+      case 'customer.subscription.created':
+      case 'customer.subscription.updated': {
+        const subscription = event.data.object as Stripe.Subscription;
+        await handleSubscriptionUpserted(subscription);
+        break;
+      }
+
+      case 'customer.subscription.deleted': {
+        const subscription = event.data.object as Stripe.Subscription;
+        await handleSubscriptionDeleted(subscription);
+        break;
+      }
+
+      case 'invoice.payment_succeeded': {
+        const invoice = event.data.object as Stripe.Invoice;
+        await handleInvoicePaymentSucceeded(invoice);
+        break;
+      }
+
+      case 'invoice.payment_failed': {
+        const invoice = event.data.object as Stripe.Invoice;
+        await handleInvoicePaymentFailed(invoice);
+        break;
+      }
+
       case 'charge.refunded': {
         const charge = event.data.object as Stripe.Charge;
         await handleChargeRefunded(charge);
@@ -196,6 +221,181 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
       'refunded',
       charge.id
     );
+  }
+}
+
+/**
+ * Handle subscription created or updated
+ */
+async function handleSubscriptionUpserted(subscription: Stripe.Subscription) {
+  console.log(`[Stripe Webhook] Subscription upserted: ${subscription.id}, status: ${subscription.status}`);
+
+  try {
+    const { getDb } = await import('./db');
+    const { farmerSubscriptions, users } = await import('../drizzle/schema');
+    const { eq } = await import('drizzle-orm');
+
+    const db = await getDb();
+    if (!db) {
+      console.warn('[Subscription] Database not available');
+      return;
+    }
+
+    // Get the farmer ID from subscription metadata
+    const farmerId = subscription.metadata?.farmer_id
+      ? parseInt(subscription.metadata.farmer_id)
+      : null;
+
+    if (!farmerId) {
+      // Try to find farmer by Stripe customer ID
+      console.warn('[Subscription] No farmer_id in metadata, skipping DB update');
+      return;
+    }
+
+    // Determine tier from price amount
+    const priceAmount = subscription.items.data[0]?.price?.unit_amount || 0;
+    let tier: 'standard' | 'premium' = 'standard';
+    if (priceAmount >= 100000) {
+      tier = 'premium';
+    }
+
+    // Map Stripe status to our status
+    const statusMap: Record<string, 'active' | 'cancelled' | 'expired' | 'trial'> = {
+      active: 'active',
+      trialing: 'trial',
+      past_due: 'active', // keep active during grace period
+      canceled: 'cancelled',
+      unpaid: 'expired',
+      incomplete: 'trial',
+      incomplete_expired: 'expired',
+      paused: 'expired',
+    };
+    const status = statusMap[subscription.status] || 'active';
+
+    const firstItem = subscription.items.data[0];
+    const currentPeriodStart = new Date((firstItem?.current_period_start || Date.now() / 1000) * 1000);
+    const currentPeriodEnd = new Date((firstItem?.current_period_end || Date.now() / 1000) * 1000);
+
+    // Upsert the subscription record
+    const existing = await db
+      .select()
+      .from(farmerSubscriptions)
+      .where(eq(farmerSubscriptions.farmerId, farmerId))
+      .limit(1);
+
+    if (existing.length > 0) {
+      await db
+        .update(farmerSubscriptions)
+        .set({
+          tier,
+          status,
+          stripeSubscriptionId: subscription.id,
+          currentPeriodStart,
+          currentPeriodEnd,
+          monthlyPrice: priceAmount,
+        })
+        .where(eq(farmerSubscriptions.farmerId, farmerId));
+      console.log(`[Subscription] Updated farmer ${farmerId} to tier=${tier}, status=${status}`);
+    } else {
+      await db.insert(farmerSubscriptions).values({
+        farmerId,
+        tier,
+        status,
+        billingCycle: 'monthly',
+        monthlyPrice: priceAmount,
+        stripeSubscriptionId: subscription.id,
+        currentPeriodStart,
+        currentPeriodEnd,
+      });
+      console.log(`[Subscription] Created subscription for farmer ${farmerId}, tier=${tier}`);
+    }
+  } catch (error) {
+    console.error('[Subscription] Error upserting subscription:', error);
+    throw error;
+  }
+}
+
+/**
+ * Handle subscription deleted/cancelled
+ */
+async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
+  console.log(`[Stripe Webhook] Subscription deleted: ${subscription.id}`);
+
+  try {
+    const { getDb } = await import('./db');
+    const { farmerSubscriptions } = await import('../drizzle/schema');
+    const { eq } = await import('drizzle-orm');
+
+    const db = await getDb();
+    if (!db) return;
+
+    const farmerId = subscription.metadata?.farmer_id
+      ? parseInt(subscription.metadata.farmer_id)
+      : null;
+
+    if (!farmerId) {
+      console.warn('[Subscription] No farmer_id in metadata for deletion');
+      return;
+    }
+
+    await db
+      .update(farmerSubscriptions)
+      .set({
+        status: 'cancelled',
+        cancelledAt: new Date(),
+      })
+      .where(eq(farmerSubscriptions.farmerId, farmerId));
+
+    console.log(`[Subscription] Cancelled subscription for farmer ${farmerId}`);
+  } catch (error) {
+    console.error('[Subscription] Error cancelling subscription:', error);
+    throw error;
+  }
+}
+
+/**
+ * Handle successful invoice payment (subscription renewal)
+ */
+async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
+  console.log(`[Stripe Webhook] Invoice payment succeeded: ${invoice.id}`);
+
+  // If this invoice is for a subscription, the subscription.updated event will handle the DB update.
+  // Log for audit purposes.
+  const subRef = invoice.parent?.subscription_details?.subscription;
+  if (subRef) {
+    const subId = typeof subRef === 'string' ? subRef : subRef.id;
+    console.log(`[Subscription] Renewal payment succeeded for subscription: ${subId}`);
+  }
+}
+
+/**
+ * Handle failed invoice payment (subscription renewal failure)
+ */
+async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
+  console.log(`[Stripe Webhook] Invoice payment failed: ${invoice.id}`);
+
+  try {
+    const { getDb } = await import('./db');
+    const { farmerSubscriptions } = await import('../drizzle/schema');
+    const { eq } = await import('drizzle-orm');
+
+    const db = await getDb();
+    if (!db) return;
+
+    // Find subscription by Stripe subscription ID
+    const subRef = invoice.parent?.subscription_details?.subscription;
+    if (subRef) {
+      const subId = typeof subRef === 'string' ? subRef : subRef.id;
+
+      await db
+        .update(farmerSubscriptions)
+        .set({ status: 'expired' })
+        .where(eq(farmerSubscriptions.stripeSubscriptionId, subId));
+
+      console.log(`[Subscription] Marked subscription ${subId} as expired due to payment failure`);
+    }
+  } catch (error) {
+    console.error('[Subscription] Error handling invoice payment failure:', error);
   }
 }
 

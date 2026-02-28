@@ -277,6 +277,12 @@ export const appRouter = router({
             tier: input.tier,
             subscription_type: 'farmer_plan',
           },
+          subscription_data: {
+            metadata: {
+              farmer_id: ctx.user.id.toString(),
+              tier: input.tier,
+            },
+          },
           allow_promotion_codes: true,
         });
 
