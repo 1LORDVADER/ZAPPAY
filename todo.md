@@ -477,3 +477,12 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Fix applications.test.ts (correct procedure names + required fields)
 - [x] Fix core.test.ts (getAllActiveProducts returns non-inactive, not just active)
 - [x] All 37 tests passing
+
+
+## Pricing Double-Division Fix (Feb 28, 2026)
+- [x] Fix Home.tsx - remove extra /100 on prices already in dollars from getAllActiveProducts
+- [x] Fix ProductDetail.tsx - remove extra /100 on price and retailPrice
+- [x] Fix Cart.tsx - remove extra /100 on product price in mix-strain selector
+- [x] Verified FarmerDashboard /100 divisions are CORRECT (myProducts returns raw cents)
+- [x] Verified FarmerAnalytics /100 divisions are CORRECT (orders.total stored in cents)
+- [x] All 37 tests pass
