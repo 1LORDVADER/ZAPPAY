@@ -1,0 +1,171 @@
+{
+  "query": "SELECT id, name, category, price, (price/100.0) as price_dollars FROM products WHERE price > 10000 ORDER BY category, price DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, price, (price/100.0) as price_dollars FROM products WHERE price > 10000 ORDER BY category, price DESC;",
+  "rows": [
+    {
+      "id": "90013",
+      "name": "Bruce Banner",
+      "category": "flower",
+      "price": "45000",
+      "price_dollars": "450.0000"
+    },
+    {
+      "id": "90018",
+      "name": "Ghost Train Haze",
+      "category": "flower",
+      "price": "44000",
+      "price_dollars": "440.0000"
+    },
+    {
+      "id": "90014",
+      "name": "Runtz",
+      "category": "flower",
+      "price": "44000",
+      "price_dollars": "440.0000"
+    },
+    {
+      "id": "90016",
+      "name": "Do-Si-Dos",
+      "category": "flower",
+      "price": "43000",
+      "price_dollars": "430.0000"
+    },
+    {
+      "id": "90019",
+      "name": "London Pound Cake",
+      "category": "flower",
+      "price": "42000",
+      "price_dollars": "420.0000"
+    },
+    {
+      "id": "90012",
+      "name": "Chemdawg",
+      "category": "flower",
+      "price": "42000",
+      "price_dollars": "420.0000"
+    },
+    {
+      "id": "90023",
+      "name": "Forbidden Fruit",
+      "category": "flower",
+      "price": "41000",
+      "price_dollars": "410.0000"
+    },
+    {
+      "id": "90015",
+      "name": "Ice Cream Cake",
+      "category": "flower",
+      "price": "41000",
+      "price_dollars": "410.0000"
+    },
+    {
+      "id": "90002",
+      "name": "Pineapple Express",
+      "category": "flower",
+      "price": "40000",
+      "price_dollars": "400.0000"
+    },
+    {
+      "id": "90024",
+      "name": "Thin Mint GSC",
+      "category": "flower",
+      "price": "40000",
+      "price_dollars": "400.0000"
+    },
+    {
+      "id": "90020",
+      "name": "Tropicana Cookies",
+      "category": "flower",
+      "price": "40000",
+      "price_dollars": "400.0000"
+    },
+    {
+      "id": "90007",
+      "name": "Trainwreck",
+      "category": "flower",
+      "price": "39000",
+      "price_dollars": "390.0000"
+    },
+    {
+      "id": "90011",
+      "name": "Super Lemon Haze",
+      "category": "flower",
+      "price": "39000",
+      "price_dollars": "390.0000"
+    },
+    {
+      "id": "90010",
+      "name": "Amnesia Haze",
+      "category": "flower",
+      "price": "38000",
+      "price_dollars": "380.0000"
+    },
+    {
+      "id": "90017",
+      "name": "Mimosa",
+      "category": "flower",
+      "price": "38000",
+      "price_dollars": "380.0000"
+    },
+    {
+      "id": "90022",
+      "name": "Cherry Pie",
+      "category": "flower",
+      "price": "38000",
+      "price_dollars": "380.0000"
+    },
+    {
+      "id": "90008",
+      "name": "Strawberry Cough",
+      "category": "flower",
+      "price": "37000",
+      "price_dollars": "370.0000"
+    },
+    {
+      "id": "90021",
+      "name": "Banana Kush",
+      "category": "flower",
+      "price": "37000",
+      "price_dollars": "370.0000"
+    },
+    {
+      "id": "90006",
+      "name": "AK-47",
+      "category": "flower",
+      "price": "36000",
+      "price_dollars": "360.0000"
+    },
+    {
+      "id": "90009",
+      "name": "Durban Poison",
+      "category": "flower",
+      "price": "35000",
+      "price_dollars": "350.0000"
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "category": "flower",
+      "price": "35000",
+      "price_dollars": "350.0000"
+    },
+    {
+      "id": "90005",
+      "name": "Green Crack",
+      "category": "flower",
+      "price": "34000",
+      "price_dollars": "340.0000"
+    },
+    {
+      "id": "90003",
+      "name": "Northern Lights",
+      "category": "flower",
+      "price": "32000",
+      "price_dollars": "320.0000"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tprice\tprice_dollars\n90013\tBruce Banner\tflower\t45000\t450.0000\n90018\tGhost Train Haze\tflower\t44000\t440.0000\n90014\tRuntz\tflower\t44000\t440.0000\n90016\tDo-Si-Dos\tflower\t43000\t430.0000\n90019\tLondon Pound Cake\tflower\t42000\t420.0000\n90012\tChemdawg\tflower\t42000\t420.0000\n90023\tForbidden Fruit\tflower\t41000\t410.0000\n90015\tIce Cream Cake\tflower\t41000\t410.0000\n90002\tPineapple Express\tflower\t40000\t400.0000\n90024\tThin Mint GSC\tflower\t40000\t400.0000\n90020\tTropicana Cookies\tflower\t40000\t400.0000\n90007\tTrainwreck\tflower\t39000\t390.0000\n90011\tSuper Lemon Haze\tflower\t39000\t390.0000\n90010\tAmnesia Haze\tflower\t38000\t380.0000\n90017\tMimosa\tflower\t38000\t380.0000\n90022\tCherry Pie\tflower\t38000\t380.0000\n90008\tStrawberry Cough\tflower\t37000\t370.0000\n90021\tBanana Kush\tflower\t37000\t370.0000\n90006\tAK-47\tflower\t36000\t360.0000\n90009\tDurban Poison\tflower\t35000\t350.0000\n90001\tWhite Widow\tflower\t35000\t350.0000\n90005\tGreen Crack\tflower\t34000\t340.0000\n90003\tNorthern Lights\tflower\t32000\t320.0000\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}
