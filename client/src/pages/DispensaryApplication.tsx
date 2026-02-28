@@ -90,7 +90,7 @@ export default function DispensaryApplication() {
                 Partner with ZAPPAY as a Dispensary
               </h1>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Join America's leading cannabis payment platform and connect directly with licensed farmers nationwide. Increase foot traffic, reduce costs, and offer your customers unbeatable prices.
+                Partner with ZAPPAY to process cannabis transactions at your dispensary. ZAPPAY handles the payment infrastructure — you focus on serving customers. Drive more foot traffic, reduce payment friction, and offer your customers seamless checkout.
               </p>
             </div>
 
@@ -111,7 +111,7 @@ export default function DispensaryApplication() {
                   <Users className="h-8 w-8 text-blue-600 mb-2" />
                   <CardTitle className="text-lg">Direct Farmer Access</CardTitle>
                   <CardDescription>
-                    Source premium products directly from verified farmers at competitive wholesale prices
+                    ZAPPAY connects your dispensary with verified licensed farmers — we process the payments between you, so you can source products efficiently without payment delays
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -398,7 +398,7 @@ export default function DispensaryApplication() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
-                    <span><strong>Platform Access</strong> - Get your dispensary dashboard and start connecting with farmers</span>
+                    <span><strong>Platform Access</strong> - Get your dispensary dashboard and start processing transactions through ZAPPAY</span>
                   </li>
                 </ol>
               </CardContent>

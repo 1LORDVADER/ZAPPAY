@@ -18,9 +18,9 @@ export default function HowItWorks() {
             <Link href="/">
               <a className="flex items-center gap-3">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
-                  className="h-12 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </a>
             </Link>
@@ -48,11 +48,11 @@ export default function HowItWorks() {
               </Link>
               {!isAuthenticated ? (
                 <Button onClick={() => setLocation("/")}>
-                  Browse Products
+                  View Products
                 </Button>
               ) : (
                 <Button onClick={() => setLocation("/")}>
-                  Shop Now
+                  View Products
                 </Button>
               )}
             </nav>
@@ -78,8 +78,8 @@ export default function HowItWorks() {
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-              A seamless, secure, and legal cannabis marketplace connecting farmers, dispensaries, transporters, and consumers nationwide.
-              <span className="font-semibold text-white block mt-2">Just 5.2% commission — the lowest in the industry</span>
+              ZAPPAY is a payment processor engineered for the cannabis industry. We facilitate legal, instant transactions between licensed farmers, dispensaries, transporters, and consumers — we don’t sell products, we power the payments.
+              <span className="font-semibold text-white block mt-2">Just 5.2% processing fee — the lowest in the industry</span>
             </p>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function HowItWorks() {
                   </div>
                   <CardTitle className="text-2xl">Farmers List Products</CardTitle>
                   <CardDescription className="text-base">
-                    Licensed cannabis farmers across America list their premium products on the ZAPPAY marketplace. They set prices, manage inventory, and can dynamically adjust pricing with our live brokering feature.
+                    Licensed cannabis farmers list their products on the ZAPPAY platform. They set prices, manage inventory, and dynamically adjust pricing with our live brokering feature. ZAPPAY processes the payments — farmers keep 94.8%.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -175,11 +175,10 @@ export default function HowItWorks() {
                   <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <DollarSign className="h-6 w-6 text-green-600" />
                   </div>
-                  <CardTitle className="text-lg">5.2% Commission</CardTitle>
+                  <CardTitle className="text-2xl">5.2% Processing Fee</CardTitle>
                   <CardDescription className="text-sm">
-                    Lowest fees in the industry
-                  </CardDescription>
-                </CardHeader>
+                    Lowest transaction fee in the industry
+                  </CardDescription>                </CardHeader>
               </Card>
 
               <Card className="border-2 border-slate-200 hover:border-purple-500 transition-all">
@@ -298,19 +297,19 @@ export default function HowItWorks() {
               Ready to Get Started?
             </h2>
             <p className="text-xl text-slate-600 mb-8">
-              Join the nation's premier legal cannabis marketplace
+              Join the payment processing network built for the cannabis industry
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                onClick={() => setLocation("/farmer/register")}
+                onClick={() => setLocation("/farmer/registration")}
                 className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-8 py-6"
               >
                 I'm a Farmer
               </Button>
               <Button 
                 size="lg"
-                onClick={() => setLocation("/transportation/driver-register")}
+                onClick={() => setLocation("/driver/registration")}
                 className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg px-8 py-6"
               >
                 I'm a Transporter

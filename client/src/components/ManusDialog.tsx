@@ -21,7 +21,7 @@ interface ManusDialogProps {
 
 export function ManusDialog({
   title = "ZAPPAY",
-  logo = "/zappay-logo.jpeg",
+  logo = "/logo.png",
   open = false,
   onLogin,
   onOpenChange,

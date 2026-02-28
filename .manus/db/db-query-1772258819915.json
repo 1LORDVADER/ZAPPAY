@@ -1,9 +1,0 @@
-{
-  "query": "UPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-indica-gummies_ebfee03b.png' WHERE id = 150005;\nUPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-sativa-gummies_31367c8a.png' WHERE id = 150006;\nUPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-hybrid-gummies_a00c0041.png' WHERE id = 150007;\nUPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-cbd-gummies_ea09df39.png' WHERE id = 150008;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute UPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-indica-gummies_ebfee03b.png' WHERE id = 150005;\nUPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-sativa-gummies_31367c8a.png' WHERE id = 150006;\nUPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-hybrid-gummies_a00c0041.png' WHERE id = 150007;\nUPDATE products SET photos = 'https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-cbd-gummies_ea09df39.png' WHERE id = 150008;",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 89
-}

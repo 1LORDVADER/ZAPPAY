@@ -16,7 +16,8 @@ export default function ProductDetail() {
   const params = useParams();
   const [, setLocation] = useLocation();
   const { user, isAuthenticated } = useAuth();
-  const [quantity, setQuantity] = useState(1);
+  const MIN_QUANTITY = 4; // 4-gram minimum order
+  const [quantity, setQuantity] = useState(MIN_QUANTITY);
   
   const productId = parseInt(params.id || "0");
   
@@ -66,7 +67,7 @@ export default function ProductDetail() {
           <p className="text-slate-600 text-lg">Product not found</p>
           <Link href="/">
             <a>
-              <Button className="mt-4">Back to Marketplace</Button>
+              <Button className="mt-4">Back to Products</Button>
             </a>
           </Link>
         </div>
@@ -117,7 +118,7 @@ export default function ProductDetail() {
           <Link href="/">
             <a className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-900 mb-8">
               <ArrowLeft className="h-4 w-4" />
-              Back to Marketplace
+              Back to Products
             </a>
           </Link>
 
@@ -195,7 +196,7 @@ export default function ProductDetail() {
               <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200 mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
                   <span className="text-5xl font-bold text-green-700">
-                    ${product.price.toFixed(2)}
+                    ${(product.price / 100).toFixed(2)}
                   </span>
                   <span className="text-2xl font-semibold text-slate-700">/gram</span>
                 </div>
@@ -205,13 +206,13 @@ export default function ProductDetail() {
                     <div className="flex items-center justify-between">
                       <span className="text-lg text-slate-600">Typical Retail Price:</span>
                       <span className="text-lg font-semibold text-slate-700 line-through">
-                        ${product.retailPrice.toFixed(2)}
+                        ${(product.retailPrice / 100).toFixed(2)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-green-700">Your ZAPPAY Savings:</span>
                       <span className="text-2xl font-bold text-green-600">
-                        ${(product.retailPrice - product.price).toFixed(2)}
+                        ${((product.retailPrice - product.price) / 100).toFixed(2)}
                       </span>
                     </div>
                     <div className="mt-3 bg-white/80 rounded-lg p-3">
@@ -260,22 +261,22 @@ export default function ProductDetail() {
               {/* Quantity Selector */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Quantity
+                  Quantity <span className="text-xs text-slate-500 font-normal">(4g minimum order)</span>
                 </label>
                 <div className="flex items-center gap-3">
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    onClick={() => setQuantity(Math.max(MIN_QUANTITY, quantity - 1))}
                   >
                     -
                   </Button>
                   <Input
                     type="number"
                     value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                    onChange={(e) => setQuantity(Math.max(MIN_QUANTITY, parseInt(e.target.value) || MIN_QUANTITY))}
                     className="w-20 text-center"
-                    min="1"
+                    min="4"
                     max={product.quantity}
                   />
                   <Button

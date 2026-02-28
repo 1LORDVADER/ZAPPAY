@@ -86,9 +86,9 @@ export default function FarmerDashboard() {
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
-                  className="h-12 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </a>
             </Link>
@@ -96,7 +96,7 @@ export default function FarmerDashboard() {
             <nav className="flex items-center gap-6">
               <Link href="/">
                 <a className="text-slate-700 hover:text-blue-900 font-medium transition-colors">
-                  Marketplace
+                  Products
                 </a>
               </Link>
               <Link href="/farmer/dashboard">
@@ -212,7 +212,7 @@ export default function FarmerDashboard() {
             <Card className="mb-8 border-2 border-green-200">
               <CardHeader>
                 <CardTitle>Add New Product</CardTitle>
-                <CardDescription>List a new product on the marketplace</CardDescription>
+                <CardDescription>List a new product on the ZAPPAY platform</CardDescription>
               </CardHeader>
               <CardContent>
                 <AddProductForm onSuccess={() => {

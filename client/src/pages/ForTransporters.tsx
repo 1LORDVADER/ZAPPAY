@@ -18,9 +18,9 @@ export default function ForTransporters() {
             <Link href="/">
               <a className="flex items-center gap-3">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
-                  className="h-12 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </a>
             </Link>
@@ -47,7 +47,7 @@ export default function ForTransporters() {
                 </a>
               </Link>
               {!isAuthenticated ? (
-                <Button onClick={() => setLocation("/transportation/driver-register")}>
+                <Button onClick={() => setLocation("/driver/registration")}>
                   Get Started
                 </Button>
               ) : (
@@ -78,14 +78,14 @@ export default function ForTransporters() {
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Join the premier cannabis logistics network. Connect with farmers and dispensaries across America for consistent, legal, and profitable delivery opportunities.
-              <span className="font-semibold text-white block mt-2">Earn competitive rates + 24/7 GPS tracking</span>
+              ZAPPAY processes payments for cannabis transport services, ensuring you get paid instantly via ACH for every completed delivery. Connect with farmers and dispensaries through our platform and let us handle the payment infrastructure.
+              <span className="font-semibold text-white block mt-2">Earn competitive rates + instant ACH payment per delivery</span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 size="lg"
-                onClick={() => setLocation("/transportation/driver-register")}
+                onClick={() => setLocation("/driver/registration")}
                 className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg px-8 py-6 shadow-2xl"
               >
                 Start Transporting
@@ -233,11 +233,11 @@ export default function ForTransporters() {
               Ready to Start Earning?
             </h2>
             <p className="text-xl text-slate-600 mb-8">
-              Join the nation's premier cannabis logistics network today
+              Join licensed transporters already getting paid through ZAPPAY
             </p>
             <Button 
               size="lg"
-              onClick={() => setLocation("/transportation/driver-register")}
+              onClick={() => setLocation("/driver/registration")}
               className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg px-12 py-6"
             >
               Apply Now as a Transporter

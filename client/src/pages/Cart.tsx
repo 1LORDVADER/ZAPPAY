@@ -74,8 +74,8 @@ export default function Cart() {
   
   // Handle guest cart quantity update
   const handleGuestQuantityUpdate = (productId: number, newQuantity: number) => {
-    if (newQuantity < 1) {
-      toast.error("Minimum order is 1 gram");
+    if (newQuantity < 4) {
+      toast.error("Minimum order is 4 grams");
       return;
     }
     updateGuestCartQuantity(productId, newQuantity);
@@ -150,7 +150,7 @@ export default function Cart() {
             <Link href="/">
               <a className="text-blue-600 hover:text-blue-800 flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4" />
-                Back to Marketplace
+                Back to Products
               </a>
             </Link>
           </div>
@@ -192,7 +192,7 @@ export default function Cart() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => handleGuestQuantityUpdate(item.productId, item.quantity - 1)}
+                          onClick={() => handleGuestQuantityUpdate(item.productId, Math.max(4, item.quantity - 1))}
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
@@ -289,8 +289,8 @@ export default function Cart() {
   const total = subtotal + tax;
 
   const handleUpdateQuantity = (itemId: number, newQuantity: number) => {
-    if (newQuantity < 1) {
-      toast.error("Minimum order is 1 gram");
+    if (newQuantity < 4) {
+      toast.error("Minimum order is 4 grams");
       return;
     }
     updateQuantityMutation.mutate({ id: itemId, quantity: newQuantity });
@@ -407,7 +407,7 @@ export default function Cart() {
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />
@@ -431,7 +431,7 @@ export default function Cart() {
           <Link href="/">
             <a className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-900 mb-8">
               <ArrowLeft className="h-4 w-4" />
-              Back to Marketplace
+              Back to Products
             </a>
           </Link>
 
@@ -524,7 +524,7 @@ export default function Cart() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                            disabled={updateQuantityMutation.isPending || item.quantity <= 1}
+                            disabled={updateQuantityMutation.isPending || item.quantity <= 4}
                           >
                             <Minus className="h-4 w-4" />
                           </Button>
@@ -697,7 +697,7 @@ export default function Cart() {
                     <div>
                       <p className="font-medium">{product.name}</p>
                       <p className="text-sm text-slate-600">{product.strain} • THC: {product.thcPercentage}</p>
-                      <p className="text-sm font-semibold text-green-600">${product.price.toFixed(2)}/g</p>
+                      <p className="text-sm font-semibold text-green-600">${(product.price / 100).toFixed(2)}/g</p>
                     </div>
                     <Button
                       size="sm"

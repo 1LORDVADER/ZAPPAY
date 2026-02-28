@@ -137,10 +137,10 @@ export default function Home() {
             className="text-center mb-8"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Secure Cannabis Payment Platform
+              Cannabis Payment Processing, Built for the Industry
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Direct from verified farmers. 5.2% fees. Sub-1s payments.
+              ZAPPAY processes payments between licensed farmers, dispensaries, and consumers — legally, instantly, and at just 5.2%. We don't sell products; we power the transactions.
             </p>
           </motion.div>
 
@@ -160,7 +160,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">{products.length}+</p>
-                      <p className="text-sm text-slate-600">Premium Products</p>
+                      <p className="text-sm text-slate-600">Listed Products</p>
                     </div>
                   </div>
                 </CardContent>
@@ -176,7 +176,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">5.2%</p>
-                      <p className="text-sm text-slate-600">Platform Fee</p>
+                      <p className="text-sm text-slate-600">Processing Fee</p>
                     </div>
                   </div>
                 </CardContent>
@@ -369,19 +369,19 @@ export default function Home() {
                             <div className="flex items-center justify-between">
                               <div>
                                 <span className="text-2xl font-bold text-slate-900">
-                                  ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
+                                  ${typeof product.price === 'number' ? (product.price / 100).toFixed(2) : product.price}
                                 </span>
                                 <span className="text-sm text-slate-600 ml-1">/gram</span>
                               </div>
                               {product.retailPrice && (
                                 <span className="text-sm text-slate-400 line-through">
-                                  ${typeof product.retailPrice === 'number' ? product.retailPrice.toFixed(2) : product.retailPrice}
+                                  ${typeof product.retailPrice === 'number' ? (product.retailPrice / 100).toFixed(2) : product.retailPrice}
                                 </span>
                               )}
                             </div>
                             {product.retailPrice && (
                               <div className="text-xs font-semibold text-green-600">
-                                Save ${((typeof product.retailPrice === 'number' ? product.retailPrice : parseFloat(product.retailPrice)) - (typeof product.price === 'number' ? product.price : parseFloat(product.price))).toFixed(2)}/gram
+                                Save ${((typeof product.retailPrice === 'number' ? product.retailPrice / 100 : parseFloat(product.retailPrice) / 100) - (typeof product.price === 'number' ? product.price / 100 : parseFloat(product.price) / 100)).toFixed(2)}/gram
                               </div>
                             )}
                           </div>
@@ -464,7 +464,7 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-lg mb-4">About ZAPPAY</h3>
               <p className="text-sm text-slate-300">
-                Secure payment processing platform facilitating legal cannabis transactions between licensed farmers, dispensaries, and consumers nationwide. Just 5.2% commission.
+                ZAPPAY is a payment processor engineered for the cannabis industry. We facilitate legal transactions between licensed farmers, dispensaries, and consumers — we do not sell, distribute, or handle cannabis products. Just 5.2% per transaction.
               </p>
             </div>
             <div>
