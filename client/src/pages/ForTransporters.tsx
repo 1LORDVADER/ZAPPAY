@@ -47,7 +47,7 @@ export default function ForTransporters() {
                 </a>
               </Link>
               {!isAuthenticated ? (
-                <Button onClick={() => setLocation("/driver/registration")}>
+                <Button onClick={() => setLocation("/transportation/driver-register")}>
                   Get Started
                 </Button>
               ) : (
@@ -85,7 +85,7 @@ export default function ForTransporters() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 size="lg"
-                onClick={() => setLocation("/driver/registration")}
+                onClick={() => setLocation("/transportation/driver-register")}
                 className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg px-8 py-6 shadow-2xl"
               >
                 Start Transporting
@@ -237,7 +237,7 @@ export default function ForTransporters() {
             </p>
             <Button 
               size="lg"
-              onClick={() => setLocation("/driver/registration")}
+              onClick={() => setLocation("/transportation/driver-register")}
               className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg px-12 py-6"
             >
               Apply Now as a Transporter

@@ -47,7 +47,7 @@ export default function ForFarmers() {
                 </a>
               </Link>
               {!isAuthenticated ? (
-                <Button onClick={() => setLocation("/farmer/registration")}>
+                <Button onClick={() => setLocation("/farmer/register")}>
                   Get Started
                 </Button>
               ) : (
@@ -85,7 +85,7 @@ export default function ForFarmers() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 size="lg"
-                onClick={() => setLocation("/farmer/registration")}
+                onClick={() => setLocation("/farmer/register")}
                 className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-8 py-6 shadow-2xl"
               >
                 Start Listing Products
@@ -240,7 +240,7 @@ export default function ForFarmers() {
             </p>
             <Button 
               size="lg"
-              onClick={() => setLocation("/farmer/registration")}
+              onClick={() => setLocation("/farmer/register")}
               className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-12 py-6"
             >
               Start Listing Products Today

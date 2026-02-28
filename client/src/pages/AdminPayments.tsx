@@ -21,7 +21,7 @@ export default function AdminPayments() {
 
   const totalRevenue = orders
     .filter((o: any) => o.status === "paid" || o.status === "completed" || o.status === "delivered")
-    .reduce((sum: number, o: any) => sum + (o.totalAmount || 0), 0);
+    .reduce((sum: number, o: any) => sum + ((o.total || 0) / 100), 0);
 
   const totalOrders = orders.length;
   const paidOrders = orders.filter((o: any) => o.status === "paid" || o.status === "completed" || o.status === "delivered").length;
@@ -180,10 +180,10 @@ export default function AdminPayments() {
                           </div>
                         </td>
                         <td className="py-3 px-4">
-                          <span className="text-green-400 font-semibold">${(order.totalAmount || 0).toFixed(2)}</span>
+                          <span className="text-green-400 font-semibold">${((order.total || 0) / 100).toFixed(2)}</span>
                         </td>
                         <td className="py-3 px-4">
-                          <span className="text-red-400 text-sm">${((order.totalAmount || 0) * 0.052).toFixed(2)}</span>
+                          <span className="text-red-400 text-sm">${(((order.total || 0) / 100) * 0.052).toFixed(2)}</span>
                         </td>
                         <td className="py-3 px-4">
                           <Badge className={`text-xs border ${getStatusColor(order.status)}`}>

@@ -303,14 +303,14 @@ export default function HowItWorks() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                onClick={() => setLocation("/farmer/registration")}
+                onClick={() => setLocation("/farmer/register")}
                 className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-8 py-6"
               >
                 I'm a Farmer
               </Button>
               <Button 
                 size="lg"
-                onClick={() => setLocation("/driver/registration")}
+                onClick={() => setLocation("/transportation/driver-register")}
                 className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg px-8 py-6"
               >
                 I'm a Transporter
