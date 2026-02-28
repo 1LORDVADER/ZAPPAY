@@ -1,0 +1,45 @@
+{
+  "query": "\nSELECT category, COUNT(*) as count, \n  ROUND(MIN(price)/100.0, 2) as min_price_dollars, \n  ROUND(MAX(price)/100.0, 2) as max_price_dollars,\n  ROUND(AVG(price)/100.0, 2) as avg_price_dollars\nFROM products \nGROUP BY category\nORDER BY category;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \nSELECT category, COUNT(*) as count, \n  ROUND(MIN(price)/100.0, 2) as min_price_dollars, \n  ROUND(MAX(price)/100.0, 2) as max_price_dollars,\n  ROUND(AVG(price)/100.0, 2) as avg_price_dollars\nFROM products \nGROUP BY category\nORDER BY category;\n",
+  "rows": [
+    {
+      "category": "flower",
+      "count": "34",
+      "min_price_dollars": "9.00",
+      "max_price_dollars": "450.00",
+      "avg_price_dollars": "269.29"
+    },
+    {
+      "category": "edibles",
+      "count": "4",
+      "min_price_dollars": "18.00",
+      "max_price_dollars": "18.00",
+      "avg_price_dollars": "18.00"
+    },
+    {
+      "category": "concentrates",
+      "count": "4",
+      "min_price_dollars": "35.00",
+      "max_price_dollars": "35.00",
+      "avg_price_dollars": "35.00"
+    },
+    {
+      "category": "pre-rolls",
+      "count": "4",
+      "min_price_dollars": "12.00",
+      "max_price_dollars": "12.00",
+      "avg_price_dollars": "12.00"
+    },
+    {
+      "category": "vapes",
+      "count": "4",
+      "min_price_dollars": "35.00",
+      "max_price_dollars": "35.00",
+      "avg_price_dollars": "35.00"
+    }
+  ],
+  "messages": [],
+  "stdout": "category\tcount\tmin_price_dollars\tmax_price_dollars\tavg_price_dollars\nflower\t34\t9.00\t450.00\t269.29\nedibles\t4\t18.00\t18.00\t18.00\nconcentrates\t4\t35.00\t35.00\t35.00\npre-rolls\t4\t12.00\t12.00\t12.00\nvapes\t4\t35.00\t35.00\t35.00\n",
+  "stderr": "",
+  "execution_time_ms": 63
+}

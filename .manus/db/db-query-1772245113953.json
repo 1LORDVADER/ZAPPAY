@@ -1,0 +1,115 @@
+{
+  "query": "\n-- Fix flower products: $8-$15/gram range (800-1500 cents)\n-- Blue Dream: $10/gram = 1000 cents\nUPDATE products SET price = 1000, retailPrice = 1400 WHERE name = 'Blue Dream' AND category = 'flower';\n-- OG Kush: $12/gram = 1200 cents\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE name = 'OG Kush' AND category = 'flower';\n-- Sour Diesel: $11/gram = 1100 cents\nUPDATE products SET price = 1100, retailPrice = 1500 WHERE name = 'Sour Diesel' AND category = 'flower';\n-- Granddaddy Purple: $9/gram = 900 cents\nUPDATE products SET price = 900, retailPrice = 1300 WHERE name = 'Granddaddy Purple' AND category = 'flower';\n-- Girl Scout Cookies: $13/gram = 1300 cents\nUPDATE products SET price = 1300, retailPrice = 1800 WHERE name = 'Girl Scout Cookies' AND category = 'flower';\n-- Gelato #33: $14/gram = 1400 cents\nUPDATE products SET price = 1400, retailPrice = 1900 WHERE name = 'Gelato #33' AND category = 'flower';\n-- Wedding Cake: $15/gram = 1500 cents\nUPDATE products SET price = 1500, retailPrice = 2000 WHERE name = 'Wedding Cake' AND category = 'flower';\n-- Jack Herer: $11/gram = 1100 cents\nUPDATE products SET price = 1100, retailPrice = 1500 WHERE name = 'Jack Herer' AND category = 'flower';\n-- Zkittlez: $12/gram = 1200 cents\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE name = 'Zkittlez' AND category = 'flower';\n-- Gorilla Glue #4: $14/gram = 1400 cents\nUPDATE products SET price = 1400, retailPrice = 1900 WHERE name = 'Gorilla Glue #4' AND category = 'flower';\n-- Summer 2025 Harvest - Purple Haze: $10/gram = 1000 cents\nUPDATE products SET price = 1000, retailPrice = 1400 WHERE name LIKE '%Purple Haze%' AND category = 'flower';\nSELECT id, name, price, retailPrice, category FROM products WHERE category = 'flower' ORDER BY price DESC LIMIT 15;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \n-- Fix flower products: $8-$15/gram range (800-1500 cents)\n-- Blue Dream: $10/gram = 1000 cents\nUPDATE products SET price = 1000, retailPrice = 1400 WHERE name = 'Blue Dream' AND category = 'flower';\n-- OG Kush: $12/gram = 1200 cents\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE name = 'OG Kush' AND category = 'flower';\n-- Sour Diesel: $11/gram = 1100 cents\nUPDATE products SET price = 1100, retailPrice = 1500 WHERE name = 'Sour Diesel' AND category = 'flower';\n-- Granddaddy Purple: $9/gram = 900 cents\nUPDATE products SET price = 900, retailPrice = 1300 WHERE name = 'Granddaddy Purple' AND category = 'flower';\n-- Girl Scout Cookies: $13/gram = 1300 cents\nUPDATE products SET price = 1300, retailPrice = 1800 WHERE name = 'Girl Scout Cookies' AND category = 'flower';\n-- Gelato #33: $14/gram = 1400 cents\nUPDATE products SET price = 1400, retailPrice = 1900 WHERE name = 'Gelato #33' AND category = 'flower';\n-- Wedding Cake: $15/gram = 1500 cents\nUPDATE products SET price = 1500, retailPrice = 2000 WHERE name = 'Wedding Cake' AND category = 'flower';\n-- Jack Herer: $11/gram = 1100 cents\nUPDATE products SET price = 1100, retailPrice = 1500 WHERE name = 'Jack Herer' AND category = 'flower';\n-- Zkittlez: $12/gram = 1200 cents\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE name = 'Zkittlez' AND category = 'flower';\n-- Gorilla Glue #4: $14/gram = 1400 cents\nUPDATE products SET price = 1400, retailPrice = 1900 WHERE name = 'Gorilla Glue #4' AND category = 'flower';\n-- Summer 2025 Harvest - Purple Haze: $10/gram = 1000 cents\nUPDATE products SET price = 1000, retailPrice = 1400 WHERE name LIKE '%Purple Haze%' AND category = 'flower';\nSELECT id, name, price, retailPrice, category FROM products WHERE category = 'flower' ORDER BY price DESC LIMIT 15;\n",
+  "rows": [
+    {
+      "id": "90013",
+      "name": "Bruce Banner",
+      "price": "45000",
+      "retailPrice": "160000",
+      "category": "flower"
+    },
+    {
+      "id": "90018",
+      "name": "Ghost Train Haze",
+      "price": "44000",
+      "retailPrice": "155000",
+      "category": "flower"
+    },
+    {
+      "id": "90014",
+      "name": "Runtz",
+      "price": "44000",
+      "retailPrice": "155000",
+      "category": "flower"
+    },
+    {
+      "id": "90016",
+      "name": "Do-Si-Dos",
+      "price": "43000",
+      "retailPrice": "150000",
+      "category": "flower"
+    },
+    {
+      "id": "90019",
+      "name": "London Pound Cake",
+      "price": "42000",
+      "retailPrice": "150000",
+      "category": "flower"
+    },
+    {
+      "id": "90012",
+      "name": "Chemdawg",
+      "price": "42000",
+      "retailPrice": "150000",
+      "category": "flower"
+    },
+    {
+      "id": "90015",
+      "name": "Ice Cream Cake",
+      "price": "41000",
+      "retailPrice": "145000",
+      "category": "flower"
+    },
+    {
+      "id": "90023",
+      "name": "Forbidden Fruit",
+      "price": "41000",
+      "retailPrice": "145000",
+      "category": "flower"
+    },
+    {
+      "id": "90020",
+      "name": "Tropicana Cookies",
+      "price": "40000",
+      "retailPrice": "140000",
+      "category": "flower"
+    },
+    {
+      "id": "90024",
+      "name": "Thin Mint GSC",
+      "price": "40000",
+      "retailPrice": "140000",
+      "category": "flower"
+    },
+    {
+      "id": "90002",
+      "name": "Pineapple Express",
+      "price": "40000",
+      "retailPrice": "140000",
+      "category": "flower"
+    },
+    {
+      "id": "90007",
+      "name": "Trainwreck",
+      "price": "39000",
+      "retailPrice": "135000",
+      "category": "flower"
+    },
+    {
+      "id": "90011",
+      "name": "Super Lemon Haze",
+      "price": "39000",
+      "retailPrice": "140000",
+      "category": "flower"
+    },
+    {
+      "id": "90010",
+      "name": "Amnesia Haze",
+      "price": "38000",
+      "retailPrice": "135000",
+      "category": "flower"
+    },
+    {
+      "id": "90017",
+      "name": "Mimosa",
+      "price": "38000",
+      "retailPrice": "130000",
+      "category": "flower"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tprice\tretailPrice\tcategory\n90013\tBruce Banner\t45000\t160000\tflower\n90018\tGhost Train Haze\t44000\t155000\tflower\n90014\tRuntz\t44000\t155000\tflower\n90016\tDo-Si-Dos\t43000\t150000\tflower\n90019\tLondon Pound Cake\t42000\t150000\tflower\n90012\tChemdawg\t42000\t150000\tflower\n90015\tIce Cream Cake\t41000\t145000\tflower\n90023\tForbidden Fruit\t41000\t145000\tflower\n90020\tTropicana Cookies\t40000\t140000\tflower\n90024\tThin Mint GSC\t40000\t140000\tflower\n90002\tPineapple Express\t40000\t140000\tflower\n90007\tTrainwreck\t39000\t135000\tflower\n90011\tSuper Lemon Haze\t39000\t140000\tflower\n90010\tAmnesia Haze\t38000\t135000\tflower\n90017\tMimosa\t38000\t130000\tflower\n",
+  "stderr": "",
+  "execution_time_ms": 150
+}

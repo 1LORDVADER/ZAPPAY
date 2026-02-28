@@ -1,0 +1,150 @@
+{
+  "query": "SELECT id, name, price, quantity, category FROM products ORDER BY price DESC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, price, quantity, category FROM products ORDER BY price DESC LIMIT 20;",
+  "rows": [
+    {
+      "id": "150011",
+      "name": "Gelato Live Resin",
+      "price": "700000",
+      "quantity": "20",
+      "category": "concentrates"
+    },
+    {
+      "id": "150010",
+      "name": "OG Kush Shatter",
+      "price": "650000",
+      "quantity": "25",
+      "category": "concentrates"
+    },
+    {
+      "id": "150012",
+      "name": "Sour Diesel Crumble",
+      "price": "600000",
+      "quantity": "35",
+      "category": "concentrates"
+    },
+    {
+      "id": "150009",
+      "name": "Blue Dream Wax",
+      "price": "600000",
+      "quantity": "30",
+      "category": "concentrates"
+    },
+    {
+      "id": "150004",
+      "name": "Gelato Vape Pen",
+      "price": "500000",
+      "quantity": "40",
+      "category": "vapes"
+    },
+    {
+      "id": "150002",
+      "name": "Sour Diesel Vape",
+      "price": "480000",
+      "quantity": "45",
+      "category": "vapes"
+    },
+    {
+      "id": "150003",
+      "name": "OG Kush Vape Cart",
+      "price": "450000",
+      "quantity": "60",
+      "category": "vapes"
+    },
+    {
+      "id": "150001",
+      "name": "Blue Dream Vape Cart",
+      "price": "450000",
+      "quantity": "50",
+      "category": "vapes"
+    },
+    {
+      "id": "150007",
+      "name": "Hybrid Gummies 20-Pack",
+      "price": "300000",
+      "quantity": "80",
+      "category": "edibles"
+    },
+    {
+      "id": "150005",
+      "name": "Indica Gummies 10-Pack",
+      "price": "250000",
+      "quantity": "100",
+      "category": "edibles"
+    },
+    {
+      "id": "150006",
+      "name": "Sativa Gummies 10-Pack",
+      "price": "250000",
+      "quantity": "95",
+      "category": "edibles"
+    },
+    {
+      "id": "150008",
+      "name": "CBD Gummies 10-Pack",
+      "price": "200000",
+      "quantity": "120",
+      "category": "edibles"
+    },
+    {
+      "id": "150016",
+      "name": "Gelato Pre-Roll 1g",
+      "price": "140000",
+      "quantity": "120",
+      "category": "pre-rolls"
+    },
+    {
+      "id": "150015",
+      "name": "Sour Diesel Pre-Roll 1g",
+      "price": "130000",
+      "quantity": "130",
+      "category": "pre-rolls"
+    },
+    {
+      "id": "150014",
+      "name": "OG Kush Pre-Roll 1g",
+      "price": "120000",
+      "quantity": "140",
+      "category": "pre-rolls"
+    },
+    {
+      "id": "150013",
+      "name": "Blue Dream Pre-Roll 1g",
+      "price": "120000",
+      "quantity": "150",
+      "category": "pre-rolls"
+    },
+    {
+      "id": "90013",
+      "name": "Bruce Banner",
+      "price": "45000",
+      "quantity": "150",
+      "category": "flower"
+    },
+    {
+      "id": "90014",
+      "name": "Runtz",
+      "price": "44000",
+      "quantity": "180",
+      "category": "flower"
+    },
+    {
+      "id": "90018",
+      "name": "Ghost Train Haze",
+      "price": "44000",
+      "quantity": "120",
+      "category": "flower"
+    },
+    {
+      "id": "90016",
+      "name": "Do-Si-Dos",
+      "price": "43000",
+      "quantity": "160",
+      "category": "flower"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tprice\tquantity\tcategory\n150011\tGelato Live Resin\t700000\t20\tconcentrates\n150010\tOG Kush Shatter\t650000\t25\tconcentrates\n150012\tSour Diesel Crumble\t600000\t35\tconcentrates\n150009\tBlue Dream Wax\t600000\t30\tconcentrates\n150004\tGelato Vape Pen\t500000\t40\tvapes\n150002\tSour Diesel Vape\t480000\t45\tvapes\n150003\tOG Kush Vape Cart\t450000\t60\tvapes\n150001\tBlue Dream Vape Cart\t450000\t50\tvapes\n150007\tHybrid Gummies 20-Pack\t300000\t80\tedibles\n150005\tIndica Gummies 10-Pack\t250000\t100\tedibles\n150006\tSativa Gummies 10-Pack\t250000\t95\tedibles\n150008\tCBD Gummies 10-Pack\t200000\t120\tedibles\n150016\tGelato Pre-Roll 1g\t140000\t120\tpre-rolls\n150015\tSour Diesel Pre-Roll 1g\t130000\t130\tpre-rolls\n150014\tOG Kush Pre-Roll 1g\t120000\t140\tpre-rolls\n150013\tBlue Dream Pre-Roll 1g\t120000\t150\tpre-rolls\n90013\tBruce Banner\t45000\t150\tflower\n90014\tRuntz\t44000\t180\tflower\n90018\tGhost Train Haze\t44000\t120\tflower\n90016\tDo-Si-Dos\t43000\t160\tflower\n",
+  "stderr": "",
+  "execution_time_ms": 104
+}

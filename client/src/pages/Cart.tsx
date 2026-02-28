@@ -74,8 +74,8 @@ export default function Cart() {
   
   // Handle guest cart quantity update
   const handleGuestQuantityUpdate = (productId: number, newQuantity: number) => {
-    if (newQuantity < 1) {
-      toast.error("Minimum order is 1 gram");
+    if (newQuantity < 4) {
+      toast.error("Minimum order is 4 grams");
       return;
     }
     updateGuestCartQuantity(productId, newQuantity);
@@ -192,7 +192,7 @@ export default function Cart() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => handleGuestQuantityUpdate(item.productId, item.quantity - 1)}
+                          onClick={() => handleGuestQuantityUpdate(item.productId, Math.max(4, item.quantity - 1))}
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
@@ -289,8 +289,8 @@ export default function Cart() {
   const total = subtotal + tax;
 
   const handleUpdateQuantity = (itemId: number, newQuantity: number) => {
-    if (newQuantity < 1) {
-      toast.error("Minimum order is 1 gram");
+    if (newQuantity < 4) {
+      toast.error("Minimum order is 4 grams");
       return;
     }
     updateQuantityMutation.mutate({ id: itemId, quantity: newQuantity });
@@ -524,7 +524,7 @@ export default function Cart() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                            disabled={updateQuantityMutation.isPending || item.quantity <= 1}
+                            disabled={updateQuantityMutation.isPending || item.quantity <= 4}
                           >
                             <Minus className="h-4 w-4" />
                           </Button>

@@ -1,0 +1,130 @@
+{
+  "query": "\n-- The new strains have prices like 320-450 cents which is wholesale/spot price\n-- Retail per-gram should be $8-$15 for quality flower\n-- Update all flower products that still have prices under 800 cents (under $8/gram)\nUPDATE products SET \n  retailPrice = ROUND(price * 1.5),\n  price = CASE \n    WHEN price < 400 THEN price * 3    -- $3.20 -> $9.60/gram\n    WHEN price < 500 THEN price * 2.8  -- $4.00 -> $11.20/gram  \n    ELSE price * 2.5                   -- $4.50 -> $11.25/gram\n  END\nWHERE category = 'flower' AND price < 800;\n\n-- Verify the fix\nSELECT name, price, retailPrice, category FROM products WHERE category = 'flower' ORDER BY price LIMIT 20;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \n-- The new strains have prices like 320-450 cents which is wholesale/spot price\n-- Retail per-gram should be $8-$15 for quality flower\n-- Update all flower products that still have prices under 800 cents (under $8/gram)\nUPDATE products SET \n  retailPrice = ROUND(price * 1.5),\n  price = CASE \n    WHEN price < 400 THEN price * 3    -- $3.20 -> $9.60/gram\n    WHEN price < 500 THEN price * 2.8  -- $4.00 -> $11.20/gram  \n    ELSE price * 2.5                   -- $4.50 -> $11.25/gram\n  END\nWHERE category = 'flower' AND price < 800;\n\n-- Verify the fix\nSELECT name, price, retailPrice, category FROM products WHERE category = 'flower' ORDER BY price LIMIT 20;\n",
+  "rows": [
+    {
+      "name": "Granddaddy Purple",
+      "price": "900",
+      "retailPrice": "1300",
+      "category": "flower"
+    },
+    {
+      "name": "Blue Dream",
+      "price": "1000",
+      "retailPrice": "1400",
+      "category": "flower"
+    },
+    {
+      "name": "Jack Herer",
+      "price": "1100",
+      "retailPrice": "1500",
+      "category": "flower"
+    },
+    {
+      "name": "Sour Diesel",
+      "price": "1100",
+      "retailPrice": "1500",
+      "category": "flower"
+    },
+    {
+      "name": "Zkittlez",
+      "price": "1200",
+      "retailPrice": "1600",
+      "category": "flower"
+    },
+    {
+      "name": "OG Kush",
+      "price": "1200",
+      "retailPrice": "1600",
+      "category": "flower"
+    },
+    {
+      "name": "Girl Scout Cookies",
+      "price": "1300",
+      "retailPrice": "1800",
+      "category": "flower"
+    },
+    {
+      "name": "Gelato #33",
+      "price": "1400",
+      "retailPrice": "1900",
+      "category": "flower"
+    },
+    {
+      "name": "Gorilla Glue #4",
+      "price": "1400",
+      "retailPrice": "1900",
+      "category": "flower"
+    },
+    {
+      "name": "Wedding Cake",
+      "price": "1500",
+      "retailPrice": "2000",
+      "category": "flower"
+    },
+    {
+      "name": "Test Blue Dream",
+      "price": "3500",
+      "retailPrice": "11000",
+      "category": "flower"
+    },
+    {
+      "name": "Northern Lights",
+      "price": "32000",
+      "retailPrice": "110000",
+      "category": "flower"
+    },
+    {
+      "name": "Green Crack",
+      "price": "34000",
+      "retailPrice": "115000",
+      "category": "flower"
+    },
+    {
+      "name": "White Widow",
+      "price": "35000",
+      "retailPrice": "120000",
+      "category": "flower"
+    },
+    {
+      "name": "Durban Poison",
+      "price": "35000",
+      "retailPrice": "120000",
+      "category": "flower"
+    },
+    {
+      "name": "AK-47",
+      "price": "36000",
+      "retailPrice": "125000",
+      "category": "flower"
+    },
+    {
+      "name": "Banana Kush",
+      "price": "37000",
+      "retailPrice": "130000",
+      "category": "flower"
+    },
+    {
+      "name": "Strawberry Cough",
+      "price": "37000",
+      "retailPrice": "130000",
+      "category": "flower"
+    },
+    {
+      "name": "Amnesia Haze",
+      "price": "38000",
+      "retailPrice": "135000",
+      "category": "flower"
+    },
+    {
+      "name": "Mimosa",
+      "price": "38000",
+      "retailPrice": "130000",
+      "category": "flower"
+    }
+  ],
+  "messages": [],
+  "stdout": "name\tprice\tretailPrice\tcategory\nGranddaddy Purple\t900\t1300\tflower\nBlue Dream\t1000\t1400\tflower\nJack Herer\t1100\t1500\tflower\nSour Diesel\t1100\t1500\tflower\nZkittlez\t1200\t1600\tflower\nOG Kush\t1200\t1600\tflower\nGirl Scout Cookies\t1300\t1800\tflower\nGelato #33\t1400\t1900\tflower\nGorilla Glue #4\t1400\t1900\tflower\nWedding Cake\t1500\t2000\tflower\nTest Blue Dream\t3500\t11000\tflower\nNorthern Lights\t32000\t110000\tflower\nGreen Crack\t34000\t115000\tflower\nWhite Widow\t35000\t120000\tflower\nDurban Poison\t35000\t120000\tflower\nAK-47\t36000\t125000\tflower\nBanana Kush\t37000\t130000\tflower\nStrawberry Cough\t37000\t130000\tflower\nAmnesia Haze\t38000\t135000\tflower\nMimosa\t38000\t130000\tflower\n",
+  "stderr": "",
+  "execution_time_ms": 82
+}

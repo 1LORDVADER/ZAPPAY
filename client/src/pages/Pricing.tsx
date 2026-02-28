@@ -278,11 +278,11 @@ export default function Pricing() {
           <div className="space-y-6">
             <Card className="border-2 border-slate-200">
               <CardHeader>
-                <CardTitle className="text-xl">What's included in the Free Trial?</CardTitle>
+                <CardTitle className="text-xl">How does ZAPPAY pricing work?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  The first year is completely free with up to 10 product listings, full platform access, and basic analytics. After the first year, you can choose to upgrade to Premium or Pay-As-You-Go.
+                  ZAPPAY charges a 5.2% processing fee on every transaction we facilitate for your business. On top of that, your chosen plan's monthly subscription fee is automatically deducted from your processed earnings — no invoices, no upfront payments. You keep the rest.
                 </p>
               </CardContent>
             </Card>
@@ -300,11 +300,11 @@ export default function Pricing() {
 
             <Card className="border-2 border-slate-200">
               <CardHeader>
-                <CardTitle className="text-xl">What makes Early Adopters special?</CardTitle>
+                <CardTitle className="text-xl">What makes Elite Grower the best value?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  Early Adopters get exclusive features like permanent homepage placement, strain mixing, demand forecasting AI, and lifetime pricing lock. Only 20 spots available with 3,970% ROI guarantee based on market intelligence.
+                  Elite Grower includes monthly 24/7 ad campaigns, a dedicated account manager, AI-powered demand forecasting, top-3 search placement, and continuously engineered platform features — all designed to maximize your transaction volume. It is priced to deliver the most advantages per dollar of any cannabis payment processing plan available anywhere in the world.
                 </p>
               </CardContent>
             </Card>
@@ -315,7 +315,7 @@ export default function Pricing() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  Yes! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle. Early Adopter benefits are locked in permanently.
+                  Yes. You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle, and your subscription fee adjustment is reflected in the following month's deductions from your transaction earnings.
                 </p>
               </CardContent>
             </Card>
@@ -338,7 +338,7 @@ export default function Pricing() {
                 size="lg"
                 className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-lg px-8 py-6"
               >
-                Start Free Trial
+                Apply as a Farmer
               </Button>
             </Link>
             <Link href="/">

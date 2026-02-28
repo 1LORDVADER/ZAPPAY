@@ -16,7 +16,8 @@ export default function ProductDetail() {
   const params = useParams();
   const [, setLocation] = useLocation();
   const { user, isAuthenticated } = useAuth();
-  const [quantity, setQuantity] = useState(1);
+  const MIN_QUANTITY = 4; // 4-gram minimum order
+  const [quantity, setQuantity] = useState(MIN_QUANTITY);
   
   const productId = parseInt(params.id || "0");
   
@@ -260,22 +261,22 @@ export default function ProductDetail() {
               {/* Quantity Selector */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Quantity
+                  Quantity <span className="text-xs text-slate-500 font-normal">(4g minimum order)</span>
                 </label>
                 <div className="flex items-center gap-3">
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    onClick={() => setQuantity(Math.max(MIN_QUANTITY, quantity - 1))}
                   >
                     -
                   </Button>
                   <Input
                     type="number"
                     value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                    onChange={(e) => setQuantity(Math.max(MIN_QUANTITY, parseInt(e.target.value) || MIN_QUANTITY))}
                     className="w-20 text-center"
-                    min="1"
+                    min="4"
                     max={product.quantity}
                   />
                   <Button

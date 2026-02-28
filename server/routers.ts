@@ -92,11 +92,13 @@ export const appRouter = router({
       .input((val: unknown) => val as any)
       .mutation(async ({ input, ctx }) => {
         if (!ctx.user) throw new Error('Not authenticated');
+        const qty = Number(input.quantity);
+        if (qty < 4) throw new Error('Minimum order quantity is 4 grams');
         const { addToCart } = await import('./db');
         await addToCart({
           userId: ctx.user.id,
           productId: input.productId,
-          quantity: input.quantity,
+          quantity: qty,
         });
         return { success: true };
       }),
@@ -104,8 +106,11 @@ export const appRouter = router({
       .input((val: unknown) => val as any)
       .mutation(async ({ input, ctx }) => {
         if (!ctx.user) throw new Error('Not authenticated');
+        const qty = Number(input.quantity);
+        // Allow 0 for deletion, but enforce minimum of 4 for actual updates
+        if (qty > 0 && qty < 4) throw new Error('Minimum order quantity is 4 grams');
         const { updateCartItemQuantity } = await import('./db');
-        await updateCartItemQuantity(input.id, input.quantity, input.isMixed, input.mixedStrains);
+        await updateCartItemQuantity(input.id, qty, input.isMixed, input.mixedStrains);
         return { success: true };
       }),
     clear: publicProcedure.mutation(async ({ ctx }) => {

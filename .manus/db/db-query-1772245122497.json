@@ -1,0 +1,40 @@
+{
+  "query": "\n-- Fix vape cartridges: $35-$55 per 1g cart (3500-5500 cents per unit, not per gram)\nUPDATE products SET price = 3500, retailPrice = 5500 WHERE name LIKE '%Cart%' AND category = 'vapes';\nUPDATE products SET price = 3500, retailPrice = 5500 WHERE category = 'vapes';\n\n-- Fix edibles: $15-$25 per 100mg unit (1500-2500 cents per unit)\nUPDATE products SET price = 1800, retailPrice = 2500 WHERE name LIKE '%Gummy%' AND category = 'edibles';\nUPDATE products SET price = 1800, retailPrice = 2500 WHERE category = 'edibles';\n\n-- Fix concentrates/shatter: $30-$50 per gram (3000-5000 cents)\nUPDATE products SET price = 3500, retailPrice = 5000 WHERE name LIKE '%Shatter%' AND category = 'concentrates';\nUPDATE products SET price = 3500, retailPrice = 5000 WHERE category = 'concentrates';\n\n-- Fix pre-rolls: $10-$15 per gram equivalent (1000-1500 cents)\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE name LIKE '%Pre-Roll%' AND category = 'pre-rolls';\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE category = 'pre-rolls';\n\n-- Verify all categories now have correct prices\nSELECT category, COUNT(*) as count, MIN(price) as min_price_cents, MAX(price) as max_price_cents FROM products GROUP BY category;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute \n-- Fix vape cartridges: $35-$55 per 1g cart (3500-5500 cents per unit, not per gram)\nUPDATE products SET price = 3500, retailPrice = 5500 WHERE name LIKE '%Cart%' AND category = 'vapes';\nUPDATE products SET price = 3500, retailPrice = 5500 WHERE category = 'vapes';\n\n-- Fix edibles: $15-$25 per 100mg unit (1500-2500 cents per unit)\nUPDATE products SET price = 1800, retailPrice = 2500 WHERE name LIKE '%Gummy%' AND category = 'edibles';\nUPDATE products SET price = 1800, retailPrice = 2500 WHERE category = 'edibles';\n\n-- Fix concentrates/shatter: $30-$50 per gram (3000-5000 cents)\nUPDATE products SET price = 3500, retailPrice = 5000 WHERE name LIKE '%Shatter%' AND category = 'concentrates';\nUPDATE products SET price = 3500, retailPrice = 5000 WHERE category = 'concentrates';\n\n-- Fix pre-rolls: $10-$15 per gram equivalent (1000-1500 cents)\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE name LIKE '%Pre-Roll%' AND category = 'pre-rolls';\nUPDATE products SET price = 1200, retailPrice = 1600 WHERE category = 'pre-rolls';\n\n-- Verify all categories now have correct prices\nSELECT category, COUNT(*) as count, MIN(price) as min_price_cents, MAX(price) as max_price_cents FROM products GROUP BY category;\n",
+  "rows": [
+    {
+      "category": "edibles",
+      "count": "4",
+      "min_price_cents": "1800",
+      "max_price_cents": "1800"
+    },
+    {
+      "category": "concentrates",
+      "count": "4",
+      "min_price_cents": "3500",
+      "max_price_cents": "3500"
+    },
+    {
+      "category": "flower",
+      "count": "34",
+      "min_price_cents": "900",
+      "max_price_cents": "45000"
+    },
+    {
+      "category": "pre-rolls",
+      "count": "4",
+      "min_price_cents": "1200",
+      "max_price_cents": "1200"
+    },
+    {
+      "category": "vapes",
+      "count": "4",
+      "min_price_cents": "3500",
+      "max_price_cents": "3500"
+    }
+  ],
+  "messages": [],
+  "stdout": "category\tcount\tmin_price_cents\tmax_price_cents\nedibles\t4\t1800\t1800\nconcentrates\t4\t3500\t3500\nflower\t34\t900\t45000\npre-rolls\t4\t1200\t1200\nvapes\t4\t3500\t3500\n",
+  "stderr": "",
+  "execution_time_ms": 139
+}
