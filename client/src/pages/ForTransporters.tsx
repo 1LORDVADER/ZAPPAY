@@ -129,10 +129,10 @@ export default function ForTransporters() {
                 </CardHeader>
               </Card>
 
-              <Card className="border-2 border-slate-200 hover:border-[#E8231A] transition-all hover:shadow-xl">
+              <Card className="border-2 border-slate-200 hover:border-green-500 transition-all hover:shadow-xl">
                 <CardHeader>
-                  <div className="h-12 w-12 bg-[#fde8e7] rounded-lg flex items-center justify-center mb-4">
-                    <DollarSign className="h-6 w-6 text-[#0D1B2A]" />
+                  <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <DollarSign className="h-6 w-6 text-green-600" />
                   </div>
                   <CardTitle className="text-2xl">Instant Payments</CardTitle>
                   <CardDescription className="text-base">
@@ -199,23 +199,23 @@ export default function ForTransporters() {
               <CardContent>
                 <ul className="space-y-3 text-lg">
                   <li className="flex items-start gap-3">
-                    <Badge className="bg-[#e8edf3] text-[#0D1B2A] mt-1">✓</Badge>
+                    <Badge className="bg-green-100 text-green-800 mt-1">✓</Badge>
                     <span>Valid state-issued cannabis transportation license</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Badge className="bg-[#e8edf3] text-[#0D1B2A] mt-1">✓</Badge>
+                    <Badge className="bg-green-100 text-green-800 mt-1">✓</Badge>
                     <span>Commercial driver's license (CDL) or equivalent</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Badge className="bg-[#e8edf3] text-[#0D1B2A] mt-1">✓</Badge>
+                    <Badge className="bg-green-100 text-green-800 mt-1">✓</Badge>
                     <span>Insured vehicle meeting state requirements</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Badge className="bg-[#e8edf3] text-[#0D1B2A] mt-1">✓</Badge>
+                    <Badge className="bg-green-100 text-green-800 mt-1">✓</Badge>
                     <span>Clean background check and driving record</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Badge className="bg-[#e8edf3] text-[#0D1B2A] mt-1">✓</Badge>
+                    <Badge className="bg-green-100 text-green-800 mt-1">✓</Badge>
                     <span>GPS-enabled smartphone for real-time tracking</span>
                   </li>
                 </ul>

@@ -475,8 +475,8 @@ export default function Cart() {
                     <CardContent className="p-6">
                       <div className="flex items-center gap-6">
                         {/* Product Image Placeholder */}
-                        <div className="h-24 w-24 bg-gradient-to-br from-[#f0f4f8] to-[#e8edf3] rounded-lg flex items-center justify-center flex-shrink-0">
-                          <ShoppingCart className="h-8 w-8 text-[#0D1B2A]" />
+                        <div className="h-24 w-24 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <ShoppingCart className="h-8 w-8 text-green-600" />
                         </div>
 
                         {/* Product Info */}
@@ -491,7 +491,7 @@ export default function Cart() {
                           </p>
                           <div className="flex items-center gap-4 text-sm">
                             <span className="text-slate-600">
-                              THC: <span className="font-semibold text-[#0D1B2A]">{item.product!.thcPercentage}</span>
+                              THC: <span className="font-semibold text-green-600">{item.product!.thcPercentage}</span>
                             </span>
                             <span className="text-slate-600">
                               CBD: <span className="font-semibold text-blue-600">{item.product!.cbdPercentage}</span>
@@ -512,7 +512,7 @@ export default function Cart() {
                           )}
                           
                           {item.isMixed === 'yes' && item.mixedStrains && (
-                            <div className="mt-2 text-xs text-[#0D1B2A] font-medium">
+                            <div className="mt-2 text-xs text-green-600 font-medium">
                               ✓ Mixed Strain Order
                             </div>
                           )}
@@ -712,7 +712,7 @@ export default function Cart() {
                     <div>
                       <p className="font-medium">{product.name}</p>
                       <p className="text-sm text-slate-600">{product.strain} • THC: {product.thcPercentage}</p>
-                      <p className="text-sm font-semibold text-[#0D1B2A]">${(product.price).toFixed(2)}/g</p>
+                      <p className="text-sm font-semibold text-green-600">${(product.price).toFixed(2)}/g</p>
                     </div>
                     <Button
                       size="sm"

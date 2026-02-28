@@ -48,8 +48,8 @@ export default function SalesRepRegistration() {
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-slate-50 flex items-center justify-center p-4">
         <Card className="max-w-2xl w-full border-2 border-orange-200">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 h-16 w-16 bg-[#fde8e7] rounded-full flex items-center justify-center">
-              <CheckCircle className="h-10 w-10 text-[#0D1B2A]" />
+            <div className="mx-auto mb-4 h-16 w-16 bg-green-100 rounded-full flex items-center justify-center">
+              <CheckCircle className="h-10 w-10 text-green-600" />
             </div>
             <CardTitle className="text-3xl">Application Submitted!</CardTitle>
             <CardDescription className="text-lg">
@@ -210,19 +210,19 @@ export default function SalesRepRegistration() {
                 <h3 className="font-semibold mb-3">What You'll Get</h3>
                 <ul className="space-y-2 text-sm text-slate-700">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                     <span><strong>Competitive Base + Commission:</strong> $60k-$120k+ depending on experience and performance</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                     <span><strong>Remote-First:</strong> Work from anywhere in the US</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                     <span><strong>Growth Industry:</strong> Be part of the booming legal cannabis market</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                     <span><strong>Training & Support:</strong> Comprehensive onboarding and ongoing coaching</span>
                   </li>
                 </ul>

@@ -135,7 +135,7 @@ export default function FarmerDashboard() {
               <Badge className={`text-lg px-4 py-2 ${
                 farmerProfile.subscriptionTier === 'enterprise' ? 'bg-purple-100 text-purple-800' :
                 farmerProfile.subscriptionTier === 'premium' ? 'bg-blue-100 text-blue-800' :
-                'bg-[#e8edf3] text-[#0D1B2A]'
+                'bg-green-100 text-green-800'
               }`}>
                 {farmerProfile.subscriptionTier.toUpperCase()} TIER
               </Badge>
@@ -150,7 +150,7 @@ export default function FarmerDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center gap-2">
-                  <DollarSign className="h-5 w-5 text-[#0D1B2A]" />
+                  <DollarSign className="h-5 w-5 text-green-600" />
                   <span className="text-3xl font-bold text-slate-900">
                     ${(totalRevenue / 100).toFixed(2)}
                   </span>
@@ -200,7 +200,7 @@ export default function FarmerDashboard() {
             <h2 className="text-2xl font-bold text-slate-900">Your Products</h2>
             <Button
               onClick={() => setShowAddProduct(!showAddProduct)}
-              className="bg-gradient-to-r from-[#E8231A] to-[#c41d15] hover:from-[#c41d15] hover:to-[#a81812] text-white"
+              className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
             >
               <Plus className="h-4 w-4 mr-2" />
               Add Product
@@ -209,7 +209,7 @@ export default function FarmerDashboard() {
 
           {/* Add Product Form */}
           {showAddProduct && (
-            <Card className="mb-8 border-2 border-[#c5d0dc]">
+            <Card className="mb-8 border-2 border-green-200">
               <CardHeader>
                 <CardTitle>Add New Product</CardTitle>
                 <CardDescription>List a new product on the ZAPPAY platform</CardDescription>
@@ -246,7 +246,7 @@ export default function FarmerDashboard() {
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <Badge className={`${
-                        product.status === 'active' ? 'bg-[#e8edf3] text-[#0D1B2A]' :
+                        product.status === 'active' ? 'bg-green-100 text-green-800' :
                         product.status === 'sold_out' ? 'bg-red-100 text-red-800' :
                         'bg-gray-100 text-gray-800'
                       }`}>
@@ -351,7 +351,7 @@ export default function FarmerDashboard() {
                 <div className="flex items-center justify-between">
                   <Label className="text-base">Price Adjustment</Label>
                   <Badge className={`text-lg px-3 py-1 ${
-                    priceAdjustment > 0 ? 'bg-[#e8edf3] text-[#0D1B2A]' :
+                    priceAdjustment > 0 ? 'bg-green-100 text-green-800' :
                     priceAdjustment < 0 ? 'bg-red-100 text-red-800' :
                     'bg-slate-100 text-slate-800'
                   }`}>
@@ -620,7 +620,7 @@ function AddProductForm({ onSuccess }: { onSuccess: () => void }) {
       <div className="flex gap-3">
         <Button
           type="submit"
-          className="bg-gradient-to-r from-[#E8231A] to-[#c41d15] hover:from-[#c41d15] hover:to-[#a81812] text-white"
+          className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
           disabled={createProductMutation.isPending}
         >
           {createProductMutation.isPending ? "Creating..." : "Create Product"}

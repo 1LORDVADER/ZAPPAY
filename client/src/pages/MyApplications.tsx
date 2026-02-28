@@ -56,7 +56,7 @@ export default function MyApplications() {
       case "approved":
       case "active":
         return (
-          <Badge className="bg-[#e8edf3] text-[#0D1B2A] border-[#b0bfcc]">
+          <Badge className="bg-green-100 text-green-800 border-green-300">
             <CheckCircle className="mr-1 h-3 w-3" />
             Approved
           </Badge>
@@ -151,8 +151,8 @@ export default function MyApplications() {
                     <span>Submitted: {new Date(farmerApp.createdAt).toLocaleDateString()}</span>
                   </div>
                   {farmerApp.verified === "approved" && (
-                    <div className="bg-[#f0f4f8] p-3 rounded-lg border border-[#c5d0dc]">
-                      <p className="text-sm text-[#0D1B2A]">
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
                         🎉 Congratulations! Your farmer application has been approved. You can now access your{" "}
                         <button
                           onClick={() => setLocation("/farmer/dashboard")}
@@ -194,8 +194,8 @@ export default function MyApplications() {
                     <span>Submitted: {new Date(driverApp.createdAt).toLocaleDateString()}</span>
                   </div>
                   {driverApp.status === "active" && (
-                    <div className="bg-[#f0f4f8] p-3 rounded-lg border border-[#c5d0dc]">
-                      <p className="text-sm text-[#0D1B2A]">
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
                         🎉 Congratulations! Your driver application has been approved. Check your email for next steps.
                       </p>
                     </div>
@@ -231,8 +231,8 @@ export default function MyApplications() {
                     <span>Submitted: {new Date(companyApp.createdAt).toLocaleDateString()}</span>
                   </div>
                   {companyApp.status === "active" && (
-                    <div className="bg-[#f0f4f8] p-3 rounded-lg border border-[#c5d0dc]">
-                      <p className="text-sm text-[#0D1B2A]">
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
                         🎉 Congratulations! Your company application has been approved. Check your email for next steps.
                       </p>
                     </div>
@@ -268,8 +268,8 @@ export default function MyApplications() {
                     <span>Submitted: {new Date(dispensaryApp.createdAt).toLocaleDateString()}</span>
                   </div>
                   {dispensaryApp.status === "approved" && (
-                    <div className="bg-[#f0f4f8] p-3 rounded-lg border border-[#c5d0dc]">
-                      <p className="text-sm text-[#0D1B2A]">
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
                         🎉 Congratulations! Your dispensary application has been approved. Check your email for next steps.
                       </p>
                     </div>
@@ -305,8 +305,8 @@ export default function MyApplications() {
                     <span>Submitted: {new Date(advertiserApp.createdAt).toLocaleDateString()}</span>
                   </div>
                   {advertiserApp.status === "approved" && (
-                    <div className="bg-[#f0f4f8] p-3 rounded-lg border border-[#c5d0dc]">
-                      <p className="text-sm text-[#0D1B2A]">
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
                         🎉 Congratulations! Your advertiser application has been approved. Check your email for next steps.
                       </p>
                     </div>
@@ -342,8 +342,8 @@ export default function MyApplications() {
                     <span>Submitted: {new Date(salesApp.createdAt).toLocaleDateString()}</span>
                   </div>
                   {salesApp.status === "approved" && (
-                    <div className="bg-[#f0f4f8] p-3 rounded-lg border border-[#c5d0dc]">
-                      <p className="text-sm text-[#0D1B2A]">
+                    <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-800">
                         🎉 Congratulations! Your sales rep application has been approved. You can now access your{" "}
                         <button
                           onClick={() => setLocation("/sales/dashboard")}

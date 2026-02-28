@@ -275,8 +275,8 @@ export function AgeGate() {
 
           {/* Location Info */}
           {userLocation && (
-            <div className="p-3 rounded-lg w-full" style={{ background: 'rgba(13,27,42,0.06)', border: '1px solid rgba(13,27,42,0.15)' }}>
-              <p className="text-sm text-center font-medium" style={{ color: '#0D1B2A' }}>
+            <div className="bg-green-50 border border-green-200 p-3 rounded-lg w-full">
+              <p className="text-sm text-green-800 text-center">
                 ✓ Verified Location: {userLocation.city}, {userLocation.stateName}
               </p>
             </div>
@@ -304,10 +304,9 @@ export function AgeGate() {
             <Button
               onClick={() => handleVerifyAge(true)}
               size="lg"
-              className="w-full text-white font-bold"
-              style={{ background: '#E8231A', border: 'none', boxShadow: '0 4px 16px rgba(232,35,26,0.35)' }}
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
             >
-              I am 21 or older - Enter Site
+              I'm 21 or Older - Enter Site
             </Button>
 
             <Button
@@ -321,10 +320,8 @@ export function AgeGate() {
           </div>
 
           {/* Legal Disclaimer */}
-          <p className="text-xs text-center" style={{ color: '#94a3b8' }}>
-            By entering this site, you agree to our{' '}
-            <a href="/legal/terms-of-service" className="underline" style={{ color: '#E8231A' }}>Terms of Service</a>.
-            Cannabis products are only available in states where cannabis is legal.
+          <p className="text-xs text-muted-foreground text-center">
+            By entering this site, you agree to our Terms of Service and acknowledge that cannabis products are only available in states where cannabis is legal. Your location and age verification are logged for compliance purposes.
           </p>
         </div>
       </DialogContent>

@@ -115,15 +115,15 @@ export default function FarmerAnalytics() {
 
           {/* Key Metrics */}
           <div className="grid md:grid-cols-4 gap-6 mb-12">
-            <Card className="border-2 border-[#c5d0dc] bg-gradient-to-br from-[#E8231A] to-white">
+            <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-white">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm">
-                  <DollarSign className="h-4 w-4 text-[#0D1B2A]" />
+                  <DollarSign className="h-4 w-4 text-green-600" />
                   Total Revenue
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-[#0D1B2A]">
+                <p className="text-3xl font-bold text-green-600">
                   ${(totalRevenue / 100).toFixed(2)}
                 </p>
                 <p className="text-xs text-slate-600 mt-1">All time</p>
@@ -198,7 +198,7 @@ export default function FarmerAnalytics() {
                       </div>
                       <div className="text-right">
                         <p className="font-semibold text-slate-900">{product.totalSold} sold</p>
-                        <p className="text-sm text-[#0D1B2A]">${(product.revenue / 100).toFixed(2)} revenue</p>
+                        <p className="text-sm text-green-600">${(product.revenue / 100).toFixed(2)} revenue</p>
                       </div>
                     </div>
                   ))}
@@ -221,7 +221,7 @@ export default function FarmerAnalytics() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-start gap-3">
-                <ArrowUp className="h-5 w-5 text-[#0D1B2A] mt-1" />
+                <ArrowUp className="h-5 w-5 text-green-600 mt-1" />
                 <div>
                   <h3 className="font-semibold text-slate-900">High Demand Products</h3>
                   <p className="text-sm text-slate-600">

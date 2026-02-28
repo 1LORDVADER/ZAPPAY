@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Star, ArrowUpDown, TrendingDown, Shield, Clock, CreditCard, Leaf, Zap } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ShoppingCart, Search, Zap, Star, ArrowUpDown, TrendingDown, Shield, Clock, CreditCard, Leaf } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getGuestCartCount } from "@/lib/cartPersistence";
@@ -13,11 +13,6 @@ import { AgeVerification } from "@/components/AgeVerification";
 import { AdvancedFilters, type FilterState } from "@/components/AdvancedFilters";
 import { NavHeader } from "@/components/NavHeader";
 import { Toaster } from "sonner";
-
-// ZAPPAY Brand Colors
-// Primary Red: #E8231A
-// Navy Blue: #0D1B2A (dark) / #1e3a5f (mid)
-// White: #FFFFFF
 
 // Category icon CDN URLs
 const CATEGORY_ICONS: Record<string, string> = {
@@ -33,33 +28,33 @@ const ADVANTAGES = [
     icon: <Clock className="h-5 w-5" />,
     title: "Sub-1 Second Settlement",
     desc: "Transactions confirmed and settled in under one second — faster than any bank.",
-    color: "#E8231A",
-    bg: "rgba(232,35,26,0.08)",
-    border: "rgba(232,35,26,0.2)",
+    color: "#22c55e",
+    bg: "rgba(34,197,94,0.08)",
+    border: "rgba(34,197,94,0.18)",
   },
   {
     icon: <Shield className="h-5 w-5" />,
     title: "Insurance Payments",
     desc: "ZAPPAY supports insurance payment processing for medical cannabis patients.",
-    color: "#4a9eff",
-    bg: "rgba(74,158,255,0.08)",
-    border: "rgba(74,158,255,0.2)",
+    color: "#60a5fa",
+    bg: "rgba(96,165,250,0.08)",
+    border: "rgba(96,165,250,0.18)",
   },
   {
     icon: <TrendingDown className="h-5 w-5" />,
     title: "Live Broker Pricing",
     desc: "Dynamic real-time pricing direct from licensed farmers — no dispensary markup.",
-    color: "#ffffff",
-    bg: "rgba(255,255,255,0.06)",
-    border: "rgba(255,255,255,0.15)",
+    color: "#a78bfa",
+    bg: "rgba(167,139,250,0.08)",
+    border: "rgba(167,139,250,0.18)",
   },
   {
     icon: <CreditCard className="h-5 w-5" />,
     title: "Just 5.2% Per Transaction",
     desc: "The lowest processing fee in the cannabis industry. Farmers keep 94.8%.",
-    color: "#E8231A",
-    bg: "rgba(232,35,26,0.08)",
-    border: "rgba(232,35,26,0.2)",
+    color: "#fb923c",
+    bg: "rgba(251,146,60,0.08)",
+    border: "rgba(251,146,60,0.18)",
   },
 ];
 
@@ -140,7 +135,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: '#f8fafc' }}>
+    <div className="min-h-screen" style={{ background: '#080c14' }}>
       <AgeVerification />
       <NavHeader />
 
@@ -148,61 +143,55 @@ export default function Home() {
       <section
         className="relative overflow-hidden"
         style={{
-          background: 'linear-gradient(160deg, #0D1B2A 0%, #0f2035 45%, #0a1628 100%)',
-          borderBottom: '3px solid #E8231A',
+          background: 'linear-gradient(160deg, #0d1520 0%, #0a1628 40%, #060e1a 100%)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
         }}
       >
-        {/* Subtle red glow top-left */}
+        {/* Ambient glow blobs — GPU-composited, no layout impact */}
         <div
           className="pointer-events-none absolute"
           style={{
-            top: '-80px', left: '-60px', width: '480px', height: '480px',
-            background: 'radial-gradient(circle, rgba(232,35,26,0.12) 0%, transparent 65%)',
+            top: '-120px', left: '-80px', width: '500px', height: '500px',
+            background: 'radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%)',
+            animation: 'pulse 6s ease-in-out infinite',
           }}
         />
-        {/* Subtle blue glow top-right */}
         <div
           className="pointer-events-none absolute"
           style={{
-            top: '40px', right: '-80px', width: '380px', height: '380px',
-            background: 'radial-gradient(circle, rgba(74,158,255,0.07) 0%, transparent 65%)',
-          }}
-        />
-        {/* Diagonal red accent stripe */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, rgba(232,35,26,0.04) 0%, transparent 50%)',
+            top: '60px', right: '-100px', width: '400px', height: '400px',
+            background: 'radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 70%)',
+            animation: 'pulse 8s ease-in-out infinite 2s',
           }}
         />
 
         <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
-          {/* Live badge — ZAPPAY red */}
-          <div className="flex justify-center mb-8">
+          {/* Live badge */}
+          <div className="flex justify-center mb-6">
             <div
-              className="inline-flex items-center gap-2.5 rounded-full px-5 py-2 text-sm font-semibold tracking-wide"
+              className="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 text-sm font-medium"
               style={{
-                background: 'rgba(232,35,26,0.12)',
-                border: '1px solid rgba(232,35,26,0.4)',
-                color: '#ff6b63',
+                background: 'rgba(34,197,94,0.1)',
+                border: '1px solid rgba(34,197,94,0.25)',
+                color: '#4ade80',
               }}
             >
-              <Zap className="h-3.5 w-3.5" style={{ color: '#E8231A' }} />
+              <span className="w-2 h-2 rounded-full bg-green-400" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
               Live Broker Pricing Active — Prices Update in Real Time
             </div>
           </div>
 
           {/* Headline */}
-          <div className="text-center max-w-5xl mx-auto mb-8">
+          <div className="text-center max-w-4xl mx-auto mb-6">
             <h1
-              className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6"
+              className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-5"
               style={{ color: '#ffffff' }}
             >
               Cannabis Payments
               <br />
               <span
                 style={{
-                  backgroundImage: 'linear-gradient(90deg, #E8231A 0%, #ff4d46 40%, #c41a12 100%)',
+                  backgroundImage: 'linear-gradient(90deg, #22c55e 0%, #4ade80 50%, #16a34a 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -217,22 +206,22 @@ export default function Home() {
           </div>
 
           {/* CTA buttons */}
-          <div className="flex flex-wrap gap-4 justify-center mb-16">
+          <div className="flex flex-wrap gap-3 justify-center mb-14">
             <Link href="/how-it-works">
               <Button
                 size="lg"
-                className="font-bold px-10 text-white text-base"
-                style={{ background: '#E8231A', border: 'none', boxShadow: '0 4px 20px rgba(232,35,26,0.4)' }}
+                className="font-bold px-8 text-black"
+                style={{ background: 'linear-gradient(90deg, #22c55e, #16a34a)', border: 'none' }}
               >
                 How It Works
               </Button>
             </Link>
-            <Link href="/farmer/register">
+            <Link href="/apply">
               <Button
                 size="lg"
                 variant="outline"
-                className="font-bold px-10 text-white text-base"
-                style={{ borderColor: 'rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.06)' }}
+                className="font-bold px-8 text-white"
+                style={{ borderColor: 'rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)' }}
               >
                 Apply as Farmer / Dispensary
               </Button>
@@ -253,48 +242,33 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          {/* Stats strip */}
-          <div
-            className="mt-14 rounded-2xl py-6 px-8 grid grid-cols-3 gap-6 max-w-2xl mx-auto text-center"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
-          >
-            <div>
-              <div className="text-3xl font-black" style={{ color: '#E8231A' }}>5.2%</div>
-              <div className="text-xs mt-1" style={{ color: '#64748b' }}>Commission Rate</div>
-            </div>
-            <div style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-              <div className="text-3xl font-black text-white">50+</div>
-              <div className="text-xs mt-1" style={{ color: '#64748b' }}>Legal States</div>
-            </div>
-            <div>
-              <div className="text-3xl font-black text-white">&lt;1s</div>
-              <div className="text-xs mt-1" style={{ color: '#64748b' }}>Settlement Time</div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ─── PRODUCT SECTION ─── */}
-      <section className="py-12 px-4" style={{ background: '#f8fafc' }}>
+      <section className="py-12 px-4" style={{ background: '#080c14' }}>
         <div className="container mx-auto">
 
           {/* Search + Filters row */}
           <div className="flex flex-wrap gap-3 mb-8">
             <div className="relative flex-1 min-w-[200px]">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
               <Input
                 type="text"
                 placeholder="Search strains, THC%, effects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-11 text-sm text-slate-800 placeholder:text-slate-400 bg-white border-slate-200 focus:border-[#1e3a5f] shadow-sm"
+                className="pl-10 h-11 text-sm text-white placeholder:text-gray-500"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
               />
             </div>
             <AdvancedFilters filters={filters} onFiltersChange={setFilters} />
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-44 h-11 text-sm font-medium bg-white border-slate-200 text-slate-700 shadow-sm">
-                <ArrowUpDown className="h-3.5 w-3.5 mr-2 text-slate-400" />
+              <SelectTrigger
+                className="w-44 h-11 text-sm font-medium"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#e2e8f0' }}
+              >
+                <ArrowUpDown className="h-3.5 w-3.5 mr-2 text-gray-400" />
                 <SelectValue placeholder="Sort" />
               </SelectTrigger>
               <SelectContent>
@@ -317,16 +291,15 @@ export default function Home() {
                 style={
                   activeCategory === cat.value
                     ? {
-                        background: '#0D1B2A',
-                        color: '#ffffff',
-                        border: '1.5px solid #0D1B2A',
-                        boxShadow: '0 2px 10px rgba(13,27,42,0.3)',
+                        background: '#22c55e',
+                        color: '#000',
+                        border: '1px solid #22c55e',
+                        boxShadow: '0 0 16px rgba(34,197,94,0.35)',
                       }
                     : {
-                        background: '#ffffff',
-                        color: '#475569',
-                        border: '1.5px solid #e2e8f0',
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                        background: 'rgba(255,255,255,0.05)',
+                        color: '#94a3b8',
+                        border: '1px solid rgba(255,255,255,0.1)',
                       }
                 }
               >
@@ -342,7 +315,7 @@ export default function Home() {
 
           {/* Product count */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-sm text-slate-500">
+            <p className="text-sm" style={{ color: '#64748b' }}>
               {isLoading ? "Loading..." : `${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''} available`}
             </p>
             {userState && (
@@ -358,22 +331,23 @@ export default function Home() {
               {[...Array(8)].map((_, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl overflow-hidden animate-pulse bg-white border border-slate-200 shadow-sm"
+                  className="rounded-2xl overflow-hidden animate-pulse"
+                  style={{ background: '#111827', border: '1px solid rgba(255,255,255,0.06)' }}
                 >
-                  <div className="aspect-square bg-slate-100" />
+                  <div className="aspect-square" style={{ background: '#1a2234' }} />
                   <div className="p-4 space-y-3">
-                    <div className="h-4 rounded-lg bg-slate-100" style={{ width: '70%' }} />
-                    <div className="h-3 rounded-lg bg-slate-100" style={{ width: '50%' }} />
-                    <div className="h-6 rounded-lg bg-slate-100" style={{ width: '40%' }} />
+                    <div className="h-4 rounded-lg" style={{ background: '#1a2234', width: '70%' }} />
+                    <div className="h-3 rounded-lg" style={{ background: '#1a2234', width: '50%' }} />
+                    <div className="h-6 rounded-lg" style={{ background: '#1a2234', width: '40%' }} />
                   </div>
                 </div>
               ))}
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="text-center py-24">
-              <Leaf className="h-14 w-14 mx-auto mb-4 text-slate-300" />
-              <p className="text-lg font-semibold text-slate-700 mb-1">No products found</p>
-              <p className="text-sm text-slate-400">Try adjusting your filters or search query</p>
+              <Leaf className="h-14 w-14 mx-auto mb-4" style={{ color: '#1e3a2f' }} />
+              <p className="text-lg font-semibold text-white mb-1">No products found</p>
+              <p className="text-sm" style={{ color: '#64748b' }}>Try adjusting your filters or search query</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -389,10 +363,11 @@ export default function Home() {
                 return (
                   <Link key={product.id} href={`/product/${product.id}`}>
                     <div
-                      className="group rounded-2xl overflow-hidden cursor-pointer bg-white"
+                      className="group rounded-2xl overflow-hidden cursor-pointer"
                       style={{
-                        border: '1.5px solid #e2e8f0',
-                        boxShadow: '0 1px 6px rgba(0,0,0,0.06)',
+                        background: '#111827',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.5)',
                         transition: 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
                         animation: `fadeSlideUp 0.4s ease both`,
                         animationDelay: `${Math.min(idx * 40, 400)}ms`,
@@ -400,18 +375,18 @@ export default function Home() {
                       onMouseEnter={e => {
                         const el = e.currentTarget as HTMLDivElement;
                         el.style.transform = 'translateY(-4px)';
-                        el.style.borderColor = '#E8231A';
-                        el.style.boxShadow = '0 8px 30px rgba(232,35,26,0.12), 0 0 0 1px #E8231A';
+                        el.style.borderColor = 'rgba(34,197,94,0.4)';
+                        el.style.boxShadow = '0 12px 40px rgba(34,197,94,0.12)';
                       }}
                       onMouseLeave={e => {
                         const el = e.currentTarget as HTMLDivElement;
                         el.style.transform = 'translateY(0)';
-                        el.style.borderColor = '#e2e8f0';
-                        el.style.boxShadow = '0 1px 6px rgba(0,0,0,0.06)';
+                        el.style.borderColor = 'rgba(255,255,255,0.08)';
+                        el.style.boxShadow = '0 2px 12px rgba(0,0,0,0.5)';
                       }}
                     >
                       {/* Image */}
-                      <div className="relative aspect-square overflow-hidden bg-slate-50">
+                      <div className="relative aspect-square overflow-hidden" style={{ background: '#1a2234' }}>
                         {imgSrc ? (
                           <img
                             src={imgSrc}
@@ -424,7 +399,7 @@ export default function Home() {
                           />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <Leaf className="h-16 w-16 text-slate-200" />
+                            <Leaf className="h-16 w-16 opacity-20" style={{ color: '#22c55e' }} />
                           </div>
                         )}
 
@@ -432,22 +407,22 @@ export default function Home() {
                         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
                           <span
                             className="text-xs font-semibold px-2.5 py-1 rounded-full capitalize"
-                            style={{ background: 'rgba(255,255,255,0.92)', color: '#0D1B2A', backdropFilter: 'blur(8px)', border: '1px solid rgba(0,0,0,0.08)' }}
+                            style={{ background: 'rgba(0,0,0,0.72)', color: '#cbd5e1', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.12)' }}
                           >
                             {product.category}
                           </span>
                           {product.isPreOrder && product.status !== 'sold_out' && (
-                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: '#E8231A', color: 'white' }}>
+                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(234,88,12,0.92)', color: 'white' }}>
                               Pre-Order
                             </span>
                           )}
                           {product.isFeatured && (
-                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: '#0D1B2A', color: 'white' }}>
+                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(37,99,235,0.92)', color: 'white' }}>
                               Ready to Ship
                             </span>
                           )}
                           {product.status === 'growing' && (
-                            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500 text-white">
+                            <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(217,119,6,0.92)', color: 'white' }}>
                               Being Cultivated
                             </span>
                           )}
@@ -456,7 +431,10 @@ export default function Home() {
                         {/* Savings badge */}
                         {savings && (
                           <div className="absolute top-3 right-3">
-                            <span className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1" style={{ background: '#E8231A', color: 'white' }}>
+                            <span
+                              className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"
+                              style={{ background: 'rgba(22,163,74,0.92)', color: 'white' }}
+                            >
                               <TrendingDown className="h-3 w-3" />
                               -{savings}/g
                             </span>
@@ -465,23 +443,23 @@ export default function Home() {
 
                         {/* Sold out overlay */}
                         {product.status === 'sold_out' && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm">
-                            <span className="font-black text-xl tracking-widest rotate-[-12deg] px-4 py-2 rounded border-2" style={{ color: '#0D1B2A', borderColor: '#0D1B2A' }}>SOLD OUT</span>
+                          <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.65)' }}>
+                            <span className="text-white font-black text-xl tracking-widest rotate-[-12deg] px-4 py-2 rounded border-2 border-white/60">SOLD OUT</span>
                           </div>
                         )}
                       </div>
 
                       {/* Card body */}
                       <div className="p-4">
-                        <h3 className="font-bold text-slate-900 text-base mb-0.5 truncate">{product.name}</h3>
-                        <p className="text-sm mb-2.5 truncate text-slate-500">{product.strain}</p>
+                        <h3 className="font-bold text-white text-base mb-0.5 truncate">{product.name}</h3>
+                        <p className="text-sm mb-2.5 truncate" style={{ color: '#64748b' }}>{product.strain}</p>
 
                         {/* THC / CBD */}
                         <div className="flex items-center gap-2 mb-2.5 flex-wrap">
                           {product.thcPercentage && (
                             <span
                               className="text-xs font-semibold px-2 py-0.5 rounded"
-                              style={{ background: 'rgba(232,35,26,0.08)', color: '#c41a12', border: '1px solid rgba(232,35,26,0.2)' }}
+                              style={{ background: 'rgba(34,197,94,0.1)', color: '#4ade80', border: '1px solid rgba(34,197,94,0.2)' }}
                             >
                               THC {product.thcPercentage}
                             </span>
@@ -489,7 +467,7 @@ export default function Home() {
                           {product.cbdPercentage && (
                             <span
                               className="text-xs font-semibold px-2 py-0.5 rounded"
-                              style={{ background: 'rgba(13,27,42,0.07)', color: '#1e3a5f', border: '1px solid rgba(13,27,42,0.15)' }}
+                              style={{ background: 'rgba(96,165,250,0.1)', color: '#60a5fa', border: '1px solid rgba(96,165,250,0.2)' }}
                             >
                               CBD {product.cbdPercentage}
                             </span>
@@ -502,24 +480,24 @@ export default function Home() {
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={`h-3 w-3 ${i < Math.floor(rating) ? "fill-amber-400 text-amber-400" : "text-slate-200"}`}
+                                className={`h-3 w-3 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-700"}`}
                               />
                             ))}
-                            <span className="text-xs ml-1 text-slate-400">{product.rating}</span>
+                            <span className="text-xs ml-1" style={{ color: '#94a3b8' }}>{product.rating}</span>
                           </div>
                         )}
 
-                        <div className="mb-3 border-t border-slate-100" />
+                        <div className="mb-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} />
 
                         {/* Price */}
                         <div className="flex items-end justify-between">
                           <div>
                             <div className="flex items-baseline gap-1.5">
-                              <span className="text-2xl font-black text-slate-900">${price.toFixed(2)}</span>
-                              <span className="text-sm text-slate-400">/gram</span>
+                              <span className="text-2xl font-black text-white">${price.toFixed(2)}</span>
+                              <span className="text-sm" style={{ color: '#64748b' }}>/gram</span>
                             </div>
                             {retailPrice && (
-                              <span className="text-xs line-through text-slate-300">
+                              <span className="text-xs line-through" style={{ color: '#374151' }}>
                                 ${retailPrice.toFixed(2)}/g
                               </span>
                             )}
@@ -527,18 +505,18 @@ export default function Home() {
                           <div className="text-right">
                             <div
                               className="text-xs font-bold px-2 py-1 rounded-lg"
-                              style={{ background: 'rgba(13,27,42,0.07)', color: '#1e3a5f', border: '1px solid rgba(13,27,42,0.15)' }}
+                              style={{ background: 'rgba(96,165,250,0.1)', color: '#60a5fa', border: '1px solid rgba(96,165,250,0.2)' }}
                             >
                               4g min
                             </div>
-                            <p className="text-xs mt-1 text-slate-400">
+                            <p className="text-xs mt-1" style={{ color: '#64748b' }}>
                               From ${(price * 4).toFixed(2)}
                             </p>
                           </div>
                         </div>
 
                         {product.quantity < 10 && product.quantity > 0 && product.status === 'active' && (
-                          <p className="text-xs mt-2 font-semibold" style={{ color: '#E8231A' }}>
+                          <p className="text-xs mt-2 font-semibold" style={{ color: '#f97316' }}>
                             ⚠ Only {product.quantity} left
                           </p>
                         )}
@@ -553,7 +531,7 @@ export default function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="py-14 mt-6" style={{ background: '#0D1B2A', borderTop: '3px solid #E8231A' }}>
+      <footer className="py-14 mt-6" style={{ background: '#060a10', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div>
@@ -567,10 +545,7 @@ export default function Home() {
                   { href: "/legal/prohibited-use-policy", label: "Prohibited Use" },
                 ].map(link => (
                   <li key={link.href}>
-                    <a href={link.href} className="text-sm transition-colors" style={{ color: '#64748b' }}
-                      onMouseEnter={e => (e.currentTarget.style.color = '#E8231A')}
-                      onMouseLeave={e => (e.currentTarget.style.color = '#64748b')}
-                    >
+                    <a href={link.href} className="text-sm transition-colors hover:text-blue-400" style={{ color: '#64748b' }}>
                       {link.label}
                     </a>
                   </li>
@@ -604,7 +579,7 @@ export default function Home() {
                 ].map(link => (
                   <li key={link.href}>
                     <Link href={link.href}>
-                      <span className="text-sm cursor-pointer transition-colors" style={{ color: '#64748b' }}>
+                      <span className="text-sm cursor-pointer transition-colors hover:text-blue-400" style={{ color: '#64748b' }}>
                         {link.label}
                       </span>
                     </Link>
@@ -613,7 +588,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="pt-8 text-center text-xs" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', color: '#374151' }}>
+          <div className="pt-8 text-center text-xs" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', color: '#374151' }}>
             <p>© 2026 ZAPPAY. All rights reserved. For legal adult use only in states where cannabis is legal.</p>
           </div>
         </div>

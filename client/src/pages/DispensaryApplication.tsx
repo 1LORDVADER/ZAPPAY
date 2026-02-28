@@ -98,7 +98,7 @@ export default function DispensaryApplication() {
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               <Card className="border-2 border-slate-200">
                 <CardHeader>
-                  <TrendingUp className="h-8 w-8 text-[#0D1B2A] mb-2" />
+                  <TrendingUp className="h-8 w-8 text-green-600 mb-2" />
                   <CardTitle className="text-lg">Increased Revenue</CardTitle>
                   <CardDescription>
                     Drive more foot traffic and sales through our platform's nationwide customer base

@@ -100,11 +100,11 @@ export default function HowItWorks() {
 
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               {/* Step 1 */}
-              <Card className="border-2 border-[#c5d0dc] bg-gradient-to-br from-[#E8231A] to-transparent relative overflow-hidden">
-                <div className="absolute top-4 right-4 text-6xl font-bold text-[#e8edf3]">1</div>
+              <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-transparent relative overflow-hidden">
+                <div className="absolute top-4 right-4 text-6xl font-bold text-green-100">1</div>
                 <CardHeader>
-                  <div className="h-16 w-16 bg-[#fde8e7] rounded-lg flex items-center justify-center mb-4">
-                    <Sprout className="h-8 w-8 text-[#0D1B2A]" />
+                  <div className="h-16 w-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <Sprout className="h-8 w-8 text-green-600" />
                   </div>
                   <CardTitle className="text-2xl">Farmers List Products</CardTitle>
                   <CardDescription className="text-base">
@@ -170,10 +170,10 @@ export default function HowItWorks() {
                 </CardHeader>
               </Card>
 
-              <Card className="border-2 border-slate-200 hover:border-[#E8231A] transition-all">
+              <Card className="border-2 border-slate-200 hover:border-green-500 transition-all">
                 <CardHeader className="text-center">
-                  <div className="h-12 w-12 bg-[#fde8e7] rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <DollarSign className="h-6 w-6 text-[#0D1B2A]" />
+                  <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <DollarSign className="h-6 w-6 text-green-600" />
                   </div>
                   <CardTitle className="text-2xl">5.2% Processing Fee</CardTitle>
                   <CardDescription className="text-sm">
@@ -235,19 +235,19 @@ export default function HowItWorks() {
                 <CardContent>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Consumers search for exact strains and THC percentages</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Pre-order before harvest or buy ready-to-ship products</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Licensed transporters deliver to dispensaries for pickup</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Farmers get paid instantly, consumers get exactly what they want</span>
                     </li>
                   </ul>
@@ -266,19 +266,19 @@ export default function HowItWorks() {
                 <CardContent>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Dispensaries list inventory from multiple farmers</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Consumers browse and order for dispensary pickup</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Dispensaries benefit from increased foot traffic and sales</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-[#0D1B2A] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>Farmers reach more customers through dispensary partnerships</span>
                     </li>
                   </ul>
@@ -303,7 +303,7 @@ export default function HowItWorks() {
               <Button 
                 size="lg"
                 onClick={() => setLocation("/farmer/registration")}
-                className="bg-gradient-to-r from-[#E8231A] to-[#c41d15] hover:from-[#c41d15] hover:to-[#a81812] text-white text-lg px-8 py-6"
+                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-8 py-6"
               >
                 I'm a Farmer
               </Button>

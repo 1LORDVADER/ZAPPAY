@@ -139,15 +139,15 @@ export default function Rewards() {
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-[#c5d0dc] bg-gradient-to-br from-[#E8231A] to-white">
+            <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-white">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-[#0D1B2A]" />
+                  <Zap className="h-5 w-5 text-green-600" />
                   Rewards Available
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-4xl font-bold text-[#0D1B2A]">
+                <p className="text-4xl font-bold text-green-600">
                   {rewards.filter(r => r.pointsCost <= userPoints && r.isActive).length}
                 </p>
                 <p className="text-sm text-slate-600 mt-2">Ready to redeem now</p>
@@ -168,13 +168,13 @@ export default function Rewards() {
                     key={reward.id} 
                     className={`border-2 transition-all ${
                       canAfford 
-                        ? 'border-[#c5d0dc] hover:border-[#c5d0dc] hover:shadow-lg' 
+                        ? 'border-green-200 hover:border-green-400 hover:shadow-lg' 
                         : 'border-slate-200 opacity-75'
                     }`}
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
-                        <Gift className={`h-8 w-8 ${canAfford ? 'text-[#0D1B2A]' : 'text-slate-400'}`} />
+                        <Gift className={`h-8 w-8 ${canAfford ? 'text-green-600' : 'text-slate-400'}`} />
                         <Badge variant={canAfford ? "default" : "secondary"}>
                           {reward.pointsCost} pts
                         </Badge>

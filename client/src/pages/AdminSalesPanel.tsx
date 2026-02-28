@@ -67,7 +67,7 @@ export default function AdminSalesPanel() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-[#0D1B2A]" />
+              <CheckCircle2 className="h-5 w-5 text-green-600" />
               <span className="text-3xl font-bold">{stats?.totalFarmers || 0}</span>
             </div>
           </CardContent>
@@ -159,7 +159,7 @@ export default function AdminSalesPanel() {
         <CardContent>
           <div className="space-y-4">
             {pendingCommissions?.filter((c: any) => c.status === "approved").map((commission: any) => (
-              <div key={commission.id} className="flex items-center justify-between p-4 border rounded-lg bg-[#f0f4f8]">
+              <div key={commission.id} className="flex items-center justify-between p-4 border rounded-lg bg-green-50">
                 <div className="space-y-1 flex-1">
                   <p className="font-semibold">{commission.salesRep?.name}</p>
                   <p className="text-sm text-muted-foreground">
@@ -167,7 +167,7 @@ export default function AdminSalesPanel() {
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl font-bold text-[#0D1B2A]">${(commission.amount / 100).toFixed(2)}</span>
+                  <span className="text-2xl font-bold text-green-600">${(commission.amount / 100).toFixed(2)}</span>
                   <Button
                     size="sm"
                     onClick={() => markPaidMutation.mutate({ commissionId: commission.id })}

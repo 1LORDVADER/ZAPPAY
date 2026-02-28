@@ -173,10 +173,10 @@ export default function Advertise() {
               </CardHeader>
             </Card>
 
-            <Card className="border-2 border-slate-200 hover:border-[#E8231A] transition-all">
+            <Card className="border-2 border-slate-200 hover:border-green-500 transition-all">
               <CardHeader>
-                <div className="h-12 w-12 bg-[#fde8e7] rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="h-6 w-6 text-[#0D1B2A]" />
+                <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <TrendingUp className="h-6 w-6 text-green-600" />
                 </div>
                 <CardTitle className="text-2xl">Instant Attribution</CardTitle>
                 <CardDescription className="text-base">
@@ -223,7 +223,7 @@ export default function Advertise() {
                   <div className="text-4xl font-bold text-slate-900 my-2">{tier.price}</div>
                   <div className="text-sm text-slate-600">{tier.annualPrice}</div>
                   <div className="mt-4 space-y-2">
-                    <Badge className="bg-[#fde8e7] text-[#E8231A] border-[#f5a9a6]">
+                    <Badge className="bg-green-100 text-green-800 border-green-300">
                       {tier.roi}
                     </Badge>
                     <div className="text-sm text-slate-600">{tier.projectedSales}</div>
@@ -233,7 +233,7 @@ export default function Advertise() {
                   <ul className="space-y-3">
                     {tier.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-[#0D1B2A] flex-shrink-0 mt-0.5" />
+                        <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                         <span className="text-slate-700">{feature}</span>
                       </li>
                     ))}
