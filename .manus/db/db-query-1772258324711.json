@@ -1,0 +1,310 @@
+{
+  "query": "SELECT id, name, category, price FROM products ORDER BY category, name LIMIT 60;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, price FROM products ORDER BY category, name LIMIT 60;",
+  "rows": [
+    {
+      "id": "90006",
+      "name": "AK-47",
+      "category": "flower",
+      "price": "350"
+    },
+    {
+      "id": "90010",
+      "name": "Amnesia Haze",
+      "category": "flower",
+      "price": "1000"
+    },
+    {
+      "id": "90021",
+      "name": "Banana Kush",
+      "category": "flower",
+      "price": "370"
+    },
+    {
+      "id": "1",
+      "name": "Blue Dream",
+      "category": "flower",
+      "price": "380"
+    },
+    {
+      "id": "90013",
+      "name": "Bruce Banner",
+      "category": "flower",
+      "price": "410"
+    },
+    {
+      "id": "90012",
+      "name": "Chemdawg",
+      "category": "flower",
+      "price": "400"
+    },
+    {
+      "id": "90022",
+      "name": "Cherry Pie",
+      "category": "flower",
+      "price": "380"
+    },
+    {
+      "id": "90016",
+      "name": "Do-Si-Dos",
+      "category": "flower",
+      "price": "390"
+    },
+    {
+      "id": "90009",
+      "name": "Durban Poison",
+      "category": "flower",
+      "price": "350"
+    },
+    {
+      "id": "90023",
+      "name": "Forbidden Fruit",
+      "category": "flower",
+      "price": "400"
+    },
+    {
+      "id": "8",
+      "name": "Gelato #33",
+      "category": "flower",
+      "price": "410"
+    },
+    {
+      "id": "90018",
+      "name": "Ghost Train Haze",
+      "category": "flower",
+      "price": "1400"
+    },
+    {
+      "id": "6",
+      "name": "Girl Scout Cookies",
+      "category": "flower",
+      "price": "400"
+    },
+    {
+      "id": "13",
+      "name": "Gorilla Glue #4",
+      "category": "flower",
+      "price": "400"
+    },
+    {
+      "id": "5",
+      "name": "Granddaddy Purple",
+      "category": "flower",
+      "price": "350"
+    },
+    {
+      "id": "90005",
+      "name": "Green Crack",
+      "category": "flower",
+      "price": "360"
+    },
+    {
+      "id": "90015",
+      "name": "Ice Cream Cake",
+      "category": "flower",
+      "price": "400"
+    },
+    {
+      "id": "90004",
+      "name": "Jack Herer",
+      "category": "flower",
+      "price": "390"
+    },
+    {
+      "id": "90019",
+      "name": "London Pound Cake",
+      "category": "flower",
+      "price": "410"
+    },
+    {
+      "id": "90017",
+      "name": "Mimosa",
+      "category": "flower",
+      "price": "380"
+    },
+    {
+      "id": "90003",
+      "name": "Northern Lights",
+      "category": "flower",
+      "price": "350"
+    },
+    {
+      "id": "2",
+      "name": "OG Kush",
+      "category": "flower",
+      "price": "390"
+    },
+    {
+      "id": "90002",
+      "name": "Pineapple Express",
+      "category": "flower",
+      "price": "380"
+    },
+    {
+      "id": "90014",
+      "name": "Runtz",
+      "category": "flower",
+      "price": "420"
+    },
+    {
+      "id": "3",
+      "name": "Sour Diesel",
+      "category": "flower",
+      "price": "370"
+    },
+    {
+      "id": "90008",
+      "name": "Strawberry Cough",
+      "category": "flower",
+      "price": "370"
+    },
+    {
+      "id": "90011",
+      "name": "Super Lemon Haze",
+      "category": "flower",
+      "price": "390"
+    },
+    {
+      "id": "120001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "price": "3500"
+    },
+    {
+      "id": "90024",
+      "name": "Thin Mint GSC",
+      "category": "flower",
+      "price": "390"
+    },
+    {
+      "id": "90007",
+      "name": "Trainwreck",
+      "category": "flower",
+      "price": "380"
+    },
+    {
+      "id": "90020",
+      "name": "Tropicana Cookies",
+      "category": "flower",
+      "price": "390"
+    },
+    {
+      "id": "9",
+      "name": "Wedding Cake",
+      "category": "flower",
+      "price": "420"
+    },
+    {
+      "id": "90001",
+      "name": "White Widow",
+      "category": "flower",
+      "price": "360"
+    },
+    {
+      "id": "11",
+      "name": "Zkittlez",
+      "category": "flower",
+      "price": "380"
+    },
+    {
+      "id": "150008",
+      "name": "CBD Gummies 10-Pack",
+      "category": "edibles",
+      "price": "1000"
+    },
+    {
+      "id": "150007",
+      "name": "Hybrid Gummies 20-Pack",
+      "category": "edibles",
+      "price": "1800"
+    },
+    {
+      "id": "150005",
+      "name": "Indica Gummies 10-Pack",
+      "category": "edibles",
+      "price": "1200"
+    },
+    {
+      "id": "150006",
+      "name": "Sativa Gummies 10-Pack",
+      "category": "edibles",
+      "price": "1200"
+    },
+    {
+      "id": "150009",
+      "name": "Blue Dream Wax",
+      "category": "concentrates",
+      "price": "2500"
+    },
+    {
+      "id": "150011",
+      "name": "Gelato Live Resin",
+      "category": "concentrates",
+      "price": "3000"
+    },
+    {
+      "id": "150010",
+      "name": "OG Kush Shatter",
+      "category": "concentrates",
+      "price": "2800"
+    },
+    {
+      "id": "150012",
+      "name": "Sour Diesel Crumble",
+      "category": "concentrates",
+      "price": "2600"
+    },
+    {
+      "id": "150013",
+      "name": "Blue Dream Pre-Roll 1g",
+      "category": "pre-rolls",
+      "price": "800"
+    },
+    {
+      "id": "150016",
+      "name": "Gelato Pre-Roll 1g",
+      "category": "pre-rolls",
+      "price": "800"
+    },
+    {
+      "id": "150014",
+      "name": "OG Kush Pre-Roll 1g",
+      "category": "pre-rolls",
+      "price": "800"
+    },
+    {
+      "id": "150015",
+      "name": "Sour Diesel Pre-Roll 1g",
+      "category": "pre-rolls",
+      "price": "800"
+    },
+    {
+      "id": "150001",
+      "name": "Blue Dream Vape Cart",
+      "category": "vapes",
+      "price": "2800"
+    },
+    {
+      "id": "150004",
+      "name": "Gelato Vape Pen",
+      "category": "vapes",
+      "price": "3000"
+    },
+    {
+      "id": "150003",
+      "name": "OG Kush Vape Cart",
+      "category": "vapes",
+      "price": "2700"
+    },
+    {
+      "id": "150002",
+      "name": "Sour Diesel Vape",
+      "category": "vapes",
+      "price": "2900"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tprice\n90006\tAK-47\tflower\t350\n90010\tAmnesia Haze\tflower\t1000\n90021\tBanana Kush\tflower\t370\n1\tBlue Dream\tflower\t380\n90013\tBruce Banner\tflower\t410\n90012\tChemdawg\tflower\t400\n90022\tCherry Pie\tflower\t380\n90016\tDo-Si-Dos\tflower\t390\n90009\tDurban Poison\tflower\t350\n90023\tForbidden Fruit\tflower\t400\n8\tGelato #33\tflower\t410\n90018\tGhost Train Haze\tflower\t1400\n6\tGirl Scout Cookies\tflower\t400\n13\tGorilla Glue #4\tflower\t400\n5\tGranddaddy Purple\tflower\t350\n90005\tGreen Crack\tflower\t360\n90015\tIce Cream Cake\tflower\t400\n90004\tJack Herer\tflower\t390\n90019\tLondon Pound Cake\tflower\t410\n90017\tMimosa\tflower\t380\n90003\tNorthern Lights\tflower\t350\n2\tOG Kush\tflower\t390\n90002\tPineapple Express\tflower\t380\n90014\tRuntz\tflower\t420\n3\tSour Diesel\tflower\t370\n90008\tStrawberry Cough\tflower\t370\n90011\tSuper Lemon Haze\tflower\t390\n120001\tTest Blue Dream\tflower\t3500\n90024\tThin Mint GSC\tflower\t390\n90007\tTrainwreck\tflower\t380\n90020\tTropicana Cookies\tflower\t390\n9\tWedding Cake\tflower\t420\n90001\tWhite Widow\tflower\t360\n11\tZkittlez\tflower\t380\n150008\tCBD Gummies 10-Pack\tedibles\t1000\n150007\tHybrid Gummies 20-Pack\tedibles\t1800\n150005\tIndica Gummies 10-Pack\tedibles\t1200\n150006\tSativa Gummies 10-Pack\tedibles\t1200\n150009\tBlue Dream Wax\tconcentrates\t2500\n150011\tGelato Live Resin\tconcentrates\t3000\n150010\tOG Kush Shatter\tconcentrates\t2800\n150012\tSour Diesel Crumble\tconcentrates\t2600\n150013\tBlue Dream Pre-Roll 1g\tpre-rolls\t800\n150016\tGelato Pre-Roll 1g\tpre-rolls\t800\n150014\tOG Kush Pre-Roll 1g\tpre-rolls\t800\n150015\tSour Diesel Pre-Roll 1g\tpre-rolls\t800\n150001\tBlue Dream Vape Cart\tvapes\t2800\n150004\tGelato Vape Pen\tvapes\t3000\n150003\tOG Kush Vape Cart\tvapes\t2700\n150002\tSour Diesel Vape\tvapes\t2900\n",
+  "stderr": "",
+  "execution_time_ms": 50
+}

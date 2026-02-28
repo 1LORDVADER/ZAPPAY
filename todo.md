@@ -455,3 +455,14 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Category tabs redesigned with green active state
 - [x] Hero section updated with live pricing badge, green gradient title, skeleton loading states
 - [x] TypeScript: 0 errors
+
+## Quality Sprint - Major Design & Asset Overhaul (Feb 28, 2026)
+- [ ] Generate unique high-quality images for all pre-roll products
+- [ ] Generate professional digital category icons (no emojis)
+- [ ] Upload all assets to CDN and update database
+- [ ] Redesign hero: white headline, sub-1s settlement, insurance payments, ZAPPAY colors
+- [ ] Replace emoji tabs with digital icon assets
+- [ ] Fix advanced filters button: white bg, black text (match hover state)
+- [ ] Implement smooth GPU-accelerated Framer Motion animations
+- [ ] Fix dark mode consistency across all pages
+- [ ] Full dark/light toggle working correctly
