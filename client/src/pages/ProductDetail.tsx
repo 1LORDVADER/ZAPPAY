@@ -66,7 +66,7 @@ export default function ProductDetail() {
           <p className="text-slate-600 text-lg">Product not found</p>
           <Link href="/">
             <a>
-              <Button className="mt-4">Back to Marketplace</Button>
+              <Button className="mt-4">Back to Products</Button>
             </a>
           </Link>
         </div>
@@ -117,7 +117,7 @@ export default function ProductDetail() {
           <Link href="/">
             <a className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-900 mb-8">
               <ArrowLeft className="h-4 w-4" />
-              Back to Marketplace
+              Back to Products
             </a>
           </Link>
 

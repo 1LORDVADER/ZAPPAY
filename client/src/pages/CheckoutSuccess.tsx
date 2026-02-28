@@ -47,8 +47,7 @@ export default function CheckoutSuccess() {
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">What's Next?</h3>
                 <p className="text-sm text-slate-600">
-                  You'll receive an email confirmation shortly with your order details and tracking information. 
-                  Your cannabis products will be shipped from licensed farmers and should arrive within 3-5 business days.
+                  You'll receive an email confirmation shortly with your order details and tracking information. Your order will be fulfilled by the licensed farmer and transported by a ZAPPAY-verified carrier.
                 </p>
               </div>
             </div>
@@ -58,8 +57,7 @@ export default function CheckoutSuccess() {
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Direct from Farmers</h3>
                 <p className="text-sm text-slate-600">
-                  Your order supports licensed cannabis farmers directly. ZAPPAY's 5.2% platform fee ensures 
-                  farmers receive fair compensation while you get the best prices.
+                  ZAPPAY processed your payment securely. Our 5.2% processing fee goes toward maintaining the payment infrastructure — the farmer receives the rest directly via ACH.
                 </p>
               </div>
             </div>

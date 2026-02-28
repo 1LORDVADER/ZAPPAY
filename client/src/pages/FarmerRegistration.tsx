@@ -119,7 +119,7 @@ export default function FarmerRegistration() {
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-2">Join ZAPPAY as a Farmer</h1>
         <p className="text-muted-foreground">
-          Connect with dispensaries nationwide and grow your cannabis business
+          List your products on ZAPPAY and get paid instantly via ACH for every transaction — we handle the payment processing
         </p>
       </div>
 

@@ -137,7 +137,7 @@ export default function Checkout() {
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />

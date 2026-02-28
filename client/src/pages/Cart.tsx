@@ -150,7 +150,7 @@ export default function Cart() {
             <Link href="/">
               <a className="text-blue-600 hover:text-blue-800 flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4" />
-                Back to Marketplace
+                Back to Products
               </a>
             </Link>
           </div>
@@ -407,7 +407,7 @@ export default function Cart() {
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
                 <img 
-                  src="/zappay-logo.jpeg" 
+                  src="/logo.png" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />
@@ -431,7 +431,7 @@ export default function Cart() {
           <Link href="/">
             <a className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-900 mb-8">
               <ArrowLeft className="h-4 w-4" />
-              Back to Marketplace
+              Back to Products
             </a>
           </Link>
 

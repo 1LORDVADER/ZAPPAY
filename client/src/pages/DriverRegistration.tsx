@@ -93,7 +93,7 @@ export default function DriverRegistration() {
             </div>
             <h1 className="text-4xl font-bold text-slate-900 mb-2">Become a ZAPPAY Driver</h1>
             <p className="text-lg text-slate-600">
-              Join America's premier cannabis transportation network. Earn competitive pay with flexible hours.
+              Register as a ZAPPAY driver to receive instant ACH payments for every cannabis delivery you complete — competitive rates, flexible hours, and zero payment delays.
             </p>
           </div>
 

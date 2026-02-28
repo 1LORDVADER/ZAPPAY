@@ -363,3 +363,45 @@
 
 ### Repository Update
 - [ ] Push all changes to GitHub repository 1LORDVADER/ZAPPAY
+
+
+## Copy Rebrand: Payment Processor Positioning (February 27, 2026)
+
+ZAPPAY is a payment processor and transaction facilitator — not a marketplace or product seller. All copy must reflect this accurately.
+
+- [ ] Audit all pages for "marketplace", "sell", "buy from us", "our products" language
+- [ ] Rewrite Home.tsx hero, stats, and section copy
+- [ ] Rewrite ForFarmers page copy
+- [ ] Rewrite ForTransporters page copy
+- [ ] Rewrite HowItWorks page copy
+- [ ] Rewrite Pricing page copy
+- [ ] Rewrite NavHeader tagline/description if any
+- [ ] Rewrite Advertise page copy
+- [ ] Rewrite Browse/product pages to clarify ZAPPAY does not sell products
+- [ ] Rewrite application pages (farmer, driver, dispensary, sales rep) copy
+- [ ] Update HTML meta description and Open Graph tags
+- [ ] Final TypeScript check and checkpoint
+
+
+## Copy Rebrand: Payment Processor Positioning (February 27, 2026)
+- [x] Home.tsx hero and stats updated — "payment processor" language throughout
+- [x] ForFarmers.tsx rewritten — focuses on getting paid via ACH, not "selling"
+- [x] ForTransporters.tsx rewritten — focuses on payment processing for deliveries
+- [x] HowItWorks.tsx rewritten — no longer calls ZAPPAY a "marketplace"
+- [x] Pricing.tsx updated — "commission" renamed to "processing fee"
+- [x] Advertise.tsx updated — "marketplace" → "payment platform"
+- [x] FarmerRegistration.tsx updated
+- [x] CompanyRegistration.tsx updated
+- [x] DriverRegistration.tsx updated
+- [x] SalesRepRegistration.tsx updated
+- [x] DispensaryApplication.tsx updated
+- [x] Cart.tsx — "Back to Marketplace" → "Back to Products"
+- [x] ProductDetail.tsx — "Back to Marketplace" → "Back to Products"
+- [x] Orders.tsx empty state updated
+- [x] CheckoutSuccess.tsx — reflects ZAPPAY as payment processor, not seller
+- [x] LegalPage.tsx footer updated
+- [x] Terms.tsx Platform Services section updated — "payment processing platform"
+- [x] FarmerDashboard.tsx updated
+- [x] All /zappay-logo.jpeg references replaced with /logo.png sitewide
+- [x] Zero remaining "marketplace" references in client/src
+- [x] TypeScript: 0 errors

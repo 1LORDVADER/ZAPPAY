@@ -302,7 +302,7 @@ export default function Orders() {
               <Package className="h-16 w-16 text-slate-400 mx-auto mb-4" />
               <CardTitle>No Orders Yet</CardTitle>
               <CardDescription>
-                You haven't placed any orders yet. Browse our products to get started!
+                You haven't placed any orders yet. View available products to get started!
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">

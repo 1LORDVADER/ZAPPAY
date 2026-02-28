@@ -44,12 +44,12 @@ export default function Terms() {
           <section>
             <h2 className="text-2xl font-semibold mb-4">4. Platform Services</h2>
             <p>
-              ZAPPAY provides a marketplace platform connecting licensed cannabis farmers with consumers through verified dispensaries. We facilitate transactions but do not directly sell, distribute, or handle cannabis products.
+              ZAPPAY is a payment processing platform that facilitates legal cannabis transactions between licensed farmers, dispensaries, and consumers. We process payments and provide transaction infrastructure — we do not sell, distribute, or handle cannabis products.
             </p>
             <ul className="list-disc pl-6 mt-4 space-y-2">
               <li>All farmers and dispensaries must maintain valid state licenses</li>
               <li>All products must comply with state testing and labeling requirements</li>
-              <li>ZAPPAY charges a 5.2% commission on transactions</li>
+              <li>ZAPPAY charges a 5.2% processing fee on transactions</li>
               <li>Delivery is handled by licensed transportation services</li>
             </ul>
           </section>
@@ -97,7 +97,7 @@ export default function Terms() {
           <section>
             <h2 className="text-2xl font-semibold mb-4">9. Delivery and Returns</h2>
             <p>
-              Delivery is provided by licensed transportation services. Delivery times are estimates and not guaranteed. Due to the nature of cannabis products and regulatory requirements, all sales are final. Returns and refunds are handled on a case-by-case basis for defective or damaged products only.
+              Delivery is provided by licensed transportation services independent of ZAPPAY. Delivery times are estimates and not guaranteed. ZAPPAY processes payments only — product fulfillment, delivery, and returns are the responsibility of the licensed farmer and transporter. Refund requests are handled on a case-by-case basis for defective or damaged products only.
             </p>
           </section>
 

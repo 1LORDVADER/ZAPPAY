@@ -92,7 +92,7 @@ export default function Pricing() {
             Farmer Pricing Plans
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            No upfront costs. All subscription fees are automatically deducted from your monthly earnings. Start selling today with zero upfront investment.
+            ZAPPAY processes payments for your cannabis sales. No upfront costs — all subscription fees are automatically deducted from your processed transaction earnings. List your products and let us handle the payment infrastructure.
           </p>
           <div className="flex items-center justify-center gap-4 text-sm">
             <Badge className="bg-green-600 text-white hover:bg-green-700">
@@ -105,7 +105,7 @@ export default function Pricing() {
             </Badge>
             <Badge className="bg-purple-600 text-white hover:bg-purple-700">
               <Check className="mr-2 h-4 w-4" />
-              5.2% Commission
+              5.2% Processing Fee
             </Badge>
           </div>
         </div>
@@ -282,7 +282,7 @@ export default function Pricing() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  The first year is completely free with up to 10 product listings, full marketplace access, and basic analytics. After the first year, you can choose to upgrade to Premium or Pay-As-You-Go.
+                  The first year is completely free with up to 10 product listings, full platform access, and basic analytics. After the first year, you can choose to upgrade to Premium or Pay-As-You-Go.
                 </p>
               </CardContent>
             </Card>
@@ -327,10 +327,10 @@ export default function Pricing() {
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Grow Your Cannabis Business?
+            Ready to Start Processing Payments?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join 10,000+ licensed farmers already selling on ZAPPAY
+            Join licensed farmers already processing transactions through ZAPPAY
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/farmer/register">
