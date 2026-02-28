@@ -59,8 +59,9 @@ export function AgeVerification() {
         <DialogFooter className="flex-col sm:flex-col gap-2">
           <Button
             onClick={() => handleVerify(true)}
-            className="w-full bg-green-600 hover:bg-green-700"
+            className="w-full text-white font-bold"
             size="lg"
+            style={{ background: '#E8231A', border: 'none', boxShadow: '0 4px 16px rgba(232,35,26,0.35)' }}
           >
             I am 21 or older - Enter Site
           </Button>

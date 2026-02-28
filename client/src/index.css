@@ -43,15 +43,16 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
+  /* ZAPPAY Brand: Red #E8231A, Navy #0D1B2A */
+  --primary: oklch(0.49 0.22 25);  /* #E8231A ZAPPAY red */
+  --primary-foreground: oklch(1 0 0); /* white */
+  --sidebar-primary: oklch(0.49 0.22 25);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --chart-1: oklch(0.49 0.22 25);   /* ZAPPAY red */
+  --chart-2: oklch(0.22 0.03 250);  /* ZAPPAY navy */
+  --chart-3: oklch(0.35 0.05 250);
+  --chart-4: oklch(0.6 0.18 25);
+  --chart-5: oklch(0.7 0.12 25);
   --radius: 0.65rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.235 0.015 65);

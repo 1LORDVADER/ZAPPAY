@@ -489,3 +489,18 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Preserve dark navy theme as dark mode (accessible via theme toggle)
 - [x] Keep hero section dark for visual contrast and impact
 - [x] Update footer to dark slate for visual grounding
+
+
+## User Request (February 28, 2026) - ZAPPAY Brand Color Alignment
+
+### Replace Neon Green with Official ZAPPAY Brand Colors
+- [x] Replace all neon green (#22c55e, #4ade80, #16a34a) with ZAPPAY red (#E8231A) in hero headline gradient
+- [x] Update live badge from green to red/blue brand colors
+- [x] Update hero CTA buttons to ZAPPAY red primary
+- [x] Update advantage cards accent colors to red/blue/white palette
+- [x] Update category tab active state from green to ZAPPAY navy blue
+- [x] Update product card THC badge from green to brand-appropriate color
+- [x] Update index.css primary color variables to ZAPPAY red
+- [x] Update all hover/focus states to match brand palette
+- [x] Update AgeVerification button from green to ZAPPAY red
+- [x] Update AgeGate button and location badge to ZAPPAY brand colors
