@@ -697,7 +697,7 @@ export default function Cart() {
                     <div>
                       <p className="font-medium">{product.name}</p>
                       <p className="text-sm text-slate-600">{product.strain} • THC: {product.thcPercentage}</p>
-                      <p className="text-sm font-semibold text-green-600">${(product.price / 100).toFixed(2)}/g</p>
+                      <p className="text-sm font-semibold text-green-600">${(product.price).toFixed(2)}/g</p>
                     </div>
                     <Button
                       size="sm"

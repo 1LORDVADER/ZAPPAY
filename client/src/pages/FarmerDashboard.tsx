@@ -264,7 +264,7 @@ export default function FarmerDashboard() {
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-slate-600">Price:</span>
                         <span className="font-semibold text-slate-900">
-                          ${(product.price / 100).toFixed(2)}/{product.unit}
+                          ${(product.price).toFixed(2)}/{product.unit}
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
@@ -342,7 +342,7 @@ export default function FarmerDashboard() {
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="text-sm text-slate-600 mb-1">Current Price</div>
                 <div className="text-3xl font-bold text-slate-900">
-                  ${(liveBrokerProduct.price / 100).toFixed(2)}/{liveBrokerProduct.unit}
+                  ${(liveBrokerProduct.price).toFixed(2)}/{liveBrokerProduct.unit}
                 </div>
               </div>
 
@@ -379,18 +379,18 @@ export default function FarmerDashboard() {
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                 <div className="text-sm text-blue-600 mb-1">New Price</div>
                 <div className="text-3xl font-bold text-blue-900">
-                  ${(Math.round(liveBrokerProduct.price * (1 + priceAdjustment / 100)) / 100).toFixed(2)}/{liveBrokerProduct.unit}
+                  ${(liveBrokerProduct.price * (1 + priceAdjustment / 100)).toFixed(2)}/{liveBrokerProduct.unit}
                 </div>
                 <div className="text-xs text-blue-600 mt-1">
                   {priceAdjustment > 0 ? (
                     <span className="flex items-center gap-1">
                       <TrendingUpIcon className="h-3 w-3" />
-                      Price increase of ${((liveBrokerProduct.price * priceAdjustment / 100) / 100).toFixed(2)}
+                      Price increase of ${(liveBrokerProduct.price * priceAdjustment / 100).toFixed(2)}
                     </span>
                   ) : priceAdjustment < 0 ? (
                     <span className="flex items-center gap-1">
                       <TrendingDown className="h-3 w-3" />
-                      Price decrease of ${(Math.abs(liveBrokerProduct.price * priceAdjustment / 100) / 100).toFixed(2)}
+                      Price decrease of ${(Math.abs(liveBrokerProduct.price * priceAdjustment / 100)).toFixed(2)}
                     </span>
                   ) : (
                     <span>No change</span>
