@@ -416,3 +416,9 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Add 4g min badge to Browse.tsx product grid cards (already present in Home.tsx grid)
 - [x] Add price-per-gram sort option to Browse page filter bar (Price Low/High, THC Highest, Top Rated)
 - [x] Add per-gram line-item breakdown to checkout confirmation page (Xg × $Y/g = $Z receipt)
+
+## Pricing Revert to Original ~33 Products Era
+- [x] Confirmed DB prices are correct (flower $9-$15/g, vapes $35, edibles $18, concentrates $35, pre-rolls $12)
+- [x] Fixed cart total: now includes subtotal + 8% tax + 5.2% processing fee
+- [x] Fixed platform fee label from green 'Platform Fee' to neutral 'Processing Fee'
+- [x] Both authenticated and guest cart totals are now correct

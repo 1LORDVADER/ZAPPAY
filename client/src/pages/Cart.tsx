@@ -243,7 +243,7 @@ export default function Cart() {
                     <span className="font-semibold">${guestTax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-600">Platform Fee (5.2%)</span>
+                    <span className="text-slate-600">Processing Fee (5.2%)</span>
                     <span className="font-semibold">${guestPlatformFee.toFixed(2)}</span>
                   </div>
                   <div className="border-t pt-4">
@@ -286,7 +286,7 @@ export default function Cart() {
 
   const tax = subtotal * 0.08; // 8% tax
   const platformFee = subtotal * 0.052; // 5.2% platform fee
-  const total = subtotal + tax;
+  const total = subtotal + tax + platformFee;
 
   const handleUpdateQuantity = (itemId: number, newQuantity: number) => {
     if (newQuantity < 4) {
@@ -600,9 +600,9 @@ export default function Cart() {
                       </span>
                     </div>
                     
-                    <div className="flex items-center justify-between text-sm text-green-600">
-                      <span>Platform Fee (5.2%)</span>
-                      <span className="font-semibold">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-slate-600">Processing Fee (5.2%)</span>
+                      <span className="font-semibold text-slate-900">
                         ${(platformFee).toFixed(2)}
                       </span>
                     </div>
