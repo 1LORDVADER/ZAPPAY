@@ -90,7 +90,7 @@ export default function SalesRepRegistration() {
             </div>
             <CardTitle className="text-3xl">Join ZAPPAY Sales Team</CardTitle>
             <CardDescription className="text-lg">
-              Help cannabis businesses connect to ZAPPAY’s payment processing platform and earn commissions on every transaction you facilitate
+              Help cannabis businesses grow with America's premier marketplace platform
             </CardDescription>
           </CardHeader>
 

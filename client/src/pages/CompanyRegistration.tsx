@@ -105,7 +105,7 @@ export default function CompanyRegistration() {
             </div>
             <h1 className="text-4xl font-bold text-slate-900 mb-2">Partner with ZAPPAY</h1>
             <p className="text-lg text-slate-600">
-              Register your transportation company with ZAPPAY to receive instant ACH payments for every completed cannabis delivery — we process the transactions, you focus on the road.
+              Register your transportation company to join America's premier cannabis logistics network.
             </p>
           </div>
 

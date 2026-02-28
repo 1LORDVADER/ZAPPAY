@@ -18,9 +18,9 @@ export default function HowItWorks() {
             <Link href="/">
               <a className="flex items-center gap-3">
                 <img 
-                  src="/logo.png" 
+                  src="/zappay-logo.jpeg" 
                   alt="ZAPPAY Logo" 
-                  className="h-10 w-auto object-contain"
+                  className="h-12 w-auto object-contain"
                 />
               </a>
             </Link>
@@ -48,11 +48,11 @@ export default function HowItWorks() {
               </Link>
               {!isAuthenticated ? (
                 <Button onClick={() => setLocation("/")}>
-                  View Products
+                  Browse Products
                 </Button>
               ) : (
                 <Button onClick={() => setLocation("/")}>
-                  View Products
+                  Shop Now
                 </Button>
               )}
             </nav>
@@ -78,8 +78,8 @@ export default function HowItWorks() {
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-              ZAPPAY is a payment processor engineered for the cannabis industry. We facilitate legal, instant transactions between licensed farmers, dispensaries, transporters, and consumers — we don’t sell products, we power the payments.
-              <span className="font-semibold text-white block mt-2">Just 5.2% processing fee — the lowest in the industry</span>
+              A seamless, secure, and legal cannabis marketplace connecting farmers, dispensaries, transporters, and consumers nationwide.
+              <span className="font-semibold text-white block mt-2">Just 5.2% commission — the lowest in the industry</span>
             </p>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function HowItWorks() {
                   </div>
                   <CardTitle className="text-2xl">Farmers List Products</CardTitle>
                   <CardDescription className="text-base">
-                    Licensed cannabis farmers list their products on the ZAPPAY platform. They set prices, manage inventory, and dynamically adjust pricing with our live brokering feature. ZAPPAY processes the payments — farmers keep 94.8%.
+                    Licensed cannabis farmers across America list their premium products on the ZAPPAY marketplace. They set prices, manage inventory, and can dynamically adjust pricing with our live brokering feature.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -175,10 +175,11 @@ export default function HowItWorks() {
                   <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <DollarSign className="h-6 w-6 text-green-600" />
                   </div>
-                  <CardTitle className="text-2xl">5.2% Processing Fee</CardTitle>
+                  <CardTitle className="text-lg">5.2% Commission</CardTitle>
                   <CardDescription className="text-sm">
-                    Lowest transaction fee in the industry
-                  </CardDescription>                </CardHeader>
+                    Lowest fees in the industry
+                  </CardDescription>
+                </CardHeader>
               </Card>
 
               <Card className="border-2 border-slate-200 hover:border-purple-500 transition-all">
@@ -297,7 +298,7 @@ export default function HowItWorks() {
               Ready to Get Started?
             </h2>
             <p className="text-xl text-slate-600 mb-8">
-              Join the payment processing network built for the cannabis industry
+              Join the nation's premier legal cannabis marketplace
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

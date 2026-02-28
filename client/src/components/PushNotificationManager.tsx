@@ -31,8 +31,8 @@ export function PushNotificationManager() {
         // Send a test notification
         new Notification("ZAPPAY Notifications Enabled", {
           body: "You'll now receive instant alerts for new applications and shipment updates",
-          icon: "/logo.png",
-          badge: "/logo.png",
+          icon: "/zappay-logo.jpeg",
+          badge: "/zappay-logo.jpeg",
         });
       } else if (result === "denied") {
         toast.error("Notification permission denied");
@@ -90,8 +90,8 @@ export function sendPushNotification(title: string, body: string, data?: any) {
     try {
       new Notification(title, {
         body,
-        icon: "/logo.png",
-        badge: "/logo.png",
+        icon: "/zappay-logo.jpeg",
+        badge: "/zappay-logo.jpeg",
         data,
         requireInteraction: true, // Keep notification visible until user interacts
       });

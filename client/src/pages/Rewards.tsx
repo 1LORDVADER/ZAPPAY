@@ -83,7 +83,7 @@ export default function Rewards() {
           <div className="flex items-center justify-between">
             <a href="/" className="flex items-center gap-3">
               <img 
-                src="/logo.png" 
+                src="/zappay-logo.jpeg" 
                 alt="ZAPPAY Logo" 
                 className="h-12 w-auto object-contain"
               />

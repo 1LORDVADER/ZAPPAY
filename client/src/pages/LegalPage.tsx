@@ -209,7 +209,8 @@ export default function LegalPage() {
             <div>
               <h3 className="font-bold text-lg mb-4">About ZAPPAY</h3>
               <p className="text-sm text-slate-300">
-                ZAPPAY is a payment processor engineered for the cannabis industry. We facilitate legal transactions between licensed farmers, dispensaries, and consumers — we do not sell products. Just 5.2% per transaction.
+                America's premier cannabis marketplace connecting licensed farmers
+                with consumers nationwide. Just 5.2% commission.
               </p>
             </div>
           </div>

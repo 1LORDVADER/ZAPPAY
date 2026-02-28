@@ -92,7 +92,7 @@ export default function Pricing() {
             Farmer Pricing Plans
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            ZAPPAY processes payments for your cannabis sales. No upfront costs — all subscription fees are automatically deducted from your processed transaction earnings. List your products and let us handle the payment infrastructure.
+            No upfront costs. All subscription fees are automatically deducted from your monthly earnings. Start selling today with zero upfront investment.
           </p>
           <div className="flex items-center justify-center gap-4 text-sm">
             <Badge className="bg-green-600 text-white hover:bg-green-700">
@@ -105,7 +105,7 @@ export default function Pricing() {
             </Badge>
             <Badge className="bg-purple-600 text-white hover:bg-purple-700">
               <Check className="mr-2 h-4 w-4" />
-              5.2% Processing Fee
+              5.2% Commission
             </Badge>
           </div>
         </div>
@@ -278,11 +278,11 @@ export default function Pricing() {
           <div className="space-y-6">
             <Card className="border-2 border-slate-200">
               <CardHeader>
-                <CardTitle className="text-xl">How does ZAPPAY pricing work?</CardTitle>
+                <CardTitle className="text-xl">What's included in the Free Trial?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  ZAPPAY charges a 5.2% processing fee on every transaction we facilitate for your business. On top of that, your chosen plan's monthly subscription fee is automatically deducted from your processed earnings — no invoices, no upfront payments. You keep the rest.
+                  The first year is completely free with up to 10 product listings, full marketplace access, and basic analytics. After the first year, you can choose to upgrade to Premium or Pay-As-You-Go.
                 </p>
               </CardContent>
             </Card>
@@ -300,11 +300,11 @@ export default function Pricing() {
 
             <Card className="border-2 border-slate-200">
               <CardHeader>
-                <CardTitle className="text-xl">What makes Elite Grower the best value?</CardTitle>
+                <CardTitle className="text-xl">What makes Early Adopters special?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  Elite Grower includes monthly 24/7 ad campaigns, a dedicated account manager, AI-powered demand forecasting, top-3 search placement, and continuously engineered platform features — all designed to maximize your transaction volume. It is priced to deliver the most advantages per dollar of any cannabis payment processing plan available anywhere in the world.
+                  Early Adopters get exclusive features like permanent homepage placement, strain mixing, demand forecasting AI, and lifetime pricing lock. Only 20 spots available with 3,970% ROI guarantee based on market intelligence.
                 </p>
               </CardContent>
             </Card>
@@ -315,7 +315,7 @@ export default function Pricing() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  Yes. You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle, and your subscription fee adjustment is reflected in the following month's deductions from your transaction earnings.
+                  Yes! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle. Early Adopter benefits are locked in permanently.
                 </p>
               </CardContent>
             </Card>
@@ -327,10 +327,10 @@ export default function Pricing() {
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Start Processing Payments?
+            Ready to Grow Your Cannabis Business?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join licensed farmers already processing transactions through ZAPPAY
+            Join 10,000+ licensed farmers already selling on ZAPPAY
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/farmer/register">
@@ -338,7 +338,7 @@ export default function Pricing() {
                 size="lg"
                 className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-lg px-8 py-6"
               >
-                Apply as a Farmer
+                Start Free Trial
               </Button>
             </Link>
             <Link href="/">

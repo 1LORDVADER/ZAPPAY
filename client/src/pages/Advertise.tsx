@@ -144,7 +144,7 @@ export default function Advertise() {
               Why Advertise on ZAPPAY?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              The only cannabis payment platform with real transaction data, closed-loop attribution, and instant ROI tracking.
+              The only cannabis marketplace with transaction data, closed-loop attribution, and instant ROI tracking.
             </p>
           </div>
 
@@ -156,7 +156,7 @@ export default function Advertise() {
                 </div>
                 <CardTitle className="text-2xl">High-Intent Users</CardTitle>
                 <CardDescription className="text-base">
-                  Users come to ZAPPAY to transact, not browse. High purchase intent drives 8-12% conversion rates vs 1-2% industry average.
+                  Users come to ZAPPAY to buy, not browse. 8-12% conversion rate vs 1-2% industry average.
                 </CardDescription>
               </CardHeader>
             </Card>

@@ -74,8 +74,8 @@ export default function Cart() {
   
   // Handle guest cart quantity update
   const handleGuestQuantityUpdate = (productId: number, newQuantity: number) => {
-    if (newQuantity < 4) {
-      toast.error("Minimum order is 4 grams");
+    if (newQuantity < 1) {
+      toast.error("Minimum order is 1 gram");
       return;
     }
     updateGuestCartQuantity(productId, newQuantity);
@@ -150,7 +150,7 @@ export default function Cart() {
             <Link href="/">
               <a className="text-blue-600 hover:text-blue-800 flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4" />
-                Back to Products
+                Back to Marketplace
               </a>
             </Link>
           </div>
@@ -192,7 +192,7 @@ export default function Cart() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => handleGuestQuantityUpdate(item.productId, Math.max(4, item.quantity - 1))}
+                          onClick={() => handleGuestQuantityUpdate(item.productId, item.quantity - 1)}
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
@@ -243,7 +243,7 @@ export default function Cart() {
                     <span className="font-semibold">${guestTax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-600">Processing Fee (5.2%)</span>
+                    <span className="text-slate-600">Platform Fee (5.2%)</span>
                     <span className="font-semibold">${guestPlatformFee.toFixed(2)}</span>
                   </div>
                   <div className="border-t pt-4">
@@ -286,11 +286,11 @@ export default function Cart() {
 
   const tax = subtotal * 0.08; // 8% tax
   const platformFee = subtotal * 0.052; // 5.2% platform fee
-  const total = subtotal + tax + platformFee;
+  const total = subtotal + tax;
 
   const handleUpdateQuantity = (itemId: number, newQuantity: number) => {
-    if (newQuantity < 4) {
-      toast.error("Minimum order is 4 grams");
+    if (newQuantity < 1) {
+      toast.error("Minimum order is 1 gram");
       return;
     }
     updateQuantityMutation.mutate({ id: itemId, quantity: newQuantity });
@@ -407,7 +407,7 @@ export default function Cart() {
             <Link href="/">
               <a className="flex items-center gap-3 cursor-pointer">
                 <img 
-                  src="/logo.png" 
+                  src="/zappay-logo.jpeg" 
                   alt="ZAPPAY Logo" 
                   className="h-12 w-auto object-contain"
                 />
@@ -431,7 +431,7 @@ export default function Cart() {
           <Link href="/">
             <a className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-900 mb-8">
               <ArrowLeft className="h-4 w-4" />
-              Back to Products
+              Back to Marketplace
             </a>
           </Link>
 
@@ -524,7 +524,7 @@ export default function Cart() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                            disabled={updateQuantityMutation.isPending || item.quantity <= 4}
+                            disabled={updateQuantityMutation.isPending || item.quantity <= 1}
                           >
                             <Minus className="h-4 w-4" />
                           </Button>
@@ -571,21 +571,6 @@ export default function Cart() {
                     <CardTitle>Order Summary</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {/* Per-gram line-item breakdown */}
-                    <div className="space-y-2 pb-3 border-b border-slate-100">
-                      {cartWithProducts.map((item) => (
-                        <div key={item.id} className="flex items-center justify-between text-xs text-slate-600">
-                          <span className="flex-1 truncate pr-2 font-medium">{item.product?.name}</span>
-                          <span className="whitespace-nowrap">
-                            {item.quantity}g × ${item.product!.price.toFixed(2)}/g
-                            <span className="ml-2 font-semibold text-slate-800">
-                              = ${(item.product!.price * item.quantity).toFixed(2)}
-                            </span>
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Subtotal</span>
                       <span className="font-semibold text-slate-900">
@@ -600,9 +585,9 @@ export default function Cart() {
                       </span>
                     </div>
                     
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-600">Processing Fee (5.2%)</span>
-                      <span className="font-semibold text-slate-900">
+                    <div className="flex items-center justify-between text-sm text-green-600">
+                      <span>Platform Fee (5.2%)</span>
+                      <span className="font-semibold">
                         ${(platformFee).toFixed(2)}
                       </span>
                     </div>
@@ -712,7 +697,7 @@ export default function Cart() {
                     <div>
                       <p className="font-medium">{product.name}</p>
                       <p className="text-sm text-slate-600">{product.strain} • THC: {product.thcPercentage}</p>
-                      <p className="text-sm font-semibold text-green-600">${(product.price).toFixed(2)}/g</p>
+                      <p className="text-sm font-semibold text-green-600">${(product.price / 100).toFixed(2)}/g</p>
                     </div>
                     <Button
                       size="sm"

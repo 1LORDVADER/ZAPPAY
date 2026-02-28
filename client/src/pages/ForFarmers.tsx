@@ -18,9 +18,9 @@ export default function ForFarmers() {
             <Link href="/">
               <a className="flex items-center gap-3">
                 <img 
-                  src="/logo.png" 
+                  src="/zappay-logo.jpeg" 
                   alt="ZAPPAY Logo" 
-                  className="h-10 w-auto object-contain"
+                  className="h-12 w-auto object-contain"
                 />
               </a>
             </Link>
@@ -71,15 +71,15 @@ export default function ForFarmers() {
             </Badge>
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Get Paid Instantly
+              Grow Your Business
               <span className="block bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
-                Across America
+                Nationwide
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-              ZAPPAY processes payments for your cannabis sales so you get paid instantly via ACH — no waiting, no banking headaches. List your products on our platform and let us handle the transaction infrastructure.
-              <span className="font-semibold text-white block mt-2">Just 5.2% processing fee — you keep 94.8%</span>
+              Connect with dispensaries and consumers across America. List your premium cannabis products and reach customers in all legal states.
+              <span className="font-semibold text-white block mt-2">Just 5.2% commission — you keep 94.8%</span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -88,7 +88,7 @@ export default function ForFarmers() {
                 onClick={() => setLocation("/farmer/registration")}
                 className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-8 py-6 shadow-2xl"
               >
-                List Your Products
+                Start Listing Products
               </Button>
               <Button 
                 size="lg"
@@ -112,7 +112,7 @@ export default function ForFarmers() {
                 Why Farmers Choose ZAPPAY
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                The payment processing platform built for licensed cannabis farmers — we handle the transactions so you can focus on growing
+                The premier marketplace for licensed cannabis farmers to expand their reach and maximize revenue
               </p>
             </div>
 
@@ -124,7 +124,7 @@ export default function ForFarmers() {
                   </div>
                   <CardTitle className="text-2xl">Nationwide Reach</CardTitle>
                   <CardDescription className="text-base">
-                    Your products reach dispensaries and consumers in all legal states through ZAPPAY’s payment network — one integration, nationwide reach
+                    Access dispensaries and consumers in all 50+ legal states from a single platform
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -184,7 +184,7 @@ export default function ForFarmers() {
                   </div>
                   <CardTitle className="text-2xl">Pre-Sold Products</CardTitle>
                   <CardDescription className="text-base">
-                    Consumers pre-pay for specific strains through ZAPPAY — your product is sold and payment is processed before harvest, eliminating financial risk
+                    Consumers can pre-order specific strains, ensuring your products are sold before harvest
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -236,14 +236,14 @@ export default function ForFarmers() {
               Ready to Grow Your Business?
             </h2>
             <p className="text-xl text-slate-600 mb-8">
-              Join licensed farmers already processing payments through ZAPPAY
+              Join hundreds of licensed farmers already selling on ZAPPAY
             </p>
             <Button 
               size="lg"
               onClick={() => setLocation("/farmer/registration")}
               className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-12 py-6"
             >
-              List Your Products Today
+              Start Listing Products Today
             </Button>
           </div>
         </div>
