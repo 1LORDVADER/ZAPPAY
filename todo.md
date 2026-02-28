@@ -405,3 +405,9 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] All /zappay-logo.jpeg references replaced with /logo.png sitewide
 - [x] Zero remaining "marketplace" references in client/src
 - [x] TypeScript: 0 errors
+
+
+## Three Improvements (Feb 28, 2026)
+- [x] Add 4g min badge and per-gram price to product cards in Browse/Home grid
+- [x] Update seed files with correct per-gram prices matching the live database
+- [x] Add per-gram line-item breakdown (X grams × $Y/gram = $Z) in cart summary

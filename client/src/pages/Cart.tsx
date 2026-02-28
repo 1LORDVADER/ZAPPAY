@@ -571,6 +571,21 @@ export default function Cart() {
                     <CardTitle>Order Summary</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
+                    {/* Per-gram line-item breakdown */}
+                    <div className="space-y-2 pb-3 border-b border-slate-100">
+                      {cartWithProducts.map((item) => (
+                        <div key={item.id} className="flex items-center justify-between text-xs text-slate-600">
+                          <span className="flex-1 truncate pr-2 font-medium">{item.product?.name}</span>
+                          <span className="whitespace-nowrap">
+                            {item.quantity}g × ${item.product!.price.toFixed(2)}/g
+                            <span className="ml-2 font-semibold text-slate-800">
+                              = ${(item.product!.price * item.quantity).toFixed(2)}
+                            </span>
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Subtotal</span>
                       <span className="font-semibold text-slate-900">

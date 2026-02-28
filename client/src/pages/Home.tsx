@@ -384,6 +384,14 @@ export default function Home() {
                                 Save ${((typeof product.retailPrice === 'number' ? product.retailPrice : parseFloat(product.retailPrice)) - (typeof product.price === 'number' ? product.price : parseFloat(product.price))).toFixed(2)}/gram
                               </div>
                             )}
+                            <div className="flex items-center gap-2 pt-1">
+                              <span className="inline-flex items-center gap-1 bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+                                4g min
+                              </span>
+                              <span className="text-xs text-slate-500">
+                                From ${typeof product.price === 'number' ? (product.price * 4).toFixed(2) : product.price} for 4g
+                              </span>
+                            </div>
                           </div>
 
                           {product.quantity < 10 && product.quantity > 0 && product.status === 'active' && (
