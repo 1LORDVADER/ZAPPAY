@@ -1,0 +1,2 @@
+ALTER TABLE `products` MODIFY COLUMN `category` enum('flower','edibles','concentrates','pre-rolls','vapes','hemp','other') NOT NULL;--> statement-breakpoint
+ALTER TABLE `products` ADD `isHemp` enum('yes','no') DEFAULT 'no' NOT NULL;

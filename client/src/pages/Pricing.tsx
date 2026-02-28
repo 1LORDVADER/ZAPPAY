@@ -1,13 +1,58 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, TrendingUp, Rocket, Crown } from "lucide-react";
-import { Link } from "wouter";
+import { Check, X, TrendingUp, Rocket, Crown, Loader2 } from "lucide-react";
 import { NavHeader } from "@/components/NavHeader";
+import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { getLoginUrl } from "@/const";
+import { toast } from "sonner";
+
+type TierKey = "premium" | "payAsYouGo" | "elite";
 
 export default function Pricing() {
-  const tiers = [
+  const { isAuthenticated } = useAuth();
+  const [loadingTier, setLoadingTier] = useState<TierKey | null>(null);
+
+  const createSubscription = (trpc as any).payment.createSubscriptionCheckout.useMutation({
+    onSuccess: (data: { url: string | null }) => {
+      setLoadingTier(null);
+      if (data?.url) {
+        toast.info("Redirecting to secure checkout...");
+        window.open(data.url, "_blank");
+      }
+    },
+    onError: (err: Error) => {
+      setLoadingTier(null);
+      toast.error(err.message || "Failed to start checkout. Please try again.");
+    },
+  });
+
+  const handleSelectTier = (tierKey: TierKey) => {
+    if (!isAuthenticated) {
+      window.location.href = getLoginUrl();
+      return;
+    }
+    setLoadingTier(tierKey);
+    createSubscription.mutate({ tier: tierKey });
+  };
+
+  const tiers: Array<{
+    key: TierKey;
+    name: string;
+    price: string;
+    period: string;
+    description: string;
+    color: string;
+    icon: typeof TrendingUp;
+    features: { text: string; included: boolean }[];
+    cta: string;
+    highlight: boolean;
+    badge?: string;
+  }> = [
     {
+      key: "premium",
       name: "Premium",
       price: "$1,100",
       period: "per month",
@@ -30,10 +75,11 @@ export default function Pricing() {
       highlight: false,
     },
     {
+      key: "payAsYouGo",
       name: "Pay-As-You-Go",
       price: "$1,100",
       period: "paid from fees",
-      description: "No upfront cost - pay from your earnings",
+      description: "No upfront cost — pay from your earnings",
       color: "from-green-500 to-green-600",
       icon: Rocket,
       features: [
@@ -52,11 +98,12 @@ export default function Pricing() {
       highlight: false,
     },
     {
+      key: "elite",
       name: "Elite Grower",
       price: "$2,997",
       period: "per month",
-      description: "Maximum value - Best ROI anywhere in the world",
-      color: "from-purple-500 to-purple-600",
+      description: "Maximum value — best ROI anywhere in the world",
+      color: "from-red-500 to-red-600",
       icon: Crown,
       features: [
         { text: "Everything in Premium, PLUS:", included: true },
@@ -94,7 +141,7 @@ export default function Pricing() {
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
             ZAPPAY processes payments for your cannabis sales. No upfront costs — all subscription fees are automatically deducted from your processed transaction earnings. List your products and let us handle the payment infrastructure.
           </p>
-          <div className="flex items-center justify-center gap-4 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
             <Badge className="bg-green-600 text-white hover:bg-green-700">
               <Check className="mr-2 h-4 w-4" />
               No Setup Fees
@@ -118,6 +165,7 @@ export default function Pricing() {
           <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory md:snap-none">
             {tiers.map((tier) => {
               const Icon = tier.icon;
+              const isLoading = loadingTier === tier.key;
               return (
                 <Card
                   key={tier.name}
@@ -162,18 +210,30 @@ export default function Pricing() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/farmer/register">
-                      <Button
-                        className={`w-full ${
-                          tier.highlight
-                            ? "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
-                            : ""
-                        }`}
-                        size="lg"
-                      >
-                        {tier.cta}
-                      </Button>
-                    </Link>
+                    <Button
+                      onClick={() => handleSelectTier(tier.key)}
+                      disabled={isLoading}
+                      className={`w-full ${
+                        tier.highlight
+                          ? "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
+                          : ""
+                      }`}
+                      size="lg"
+                    >
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Opening checkout...
+                        </>
+                      ) : (
+                        tier.cta
+                      )}
+                    </Button>
+                    {!isAuthenticated && (
+                      <p className="text-xs text-slate-400 text-center mt-2">
+                        You'll be asked to log in first
+                      </p>
+                    )}
                   </CardContent>
                 </Card>
               );
@@ -205,163 +265,90 @@ export default function Pricing() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Product Listings</td>
-                  <td className="text-center p-4 text-slate-600">Unlimited</td>
-                  <td className="text-center p-4 text-slate-600">Unlimited</td>
-                  <td className="text-center p-4 text-slate-600">Unlimited</td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Platform Commission</td>
-                  <td className="text-center p-4 text-slate-600">5.2%</td>
-                  <td className="text-center p-4 text-slate-600">5.2% + fees</td>
-                  <td className="text-center p-4 text-slate-600">5.2%</td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Priority Search Placement</td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Advanced Analytics</td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Custom Storefront</td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">24/7 Ad Campaigns</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Dedicated Account Manager</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Advanced Demand Forecasting</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 text-slate-700">Priority 24/7 Support</td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><X className="h-5 w-5 text-slate-300 mx-auto" /></td>
-                  <td className="text-center p-4"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                </tr>
-
+                {[
+                  ["Product Listings", "Unlimited", "Unlimited", "Unlimited"],
+                  ["Platform Commission", "5.2%", "5.2% + fees", "5.2%"],
+                ].map(([feature, ...vals]) => (
+                  <tr key={feature} className="border-b border-slate-100">
+                    <td className="p-4 text-slate-700">{feature}</td>
+                    {vals.map((v, i) => (
+                      <td key={i} className="text-center p-4 text-slate-600">{v}</td>
+                    ))}
+                  </tr>
+                ))}
+                {[
+                  "Priority Search Placement",
+                  "Advanced Analytics",
+                  "Custom Storefront",
+                  "24/7 Support",
+                  "Featured Badge",
+                  "API Access",
+                  "Monthly Ad Campaigns",
+                  "Dedicated Account Manager",
+                  "Demand Forecasting",
+                  "Quarterly Business Reviews",
+                ].map((feature, idx) => {
+                  const premiumHas = idx < 6;
+                  const payGoHas = idx < 6;
+                  const eliteHas = true;
+                  return (
+                    <tr key={feature} className="border-b border-slate-100">
+                      <td className="p-4 text-slate-700">{feature}</td>
+                      <td className="text-center p-4">
+                        {premiumHas ? <Check className="h-5 w-5 text-green-600 mx-auto" /> : <X className="h-5 w-5 text-slate-300 mx-auto" />}
+                      </td>
+                      <td className="text-center p-4">
+                        {payGoHas ? <Check className="h-5 w-5 text-green-600 mx-auto" /> : <X className="h-5 w-5 text-slate-300 mx-auto" />}
+                      </td>
+                      <td className="text-center p-4">
+                        {eliteHas ? <Check className="h-5 w-5 text-green-600 mx-auto" /> : <X className="h-5 w-5 text-slate-300 mx-auto" />}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="space-y-6">
-            <Card className="border-2 border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-xl">How does ZAPPAY pricing work?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600">
-                  ZAPPAY charges a 5.2% processing fee on every transaction we facilitate for your business. On top of that, your chosen plan's monthly subscription fee is automatically deducted from your processed earnings — no invoices, no upfront payments. You keep the rest.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-xl">How does Pay-As-You-Go work?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600">
-                  Instead of paying $1,100 upfront each month, we deduct the monthly fee from your transaction fees. You only pay when you make sales, making it completely risk-free for growing farms.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-xl">What makes Elite Grower the best value?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600">
-                  Elite Grower includes monthly 24/7 ad campaigns, a dedicated account manager, AI-powered demand forecasting, top-3 search placement, and continuously engineered platform features — all designed to maximize your transaction volume. It is priced to deliver the most advantages per dollar of any cannabis payment processing plan available anywhere in the world.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-xl">Can I switch plans later?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600">
-                  Yes. You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle, and your subscription fee adjustment is reflected in the following month's deductions from your transaction earnings.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Start Processing Payments?
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-4xl font-bold text-slate-900 mb-12 text-center">
+            Frequently Asked Questions
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join licensed farmers already processing transactions through ZAPPAY
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/farmer/register">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-lg px-8 py-6"
-              >
-                Apply as a Farmer
-              </Button>
-            </Link>
-            <Link href="/">
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 text-lg px-8 py-6"
-              >
-                Learn More
-              </Button>
-            </Link>
+          <div className="space-y-8">
+            {[
+              {
+                q: "How does billing work?",
+                a: "ZAPPAY charges a 5.2% processing fee on every transaction we facilitate. Your chosen plan's monthly subscription fee is automatically deducted from your processed earnings — no invoices, no upfront payments.",
+              },
+              {
+                q: "Can I change my plan?",
+                a: "Yes. You can upgrade or downgrade at any time. Changes take effect at the start of your next billing cycle.",
+              },
+              {
+                q: "What payment methods are accepted?",
+                a: "We accept all major credit and debit cards through our secure Stripe-powered checkout. Promo codes are also supported.",
+              },
+              {
+                q: "Is there a free trial?",
+                a: "New farmers receive a 30-day onboarding period to set up their profile and listings before the first billing cycle begins.",
+              },
+              {
+                q: "What is the 5.2% commission for?",
+                a: "The 5.2% covers payment processing, compliance tooling, platform infrastructure, and customer support — so you can focus on growing.",
+              },
+            ].map(({ q, a }) => (
+              <div key={q} className="border-b border-slate-200 pb-6">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">{q}</h3>
+                <p className="text-slate-600">{a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-400">
-            © 2026 ZAPPAY. All rights reserved. | <a href="mailto:Zappay.co@gmail.com" className="hover:text-white">Zappay.co@gmail.com</a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

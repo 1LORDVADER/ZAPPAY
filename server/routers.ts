@@ -5,6 +5,7 @@ import { salesRepsRouter } from "./salesRepsRouter";
 import { transportationRouter } from "./transportationRouter";
 import { salesRouter } from "./salesRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { recommendationsRouter } from "./recommendationsRouter";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -12,6 +13,7 @@ export const appRouter = router({
   salesReps: salesRepsRouter,
   transportation: transportationRouter,
   sales: salesRouter,
+  recommendations: recommendationsRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
@@ -236,6 +238,66 @@ export const appRouter = router({
         
         return { url: session.url };
       }),
+
+    createSubscriptionCheckout: publicProcedure
+      .input((val: unknown) => val as { tier: 'premium' | 'payAsYouGo' | 'elite' })
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user) throw new Error('Not authenticated');
+
+        const stripe = (await import('stripe')).default;
+        const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY!);
+        const { FARMER_TIERS } = await import('./stripeProducts');
+
+        const tier = FARMER_TIERS[input.tier];
+        if (!tier) throw new Error('Invalid subscription tier');
+
+        const session = await stripeClient.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items: [
+            {
+              price_data: {
+                currency: 'usd',
+                product_data: {
+                  name: `ZAPPAY ${tier.name} Plan`,
+                  description: tier.description,
+                },
+                unit_amount: tier.monthlyPriceCents,
+                recurring: { interval: 'month' },
+              },
+              quantity: 1,
+            },
+          ],
+          mode: 'subscription',
+          success_url: `${ctx.req.headers.origin}/farmer/dashboard?subscription=success&tier=${input.tier}`,
+          cancel_url: `${ctx.req.headers.origin}/pricing?cancelled=true`,
+          customer_email: ctx.user.email ?? undefined,
+          client_reference_id: ctx.user.id.toString(),
+          metadata: {
+            user_id: ctx.user.id.toString(),
+            tier: input.tier,
+            subscription_type: 'farmer_plan',
+          },
+          allow_promotion_codes: true,
+        });
+
+        return { url: session.url };
+      }),
+
+    getSubscriptionStatus: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return null;
+      const { getDb } = await import('./db');
+      const { farmerSubscriptions } = await import('../drizzle/schema');
+      const { eq, desc } = await import('drizzle-orm');
+      const db = await getDb();
+      if (!db) return null;
+      const subs = await db
+        .select()
+        .from(farmerSubscriptions)
+        .where(eq(farmerSubscriptions.farmerId, ctx.user.id))
+        .orderBy(desc(farmerSubscriptions.createdAt))
+        .limit(1);
+      return subs[0] ?? null;
+    }),
   }),
 
   // User Profiles

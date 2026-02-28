@@ -12,10 +12,12 @@ import { motion } from "framer-motion";
 import { getGuestCartCount } from "@/lib/cartPersistence";
 import { StateSelector } from "@/components/StateSelector";
 import { useGeolocation } from "@/hooks/useGeolocation";
+import { canAccessTHC } from "@shared/stateCompliance";
 import { AgeVerification } from "@/components/AgeVerification";
 import { AdvancedFilters, type FilterState } from "@/components/AdvancedFilters";
 import { NavHeader } from "@/components/NavHeader";
 import { Toaster } from "sonner";
+import { StrainRecommendations } from "@/components/StrainRecommendations";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -55,8 +57,10 @@ export default function Home() {
     
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
     
-    // Filter by state legality - only show products if cannabis is legal in user's state
-    const matchesState = !userState || isLegal;
+    // Geofencing: hemp products (<0.3% THC) are federally legal in all 50 states under the 2018 Farm Bill.
+    // THC products are only shown in states where cannabis is not fully illegal.
+    const isHempProduct = product.category === 'hemp' || (product as any).isHemp === true;
+    const matchesState = isHempProduct ? true : canAccessTHC(userState);
     
     // Advanced filter: THC percentage
     const thcValue = parseFloat(product.thcPercentage || "0") || 0;
@@ -224,6 +228,13 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* AI Strain Recommendations */}
+      <section className="py-4 px-4">
+        <div className="container mx-auto max-w-3xl">
+          <StrainRecommendations />
+        </div>
+      </section>
+
       {/* Products Section */}
       <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50">
         <div className="container mx-auto">
@@ -233,13 +244,17 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 mb-8">
+              <TabsList className="grid w-full grid-cols-4 md:grid-cols-7 mb-8">
                 <TabsTrigger value="all">All Products</TabsTrigger>
                 <TabsTrigger value="flower">Flower</TabsTrigger>
                 <TabsTrigger value="edibles">Edibles</TabsTrigger>
                 <TabsTrigger value="concentrates">Concentrates</TabsTrigger>
                 <TabsTrigger value="pre-rolls">Pre-Rolls</TabsTrigger>
                 <TabsTrigger value="vapes">Vapes</TabsTrigger>
+                <TabsTrigger value="hemp" className="text-green-700 font-semibold">
+                  Hemp / CBD
+                  <Badge className="ml-1 bg-green-100 text-green-700 text-xs px-1 py-0 border border-green-300 hidden md:inline-flex">50 States</Badge>
+                </TabsTrigger>
               </TabsList>
             </motion.div>
 

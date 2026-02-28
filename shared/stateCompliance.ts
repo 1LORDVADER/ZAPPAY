@@ -111,6 +111,25 @@ export function isLegalInState(stateAbbr: string): boolean {
 }
 
 /**
+ * Hemp products (<0.3% THC) are federally legal under the 2018 Farm Bill.
+ * Available in all 50 states regardless of local cannabis laws.
+ */
+export function canAccessHemp(): boolean {
+  return true;
+}
+
+/**
+ * Check if a user in the given state can access THC cannabis products.
+ * Returns false only for states where cannabis is fully illegal.
+ * Returns true if no state is detected (show all, let user decide).
+ */
+export function canAccessTHC(stateAbbr: string | null): boolean {
+  if (!stateAbbr) return true;
+  const state = STATE_COMPLIANCE[stateAbbr.toUpperCase()];
+  return state ? state.legalStatus !== 'illegal' : true;
+}
+
+/**
  * Check if recreational cannabis is legal in a state
  */
 export function isRecreationalLegal(stateAbbr: string): boolean {

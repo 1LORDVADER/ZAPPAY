@@ -40,7 +40,7 @@ export function AgeVerification() {
           </div>
           <DialogTitle className="text-center text-2xl">Age Verification Required</DialogTitle>
           <DialogDescription className="text-center text-base">
-            You must be 21 years or older to access this website. This site contains cannabis products intended for adults only.
+            You must be 21 years or older to access this website. This site contains cannabis and hemp products intended for adults only.
           </DialogDescription>
         </DialogHeader>
 
@@ -48,10 +48,21 @@ export function AgeVerification() {
           <div className="rounded-lg bg-muted p-4 text-sm">
             <p className="font-semibold mb-2">Legal Notice:</p>
             <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-              <li>Cannabis products are for adults 21+ only</li>
-              <li>Cannabis is illegal under federal law</li>
-              <li>State laws vary - check your local regulations</li>
+              <li>Cannabis (THC) products are for adults 21+ only</li>
+              <li>THC cannabis is illegal under federal law; state laws vary</li>
+              <li>
+                Hemp-derived CBD products (&lt;0.3% THC) are federally legal
+                under the 2018 Farm Bill and available in all 50 states
+              </li>
+              <li>
+                THC products are only shown in jurisdictions where permitted —
+                check your local regulations before purchasing
+              </li>
               <li>Do not drive or operate machinery while using cannabis</li>
+              <li>
+                ZAPPAY is a payment processor; all products are sold by
+                licensed third-party farmers
+              </li>
             </ul>
           </div>
         </div>

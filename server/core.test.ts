@@ -35,7 +35,8 @@ describe('ZAPPAY Core Features', () => {
       
       expect(Array.isArray(products)).toBe(true);
       expect(products.length).toBeGreaterThan(0);
-      expect(products.every(p => p.status === 'active')).toBe(true);
+      // getAllActiveProducts returns all non-inactive products (active, sold_out, growing, pre-order)
+      expect(products.every(p => p.status !== 'inactive')).toBe(true);
     });
 
     it('should get product by ID', async () => {

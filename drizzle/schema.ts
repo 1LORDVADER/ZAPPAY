@@ -71,7 +71,8 @@ export const products = mysqlTable("products", {
   farmerId: int("farmerId").notNull(),
   name: varchar("name", { length: 255 }).notNull(),
   strain: varchar("strain", { length: 255 }).notNull(),
-  category: mysqlEnum("category", ["flower", "edibles", "concentrates", "pre-rolls", "vapes", "other"]).notNull(),
+  category: mysqlEnum("category", ["flower", "edibles", "concentrates", "pre-rolls", "vapes", "hemp", "other"]).notNull(),
+  isHemp: mysqlEnum("isHemp", ["yes", "no"]).default("no").notNull(), // hemp products are legal in all 50 states under 2018 Farm Bill (<0.3% THC)
   thcPercentage: varchar("thcPercentage", { length: 10 }),
   cbdPercentage: varchar("cbdPercentage", { length: 10 }),
   price: int("price").notNull(), // stored in cents - ZAPPAY price

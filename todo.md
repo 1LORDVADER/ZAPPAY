@@ -405,3 +405,70 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] All /zappay-logo.jpeg references replaced with /logo.png sitewide
 - [x] Zero remaining "marketplace" references in client/src
 - [x] TypeScript: 0 errors
+
+
+## 90-DAY ADAPTATION FEATURES (February 28, 2026)
+
+### Feature 1: Hemp / CBD Category
+- [ ] Add "hemp" to products category enum in schema
+- [ ] Add isHemp flag to products table
+- [ ] Run db:push migration
+- [ ] Add Hemp category tab in Home.tsx
+- [ ] Add Hemp option in FarmerDashboard product creation
+
+### Feature 2: Geofencing Enforcement (Hemp 50-state, THC legal-state-only)
+- [ ] Update Home.tsx filter: hemp products visible in ALL states, THC blocked in illegal states
+- [ ] Show "Not available in your state" badge on THC products for users in non-legal states
+- [ ] Update stateCompliance.ts to export helper for hemp vs THC access
+
+### Feature 3: Compliance Disclaimer Update
+- [ ] Update AgeVerification modal with hemp/THC jurisdiction language
+- [ ] Add persistent compliance banner on Home.tsx for hemp vs THC clarity
+- [ ] Update site-wide disclaimer text
+
+### Feature 4: AI Strain Recommendations
+- [ ] Add recommendations tRPC procedure using LLM (based on browsing/purchase history)
+- [ ] Build "Recommended For You" section on Home.tsx
+- [ ] Show personalized hemp/cannabis recommendations
+
+### Feature 5: Farmer Subscription Tiers via Stripe
+- [ ] Add Stripe checkout for Premium ($99/month) subscription
+- [ ] Wire up subscription status to product priority/visibility
+- [ ] Show subscription status in FarmerDashboard
+- [ ] Update Pricing page to reflect new $99/month entry tier
+
+
+## 90-Day Adaptation Plan - Web Platform Features (Feb 28, 2026)
+
+### Feature 1: Hemp / CBD Category
+- [x] Add 'hemp' to products category enum in schema
+- [x] Add isHemp boolean flag to products table
+- [x] Run db:push migration to apply schema changes
+
+### Feature 2: Geofencing Enforcement
+- [x] Add canAccessTHC() and canAccessHemp() helpers to stateCompliance.ts
+- [x] Update Home.tsx to block THC products in non-legal states
+- [x] Hemp products show in all 50 states regardless of THC legality
+- [x] Add Hemp/CBD tab to marketplace category tabs
+
+### Feature 3: Compliance Disclaimer Update
+- [x] Update AgeVerification.tsx disclaimer to cover hemp vs THC jurisdiction language
+- [x] Distinguish between 2018 Farm Bill hemp (nationwide) and state-regulated THC
+
+### Feature 4: AI Strain Recommendations
+- [x] Create recommendationsRouter.ts with getStrainRecommendations procedure (LLM-powered)
+- [x] Register recommendations router in appRouter
+- [x] Create StrainRecommendations.tsx frontend component
+- [x] Add StrainRecommendations to Home.tsx marketplace page
+
+### Feature 5: Farmer Subscription Tiers via Stripe
+- [x] Create stripeProducts.ts with Premium ($1,100/mo), Pay-As-You-Go ($1,100/mo), Elite ($2,997/mo) tier definitions
+- [x] Add createSubscriptionCheckout mutation to payment router
+- [x] Add getSubscriptionStatus query to payment router
+- [x] Rewrite Pricing.tsx to wire each plan button to Stripe subscription checkout
+- [x] Show loading state and login redirect for unauthenticated users
+
+### Tests
+- [x] Fix applications.test.ts (correct procedure names + required fields)
+- [x] Fix core.test.ts (getAllActiveProducts returns non-inactive, not just active)
+- [x] All 37 tests passing
