@@ -5,7 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, Star } from "lucide-react";
+import { ShoppingCart, Search, Leaf, Package, Zap, Star, ArrowUpDown } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -47,6 +48,7 @@ export default function Home() {
   
   // Filter products based on search and category
   const [activeCategory, setActiveCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("default");
   
   const filteredProducts = products.filter(product => {
     const matchesSearch = searchQuery === "" || 
@@ -78,6 +80,16 @@ export default function Home() {
       filters.categories.includes(product.category);
     
     return matchesSearch && matchesCategory && matchesState && matchesTHC && matchesCBD && matchesStrainType && matchesEffects && matchesFilterCategory;
+  }).sort((a, b) => {
+    const priceA = typeof a.price === 'number' ? a.price : parseFloat(a.price);
+    const priceB = typeof b.price === 'number' ? b.price : parseFloat(b.price);
+    const thcA = parseFloat(a.thcPercentage || '0') || 0;
+    const thcB = parseFloat(b.thcPercentage || '0') || 0;
+    if (sortBy === 'price-asc') return priceA - priceB;
+    if (sortBy === 'price-desc') return priceB - priceA;
+    if (sortBy === 'thc-desc') return thcB - thcA;
+    if (sortBy === 'rating-desc') return parseFloat(b.rating || '0') - parseFloat(a.rating || '0');
+    return 0; // default: keep original order
   });
 
   // Use database cart for authenticated users, localStorage for guests
@@ -219,6 +231,19 @@ export default function Home() {
                 />
               </div>
               <AdvancedFilters filters={filters} onFiltersChange={setFilters} />
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-48 h-12">
+                  <ArrowUpDown className="h-4 w-4 mr-2 text-slate-400" />
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">Default</SelectItem>
+                  <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                  <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                  <SelectItem value="thc-desc">THC: Highest First</SelectItem>
+                  <SelectItem value="rating-desc">Top Rated</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </motion.div>
         </div>

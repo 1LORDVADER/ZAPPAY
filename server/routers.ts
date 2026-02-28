@@ -188,6 +188,15 @@ export const appRouter = router({
       const { getAllOrders } = await import('./db');
       return await getAllOrders();
     }),
+    getLatestWithItems: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) return null;
+      const { getOrdersByConsumerId, getOrderItems } = await import('./db');
+      const userOrders = await getOrdersByConsumerId(ctx.user.id);
+      if (!userOrders.length) return null;
+      const latest = userOrders[0];
+      const items = await getOrderItems(latest.id);
+      return { order: latest, items };
+    }),
   }),
 
   // Payment (Stripe)

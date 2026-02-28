@@ -411,3 +411,8 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Add 4g min badge and per-gram price to product cards in Browse/Home grid
 - [x] Update seed files with correct per-gram prices matching the live database
 - [x] Add per-gram line-item breakdown (X grams × $Y/gram = $Z) in cart summary
+
+## Next Three Improvements (Feb 28, 2026)
+- [x] Add 4g min badge to Browse.tsx product grid cards (already present in Home.tsx grid)
+- [x] Add price-per-gram sort option to Browse page filter bar (Price Low/High, THC Highest, Top Rated)
+- [x] Add per-gram line-item breakdown to checkout confirmation page (Xg × $Y/g = $Z receipt)
