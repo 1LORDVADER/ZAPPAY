@@ -1,0 +1,91 @@
+{
+  "query": "SHOW TABLES;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SHOW TABLES;",
+  "rows": [
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "__drizzle_migrations"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "advertiserApplications"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "cartItems"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "commissions"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "consumerProfiles"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "dispensaryApplications"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "drivers"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "farmerProfiles"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "farmerSubscriptions"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "gpsTracking"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "loyaltyPoints"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "loyaltyTransactions"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "orderItems"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "orders"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "products"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "referral_codes"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "referral_signups"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "referrals"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "reviews"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "rewards"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "salesRepApplications"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "salesReps"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "shipments"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "transactions"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "transportationCompanies"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "users"
+    },
+    {
+      "Tables_in_jWmfVYBaikHBYpPLbpiijG": "verified_licenses"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_jWmfVYBaikHBYpPLbpiijG\n__drizzle_migrations\nadvertiserApplications\ncartItems\ncommissions\nconsumerProfiles\ndispensaryApplications\ndrivers\nfarmerProfiles\nfarmerSubscriptions\ngpsTracking\nloyaltyPoints\nloyaltyTransactions\norderItems\norders\nproducts\nreferral_codes\nreferral_signups\nreferrals\nreviews\nrewards\nsalesRepApplications\nsalesReps\nshipments\ntransactions\ntransportationCompanies\nusers\nverified_licenses\n",
+  "stderr": "",
+  "execution_time_ms": 47
+}

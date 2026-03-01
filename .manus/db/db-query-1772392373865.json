@@ -1,0 +1,91 @@
+{
+  "query": "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() ORDER BY TABLE_NAME;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() ORDER BY TABLE_NAME;",
+  "rows": [
+    {
+      "TABLE_NAME": "__drizzle_migrations"
+    },
+    {
+      "TABLE_NAME": "advertiserApplications"
+    },
+    {
+      "TABLE_NAME": "cartItems"
+    },
+    {
+      "TABLE_NAME": "commissions"
+    },
+    {
+      "TABLE_NAME": "consumerProfiles"
+    },
+    {
+      "TABLE_NAME": "dispensaryApplications"
+    },
+    {
+      "TABLE_NAME": "drivers"
+    },
+    {
+      "TABLE_NAME": "farmerProfiles"
+    },
+    {
+      "TABLE_NAME": "farmerSubscriptions"
+    },
+    {
+      "TABLE_NAME": "gpsTracking"
+    },
+    {
+      "TABLE_NAME": "loyaltyPoints"
+    },
+    {
+      "TABLE_NAME": "loyaltyTransactions"
+    },
+    {
+      "TABLE_NAME": "orderItems"
+    },
+    {
+      "TABLE_NAME": "orders"
+    },
+    {
+      "TABLE_NAME": "products"
+    },
+    {
+      "TABLE_NAME": "referral_codes"
+    },
+    {
+      "TABLE_NAME": "referral_signups"
+    },
+    {
+      "TABLE_NAME": "referrals"
+    },
+    {
+      "TABLE_NAME": "reviews"
+    },
+    {
+      "TABLE_NAME": "rewards"
+    },
+    {
+      "TABLE_NAME": "salesRepApplications"
+    },
+    {
+      "TABLE_NAME": "salesReps"
+    },
+    {
+      "TABLE_NAME": "shipments"
+    },
+    {
+      "TABLE_NAME": "transactions"
+    },
+    {
+      "TABLE_NAME": "transportationCompanies"
+    },
+    {
+      "TABLE_NAME": "users"
+    },
+    {
+      "TABLE_NAME": "verified_licenses"
+    }
+  ],
+  "messages": [],
+  "stdout": "TABLE_NAME\n__drizzle_migrations\nadvertiserApplications\ncartItems\ncommissions\nconsumerProfiles\ndispensaryApplications\ndrivers\nfarmerProfiles\nfarmerSubscriptions\ngpsTracking\nloyaltyPoints\nloyaltyTransactions\norderItems\norders\nproducts\nreferral_codes\nreferral_signups\nreferrals\nreviews\nrewards\nsalesRepApplications\nsalesReps\nshipments\ntransactions\ntransportationCompanies\nusers\nverified_licenses\n",
+  "stderr": "",
+  "execution_time_ms": 59
+}

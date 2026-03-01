@@ -1,0 +1,31 @@
+{
+  "query": "SELECT DISTINCT farmerId FROM products ORDER BY farmerId LIMIT 10; SELECT COUNT(*) as total FROM products;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT DISTINCT farmerId FROM products ORDER BY farmerId LIMIT 10; SELECT COUNT(*) as total FROM products;",
+  "rows": [
+    {
+      "farmerId": "1"
+    },
+    {
+      "farmerId": "101"
+    },
+    {
+      "farmerId": "102"
+    },
+    {
+      "farmerId": "103"
+    },
+    {
+      "farmerId": "104"
+    },
+    {
+      "farmerId": "total"
+    },
+    {
+      "farmerId": "46"
+    }
+  ],
+  "messages": [],
+  "stdout": "farmerId\n1\n101\n102\n103\n104\ntotal\n46\n",
+  "stderr": "",
+  "execution_time_ms": 69
+}

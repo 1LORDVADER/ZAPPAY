@@ -1,0 +1,30 @@
+{
+  "query": "SELECT farmerId, COUNT(*) as count FROM products GROUP BY farmerId ORDER BY farmerId;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT farmerId, COUNT(*) as count FROM products GROUP BY farmerId ORDER BY farmerId;",
+  "rows": [
+    {
+      "farmerId": "1",
+      "count": "40"
+    },
+    {
+      "farmerId": "101",
+      "count": "2"
+    },
+    {
+      "farmerId": "102",
+      "count": "1"
+    },
+    {
+      "farmerId": "103",
+      "count": "2"
+    },
+    {
+      "farmerId": "104",
+      "count": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "farmerId\tcount\n1\t40\n101\t2\n102\t1\n103\t2\n104\t1\n",
+  "stderr": "",
+  "execution_time_ms": 57
+}
