@@ -141,10 +141,10 @@ export default function Home() {
             className="text-center mb-8"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Cannabis Payment Processing, Built for the Industry
+              The Transaction Infrastructure for Cannabis, Hemp &amp; Insurance
             </h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              ZAPPAY processes payments between licensed farmers, dispensaries, and consumers — legally, instantly, and at just 5.2%. We don't sell products; we power the transactions.
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              ZAPPAY processes payments across the full cannabis and hemp supply chain — connecting licensed farmers, dispensaries, consumers, and insurance providers. Legally, instantly, and at just 5.2%. We don't sell products; we power every transaction that moves the industry.
             </p>
           </motion.div>
 
@@ -257,6 +257,19 @@ export default function Home() {
                 </TabsTrigger>
               </TabsList>
             </motion.div>
+
+            {/* Hemp/CBD Disclosure Banner — shown when Hemp tab is active */}
+            {activeCategory === 'hemp' && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
+                <span className="text-green-700 text-lg mt-0.5">🌿</span>
+                <div>
+                  <p className="text-sm font-semibold text-green-800">Hemp / CBD Products — Available Nationwide</p>
+                  <p className="text-xs text-green-700 mt-1">
+                    All hemp and CBD products listed here contain less than 0.3% THC and are federally legal under the 2018 Farm Bill. Some states may require additional disclosures or impose restrictions on hemp-derived products. By purchasing, you confirm compliance with your local and state laws. ZAPPAY facilitates the payment transaction only and does not manufacture, distribute, or endorse any specific product.
+                  </p>
+                </div>
+              </div>
+            )}
 
             <TabsContent value={activeCategory} className="mt-0">
               {isLoading ? (
@@ -479,7 +492,7 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-lg mb-4">About ZAPPAY</h3>
               <p className="text-sm text-slate-300">
-                ZAPPAY is a payment processor engineered for the cannabis industry. We facilitate legal transactions between licensed farmers, dispensaries, and consumers — we do not sell, distribute, or handle cannabis products. Just 5.2% per transaction.
+                ZAPPAY is transaction infrastructure engineered for the cannabis and hemp industry. We process compliant payments between licensed farmers, dispensaries, consumers, and insurance providers — facilitating financial flows across the entire supply chain. We do not sell, distribute, or handle cannabis products. Just 5.2% per transaction.
               </p>
             </div>
             <div>
@@ -512,7 +525,7 @@ export default function Home() {
           <div className="mt-8 pt-8 border-t border-slate-700 text-center text-sm text-slate-400">
             <p>© 2026 ZAPPAY. All rights reserved.</p>
             <p className="mt-2">
-              For legal adult use only in states where cannabis is legal.
+              For legal adult use only in states where cannabis is legal. Hemp/CBD products (&lt;0.3% THC) are available nationwide under the 2018 Farm Bill; state-specific disclosure requirements may apply.
             </p>
           </div>
         </div>

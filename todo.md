@@ -500,3 +500,11 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Wire Stripe subscription webhook: customer.subscription.created/updated/deleted, invoice.payment_succeeded/failed
 - [x] Add farmer_id to subscription_data.metadata so webhook can identify which farmer to update
 - [x] All 37 tests pass
+
+## Homepage Copy Update — Insurance + Hemp Disclosure (March 16, 2026)
+- [x] Update homepage H1 to "The Transaction Infrastructure for Cannabis, Hemp & Insurance"
+- [x] Update hero tagline to include insurance providers and full supply chain language
+- [x] Update footer "About ZAPPAY" blurb to mention insurance providers
+- [x] Update footer copyright disclaimer to include hemp/CBD 2018 Farm Bill disclosure
+- [x] Add inline Hemp/CBD disclosure banner (shows when Hemp tab is active) with state-specific disclosure notice
+- [ ] Reminder scheduled: Finish hemp product photo generation — Thursday March 12, 2026
