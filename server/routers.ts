@@ -5,6 +5,7 @@ import { salesRepsRouter } from "./salesRepsRouter";
 import { transportationRouter } from "./transportationRouter";
 import { salesRouter } from "./salesRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { z } from "zod";
 import { recommendationsRouter } from "./recommendationsRouter";
 
 export const appRouter = router({
@@ -937,6 +938,68 @@ export const appRouter = router({
         totalSalesReps: salesReps.length,
         topStates,
       };
+    }),
+  }),
+
+  // Wholesaler Waitlist
+  wholesalerWaitlist: router({
+    join: publicProcedure
+      .input(z.object({
+        businessName: z.string().min(1),
+        contactName: z.string().min(1),
+        email: z.string().email(),
+        phone: z.string().optional(),
+        businessType: z.enum(['farmer', 'dispensary', 'distributor', 'transporter', 'other']),
+        state: z.string().min(1),
+        city: z.string().optional(),
+        licenseNumber: z.string().optional(),
+        monthlyVolume: z.string().optional(),
+        message: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        if (!db) throw new Error('Database unavailable');
+        const { wholesalerWaitlist } = await import('../drizzle/schema');
+        const { notifyOwner } = await import('./_core/notification');
+
+        // Check for duplicate email
+        const { eq } = await import('drizzle-orm');
+        const existing = await db.select().from(wholesalerWaitlist).where(eq(wholesalerWaitlist.email, input.email)).limit(1);
+        if (existing.length > 0) {
+          return { success: true, alreadyRegistered: true };
+        }
+
+        await db.insert(wholesalerWaitlist).values({
+          businessName: input.businessName,
+          contactName: input.contactName,
+          email: input.email,
+          phone: input.phone ?? null,
+          businessType: input.businessType,
+          state: input.state,
+          city: input.city ?? null,
+          licenseNumber: input.licenseNumber ?? null,
+          monthlyVolume: input.monthlyVolume ?? null,
+          message: input.message ?? null,
+          status: 'pending',
+        });
+
+        // Notify owner
+        await notifyOwner({
+          title: `New Wholesaler Waitlist Signup: ${input.businessName}`,
+          content: `${input.contactName} (${input.email}) from ${input.city ?? ''}, ${input.state} joined the wholesaler waitlist.\nBusiness Type: ${input.businessType}\nMonthly Volume: ${input.monthlyVolume ?? 'Not specified'}\nLicense: ${input.licenseNumber ?? 'Not provided'}\nMessage: ${input.message ?? 'None'}`,
+        });
+
+        return { success: true, alreadyRegistered: false };
+      }),
+
+    getAll: protectedProcedure.query(async ({ ctx }) => {
+      if (ctx.user.role !== 'admin') throw new Error('Forbidden');
+      const { getDb } = await import('./db');
+      const db = await getDb();
+      if (!db) throw new Error('Database unavailable');
+      const { wholesalerWaitlist } = await import('../drizzle/schema');
+      return await db.select().from(wholesalerWaitlist).orderBy(wholesalerWaitlist.createdAt);
     }),
   }),
 });

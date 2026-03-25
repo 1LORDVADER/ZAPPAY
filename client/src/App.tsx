@@ -37,6 +37,7 @@ import Rewards from "@/pages/Rewards";
 import FarmerAnalytics from "@/pages/FarmerAnalytics";
 import Referrals from "@/pages/Referrals";
 import AdminPayments from "@/pages/AdminPayments";
+import WholesalerWaitlist from "@/pages/WholesalerWaitlist";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -73,6 +74,7 @@ function Router() {
             <Route path="/privacy" component={Privacy} />
       <Route path="/rewards" component={Rewards} />
       <Route path="/referrals" component={Referrals} />
+      <Route path="/wholesaler-waitlist" component={WholesalerWaitlist} />
       {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>

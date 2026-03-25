@@ -508,3 +508,13 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Update footer copyright disclaimer to include hemp/CBD 2018 Farm Bill disclosure
 - [x] Add inline Hemp/CBD disclosure banner (shows when Hemp tab is active) with state-specific disclosure notice
 - [ ] Reminder scheduled: Finish hemp product photo generation — Thursday March 12, 2026
+
+
+## Wholesaler Waitlist Feature (March 24, 2026)
+- [ ] Add wholesalerWaitlist table to drizzle schema
+- [ ] Create tRPC procedures: joinWholesalerWaitlist, getWholesalerWaitlist (admin)
+- [ ] Run pnpm db:push to migrate schema
+- [ ] Build WholesalerWaitlist.tsx signup page
+- [ ] Add waitlist CTA to homepage hero section
+- [ ] Add owner notification on new waitlist submission
+- [ ] Write vitest tests for waitlist procedures

@@ -512,3 +512,24 @@ export const referralSignups = mysqlTable("referral_signups", {
 
 export type ReferralSignup = typeof referralSignups.$inferSelect;
 export type InsertReferralSignup = typeof referralSignups.$inferInsert;
+
+// Wholesaler Waitlist
+export const wholesalerWaitlist = mysqlTable("wholesalerWaitlist", {
+  id: int("id").autoincrement().primaryKey(),
+  businessName: varchar("businessName", { length: 255 }).notNull(),
+  contactName: varchar("contactName", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 30 }),
+  businessType: mysqlEnum("businessType", ["farmer", "dispensary", "distributor", "transporter", "other"]).notNull(),
+  state: varchar("state", { length: 2 }).notNull(),
+  city: varchar("city", { length: 100 }),
+  licenseNumber: varchar("licenseNumber", { length: 100 }),
+  monthlyVolume: varchar("monthlyVolume", { length: 50 }), // e.g. "$10K-$50K"
+  message: text("message"),
+  status: mysqlEnum("status", ["pending", "contacted", "onboarded", "declined"]).default("pending").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type WholesalerWaitlist = typeof wholesalerWaitlist.$inferSelect;
+export type InsertWholesalerWaitlist = typeof wholesalerWaitlist.$inferInsert;

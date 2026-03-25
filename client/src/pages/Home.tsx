@@ -204,6 +204,26 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
+          {/* Wholesaler CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8"
+          >
+            <Link href="/wholesaler-waitlist">
+              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 shadow-lg shadow-red-500/20">
+                <Zap className="mr-2 h-4 w-4" />
+                Join Wholesaler Waitlist
+              </Button>
+            </Link>
+            <Link href="/for-farmers">
+              <Button size="lg" variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50 px-8">
+                Learn How It Works
+              </Button>
+            </Link>
+          </motion.div>
+
           {/* Search Bar */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
