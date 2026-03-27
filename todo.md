@@ -518,3 +518,11 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [ ] Add waitlist CTA to homepage hero section
 - [ ] Add owner notification on new waitlist submission
 - [ ] Write vitest tests for waitlist procedures
+
+## Logo / Favicon Replacement (March 27, 2026)
+- [x] Generate favicon.ico and favicon.png from ZAPPAY logo
+- [x] Generate OG social preview image (1200x630) with ZAPPAY logo
+- [x] Upload all assets to CDN
+- [x] Update index.html favicon and OG meta tags
+- [x] Update ManusDialog sign-in logo reference (requires Settings → General in Management UI)
+- [x] Update VITE_APP_LOGO secret (requires Settings → General in Management UI — built-in secret)

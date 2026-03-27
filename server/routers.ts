@@ -5,7 +5,6 @@ import { salesRepsRouter } from "./salesRepsRouter";
 import { transportationRouter } from "./transportationRouter";
 import { salesRouter } from "./salesRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
-import { z } from "zod";
 import { recommendationsRouter } from "./recommendationsRouter";
 
 export const appRouter = router({
@@ -944,18 +943,18 @@ export const appRouter = router({
   // Wholesaler Waitlist
   wholesalerWaitlist: router({
     join: publicProcedure
-      .input(z.object({
-        businessName: z.string().min(1),
-        contactName: z.string().min(1),
-        email: z.string().email(),
-        phone: z.string().optional(),
-        businessType: z.enum(['farmer', 'dispensary', 'distributor', 'transporter', 'other']),
-        state: z.string().min(1),
-        city: z.string().optional(),
-        licenseNumber: z.string().optional(),
-        monthlyVolume: z.string().optional(),
-        message: z.string().optional(),
-      }))
+      .input((val: unknown) => val as {
+        businessName: string;
+        contactName: string;
+        email: string;
+        phone?: string;
+        businessType: 'farmer' | 'dispensary' | 'distributor' | 'transporter' | 'other';
+        state: string;
+        city?: string;
+        licenseNumber?: string;
+        monthlyVolume?: string;
+        message?: string;
+      })
       .mutation(async ({ input }) => {
         const { getDb } = await import('./db');
         const db = await getDb();
