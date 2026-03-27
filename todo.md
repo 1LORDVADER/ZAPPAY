@@ -526,3 +526,8 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Update index.html favicon and OG meta tags
 - [x] Update ManusDialog sign-in logo reference (requires Settings → General in Management UI)
 - [x] Update VITE_APP_LOGO secret (requires Settings → General in Management UI — built-in secret)
+
+## Shopping Cart Icon Replacement in Nav Bar
+- [ ] Find shopping cart icon in site navigation header component (user confirmed UI component is fine)
+- [ ] Replace nav cart icon with ZAPPAY logo image (user confirmed UI component is fine)
+- [x] Fix favicon cache-busting with new hash — re-uploaded all assets with new CDN URLs
