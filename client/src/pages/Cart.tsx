@@ -474,9 +474,25 @@ export default function Cart() {
                   <Card key={item.id} className="border-2 border-slate-200">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-6">
-                        {/* Product Image Placeholder */}
-                        <div className="h-24 w-24 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <ShoppingCart className="h-8 w-8 text-green-600" />
+                        {/* Product Image */}
+                        <div className="h-24 w-24 flex-shrink-0">
+                          {item.product!.photos ? (
+                            <img
+                              src={item.product!.photos}
+                              alt={item.product!.name}
+                              className="w-24 h-24 object-cover rounded-lg"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.onerror = null;
+                                target.style.display = 'none';
+                                target.parentElement!.innerHTML = '<div class="w-24 h-24 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg flex items-center justify-center"><svg xmlns=\'http://www.w3.org/2000/svg\' class=\'h-8 w-8 text-green-600\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\'><path d=\'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z\'></path><line x1=\'3\' y1=\'6\' x2=\'21\' y2=\'6\'></line><path d=\'M16 10a4 4 0 01-8 0\'></path></svg></div>';
+                              }}
+                            />
+                          ) : (
+                            <div className="w-24 h-24 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg flex items-center justify-center">
+                              <ShoppingCart className="h-8 w-8 text-green-600" />
+                            </div>
+                          )}
                         </div>
 
                         {/* Product Info */}

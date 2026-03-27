@@ -531,3 +531,9 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [ ] Find shopping cart icon in site navigation header component (user confirmed UI component is fine)
 - [ ] Replace nav cart icon with ZAPPAY logo image (user confirmed UI component is fine)
 - [x] Fix favicon cache-busting with new hash — re-uploaded all assets with new CDN URLs
+
+## Production Sprint — Ad Campaign Readiness
+- [x] Build Admin Waitlist Dashboard at /admin/waitlist (Task 1)
+- [x] Update OG social title/description (Task 2) — already set in previous session
+- [x] Diagnose and fix product images not showing in cart — hardcoded placeholder replaced with real product image
+- [ ] Calculate image generation credit cost for all products
