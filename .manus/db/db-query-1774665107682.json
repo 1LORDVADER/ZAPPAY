@@ -1,0 +1,25 @@
+{
+  "query": "SELECT id, businessName, contactName, email, state, businessType, utmSource, utmMedium, utmCampaign, utmContent, utmTerm, referrer, createdAt FROM wholesalerWaitlist WHERE email = 'qa-test-utm@zappay-test.com' LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, businessName, contactName, email, state, businessType, utmSource, utmMedium, utmCampaign, utmContent, utmTerm, referrer, createdAt FROM wholesalerWaitlist WHERE email = 'qa-test-utm@zappay-test.com' LIMIT 1;",
+  "rows": [
+    {
+      "id": "30001",
+      "businessName": "Test Farm LLC",
+      "contactName": "QA Tester",
+      "email": "qa-test-utm@zappay-test.com",
+      "state": "CO",
+      "businessType": "farmer",
+      "utmSource": "facebook",
+      "utmMedium": "paid_social",
+      "utmCampaign": "grower_onboarding_q1",
+      "utmContent": "hero_cta_v1",
+      "utmTerm": "cannabis grower marketplace",
+      "referrer": "https://www.facebook.com/",
+      "createdAt": "2026-03-28 02:31:40"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tbusinessName\tcontactName\temail\tstate\tbusinessType\tutmSource\tutmMedium\tutmCampaign\tutmContent\tutmTerm\treferrer\tcreatedAt\n30001\tTest Farm LLC\tQA Tester\tqa-test-utm@zappay-test.com\tCO\tfarmer\tfacebook\tpaid_social\tgrower_onboarding_q1\thero_cta_v1\tcannabis grower marketplace\thttps://www.facebook.com/\t2026-03-28 02:31:40\n",
+  "stderr": "",
+  "execution_time_ms": 66
+}

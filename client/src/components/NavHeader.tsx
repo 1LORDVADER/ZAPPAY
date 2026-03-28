@@ -159,13 +159,48 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Admin link */}
+            {/* Admin dropdown */}
             {user?.role === "admin" && (
-              <Link href="/admin/applications">
-                <Button variant="ghost" size="sm" className="text-yellow-300 hover:text-yellow-200 hover:bg-white/10">
-                  Admin
-                </Button>
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="text-yellow-300 hover:text-yellow-200 hover:bg-white/10 gap-1">
+                    Admin <ChevronDown className="h-3 w-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48 bg-slate-900 border-slate-700">
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/applications" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <Briefcase className="h-4 w-4" /> Applications
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/analytics" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <Package className="h-4 w-4" /> Analytics
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/sales" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <Store className="h-4 w-4" /> Sales
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/payments" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <Sprout className="h-4 w-4" /> Payments
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/transportation" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <Truck className="h-4 w-4" /> Transportation
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="bg-slate-700" />
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/waitlist" className="flex items-center gap-2 text-yellow-300 hover:text-yellow-200 cursor-pointer font-medium">
+                      <User className="h-4 w-4" /> Waitlist
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             )}
 
             {/* My Applications */}

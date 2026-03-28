@@ -1,0 +1,458 @@
+{
+  "query": "SELECT id, name, category, strain, photos, farmerId FROM products WHERE status != 'inactive' AND (category LIKE '%hemp%' OR category LIKE '%cbd%' OR name LIKE '%CBD%' OR name LIKE '%Hemp%' OR name LIKE '%CBG%' OR name LIKE '%CBN%') ORDER BY category, name LIMIT 100;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, strain, photos, farmerId FROM products WHERE status != 'inactive' AND (category LIKE '%hemp%' OR category LIKE '%cbd%' OR name LIKE '%CBD%' OR name LIKE '%Hemp%' OR name LIKE '%CBG%' OR name LIKE '%CBN%') ORDER BY category, name LIMIT 100;",
+  "rows": [
+    {
+      "id": "240044",
+      "name": "CBD Capsules (30 count, 25mg each)",
+      "category": "edibles",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240042",
+      "name": "CBD Dark Chocolate Bar (100mg CBD)",
+      "category": "edibles",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240045",
+      "name": "CBD Energy Chews (15 count, 15mg CBD + Caffeine)",
+      "category": "edibles",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "150008",
+      "name": "CBD Gummies 10-Pack",
+      "category": "edibles",
+      "strain": "CBD Blend",
+      "photos": "https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-cbd-gummies_ea09df39.png",
+      "farmerId": "1"
+    },
+    {
+      "id": "240040",
+      "name": "CBD Gummies — Mixed Fruit (30 count, 25mg each)",
+      "category": "edibles",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240041",
+      "name": "CBD Gummies — Sleep Formula (30 count, 25mg CBD + 3mg Melatonin)",
+      "category": "edibles",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240043",
+      "name": "CBD Honey Sticks (10-pack, 10mg each)",
+      "category": "edibles",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240031",
+      "name": "CBD Kief (1g)",
+      "category": "concentrates",
+      "strain": "Mixed Strains",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240032",
+      "name": "CBD Moon Rocks",
+      "category": "concentrates",
+      "strain": "Special Sauce",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240034",
+      "name": "CBD Shatter (1g)",
+      "category": "concentrates",
+      "strain": "ACDC",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240033",
+      "name": "CBD Wax Concentrate (1g)",
+      "category": "concentrates",
+      "strain": "Sour Space Candy",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240035",
+      "name": "Full Spectrum CBD Trim",
+      "category": "concentrates",
+      "strain": "Mixed Strains",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240029",
+      "name": "CBG White Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "strain": "CBG White",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240030",
+      "name": "Filtered Hemp Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "strain": "Sour Space Candy",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240028",
+      "name": "Hemp Pre-Roll 5-Pack Sampler",
+      "category": "pre-rolls",
+      "strain": "Mixed Strains",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240037",
+      "name": "Bubba Kush CBD Vape Cartridge (1ml)",
+      "category": "vapes",
+      "strain": "Bubba Kush",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240039",
+      "name": "Full Spectrum CBD Vape Cartridge (1ml)",
+      "category": "vapes",
+      "strain": "Mixed Strains",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240038",
+      "name": "Hawaiian Haze CBD Disposable Vape",
+      "category": "vapes",
+      "strain": "Hawaiian Haze",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240036",
+      "name": "Sour Space Candy CBD Vape Cartridge (1ml)",
+      "category": "vapes",
+      "strain": "Sour Space Candy",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240017",
+      "name": "ACDC Hemp Flower",
+      "category": "hemp",
+      "strain": "ACDC",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240009",
+      "name": "Bubba Kush Hemp Flower",
+      "category": "hemp",
+      "strain": "Bubba Kush",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240022",
+      "name": "CBG White Hemp Flower",
+      "category": "hemp",
+      "strain": "CBG White",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240016",
+      "name": "Cherry Wine Hemp Flower",
+      "category": "hemp",
+      "strain": "Cherry Wine",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240013",
+      "name": "Cobbler Hemp Indoor Flower",
+      "category": "hemp",
+      "strain": "Cobbler",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240006",
+      "name": "Durban Diesel Hemp Flower",
+      "category": "hemp",
+      "strain": "Durban Diesel",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240015",
+      "name": "Elektra Hemp Flower",
+      "category": "hemp",
+      "strain": "Elektra",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240018",
+      "name": "Harlequin Hemp Flower",
+      "category": "hemp",
+      "strain": "Harlequin",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240002",
+      "name": "Hawaiian Haze",
+      "category": "hemp",
+      "strain": "Hawaiian Haze",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240058",
+      "name": "Hawaiian Haze — Bulk 1oz",
+      "category": "hemp",
+      "strain": "Hawaiian Haze",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240007",
+      "name": "Jack Herer Hemp Flower",
+      "category": "hemp",
+      "strain": "Jack Herer",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240003",
+      "name": "Lifter",
+      "category": "hemp",
+      "strain": "Lifter",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240019",
+      "name": "Mango Fire Indoor CBD Flower",
+      "category": "hemp",
+      "strain": "Mango Fire",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240059",
+      "name": "Mixed Hemp Flower Sampler — 1oz",
+      "category": "hemp",
+      "strain": "Mixed Strains",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240005",
+      "name": "Pineapple Express Hemp Flower",
+      "category": "hemp",
+      "strain": "Pineapple Express",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240020",
+      "name": "Pink Panther Hemp Flower",
+      "category": "hemp",
+      "strain": "Pink Panther",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240012",
+      "name": "Purple Kush Hemp Flower",
+      "category": "hemp",
+      "strain": "Purple Kush",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240021",
+      "name": "Raspberry Bear Claw Hemp Flower",
+      "category": "hemp",
+      "strain": "Raspberry Bear Claw",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240011",
+      "name": "Royal OG Hemp Flower",
+      "category": "hemp",
+      "strain": "Royal OG",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240010",
+      "name": "Skywalker Hemp Flower",
+      "category": "hemp",
+      "strain": "Skywalker",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240008",
+      "name": "Sour Elektra CBD Flower",
+      "category": "hemp",
+      "strain": "Sour Elektra",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240001",
+      "name": "Sour Space Candy",
+      "category": "hemp",
+      "strain": "Sour Space Candy",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240057",
+      "name": "Sour Space Candy — Bulk 1oz",
+      "category": "hemp",
+      "strain": "Sour Space Candy",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240014",
+      "name": "Special Sauce Hemp Flower",
+      "category": "hemp",
+      "strain": "Special Sauce",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240023",
+      "name": "Stem Cell CBG Hemp Flower",
+      "category": "hemp",
+      "strain": "Stem Cell CBG",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240004",
+      "name": "Suver Haze",
+      "category": "hemp",
+      "strain": "Suver Haze",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240047",
+      "name": "Broad Spectrum CBD Oil Tincture (500mg / 30ml)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240051",
+      "name": "CBD Balm (250mg / 1oz)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240053",
+      "name": "CBD Bath Bombs (4-pack, 50mg each)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240048",
+      "name": "CBD Isolate Oil (2500mg / 30ml)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240056",
+      "name": "CBD Pet Tincture — Cats (150mg / 30ml)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240054",
+      "name": "CBD Pet Tincture — Dogs (300mg / 30ml)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240055",
+      "name": "CBD Pet Treats — Dogs (30 count, 5mg each)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240050",
+      "name": "CBD Relief Cream (500mg / 2oz)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240052",
+      "name": "CBD Roll-On Pain Relief (200mg / 3oz)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240049",
+      "name": "CBG + CBD Oil Tincture (750mg CBG + 250mg CBD / 30ml)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    },
+    {
+      "id": "240046",
+      "name": "Full Spectrum CBD Oil Tincture (1000mg / 30ml)",
+      "category": "other",
+      "strain": "Hemp Extract",
+      "photos": "NULL",
+      "farmerId": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tstrain\tphotos\tfarmerId\n240044\tCBD Capsules (30 count, 25mg each)\tedibles\tHemp Extract\tNULL\t1\n240042\tCBD Dark Chocolate Bar (100mg CBD)\tedibles\tHemp Extract\tNULL\t1\n240045\tCBD Energy Chews (15 count, 15mg CBD + Caffeine)\tedibles\tHemp Extract\tNULL\t1\n150008\tCBD Gummies 10-Pack\tedibles\tCBD Blend\thttps://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/edible-cbd-gummies_ea09df39.png\t1\n240040\tCBD Gummies — Mixed Fruit (30 count, 25mg each)\tedibles\tHemp Extract\tNULL\t1\n240041\tCBD Gummies — Sleep Formula (30 count, 25mg CBD + 3mg Melatonin)\tedibles\tHemp Extract\tNULL\t1\n240043\tCBD Honey Sticks (10-pack, 10mg each)\tedibles\tHemp Extract\tNULL\t1\n240031\tCBD Kief (1g)\tconcentrates\tMixed Strains\tNULL\t1\n240032\tCBD Moon Rocks\tconcentrates\tSpecial Sauce\tNULL\t1\n240034\tCBD Shatter (1g)\tconcentrates\tACDC\tNULL\t1\n240033\tCBD Wax Concentrate (1g)\tconcentrates\tSour Space Candy\tNULL\t1\n240035\tFull Spectrum CBD Trim\tconcentrates\tMixed Strains\tNULL\t1\n240029\tCBG White Pre-Roll (1g)\tpre-rolls\tCBG White\tNULL\t1\n240030\tFiltered Hemp Pre-Roll (1g)\tpre-rolls\tSour Space Candy\tNULL\t1\n240028\tHemp Pre-Roll 5-Pack Sampler\tpre-rolls\tMixed Strains\tNULL\t1\n240037\tBubba Kush CBD Vape Cartridge (1ml)\tvapes\tBubba Kush\tNULL\t1\n240039\tFull Spectrum CBD Vape Cartridge (1ml)\tvapes\tMixed Strains\tNULL\t1\n240038\tHawaiian Haze CBD Disposable Vape\tvapes\tHawaiian Haze\tNULL\t1\n240036\tSour Space Candy CBD Vape Cartridge (1ml)\tvapes\tSour Space Candy\tNULL\t1\n240017\tACDC Hemp Flower\themp\tACDC\tNULL\t1\n240009\tBubba Kush Hemp Flower\themp\tBubba Kush\tNULL\t1\n240022\tCBG White Hemp Flower\themp\tCBG White\tNULL\t1\n240016\tCherry Wine Hemp Flower\themp\tCherry Wine\tNULL\t1\n240013\tCobbler Hemp Indoor Flower\themp\tCobbler\tNULL\t1\n240006\tDurban Diesel Hemp Flower\themp\tDurban Diesel\tNULL\t1\n240015\tElektra Hemp Flower\themp\tElektra\tNULL\t1\n240018\tHarlequin Hemp Flower\themp\tHarlequin\tNULL\t1\n240002\tHawaiian Haze\themp\tHawaiian Haze\tNULL\t1\n240058\tHawaiian Haze — Bulk 1oz\themp\tHawaiian Haze\tNULL\t1\n240007\tJack Herer Hemp Flower\themp\tJack Herer\tNULL\t1\n240003\tLifter\themp\tLifter\tNULL\t1\n240019\tMango Fire Indoor CBD Flower\themp\tMango Fire\tNULL\t1\n240059\tMixed Hemp Flower Sampler — 1oz\themp\tMixed Strains\tNULL\t1\n240005\tPineapple Express Hemp Flower\themp\tPineapple Express\tNULL\t1\n240020\tPink Panther Hemp Flower\themp\tPink Panther\tNULL\t1\n240012\tPurple Kush Hemp Flower\themp\tPurple Kush\tNULL\t1\n240021\tRaspberry Bear Claw Hemp Flower\themp\tRaspberry Bear Claw\tNULL\t1\n240011\tRoyal OG Hemp Flower\themp\tRoyal OG\tNULL\t1\n240010\tSkywalker Hemp Flower\themp\tSkywalker\tNULL\t1\n240008\tSour Elektra CBD Flower\themp\tSour Elektra\tNULL\t1\n240001\tSour Space Candy\themp\tSour Space Candy\tNULL\t1\n240057\tSour Space Candy — Bulk 1oz\themp\tSour Space Candy\tNULL\t1\n240014\tSpecial Sauce Hemp Flower\themp\tSpecial Sauce\tNULL\t1\n240023\tStem Cell CBG Hemp Flower\themp\tStem Cell CBG\tNULL\t1\n240004\tSuver Haze\themp\tSuver Haze\tNULL\t1\n240047\tBroad Spectrum CBD Oil Tincture (500mg / 30ml)\tother\tHemp Extract\tNULL\t1\n240051\tCBD Balm (250mg / 1oz)\tother\tHemp Extract\tNULL\t1\n240053\tCBD Bath Bombs (4-pack, 50mg each)\tother\tHemp Extract\tNULL\t1\n240048\tCBD Isolate Oil (2500mg / 30ml)\tother\tHemp Extract\tNULL\t1\n240056\tCBD Pet Tincture — Cats (150mg / 30ml)\tother\tHemp Extract\tNULL\t1\n240054\tCBD Pet Tincture — Dogs (300mg / 30ml)\tother\tHemp Extract\tNULL\t1\n240055\tCBD Pet Treats — Dogs (30 count, 5mg each)\tother\tHemp Extract\tNULL\t1\n240050\tCBD Relief Cream (500mg / 2oz)\tother\tHemp Extract\tNULL\t1\n240052\tCBD Roll-On Pain Relief (200mg / 3oz)\tother\tHemp Extract\tNULL\t1\n240049\tCBG + CBD Oil Tincture (750mg CBG + 250mg CBD / 30ml)\tother\tHemp Extract\tNULL\t1\n240046\tFull Spectrum CBD Oil Tincture (1000mg / 30ml)\tother\tHemp Extract\tNULL\t1\n",
+  "stderr": "",
+  "execution_time_ms": 114
+}

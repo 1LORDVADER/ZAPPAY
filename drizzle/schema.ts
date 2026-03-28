@@ -527,6 +527,13 @@ export const wholesalerWaitlist = mysqlTable("wholesalerWaitlist", {
   monthlyVolume: varchar("monthlyVolume", { length: 50 }), // e.g. "$10K-$50K"
   message: text("message"),
   status: mysqlEnum("status", ["pending", "contacted", "onboarded", "declined"]).default("pending").notNull(),
+  // UTM tracking for ad campaign attribution
+  utmSource: varchar("utmSource", { length: 100 }),    // e.g. "facebook", "instagram"
+  utmMedium: varchar("utmMedium", { length: 100 }),    // e.g. "paid_social", "cpc"
+  utmCampaign: varchar("utmCampaign", { length: 200 }), // e.g. "grower_onboarding_q1"
+  utmContent: varchar("utmContent", { length: 200 }),  // e.g. "ad_variant_a"
+  utmTerm: varchar("utmTerm", { length: 200 }),        // e.g. keyword
+  referrer: varchar("referrer", { length: 500 }),      // full referrer URL
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

@@ -39,6 +39,7 @@ import Referrals from "@/pages/Referrals";
 import AdminPayments from "@/pages/AdminPayments";
 import WholesalerWaitlist from "@/pages/WholesalerWaitlist";
 import AdminWaitlist from "@/pages/AdminWaitlist";
+import JoinLanding from "@/pages/JoinLanding";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -76,6 +77,7 @@ function Router() {
       <Route path="/rewards" component={Rewards} />
       <Route path="/referrals" component={Referrals} />
       <Route path="/wholesaler-waitlist" component={WholesalerWaitlist} />
+      <Route path="/join" component={JoinLanding} />
       <Route path="/admin/waitlist" component={AdminWaitlist} />
       {/* Final fallback route */}
       <Route component={NotFound} />

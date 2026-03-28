@@ -1,0 +1,59 @@
+{
+  "query": "SELECT id, name, category, strain, photos FROM products WHERE farmerId = 100 AND status != 'inactive' ORDER BY category, name LIMIT 100;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, strain, photos FROM products WHERE farmerId = 100 AND status != 'inactive' ORDER BY category, name LIMIT 100;",
+  "rows": [
+    {
+      "id": "270001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "strain": "Sativa-Dominant Hybrid",
+      "photos": "NULL"
+    },
+    {
+      "id": "300001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "strain": "Sativa-Dominant Hybrid",
+      "photos": "NULL"
+    },
+    {
+      "id": "300002",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "strain": "Sativa-Dominant Hybrid",
+      "photos": "NULL"
+    },
+    {
+      "id": "330001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "strain": "Sativa-Dominant Hybrid",
+      "photos": "NULL"
+    },
+    {
+      "id": "360001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "strain": "Sativa-Dominant Hybrid",
+      "photos": "NULL"
+    },
+    {
+      "id": "360002",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "strain": "Sativa-Dominant Hybrid",
+      "photos": "NULL"
+    },
+    {
+      "id": "240060",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "strain": "Sativa-Dominant Hybrid",
+      "photos": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tstrain\tphotos\n270001\tTest Blue Dream\tflower\tSativa-Dominant Hybrid\tNULL\n300001\tTest Blue Dream\tflower\tSativa-Dominant Hybrid\tNULL\n300002\tTest Blue Dream\tflower\tSativa-Dominant Hybrid\tNULL\n330001\tTest Blue Dream\tflower\tSativa-Dominant Hybrid\tNULL\n360001\tTest Blue Dream\tflower\tSativa-Dominant Hybrid\tNULL\n360002\tTest Blue Dream\tflower\tSativa-Dominant Hybrid\tNULL\n240060\tTest Blue Dream\tflower\tSativa-Dominant Hybrid\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 111
+}

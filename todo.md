@@ -536,4 +536,18 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Build Admin Waitlist Dashboard at /admin/waitlist (Task 1)
 - [x] Update OG social title/description (Task 2) — already set in previous session
 - [x] Diagnose and fix product images not showing in cart — hardcoded placeholder replaced with real product image
-- [ ] Calculate image generation credit cost for all products
+- [x] Calculate image generation credit cost for all products — see session report
+
+## Ad Campaign Sprint — Full Execution (March 27, 2026)
+- [x] Audit waitlist flow end-to-end for errors
+- [x] Extend wholesalerWaitlist schema to capture UTM params (utm_source, utm_medium, utm_campaign, utm_content, referrer)
+- [x] Run pnpm db:push to migrate schema
+- [x] Build high-conversion /join landing page (ad traffic destination)
+- [x] Add Meta Pixel / Open Graph tags to /join page
+- [x] Add UTM param capture to waitlist form submission
+- [x] Add Admin Waitlist nav link to all admin pages
+- [x] 55/59 product images generated and uploaded to CDN (see PRODUCT_IMAGES_CDN.md — 4 remaining: 240056-240059)
+- [ ] Apply product images to database (deferred — awaiting authorization)
+- [x] Write vitest tests for UTM capture and updated waitlist procedures (6 tests passing)
+- [x] Final QA confirmed: 43/43 tests passing, 0 TS errors, UTM data stored in DB
+- [x] Checkpoint saved — ready to publish

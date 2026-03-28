@@ -1,0 +1,378 @@
+{
+  "query": "SELECT id, name, category, thcPercentage, cbdPercentage, strain FROM products WHERE (photos IS NULL OR photos = '' OR photos = '[]') AND id > 240020 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3aN4XovBvgLTwiy.root --database jWmfVYBaikHBYpPLbpiijG --execute SELECT id, name, category, thcPercentage, cbdPercentage, strain FROM products WHERE (photos IS NULL OR photos = '' OR photos = '[]') AND id > 240020 ORDER BY id;",
+  "rows": [
+    {
+      "id": "240021",
+      "name": "Raspberry Bear Claw Hemp Flower",
+      "category": "hemp",
+      "thcPercentage": "0.09",
+      "cbdPercentage": "16.10",
+      "strain": "Raspberry Bear Claw"
+    },
+    {
+      "id": "240022",
+      "name": "CBG White Hemp Flower",
+      "category": "hemp",
+      "thcPercentage": "0.05",
+      "cbdPercentage": "1.20",
+      "strain": "CBG White"
+    },
+    {
+      "id": "240023",
+      "name": "Stem Cell CBG Hemp Flower",
+      "category": "hemp",
+      "thcPercentage": "0.03",
+      "cbdPercentage": "0.80",
+      "strain": "Stem Cell CBG"
+    },
+    {
+      "id": "240024",
+      "name": "Sour Space Candy Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "15.23",
+      "strain": "Sour Space Candy"
+    },
+    {
+      "id": "240025",
+      "name": "Hawaiian Haze Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "thcPercentage": "0.12",
+      "cbdPercentage": "16.40",
+      "strain": "Hawaiian Haze"
+    },
+    {
+      "id": "240026",
+      "name": "Bubba Kush Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "thcPercentage": "0.14",
+      "cbdPercentage": "14.20",
+      "strain": "Bubba Kush"
+    },
+    {
+      "id": "240027",
+      "name": "ACDC Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "thcPercentage": "0.04",
+      "cbdPercentage": "19.20",
+      "strain": "ACDC"
+    },
+    {
+      "id": "240028",
+      "name": "Hemp Pre-Roll 5-Pack Sampler",
+      "category": "pre-rolls",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "15.00",
+      "strain": "Mixed Strains"
+    },
+    {
+      "id": "240029",
+      "name": "CBG White Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "thcPercentage": "0.05",
+      "cbdPercentage": "1.20",
+      "strain": "CBG White"
+    },
+    {
+      "id": "240030",
+      "name": "Filtered Hemp Pre-Roll (1g)",
+      "category": "pre-rolls",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "15.23",
+      "strain": "Sour Space Candy"
+    },
+    {
+      "id": "240031",
+      "name": "CBD Kief (1g)",
+      "category": "concentrates",
+      "thcPercentage": "0.15",
+      "cbdPercentage": "28.40",
+      "strain": "Mixed Strains"
+    },
+    {
+      "id": "240032",
+      "name": "CBD Moon Rocks",
+      "category": "concentrates",
+      "thcPercentage": "0.20",
+      "cbdPercentage": "35.00",
+      "strain": "Special Sauce"
+    },
+    {
+      "id": "240033",
+      "name": "CBD Wax Concentrate (1g)",
+      "category": "concentrates",
+      "thcPercentage": "0.18",
+      "cbdPercentage": "65.00",
+      "strain": "Sour Space Candy"
+    },
+    {
+      "id": "240034",
+      "name": "CBD Shatter (1g)",
+      "category": "concentrates",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "70.00",
+      "strain": "ACDC"
+    },
+    {
+      "id": "240035",
+      "name": "Full Spectrum CBD Trim",
+      "category": "concentrates",
+      "thcPercentage": "0.12",
+      "cbdPercentage": "8.50",
+      "strain": "Mixed Strains"
+    },
+    {
+      "id": "240036",
+      "name": "Sour Space Candy CBD Vape Cartridge (1ml)",
+      "category": "vapes",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "80.00",
+      "strain": "Sour Space Candy"
+    },
+    {
+      "id": "240037",
+      "name": "Bubba Kush CBD Vape Cartridge (1ml)",
+      "category": "vapes",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "80.00",
+      "strain": "Bubba Kush"
+    },
+    {
+      "id": "240038",
+      "name": "Hawaiian Haze CBD Disposable Vape",
+      "category": "vapes",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "75.00",
+      "strain": "Hawaiian Haze"
+    },
+    {
+      "id": "240039",
+      "name": "Full Spectrum CBD Vape Cartridge (1ml)",
+      "category": "vapes",
+      "thcPercentage": "0.28",
+      "cbdPercentage": "60.00",
+      "strain": "Mixed Strains"
+    },
+    {
+      "id": "240040",
+      "name": "CBD Gummies — Mixed Fruit (30 count, 25mg each)",
+      "category": "edibles",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240041",
+      "name": "CBD Gummies — Sleep Formula (30 count, 25mg CBD + 3mg Melatonin)",
+      "category": "edibles",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240042",
+      "name": "CBD Dark Chocolate Bar (100mg CBD)",
+      "category": "edibles",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240043",
+      "name": "CBD Honey Sticks (10-pack, 10mg each)",
+      "category": "edibles",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240044",
+      "name": "CBD Capsules (30 count, 25mg each)",
+      "category": "edibles",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240045",
+      "name": "CBD Energy Chews (15 count, 15mg CBD + Caffeine)",
+      "category": "edibles",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240046",
+      "name": "Full Spectrum CBD Oil Tincture (1000mg / 30ml)",
+      "category": "other",
+      "thcPercentage": "0.28",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240047",
+      "name": "Broad Spectrum CBD Oil Tincture (500mg / 30ml)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240048",
+      "name": "CBD Isolate Oil (2500mg / 30ml)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240049",
+      "name": "CBG + CBD Oil Tincture (750mg CBG + 250mg CBD / 30ml)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240050",
+      "name": "CBD Relief Cream (500mg / 2oz)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240051",
+      "name": "CBD Balm (250mg / 1oz)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240052",
+      "name": "CBD Roll-On Pain Relief (200mg / 3oz)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240053",
+      "name": "CBD Bath Bombs (4-pack, 50mg each)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240054",
+      "name": "CBD Pet Tincture — Dogs (300mg / 30ml)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240055",
+      "name": "CBD Pet Treats — Dogs (30 count, 5mg each)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240056",
+      "name": "CBD Pet Tincture — Cats (150mg / 30ml)",
+      "category": "other",
+      "thcPercentage": "0.00",
+      "cbdPercentage": "0.00",
+      "strain": "Hemp Extract"
+    },
+    {
+      "id": "240057",
+      "name": "Sour Space Candy — Bulk 1oz",
+      "category": "hemp",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "15.23",
+      "strain": "Sour Space Candy"
+    },
+    {
+      "id": "240058",
+      "name": "Hawaiian Haze — Bulk 1oz",
+      "category": "hemp",
+      "thcPercentage": "0.12",
+      "cbdPercentage": "16.40",
+      "strain": "Hawaiian Haze"
+    },
+    {
+      "id": "240059",
+      "name": "Mixed Hemp Flower Sampler — 1oz",
+      "category": "hemp",
+      "thcPercentage": "0.10",
+      "cbdPercentage": "15.50",
+      "strain": "Mixed Strains"
+    },
+    {
+      "id": "240060",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "thcPercentage": "24%",
+      "cbdPercentage": "0.5%",
+      "strain": "Sativa-Dominant Hybrid"
+    },
+    {
+      "id": "270001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "thcPercentage": "24%",
+      "cbdPercentage": "0.5%",
+      "strain": "Sativa-Dominant Hybrid"
+    },
+    {
+      "id": "300001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "thcPercentage": "24%",
+      "cbdPercentage": "0.5%",
+      "strain": "Sativa-Dominant Hybrid"
+    },
+    {
+      "id": "300002",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "thcPercentage": "24%",
+      "cbdPercentage": "0.5%",
+      "strain": "Sativa-Dominant Hybrid"
+    },
+    {
+      "id": "330001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "thcPercentage": "24%",
+      "cbdPercentage": "0.5%",
+      "strain": "Sativa-Dominant Hybrid"
+    },
+    {
+      "id": "360001",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "thcPercentage": "24%",
+      "cbdPercentage": "0.5%",
+      "strain": "Sativa-Dominant Hybrid"
+    },
+    {
+      "id": "360002",
+      "name": "Test Blue Dream",
+      "category": "flower",
+      "thcPercentage": "24%",
+      "cbdPercentage": "0.5%",
+      "strain": "Sativa-Dominant Hybrid"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\tthcPercentage\tcbdPercentage\tstrain\n240021\tRaspberry Bear Claw Hemp Flower\themp\t0.09\t16.10\tRaspberry Bear Claw\n240022\tCBG White Hemp Flower\themp\t0.05\t1.20\tCBG White\n240023\tStem Cell CBG Hemp Flower\themp\t0.03\t0.80\tStem Cell CBG\n240024\tSour Space Candy Pre-Roll (1g)\tpre-rolls\t0.10\t15.23\tSour Space Candy\n240025\tHawaiian Haze Pre-Roll (1g)\tpre-rolls\t0.12\t16.40\tHawaiian Haze\n240026\tBubba Kush Pre-Roll (1g)\tpre-rolls\t0.14\t14.20\tBubba Kush\n240027\tACDC Pre-Roll (1g)\tpre-rolls\t0.04\t19.20\tACDC\n240028\tHemp Pre-Roll 5-Pack Sampler\tpre-rolls\t0.10\t15.00\tMixed Strains\n240029\tCBG White Pre-Roll (1g)\tpre-rolls\t0.05\t1.20\tCBG White\n240030\tFiltered Hemp Pre-Roll (1g)\tpre-rolls\t0.10\t15.23\tSour Space Candy\n240031\tCBD Kief (1g)\tconcentrates\t0.15\t28.40\tMixed Strains\n240032\tCBD Moon Rocks\tconcentrates\t0.20\t35.00\tSpecial Sauce\n240033\tCBD Wax Concentrate (1g)\tconcentrates\t0.18\t65.00\tSour Space Candy\n240034\tCBD Shatter (1g)\tconcentrates\t0.10\t70.00\tACDC\n240035\tFull Spectrum CBD Trim\tconcentrates\t0.12\t8.50\tMixed Strains\n240036\tSour Space Candy CBD Vape Cartridge (1ml)\tvapes\t0.10\t80.00\tSour Space Candy\n240037\tBubba Kush CBD Vape Cartridge (1ml)\tvapes\t0.10\t80.00\tBubba Kush\n240038\tHawaiian Haze CBD Disposable Vape\tvapes\t0.10\t75.00\tHawaiian Haze\n240039\tFull Spectrum CBD Vape Cartridge (1ml)\tvapes\t0.28\t60.00\tMixed Strains\n240040\tCBD Gummies — Mixed Fruit (30 count, 25mg each)\tedibles\t0.00\t0.00\tHemp Extract\n240041\tCBD Gummies — Sleep Formula (30 count, 25mg CBD + 3mg Melatonin)\tedibles\t0.00\t0.00\tHemp Extract\n240042\tCBD Dark Chocolate Bar (100mg CBD)\tedibles\t0.00\t0.00\tHemp Extract\n240043\tCBD Honey Sticks (10-pack, 10mg each)\tedibles\t0.00\t0.00\tHemp Extract\n240044\tCBD Capsules (30 count, 25mg each)\tedibles\t0.00\t0.00\tHemp Extract\n240045\tCBD Energy Chews (15 count, 15mg CBD + Caffeine)\tedibles\t0.00\t0.00\tHemp Extract\n240046\tFull Spectrum CBD Oil Tincture (1000mg / 30ml)\tother\t0.28\t0.00\tHemp Extract\n240047\tBroad Spectrum CBD Oil Tincture (500mg / 30ml)\tother\t0.00\t0.00\tHemp Extract\n240048\tCBD Isolate Oil (2500mg / 30ml)\tother\t0.00\t0.00\tHemp Extract\n240049\tCBG + CBD Oil Tincture (750mg CBG + 250mg CBD / 30ml)\tother\t0.00\t0.00\tHemp Extract\n240050\tCBD Relief Cream (500mg / 2oz)\tother\t0.00\t0.00\tHemp Extract\n240051\tCBD Balm (250mg / 1oz)\tother\t0.00\t0.00\tHemp Extract\n240052\tCBD Roll-On Pain Relief (200mg / 3oz)\tother\t0.00\t0.00\tHemp Extract\n240053\tCBD Bath Bombs (4-pack, 50mg each)\tother\t0.00\t0.00\tHemp Extract\n240054\tCBD Pet Tincture — Dogs (300mg / 30ml)\tother\t0.00\t0.00\tHemp Extract\n240055\tCBD Pet Treats — Dogs (30 count, 5mg each)\tother\t0.00\t0.00\tHemp Extract\n240056\tCBD Pet Tincture — Cats (150mg / 30ml)\tother\t0.00\t0.00\tHemp Extract\n240057\tSour Space Candy — Bulk 1oz\themp\t0.10\t15.23\tSour Space Candy\n240058\tHawaiian Haze — Bulk 1oz\themp\t0.12\t16.40\tHawaiian Haze\n240059\tMixed Hemp Flower Sampler — 1oz\themp\t0.10\t15.50\tMixed Strains\n240060\tTest Blue Dream\tflower\t24%\t0.5%\tSativa-Dominant Hybrid\n270001\tTest Blue Dream\tflower\t24%\t0.5%\tSativa-Dominant Hybrid\n300001\tTest Blue Dream\tflower\t24%\t0.5%\tSativa-Dominant Hybrid\n300002\tTest Blue Dream\tflower\t24%\t0.5%\tSativa-Dominant Hybrid\n330001\tTest Blue Dream\tflower\t24%\t0.5%\tSativa-Dominant Hybrid\n360001\tTest Blue Dream\tflower\t24%\t0.5%\tSativa-Dominant Hybrid\n360002\tTest Blue Dream\tflower\t24%\t0.5%\tSativa-Dominant Hybrid\n",
+  "stderr": "",
+  "execution_time_ms": 52
+}

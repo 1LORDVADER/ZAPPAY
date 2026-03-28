@@ -954,6 +954,13 @@ export const appRouter = router({
         licenseNumber?: string;
         monthlyVolume?: string;
         message?: string;
+        // UTM tracking
+        utmSource?: string;
+        utmMedium?: string;
+        utmCampaign?: string;
+        utmContent?: string;
+        utmTerm?: string;
+        referrer?: string;
       })
       .mutation(async ({ input }) => {
         const { getDb } = await import('./db');
@@ -981,12 +988,18 @@ export const appRouter = router({
           monthlyVolume: input.monthlyVolume ?? null,
           message: input.message ?? null,
           status: 'pending',
+          utmSource: input.utmSource ?? null,
+          utmMedium: input.utmMedium ?? null,
+          utmCampaign: input.utmCampaign ?? null,
+          utmContent: input.utmContent ?? null,
+          utmTerm: input.utmTerm ?? null,
+          referrer: input.referrer ?? null,
         });
 
         // Notify owner
         await notifyOwner({
           title: `New Wholesaler Waitlist Signup: ${input.businessName}`,
-          content: `${input.contactName} (${input.email}) from ${input.city ?? ''}, ${input.state} joined the wholesaler waitlist.\nBusiness Type: ${input.businessType}\nMonthly Volume: ${input.monthlyVolume ?? 'Not specified'}\nLicense: ${input.licenseNumber ?? 'Not provided'}\nMessage: ${input.message ?? 'None'}`,
+          content: `${input.contactName} (${input.email}) from ${input.city ?? ''}, ${input.state} joined the wholesaler waitlist.\nBusiness Type: ${input.businessType}\nMonthly Volume: ${input.monthlyVolume ?? 'Not specified'}\nLicense: ${input.licenseNumber ?? 'Not provided'}\nMessage: ${input.message ?? 'None'}\nSource: ${input.utmSource ?? 'direct'} / ${input.utmCampaign ?? 'none'}`,
         });
 
         return { success: true, alreadyRegistered: false };
