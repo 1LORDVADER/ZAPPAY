@@ -558,3 +558,7 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Remove ZAPPAY logo from JoinLanding header — replaced with text wordmark
 - [x] Move Meta Pixel noscript tag to body (was in head, causing parse5 HTML error)
 - [x] 43/43 tests passing, 0 TS errors
+
+## Logo Fix — WholesalerWaitlist & JoinLanding (March 28, 2026)
+- [x] Restore ZAPPAY logo to WholesalerWaitlist header — fixed broken /zappay-logo.jpeg path to /logo.png
+- [x] Restore ZAPPAY logo to JoinLanding header — fixed broken /zappay-logo.jpeg path to /logo.png

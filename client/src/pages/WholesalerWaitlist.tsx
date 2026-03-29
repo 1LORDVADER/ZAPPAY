@@ -140,7 +140,7 @@ export default function WholesalerWaitlist() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/">
             <div className="flex items-center gap-2 cursor-pointer">
-              <span className="text-white font-bold text-xl tracking-tight">ZAPPAY</span>
+              <img src="/logo.png" alt="ZAPPAY" className="h-10 w-auto object-contain" />
             </div>
           </Link>
           <Badge className="bg-red-500/20 text-red-300 border-red-500/30">
