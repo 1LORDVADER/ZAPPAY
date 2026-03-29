@@ -149,6 +149,15 @@ export function AgeGate() {
     }
 
     setIsOpen(false);
+
+    // Restore the originally intended URL (e.g. /join) after verification
+    // The router renders NotFound while the gate is blocking, so we must
+    // navigate to the correct path once the gate is dismissed.
+    const intendedPath = window.location.pathname + window.location.search + window.location.hash;
+    if (intendedPath && intendedPath !== "/") {
+      // Force a hard reload to the same URL so the router re-renders correctly
+      window.location.href = intendedPath;
+    }
   };
 
   // Loading screen while checking location

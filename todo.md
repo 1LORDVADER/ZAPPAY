@@ -551,3 +551,10 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Write vitest tests for UTM capture and updated waitlist procedures (6 tests passing)
 - [x] Final QA confirmed: 43/43 tests passing, 0 TS errors, UTM data stored in DB
 - [x] Checkpoint saved — ready to publish
+
+## Bug Fixes — /join 404 & Logo Removal (March 28, 2026)
+- [x] Fix /join 404 after age verification — AgeGate now restores intended URL after verify
+- [x] Remove ZAPPAY logo from WholesalerWaitlist header — replaced with text wordmark
+- [x] Remove ZAPPAY logo from JoinLanding header — replaced with text wordmark
+- [x] Move Meta Pixel noscript tag to body (was in head, causing parse5 HTML error)
+- [x] 43/43 tests passing, 0 TS errors
