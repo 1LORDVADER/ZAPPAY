@@ -579,3 +579,6 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 ## GitHub & Contact Email (March 31, 2026)
 - [ ] Push latest code to GitHub repo 1LORDVADER/ZAPPAY — use Settings → GitHub in Management UI
 - [x] Add hello@zappayus.co contact email to /join page footer — added to footer nav links
+
+## Test Data Cleanup (March 31, 2026)
+- [x] Permanently remove all test Blue Dream duplicate products from database — 12 test entries deleted, 3 legitimate Blue Dream products remain
