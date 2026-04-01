@@ -1,13 +1,12 @@
 # ZAPPAY Product Images — CDN Reference
 
-All 55 product images generated in ZAPPAY dark-background style (dark charcoal/slate surface,
+All 59 product images generated in ZAPPAY dark-background style (dark charcoal/slate surface,
 dramatic directional studio lighting, macro close-up, shallow depth of field).
 
 **Style standard:** Dark charcoal matte slate surface · Dramatic directional lighting from above-left ·
 Macro close-up filling 75% of frame · Shallow DOF with bokeh edges · No text/labels/logos · 2048×2048px
 
-**Status:** Images generated and uploaded to CDN. NOT yet applied to database.
-To apply: run UPDATE queries mapping each product ID to its CDN URL (see `photos` column in `products` table).
+**Status:** ALL 59 images generated, uploaded to CDN, and applied to database.
 
 **Base CDN prefix:** `https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/`
 
@@ -71,12 +70,10 @@ To apply: run UPDATE queries mapping each product ID to its CDN URL (see `photos
 | 240054 | https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/product-240054_e806d633.png |
 | 240055 | https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/product-240055_2b6b5118.png |
 
-## Products 240056–240059 (still need images — generation was stopped)
-These 4 products need images generated when ready:
-- 240056
-- 240057
-- 240058
-- 240059
+| 240056 | https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/product-240056-XXrLZmnUE4Z6KtPf5mVF5f.webp |
+| 240057 | https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/product-240057-5wCFUHULjGP4GW3WhSVwTh.webp |
+| 240058 | https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/product-240058-WJUpyeuvCNZ8xqhTVF2qoU.webp |
+| 240059 | https://d2xsxph8kpxj0f.cloudfront.net/310419663028620876/jWmfVYBaikHBYpPLbpiijG/product-240059-5XVGw4kXBpE92kQUwBpqDr.webp |
 
-## Local file paths (sandbox only, may not persist across hibernation)
-All files located at: `/home/ubuntu/webdev-static-assets/product-240001.png` through `product-240055.png`
+## Local file paths (sandbox only)
+All files located at: `/home/ubuntu/webdev-static-assets/product-240001.png` through `product-240059.png`

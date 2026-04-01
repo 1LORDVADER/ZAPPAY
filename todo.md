@@ -562,3 +562,16 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 ## Logo Fix — WholesalerWaitlist & JoinLanding (March 28, 2026)
 - [x] Restore ZAPPAY logo to WholesalerWaitlist header — fixed broken /zappay-logo.jpeg path to /logo.png
 - [x] Restore ZAPPAY logo to JoinLanding header — fixed broken /zappay-logo.jpeg path to /logo.png
+
+## Favicon Fix (March 31, 2026)
+- [ ] Replace default favicon with ZAPPAY logo favicon in browser tab
+
+## Price Fix (March 31, 2026)
+- [ ] Fix product prices — $10-$14/gram is too low, update to realistic wholesale rates
+
+## Product Images — Final Completion (March 31, 2026)
+- [x] Generate 4 remaining product images (240056-240059)
+- [x] Upload 4 new images to CDN (auto-uploaded via generate tool)
+- [x] Apply all 59 product images to database (photos column) — 59/59 updated, 0 skipped
+- [x] Verify all products show images on site — sample verification passed
+- [x] Save checkpoint
