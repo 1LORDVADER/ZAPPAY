@@ -79,9 +79,9 @@ export function StrainRecommendations() {
   };
 
   return (
-    <Card className="border-2 border-blue-900 shadow-md overflow-hidden">
-      <CardHeader
-        className="cursor-pointer select-none bg-blue-900 text-white"
+    <div className="rounded-xl shadow-md overflow-hidden border-0">
+      <div
+        className="cursor-pointer select-none bg-blue-900 text-white px-6 py-4"
         onClick={() => setIsExpanded((v) => !v)}
       >
         <div className="flex items-center justify-between">
@@ -90,10 +90,10 @@ export function StrainRecommendations() {
               <Sparkles className="h-5 w-5 text-white" />
             </div>
             <div>
-              <CardTitle className="text-lg text-white">Norris</CardTitle>
-              <CardDescription className="text-blue-200">
+              <p className="text-lg font-semibold text-white leading-tight">Norris</p>
+              <p className="text-sm text-blue-200">
                 Tell us what you need — we'll find the right match
-              </CardDescription>
+              </p>
             </div>
           </div>
           {isExpanded ? (
@@ -102,7 +102,7 @@ export function StrainRecommendations() {
             <ChevronDown className="h-5 w-5 text-white/70" />
           )}
         </div>
-      </CardHeader>
+      </div>
 
       <AnimatePresence>
         {isExpanded && (
@@ -284,6 +284,6 @@ export function StrainRecommendations() {
           </motion.div>
         )}
       </AnimatePresence>
-    </Card>
+    </div>
   );
 }
