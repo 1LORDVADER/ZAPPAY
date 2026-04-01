@@ -49,6 +49,25 @@ export default function Home() {
   
   // Filter products based on search and category
   const [activeCategory, setActiveCategory] = useState("all");
+  const [hempSubCategory, setHempSubCategory] = useState("all");
+
+  const handleCategoryChange = (cat: string) => {
+    setActiveCategory(cat);
+    setHempSubCategory("all"); // reset sub-filter when switching tabs
+  };
+
+  // Infer hemp sub-category from product name
+  const getHempSubCategory = (name: string): string => {
+    const n = name.toLowerCase();
+    if (n.includes('pre-roll') || n.includes('preroll')) return 'pre-rolls';
+    if (n.includes('gumm') || n.includes('chocolate') || n.includes('honey stick') || n.includes('capsule') || n.includes('chew') || n.includes('energy')) return 'edibles';
+    if (n.includes('tincture') || n.includes(' oil') || n.includes('cbg+cbd') || n.includes('isolate oil')) return 'tinctures';
+    if (n.includes('cream') || n.includes('balm') || n.includes('roll-on') || n.includes('bath bomb') || n.includes('topical')) return 'topicals';
+    if (n.includes('vape') || n.includes('cartridge') || n.includes('disposable')) return 'vapes';
+    if (n.includes('pet') || n.includes('dog') || n.includes('cat')) return 'pet';
+    if (n.includes('kief') || n.includes('wax') || n.includes('shatter') || n.includes('moon rock') || n.includes('trim') || n.includes('resin') || n.includes('crumble') || n.includes('concentrate')) return 'concentrates';
+    return 'flower';
+  };
   
   const filteredProducts = products.filter(product => {
     const matchesSearch = searchQuery === "" || 
@@ -56,6 +75,10 @@ export default function Home() {
       product.strain.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
+    
+    // Hemp sub-category filter (only applies when viewing hemp tab)
+    const matchesHempSubCategory = activeCategory !== 'hemp' || hempSubCategory === 'all' || 
+      getHempSubCategory(product.name) === hempSubCategory;
     
     // Geofencing: hemp products (<0.3% THC) are federally legal in all 50 states under the 2018 Farm Bill.
     // THC products are only shown in states where cannabis is not fully illegal.
@@ -81,7 +104,7 @@ export default function Home() {
     const matchesFilterCategory = filters.categories.length === 0 || 
       filters.categories.includes(product.category);
     
-    return matchesSearch && matchesCategory && matchesState && matchesTHC && matchesCBD && matchesStrainType && matchesEffects && matchesFilterCategory;
+    return matchesSearch && matchesCategory && matchesHempSubCategory && matchesState && matchesTHC && matchesCBD && matchesStrainType && matchesEffects && matchesFilterCategory;
   });
 
   // Use database cart for authenticated users, localStorage for guests
@@ -258,7 +281,7 @@ export default function Home() {
       {/* Products Section */}
       <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50">
         <div className="container mx-auto">
-          <Tabs defaultValue="all" className="w-full" onValueChange={setActiveCategory}>
+          <Tabs defaultValue="all" className="w-full" onValueChange={handleCategoryChange}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -280,7 +303,7 @@ export default function Home() {
 
             {/* Hemp/CBD Disclosure Banner — shown when Hemp tab is active */}
             {activeCategory === 'hemp' && (
-              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
+              <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
                 <span className="text-green-700 text-lg mt-0.5">🌿</span>
                 <div>
                   <p className="text-sm font-semibold text-green-800">Hemp / CBD Products — Available Nationwide</p>
@@ -288,6 +311,35 @@ export default function Home() {
                     All hemp and CBD products listed here contain less than 0.3% THC and are federally legal under the 2018 Farm Bill. Some states may require additional disclosures or impose restrictions on hemp-derived products. By purchasing, you confirm compliance with your local and state laws. ZAPPAY facilitates the payment transaction only and does not manufacture, distribute, or endorse any specific product.
                   </p>
                 </div>
+              </div>
+            )}
+
+            {/* Hemp Sub-Category Filter Pills */}
+            {activeCategory === 'hemp' && (
+              <div className="mb-6 flex flex-wrap gap-2">
+                {[
+                  { key: 'all', label: 'All Hemp' },
+                  { key: 'flower', label: 'Flower' },
+                  { key: 'pre-rolls', label: 'Pre-Rolls' },
+                  { key: 'concentrates', label: 'Concentrates' },
+                  { key: 'edibles', label: 'Edibles' },
+                  { key: 'tinctures', label: 'Tinctures' },
+                  { key: 'topicals', label: 'Topicals' },
+                  { key: 'vapes', label: 'Vapes' },
+                  { key: 'pet', label: 'Pet' },
+                ].map(({ key, label }) => (
+                  <button
+                    key={key}
+                    onClick={() => setHempSubCategory(key)}
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
+                      hempSubCategory === key
+                        ? 'bg-green-700 text-white border-green-700 shadow-sm'
+                        : 'bg-white text-green-700 border-green-300 hover:bg-green-50'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             )}
 
