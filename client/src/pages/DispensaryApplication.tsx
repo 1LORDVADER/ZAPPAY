@@ -118,7 +118,7 @@ export default function DispensaryApplication() {
 
               <Card className="border-2 border-slate-200">
                 <CardHeader>
-                  <CheckCircle className="h-8 w-8 text-blue-700 mb-2" />
+                  <CheckCircle className="h-8 w-8 text-purple-600 mb-2" />
                   <CardTitle className="text-lg">Seamless Payments</CardTitle>
                   <CardDescription>
                     Instant payment processing with just 5.2% platform fees—no hidden costs

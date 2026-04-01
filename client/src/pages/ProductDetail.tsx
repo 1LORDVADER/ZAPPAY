@@ -159,7 +159,7 @@ export default function ProductDetail() {
                   </Badge>
                 )}
                 {product.isSponsored && (
-                  <Badge className="bg-blue-100 text-blue-900">
+                  <Badge className="bg-purple-100 text-purple-800">
                     Sponsored
                   </Badge>
                 )}

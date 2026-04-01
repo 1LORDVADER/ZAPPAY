@@ -34,11 +34,8 @@ export default function Home() {
     categories: [],
   });
   
-  // Fetch all products — cache for 5 minutes to avoid re-fetching on every tab switch
-  const { data: products = [], isLoading } = trpc.products.list.useQuery(undefined, {
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 10 * 60 * 1000,   // keep in memory for 10 minutes
-  });
+  // Fetch all products
+  const { data: products = [], isLoading } = trpc.products.list.useQuery();
   
   // Fetch cart items
   const { data: cartItems = [] } = trpc.cart.getItems.useQuery();
@@ -52,25 +49,6 @@ export default function Home() {
   
   // Filter products based on search and category
   const [activeCategory, setActiveCategory] = useState("all");
-  const [hempSubCategory, setHempSubCategory] = useState("all");
-
-  const handleCategoryChange = (cat: string) => {
-    setActiveCategory(cat);
-    setHempSubCategory("all"); // reset sub-filter when switching tabs
-  };
-
-  // Infer hemp sub-category from product name
-  const getHempSubCategory = (name: string): string => {
-    const n = name.toLowerCase();
-    if (n.includes('pre-roll') || n.includes('preroll')) return 'pre-rolls';
-    if (n.includes('gumm') || n.includes('chocolate') || n.includes('honey stick') || n.includes('capsule') || n.includes('chew') || n.includes('energy')) return 'edibles';
-    if (n.includes('tincture') || n.includes(' oil') || n.includes('cbg+cbd') || n.includes('isolate oil')) return 'tinctures';
-    if (n.includes('cream') || n.includes('balm') || n.includes('roll-on') || n.includes('bath bomb') || n.includes('topical')) return 'topicals';
-    if (n.includes('vape') || n.includes('cartridge') || n.includes('disposable')) return 'vapes';
-    if (n.includes('pet') || n.includes('dog') || n.includes('cat')) return 'pet';
-    if (n.includes('kief') || n.includes('wax') || n.includes('shatter') || n.includes('moon rock') || n.includes('trim') || n.includes('resin') || n.includes('crumble') || n.includes('concentrate')) return 'concentrates';
-    return 'flower';
-  };
   
   const filteredProducts = products.filter(product => {
     const matchesSearch = searchQuery === "" || 
@@ -78,10 +56,6 @@ export default function Home() {
       product.strain.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesCategory = activeCategory === "all" || product.category === activeCategory;
-    
-    // Hemp sub-category filter (only applies when viewing hemp tab)
-    const matchesHempSubCategory = activeCategory !== 'hemp' || hempSubCategory === 'all' || 
-      getHempSubCategory(product.name) === hempSubCategory;
     
     // Geofencing: hemp products (<0.3% THC) are federally legal in all 50 states under the 2018 Farm Bill.
     // THC products are only shown in states where cannabis is not fully illegal.
@@ -107,7 +81,7 @@ export default function Home() {
     const matchesFilterCategory = filters.categories.length === 0 || 
       filters.categories.includes(product.category);
     
-    return matchesSearch && matchesCategory && matchesHempSubCategory && matchesState && matchesTHC && matchesCBD && matchesStrainType && matchesEffects && matchesFilterCategory;
+    return matchesSearch && matchesCategory && matchesState && matchesTHC && matchesCBD && matchesStrainType && matchesEffects && matchesFilterCategory;
   });
 
   // Use database cart for authenticated users, localStorage for guests
@@ -185,8 +159,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-green-700 rounded-lg">
-                      <Leaf className="h-6 w-6 text-white" />
+                    <div className="p-3 bg-green-100 rounded-lg">
+                      <Leaf className="h-6 w-6 text-green-600" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">{products.length}+</p>
@@ -201,8 +175,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-amber-500 rounded-lg">
-                      <Zap className="h-6 w-6 text-white" />
+                    <div className="p-3 bg-blue-100 rounded-lg">
+                      <Zap className="h-6 w-6 text-blue-600" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">5.2%</p>
@@ -217,8 +191,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-900 rounded-lg">
-                      <Package className="h-6 w-6 text-white" />
+                    <div className="p-3 bg-purple-100 rounded-lg">
+                      <Package className="h-6 w-6 text-purple-600" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">24/7</p>
@@ -244,7 +218,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/for-farmers">
-              <Button size="lg" className="bg-blue-900 hover:bg-blue-800 text-white font-semibold px-8">
+              <Button size="lg" variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50 px-8">
                 Learn How It Works
               </Button>
             </Link>
@@ -282,9 +256,9 @@ export default function Home() {
       </section>
 
       {/* Products Section */}
-      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
+      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50">
         <div className="container mx-auto">
-          <Tabs defaultValue="all" className="w-full" onValueChange={handleCategoryChange}>
+          <Tabs defaultValue="all" className="w-full" onValueChange={setActiveCategory}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -306,7 +280,7 @@ export default function Home() {
 
             {/* Hemp/CBD Disclosure Banner — shown when Hemp tab is active */}
             {activeCategory === 'hemp' && (
-              <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
                 <span className="text-green-700 text-lg mt-0.5">🌿</span>
                 <div>
                   <p className="text-sm font-semibold text-green-800">Hemp / CBD Products — Available Nationwide</p>
@@ -316,54 +290,6 @@ export default function Home() {
                 </div>
               </div>
             )}
-
-            {/* Hemp Sub-Category Filter Pills */}
-            {activeCategory === 'hemp' && (() => {
-              const hempProducts = products.filter(p => p.category === 'hemp');
-              const subCounts: Record<string, number> = { all: hempProducts.length };
-              hempProducts.forEach(p => {
-                const sub = getHempSubCategory(p.name);
-                subCounts[sub] = (subCounts[sub] || 0) + 1;
-              });
-              return (
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {[
-                    { key: 'all', label: 'All Hemp' },
-                    { key: 'flower', label: 'Flower' },
-                    { key: 'pre-rolls', label: 'Pre-Rolls' },
-                    { key: 'concentrates', label: 'Concentrates' },
-                    { key: 'edibles', label: 'Edibles' },
-                    { key: 'tinctures', label: 'Tinctures' },
-                    { key: 'topicals', label: 'Topicals' },
-                    { key: 'vapes', label: 'Vapes' },
-                    { key: 'pet', label: 'Pet' },
-                  ].map(({ key, label }) => {
-                    const count = subCounts[key] || 0;
-                    if (key !== 'all' && count === 0) return null;
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => setHempSubCategory(key)}
-                        className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
-                          hempSubCategory === key
-                            ? 'bg-green-700 text-white border-green-700 shadow-sm'
-                            : 'bg-white text-green-700 border-green-300 hover:bg-green-50'
-                        }`}
-                      >
-                        {label}
-                        <span className={`inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 rounded-full text-xs font-semibold ${
-                          hempSubCategory === key
-                            ? 'bg-white/20 text-white'
-                            : 'bg-green-100 text-green-800'
-                        }`}>
-                          {count}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              );
-            })()}
 
             <TabsContent value={activeCategory} className="mt-0">
               {isLoading ? (
@@ -394,12 +320,16 @@ export default function Home() {
                           <div className="relative aspect-square bg-white overflow-hidden">
                             {product.photos ? (
                               <img 
-                                src={product.photos as string}
+                                src={(() => {
+                                  try {
+                                    const photos = typeof product.photos === 'string' ? JSON.parse(product.photos) : product.photos;
+                                    return Array.isArray(photos) ? photos[0] : product.photos;
+                                  } catch {
+                                    return product.photos;
+                                  }
+                                })()} 
                                 alt={product.name}
                                 loading="lazy"
-                                decoding="async"
-                                width={300}
-                                height={300}
                                 className="w-full h-full object-contain p-4"
                               />
                             ) : (
@@ -573,10 +503,10 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-lg mb-4">Contact</h3>
               <ul className="space-y-2 text-sm">
-                <li>Email: hello@zappayus.co</li>
+                <li>Email: support@zappay.com</li>
                 <li>Phone: 1-800-ZAPPAY-1</li>
-                <li>Privacy: privacy@zappayus.co</li>
-                <li>Compliance: compliance@zappayus.co</li>
+                <li>Privacy: privacy@zappay.com</li>
+                <li>Compliance: compliance@zappay.com</li>
               </ul>
             </div>
             <div>

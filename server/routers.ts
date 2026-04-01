@@ -15,6 +15,7 @@ export const appRouter = router({
   transportation: transportationRouter,
   sales: salesRouter,
   recommendations: recommendationsRouter,
+  suppliers: suppliersRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
@@ -940,8 +941,6 @@ export const appRouter = router({
       };
     }),
   }),
-
-  suppliers: suppliersRouter,
 
   // Wholesaler Waitlist
   wholesalerWaitlist: router({

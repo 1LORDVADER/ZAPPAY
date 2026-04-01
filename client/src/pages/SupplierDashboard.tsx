@@ -1,156 +1,110 @@
-import { useState } from 'react';
-import { Link } from 'wouter';
-import { trpc } from '@/lib/trpc';
-import { useAuth } from '@/_core/hooks/useAuth';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { useToast } from '@/hooks/use-toast';
-import { getLoginUrl } from '@/const';
+import { useState } from "react";
+import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
+import { getLoginUrl } from "@/const";
 import {
-  Package, Globe, MapPin, Instagram, Facebook,
-  Twitter, Linkedin, Youtube, Plus, Edit, Trash2,
-  ToggleLeft, ToggleRight, BarChart3, Users,
-  ShoppingCart, TrendingUp, CheckCircle, AlertCircle,
-  Building2, Loader2, Star, Phone, Mail, ExternalLink,
-} from 'lucide-react';
+  Package, Plus, Edit2, Trash2, CheckCircle, XCircle,
+  Globe, Instagram, Facebook, Twitter, Linkedin, Youtube,
+  MapPin, Truck, DollarSign, BarChart3, AlertCircle
+} from "lucide-react";
 
 const CATEGORIES = [
-  { value: 'equipment', label: 'Equipment' },
-  { value: 'seeds', label: 'Seeds' },
-  { value: 'nutrients', label: 'Nutrients & Fertilizers' },
-  { value: 'lighting', label: 'Lighting' },
-  { value: 'soil', label: 'Soil & Growing Media' },
-  { value: 'packaging', label: 'Packaging' },
-  { value: 'services', label: 'Services' },
-  { value: 'technology', label: 'Technology' },
-  { value: 'other', label: 'Other' },
-];
+  { value: "seeds", label: "Seeds & Genetics" },
+  { value: "equipment", label: "Equipment & Hardware" },
+  { value: "nutrients", label: "Nutrients & Fertilizers" },
+  { value: "lighting", label: "Lighting Systems" },
+  { value: "soil", label: "Soil & Growing Media" },
+  { value: "packaging", label: "Packaging & Labeling" },
+  { value: "services", label: "Professional Services" },
+  { value: "technology", label: "Technology & Software" },
+  { value: "other", label: "Other" },
+] as const;
 
-const UNIT_LABELS = ['unit', 'bag', 'lb', 'oz', 'gram', 'gallon', 'liter', 'box', 'pallet', 'hour', 'month', 'year', 'sq ft', 'each'];
+type Category = typeof CATEGORIES[number]["value"];
 
-interface ProductFormData {
+interface ProductForm {
   name: string;
   description: string;
-  category: string;
+  category: Category;
   subcategory: string;
-  unitPrice: string;
+  unitPrice: number;
   unitLabel: string;
-  minOrderQty: string;
-  inStock: string;
-  localPickup: string;
+  minOrderQty: number;
+  inStock: boolean;
+  localPickup: boolean;
   externalUrl: string;
 }
 
-const emptyProduct: ProductFormData = {
-  name: '',
-  description: '',
-  category: 'equipment',
-  subcategory: '',
-  unitPrice: '',
-  unitLabel: 'unit',
-  minOrderQty: '1',
-  inStock: 'yes',
-  localPickup: 'no',
-  externalUrl: '',
+const emptyProduct: ProductForm = {
+  name: "", description: "", category: "other", subcategory: "",
+  unitPrice: 0, unitLabel: "each", minOrderQty: 1,
+  inStock: true, localPickup: false, externalUrl: "",
 };
 
 export default function SupplierDashboard() {
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading } = useAuth();
   const { toast } = useToast();
   const utils = trpc.useUtils();
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'products' | 'profile'>('overview');
-  const [showProductDialog, setShowProductDialog] = useState(false);
-  const [editingProductId, setEditingProductId] = useState<number | null>(null);
-  const [productForm, setProductForm] = useState<ProductFormData>(emptyProduct);
-  const [profileForm, setProfileForm] = useState<Record<string, string>>({});
-  const [editingProfile, setEditingProfile] = useState(false);
+  const [productDialog, setProductDialog] = useState<{ open: boolean; editing?: number }>({ open: false });
+  const [productForm, setProductForm] = useState<ProductForm>(emptyProduct);
+  const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
 
-  const { data: profile, isLoading: profileLoading } = trpc.suppliers.getMyProfile.useQuery(undefined, {
-    enabled: isAuthenticated,
-    staleTime: 60_000,
+  const { data: profile, isLoading: profileLoading } = trpc.suppliers.myProfile.useQuery(undefined, { enabled: isAuthenticated });
+  const { data: products = [], isLoading: productsLoading } = trpc.suppliers.myProducts.useQuery(undefined, { enabled: isAuthenticated && !!profile });
+
+  const updateProfileMutation = trpc.suppliers.updateProfile.useMutation({
+    onSuccess: () => { toast({ title: "Profile updated" }); utils.suppliers.myProfile.invalidate(); },
+    onError: (e) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
 
-  const { data: products, isLoading: productsLoading } = trpc.suppliers.getMyProducts.useQuery(undefined, {
-    enabled: isAuthenticated && !!profile,
-    staleTime: 30_000,
+  const createProductMutation = trpc.suppliers.createProduct.useMutation({
+    onSuccess: () => { toast({ title: "Product added" }); utils.suppliers.myProducts.invalidate(); setProductDialog({ open: false }); },
+    onError: (e) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
 
-  const createProduct = trpc.suppliers.createProduct.useMutation({
-    onSuccess: () => {
-      utils.suppliers.getMyProducts.invalidate();
-      setShowProductDialog(false);
-      setProductForm(emptyProduct);
-      toast({ title: 'Product listed', description: 'Your product is now live on the Grower Marketplace.' });
-    },
-    onError: (e) => toast({ title: 'Error', description: e.message, variant: 'destructive' }),
+  const updateProductMutation = trpc.suppliers.updateProduct.useMutation({
+    onSuccess: () => { toast({ title: "Product updated" }); utils.suppliers.myProducts.invalidate(); setProductDialog({ open: false }); },
+    onError: (e) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
 
-  const updateProduct = trpc.suppliers.updateProduct.useMutation({
-    onSuccess: () => {
-      utils.suppliers.getMyProducts.invalidate();
-      setShowProductDialog(false);
-      setEditingProductId(null);
-      setProductForm(emptyProduct);
-      toast({ title: 'Product updated' });
-    },
-    onError: (e) => toast({ title: 'Error', description: e.message, variant: 'destructive' }),
+  const deleteProductMutation = trpc.suppliers.deleteProduct.useMutation({
+    onSuccess: () => { toast({ title: "Product deleted" }); utils.suppliers.myProducts.invalidate(); setDeleteConfirm(null); },
+    onError: (e) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
 
-  const deleteProduct = trpc.suppliers.deleteProduct.useMutation({
-    onSuccess: () => {
-      utils.suppliers.getMyProducts.invalidate();
-      toast({ title: 'Product removed' });
-    },
-    onError: (e) => toast({ title: 'Error', description: e.message, variant: 'destructive' }),
+  const toggleStockMutation = trpc.suppliers.updateProduct.useMutation({
+    onSuccess: () => utils.suppliers.myProducts.invalidate(),
+    onError: (e) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
 
-  const toggleStock = trpc.suppliers.toggleProductStock.useMutation({
-    onMutate: async ({ id, inStock }) => {
-      await utils.suppliers.getMyProducts.cancel();
-      const prev = utils.suppliers.getMyProducts.getData();
-      utils.suppliers.getMyProducts.setData(undefined, (old) =>
-        old?.map(p => p.id === id ? { ...p, inStock: inStock as any } : p) ?? []
-      );
-      return { prev };
-    },
-    onError: (_e, _v, ctx) => {
-      if (ctx?.prev) utils.suppliers.getMyProducts.setData(undefined, ctx.prev);
-    },
-    onSettled: () => utils.suppliers.getMyProducts.invalidate(),
-  });
-
-  const updateProfileMutation = trpc.suppliers.updateMyProfile.useMutation({
-    onSuccess: () => {
-      utils.suppliers.getMyProfile.invalidate();
-      setEditingProfile(false);
-      toast({ title: 'Brand profile updated' });
-    },
-    onError: (e) => toast({ title: 'Error', description: e.message, variant: 'destructive' }),
-  });
-
-  if (authLoading || profileLoading) {
+  if (loading || profileLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-900" />
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="animate-spin h-8 w-8 border-4 border-blue-900 border-t-transparent rounded-full" />
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-        <Card className="max-w-md w-full text-center shadow-xl border-0">
-          <CardContent className="pt-10 pb-8 px-8">
-            <Building2 className="h-12 w-12 text-blue-900 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-slate-900 mb-2">Supplier Dashboard</h2>
-            <p className="text-slate-500 mb-6">Sign in to manage your brand and product listings on ZAPPAY.</p>
-            <Button className="bg-blue-900 text-white w-full" onClick={() => window.location.href = getLoginUrl()}>
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+        <Card className="max-w-md w-full text-center shadow-lg border-0">
+          <CardContent className="pt-10 pb-8">
+            <AlertCircle className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+            <h2 className="text-xl font-bold mb-2">Login Required</h2>
+            <p className="text-slate-500 mb-6">Sign in to access your supplier dashboard.</p>
+            <Button onClick={() => window.location.href = getLoginUrl()} className="bg-blue-900 hover:bg-blue-800 text-white">
               Sign In
             </Button>
           </CardContent>
@@ -161,543 +115,374 @@ export default function SupplierDashboard() {
 
   if (!profile) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-        <Card className="max-w-lg w-full shadow-xl border-0">
-          <CardContent className="pt-10 pb-8 px-8 text-center">
-            <AlertCircle className="h-12 w-12 text-amber-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold mb-2">No Approved Supplier Profile</h2>
-            <p className="text-slate-600 mb-2">
-              Your account ({user?.email}) does not have an approved supplier profile yet.
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+        <Card className="max-w-md w-full text-center shadow-lg border-0">
+          <CardContent className="pt-10 pb-8">
+            <Package className="h-12 w-12 text-slate-400 mx-auto mb-4" />
+            <h2 className="text-xl font-bold mb-2">No Supplier Profile</h2>
+            <p className="text-slate-500 mb-6">
+              Your supplier application is pending review, or you haven't applied yet.
             </p>
-            <p className="text-slate-500 text-sm mb-6">
-              If you have already applied, your application is under review. You will receive an email once approved.
-            </p>
-            <Link href="/supplier-application">
-              <Button className="bg-blue-900 text-white">Apply as Supplier / Manufacturer</Button>
-            </Link>
+            <Button onClick={() => window.location.href = "/supplier/apply"} className="bg-blue-900 hover:bg-blue-800 text-white">
+              Apply Now
+            </Button>
           </CardContent>
         </Card>
       </div>
     );
   }
 
-  const openCreateDialog = () => {
-    setEditingProductId(null);
+  const openNewProduct = () => {
     setProductForm(emptyProduct);
-    setShowProductDialog(true);
+    setProductDialog({ open: true });
   };
 
-  const openEditDialog = (p: any) => {
-    setEditingProductId(p.id);
+  const openEditProduct = (p: typeof products[0]) => {
     setProductForm({
       name: p.name,
-      description: p.description ?? '',
-      category: p.category,
-      subcategory: p.subcategory ?? '',
-      unitPrice: (p.unitPrice / 100).toFixed(2),
+      description: p.description ?? "",
+      category: p.category as Category,
+      subcategory: p.subcategory ?? "",
+      unitPrice: p.unitPrice,
       unitLabel: p.unitLabel,
-      minOrderQty: String(p.minOrderQty),
-      inStock: p.inStock,
-      localPickup: p.localPickup,
-      externalUrl: p.externalUrl ?? '',
+      minOrderQty: p.minOrderQty,
+      inStock: p.inStock === "yes",
+      localPickup: p.localPickup === "yes",
+      externalUrl: p.externalUrl ?? "",
     });
-    setShowProductDialog(true);
+    setProductDialog({ open: true, editing: p.id });
   };
 
-  const handleProductSubmit = () => {
-    const priceInCents = Math.round(parseFloat(productForm.unitPrice) * 100);
-    if (!productForm.name || isNaN(priceInCents) || priceInCents <= 0) {
-      toast({ title: 'Validation Error', description: 'Product name and a valid price are required.', variant: 'destructive' });
+  const saveProduct = () => {
+    if (!productForm.name || !productForm.unitPrice) {
+      toast({ title: "Name and price are required", variant: "destructive" });
       return;
     }
-    const payload = {
-      name: productForm.name,
-      description: productForm.description || undefined,
-      category: productForm.category,
-      subcategory: productForm.subcategory || undefined,
-      unitPrice: priceInCents,
-      unitLabel: productForm.unitLabel,
-      minOrderQty: parseInt(productForm.minOrderQty) || 1,
-      inStock: productForm.inStock,
-      localPickup: productForm.localPickup,
-      externalUrl: productForm.externalUrl || undefined,
-    };
-    if (editingProductId) {
-      updateProduct.mutate({ id: editingProductId, ...payload });
+    if (productDialog.editing) {
+      updateProductMutation.mutate({ id: productDialog.editing, ...productForm });
     } else {
-      createProduct.mutate(payload);
+      createProductMutation.mutate(productForm);
     }
   };
 
-  const inStockCount = products?.filter(p => p.inStock === 'yes').length ?? 0;
-  const totalProducts = products?.length ?? 0;
+  const activeProducts = products.filter((p) => p.status === "active");
+  const inactiveProducts = products.filter((p) => p.status !== "active");
 
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <div className="bg-blue-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <div className="flex items-center gap-4">
-            {profile.logoUrl ? (
-              <img src={profile.logoUrl} alt={profile.businessName} className="h-14 w-14 rounded-xl object-cover bg-white" />
-            ) : (
-              <div className="h-14 w-14 rounded-xl bg-blue-800 flex items-center justify-center">
-                <Building2 className="h-7 w-7 text-blue-200" />
-              </div>
-            )}
-            <div>
-              <h1 className="text-2xl font-bold">{profile.businessName}</h1>
-              <div className="flex items-center gap-3 mt-1 flex-wrap">
-                <Badge className="bg-green-600 text-white text-xs capitalize">{profile.status}</Badge>
-                <span className="text-blue-200 text-sm capitalize">{profile.supplierType}</span>
-                {profile.city && (
-                  <span className="text-blue-200 text-sm flex items-center gap-1">
-                    <MapPin className="h-3 w-3" />{profile.city}{profile.state ? `, ${profile.state}` : ''}
-                  </span>
-                )}
+      <div className="bg-blue-900 text-white py-8">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              {profile.logoUrl ? (
+                <img src={profile.logoUrl} alt={profile.businessName} className="h-12 w-12 rounded-lg object-cover bg-white" />
+              ) : (
+                <div className="h-12 w-12 bg-white/10 rounded-lg flex items-center justify-center">
+                  <Package className="h-6 w-6 text-white/60" />
+                </div>
+              )}
+              <div>
+                <h1 className="text-2xl font-bold">{profile.businessName}</h1>
+                <div className="flex items-center gap-2 mt-1">
+                  <Badge className={`text-xs border-0 ${profile.status === "approved" ? "bg-green-600" : profile.status === "suspended" ? "bg-red-600" : "bg-amber-600"}`}>
+                    {profile.status}
+                  </Badge>
+                  {profile.featured === "yes" && (
+                    <Badge className="text-xs bg-yellow-500 border-0 text-yellow-900">Featured</Badge>
+                  )}
+                  <span className="text-blue-200 text-sm">{profile.supplierType}</span>
+                </div>
               </div>
             </div>
-            <div className="ml-auto">
-              <Link href="/grower-marketplace">
-                <Button className="bg-white text-blue-900 hover:bg-blue-50 text-sm">View Marketplace</Button>
-              </Link>
+            <div className="hidden md:flex items-center gap-6 text-center">
+              <div>
+                <div className="text-2xl font-bold">{activeProducts.length}</div>
+                <div className="text-xs text-blue-200">Active Listings</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold">{products.length}</div>
+                <div className="text-xs text-blue-200">Total Products</div>
+              </div>
             </div>
-          </div>
-          {/* Tabs */}
-          <div className="flex gap-1 mt-6">
-            {(['overview', 'products', 'profile'] as const).map(tab => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-t-lg text-sm font-medium capitalize transition-colors ${
-                  activeTab === tab ? 'bg-white text-blue-900' : 'text-blue-200 hover:text-white'
-                }`}
-              >
-                {tab === 'products' ? `Products (${totalProducts})` : tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
-            ))}
           </div>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-8">
+        <Tabs defaultValue="products">
+          <TabsList className="mb-6">
+            <TabsTrigger value="products">Products</TabsTrigger>
+            <TabsTrigger value="profile">Brand Profile</TabsTrigger>
+          </TabsList>
 
-        {/* Overview Tab */}
-        {activeTab === 'overview' && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {[
-                { label: 'Total Listings', value: totalProducts, icon: Package, color: 'bg-blue-100 text-blue-900' },
-                { label: 'In Stock', value: inStockCount, icon: BarChart3, color: 'bg-green-100 text-green-700' },
-                { label: 'Out of Stock', value: totalProducts - inStockCount, icon: AlertCircle, color: 'bg-amber-100 text-amber-700' },
-                { label: 'Featured', value: profile.featured === 'yes' ? 'Yes' : 'No', icon: Star, color: 'bg-red-100 text-red-700' },
-              ].map((stat, i) => {
-                const Icon = stat.icon;
-                return (
-                  <Card key={i} className="border-0 shadow-md">
-                    <CardContent className="p-4">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${stat.color}`}>
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
-                      <div className="text-sm text-slate-500">{stat.label}</div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-
-            <Card className="border-0 shadow-md">
-              <CardHeader><CardTitle>Brand Information</CardTitle></CardHeader>
-              <CardContent className="space-y-3">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                  <div className="flex items-center gap-2 text-slate-600"><Mail className="h-4 w-4 shrink-0" />{profile.contactEmail}</div>
-                  {profile.contactPhone && <div className="flex items-center gap-2 text-slate-600"><Phone className="h-4 w-4 shrink-0" />{profile.contactPhone}</div>}
-                  {profile.websiteUrl && (
-                    <a href={profile.websiteUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-700 hover:underline">
-                      <Globe className="h-4 w-4 shrink-0" />{profile.websiteUrl}
-                    </a>
-                  )}
-                  {profile.nationwide === 'yes' && <div className="flex items-center gap-2 text-green-700"><MapPin className="h-4 w-4 shrink-0" />Ships Nationwide</div>}
-                </div>
-                {profile.description && <p className="text-slate-600 text-sm">{profile.description}</p>}
-                <div className="flex gap-3 pt-1">
-                  {profile.instagramUrl && <a href={profile.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-900"><Instagram className="h-5 w-5" /></a>}
-                  {profile.facebookUrl && <a href={profile.facebookUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-900"><Facebook className="h-5 w-5" /></a>}
-                  {profile.twitterUrl && <a href={profile.twitterUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-900"><Twitter className="h-5 w-5" /></a>}
-                  {profile.linkedinUrl && <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-900"><Linkedin className="h-5 w-5" /></a>}
-                  {profile.youtubeUrl && <a href={profile.youtubeUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-900"><Youtube className="h-5 w-5" /></a>}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* ZAPPAY Payment Processing info */}
-            <Card className="border-0 shadow-md">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <ShoppingCart className="h-5 w-5 text-blue-900" />
-                  <CardTitle>ZAPPAY Payment Processing</CardTitle>
-                  <Badge className="bg-green-100 text-green-800 border-0 ml-auto">Included</Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-slate-500 mb-4">
-                  All transactions on the ZAPPAY platform are processed through the ZAPPAY payment railway — giving your customers a seamless, secure checkout experience and giving you instant settlement.
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {['Instant Settlement', 'Fraud Protection', 'Compliance Built-In', 'Multi-State Support'].map((item) => (
-                    <div key={item} className="flex items-center gap-2 text-sm text-slate-600">
-                      <CheckCircle className="h-4 w-4 text-green-600 shrink-0" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="flex gap-3 flex-wrap">
-              <Button className="bg-blue-900 text-white" onClick={() => setActiveTab('products')}>
-                <Plus className="h-4 w-4 mr-2" />Manage Products
-              </Button>
-              <Button className="bg-slate-700 text-white" onClick={() => setActiveTab('profile')}>
-                <Edit className="h-4 w-4 mr-2" />Edit Brand Profile
-              </Button>
-              <Link href="/advertise">
-                <Button className="bg-red-600 text-white">
-                  <TrendingUp className="h-4 w-4 mr-2" />Advertise on ZAPPAY
-                </Button>
-              </Link>
-            </div>
-          </div>
-        )}
-
-        {/* Products Tab */}
-        {activeTab === 'products' && (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-slate-900">Product Listings</h2>
-              <Button className="bg-blue-900 text-white" onClick={openCreateDialog}>
-                <Plus className="h-4 w-4 mr-2" />Add Product
+          {/* Products Tab */}
+          <TabsContent value="products">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-semibold text-slate-900">Your Listings</h2>
+              <Button onClick={openNewProduct} className="bg-blue-900 hover:bg-blue-800 text-white">
+                <Plus className="h-4 w-4 mr-2" /> Add Product
               </Button>
             </div>
 
             {productsLoading ? (
-              <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-blue-900" /></div>
-            ) : !products || products.length === 0 ? (
-              <Card className="border-0 shadow-md">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[1,2,3].map((i) => (
+                  <div key={i} className="h-48 bg-slate-200 rounded-xl animate-pulse" />
+                ))}
+              </div>
+            ) : products.length === 0 ? (
+              <Card className="border-dashed border-2 border-slate-300 bg-transparent shadow-none">
                 <CardContent className="py-16 text-center">
                   <Package className="h-12 w-12 text-slate-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-600 mb-2">No Products Listed Yet</h3>
-                  <p className="text-slate-500 text-sm mb-6">Add your first product or service to start appearing in the Grower Marketplace.</p>
-                  <Button className="bg-blue-900 text-white" onClick={openCreateDialog}>
-                    <Plus className="h-4 w-4 mr-2" />Add First Product
+                  <h3 className="font-semibold text-slate-600 mb-2">No products yet</h3>
+                  <p className="text-slate-400 text-sm mb-4">Add your first product to start appearing in the Grower Marketplace.</p>
+                  <Button onClick={openNewProduct} variant="outline" className="border-blue-900 text-blue-900">
+                    <Plus className="h-4 w-4 mr-2" /> Add First Product
                   </Button>
                 </CardContent>
               </Card>
             ) : (
-              <div className="grid gap-4">
-                {products.map((p: any) => (
-                  <Card key={p.id} className="border border-slate-200 shadow-sm">
-                    <CardContent className="py-4">
-                      <div className="flex items-start justify-between gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {products.map((p) => (
+                  <Card key={p.id} className={`shadow-sm border transition-all hover:shadow-md ${p.status !== "active" ? "opacity-60" : ""}`}>
+                    <CardHeader className="pb-2">
+                      <div className="flex items-start justify-between gap-2">
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="font-semibold text-slate-900">{p.name}</h3>
-                            <Badge className={`text-xs ${p.inStock === 'yes' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                              {p.inStock === 'yes' ? 'In Stock' : 'Out of Stock'}
-                            </Badge>
-                            <Badge className="bg-blue-100 text-blue-800 text-xs capitalize">{p.category}</Badge>
-                            {p.localPickup === 'yes' && <Badge className="bg-amber-100 text-amber-800 text-xs">Local Pickup</Badge>}
-                          </div>
-                          {p.description && <p className="text-sm text-slate-500 mt-1 line-clamp-2">{p.description}</p>}
-                          <div className="flex items-center gap-4 mt-2 text-sm text-slate-600 flex-wrap">
-                            <span className="font-semibold text-blue-900">${(p.unitPrice / 100).toFixed(2)} / {p.unitLabel}</span>
-                            <span>Min order: {p.minOrderQty} {p.unitLabel}</span>
-                            {p.externalUrl && (
-                              <a href={p.externalUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-700 hover:underline">
-                                <ExternalLink className="h-3 w-3" />View on site
-                              </a>
-                            )}
-                          </div>
+                          <CardTitle className="text-base truncate">{p.name}</CardTitle>
+                          <CardDescription className="text-xs mt-0.5">
+                            {CATEGORIES.find((c) => c.value === p.category)?.label}
+                            {p.subcategory && ` · ${p.subcategory}`}
+                          </CardDescription>
                         </div>
-                        <div className="flex items-center gap-2 shrink-0">
-                          <button
-                            onClick={() => toggleStock.mutate({ id: p.id, inStock: p.inStock === 'yes' ? 'no' : 'yes' })}
-                            className="text-slate-400 hover:text-blue-900 transition-colors"
-                            title={p.inStock === 'yes' ? 'Mark Out of Stock' : 'Mark In Stock'}
-                          >
-                            {p.inStock === 'yes'
-                              ? <ToggleRight className="h-6 w-6 text-green-600" />
-                              : <ToggleLeft className="h-6 w-6" />}
-                          </button>
-                          <button onClick={() => openEditDialog(p)} className="text-slate-400 hover:text-blue-900 transition-colors">
-                            <Edit className="h-5 w-5" />
-                          </button>
-                          <button
-                            onClick={() => {
-                              if (confirm(`Remove "${p.name}" from your listings?`)) deleteProduct.mutate({ id: p.id });
-                            }}
-                            className="text-slate-400 hover:text-red-600 transition-colors"
-                          >
-                            <Trash2 className="h-5 w-5" />
-                          </button>
+                        <Badge variant={p.inStock === "yes" ? "default" : "secondary"} className="text-xs shrink-0">
+                          {p.inStock === "yes" ? "In Stock" : "Out"}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      {p.description && (
+                        <p className="text-xs text-slate-500 line-clamp-2 mb-3">{p.description}</p>
+                      )}
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-1 text-slate-900 font-semibold">
+                          <DollarSign className="h-4 w-4" />
+                          <span>{(p.unitPrice / 100).toFixed(2)}</span>
+                          <span className="text-xs text-slate-400 font-normal">/ {p.unitLabel}</span>
                         </div>
+                        <span className="text-xs text-slate-400">Min: {p.minOrderQty}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="flex-1 text-xs h-8"
+                          onClick={() => toggleStockMutation.mutate({ id: p.id, inStock: p.inStock !== "yes" })}
+                        >
+                          {p.inStock === "yes" ? <XCircle className="h-3 w-3 mr-1" /> : <CheckCircle className="h-3 w-3 mr-1" />}
+                          {p.inStock === "yes" ? "Mark Out" : "Mark In"}
+                        </Button>
+                        <Button size="sm" variant="outline" className="h-8 w-8 p-0" onClick={() => openEditProduct(p)}>
+                          <Edit2 className="h-3 w-3" />
+                        </Button>
+                        <Button size="sm" variant="outline" className="h-8 w-8 p-0 text-red-600 hover:text-red-700" onClick={() => setDeleteConfirm(p.id)}>
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             )}
-          </div>
-        )}
+          </TabsContent>
 
-        {/* Profile Tab */}
-        {activeTab === 'profile' && (
-          <div className="space-y-6 max-w-2xl">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-slate-900">Brand Profile</h2>
-              {!editingProfile ? (
-                <Button className="bg-blue-900 text-white" onClick={() => {
-                  setProfileForm({
-                    description: profile.description ?? '',
-                    websiteUrl: profile.websiteUrl ?? '',
-                    logoUrl: profile.logoUrl ?? '',
-                    instagramUrl: profile.instagramUrl ?? '',
-                    facebookUrl: profile.facebookUrl ?? '',
-                    twitterUrl: profile.twitterUrl ?? '',
-                    linkedinUrl: profile.linkedinUrl ?? '',
-                    youtubeUrl: profile.youtubeUrl ?? '',
-                    city: profile.city ?? '',
-                    state: profile.state ?? '',
-                    nationwide: profile.nationwide ?? 'yes',
-                  });
-                  setEditingProfile(true);
-                }}>
-                  <Edit className="h-4 w-4 mr-2" />Edit Profile
-                </Button>
-              ) : (
-                <div className="flex gap-2">
-                  <Button variant="outline" className="bg-slate-100 text-slate-700" onClick={() => setEditingProfile(false)}>Cancel</Button>
-                  <Button className="bg-blue-900 text-white" onClick={() => updateProfileMutation.mutate({ id: profile.id, ...profileForm })} disabled={updateProfileMutation.isPending}>
-                    {updateProfileMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-                    Save Changes
-                  </Button>
-                </div>
-              )}
-            </div>
-
-            <Card className="border-0 shadow-md">
-              <CardContent className="pt-6 space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-700 block mb-1">Business Description</label>
-                  {editingProfile ? (
-                    <Textarea
-                      value={profileForm.description}
-                      onChange={e => setProfileForm(f => ({ ...f, description: e.target.value }))}
-                      placeholder="Tell growers about your products, experience, and what makes you unique..."
-                      rows={4}
-                    />
-                  ) : (
-                    <p className="text-slate-600 text-sm">{profile.description || 'No description added yet.'}</p>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 block mb-1">Logo URL</label>
-                    {editingProfile ? (
-                      <Input value={profileForm.logoUrl} onChange={e => setProfileForm(f => ({ ...f, logoUrl: e.target.value }))} placeholder="https://..." />
-                    ) : (
-                      <p className="text-slate-600 text-sm">{profile.logoUrl || 'Not set'}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 block mb-1">Website</label>
-                    {editingProfile ? (
-                      <Input value={profileForm.websiteUrl} onChange={e => setProfileForm(f => ({ ...f, websiteUrl: e.target.value }))} placeholder="https://..." />
-                    ) : (
-                      <p className="text-slate-600 text-sm">{profile.websiteUrl || 'Not set'}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-slate-700 block mb-2">Social Media Links</label>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {[
-                      { key: 'instagramUrl', Icon: Instagram, label: 'Instagram' },
-                      { key: 'facebookUrl', Icon: Facebook, label: 'Facebook' },
-                      { key: 'twitterUrl', Icon: Twitter, label: 'Twitter / X' },
-                      { key: 'linkedinUrl', Icon: Linkedin, label: 'LinkedIn' },
-                      { key: 'youtubeUrl', Icon: Youtube, label: 'YouTube' },
-                    ].map(({ key, Icon, label }) => (
-                      <div key={key} className="flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-slate-400 shrink-0" />
-                        {editingProfile ? (
-                          <Input
-                            value={profileForm[key] ?? ''}
-                            onChange={e => setProfileForm(f => ({ ...f, [key]: e.target.value }))}
-                            placeholder={`${label} URL`}
-                            className="text-sm"
-                          />
-                        ) : (
-                          <span className="text-slate-600 text-sm truncate">{(profile as any)[key] || 'Not set'}</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 block mb-1">City</label>
-                    {editingProfile ? (
-                      <Input value={profileForm.city} onChange={e => setProfileForm(f => ({ ...f, city: e.target.value }))} />
-                    ) : (
-                      <p className="text-slate-600 text-sm">{profile.city || 'Not set'}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-700 block mb-1">Ships Nationwide</label>
-                    {editingProfile ? (
-                      <Select value={profileForm.nationwide} onValueChange={v => setProfileForm(f => ({ ...f, nationwide: v }))}>
-                        <SelectTrigger><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="yes">Yes — Ships Nationwide</SelectItem>
-                          <SelectItem value="no">No — Local / Regional Only</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    ) : (
-                      <p className="text-slate-600 text-sm">{profile.nationwide === 'yes' ? 'Yes — Nationwide' : 'No — Local/Regional'}</p>
-                    )}
-                  </div>
-                </div>
+          {/* Profile Tab */}
+          <TabsContent value="profile">
+            <Card className="shadow-sm border-0">
+              <CardHeader>
+                <CardTitle>Brand Profile</CardTitle>
+                <CardDescription>This information appears on your public supplier page.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ProfileEditor profile={profile} onSave={(data) => updateProfileMutation.mutate(data)} saving={updateProfileMutation.isPending} />
               </CardContent>
             </Card>
-          </div>
-        )}
+          </TabsContent>
+        </Tabs>
       </div>
 
-      {/* Product Create/Edit Dialog */}
-      <Dialog open={showProductDialog} onOpenChange={setShowProductDialog}>
+      {/* Product Dialog */}
+      <Dialog open={productDialog.open} onOpenChange={(o) => setProductDialog({ open: o })}>
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{editingProductId ? 'Edit Product' : 'Add New Product'}</DialogTitle>
+            <DialogTitle>{productDialog.editing ? "Edit Product" : "Add Product"}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-2">
-            <div>
-              <label className="text-sm font-medium block mb-1">Product / Service Name *</label>
-              <Input
-                value={productForm.name}
-                onChange={e => setProductForm(f => ({ ...f, name: e.target.value }))}
-                placeholder="e.g. 1000W LED Grow Light, Organic Soil Mix, Consultation Service"
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium block mb-1">Description</label>
-              <Textarea
-                value={productForm.description}
-                onChange={e => setProductForm(f => ({ ...f, description: e.target.value }))}
-                placeholder="Describe your product or service in detail..."
-                rows={3}
-              />
-            </div>
             <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-sm font-medium block mb-1">Category *</label>
-                <Select value={productForm.category} onValueChange={v => setProductForm(f => ({ ...f, category: v }))}>
+              <div className="col-span-2 space-y-1">
+                <Label>Product Name *</Label>
+                <Input value={productForm.name} onChange={(e) => setProductForm((f) => ({ ...f, name: e.target.value }))} placeholder="e.g. Blue Dream Seeds" />
+              </div>
+              <div className="space-y-1">
+                <Label>Category *</Label>
+                <Select value={productForm.category} onValueChange={(v) => setProductForm((f) => ({ ...f, category: v as Category }))}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    {CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                    {CATEGORIES.map((c) => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
-              <div>
-                <label className="text-sm font-medium block mb-1">Subcategory</label>
-                <Input
-                  value={productForm.subcategory}
-                  onChange={e => setProductForm(f => ({ ...f, subcategory: e.target.value }))}
-                  placeholder="e.g. LED Grow Lights"
-                />
+              <div className="space-y-1">
+                <Label>Subcategory</Label>
+                <Input value={productForm.subcategory} onChange={(e) => setProductForm((f) => ({ ...f, subcategory: e.target.value }))} placeholder="e.g. Feminized" />
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-sm font-medium block mb-1">Price (USD) *</label>
-                <Input
-                  type="number"
-                  min="0.01"
-                  step="0.01"
-                  value={productForm.unitPrice}
-                  onChange={e => setProductForm(f => ({ ...f, unitPrice: e.target.value }))}
-                  placeholder="0.00"
-                />
+              <div className="space-y-1">
+                <Label>Price (cents) *</Label>
+                <Input type="number" min={1} value={productForm.unitPrice} onChange={(e) => setProductForm((f) => ({ ...f, unitPrice: parseInt(e.target.value) || 0 }))} placeholder="e.g. 1500 = $15.00" />
+                <p className="text-xs text-slate-400">Enter in cents: 1500 = $15.00</p>
               </div>
-              <div>
-                <label className="text-sm font-medium block mb-1">Price Unit</label>
-                <Select value={productForm.unitLabel} onValueChange={v => setProductForm(f => ({ ...f, unitLabel: v }))}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    {UNIT_LABELS.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+              <div className="space-y-1">
+                <Label>Unit Label</Label>
+                <Input value={productForm.unitLabel} onChange={(e) => setProductForm((f) => ({ ...f, unitLabel: e.target.value }))} placeholder="each, pack, lb, oz" />
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-sm font-medium block mb-1">Min Order Qty</label>
-                <Input
-                  type="number"
-                  min="1"
-                  value={productForm.minOrderQty}
-                  onChange={e => setProductForm(f => ({ ...f, minOrderQty: e.target.value }))}
-                />
+              <div className="space-y-1">
+                <Label>Min Order Qty</Label>
+                <Input type="number" min={1} value={productForm.minOrderQty} onChange={(e) => setProductForm((f) => ({ ...f, minOrderQty: parseInt(e.target.value) || 1 }))} />
               </div>
-              <div>
-                <label className="text-sm font-medium block mb-1">Availability</label>
-                <Select value={productForm.inStock} onValueChange={v => setProductForm(f => ({ ...f, inStock: v }))}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="yes">In Stock</SelectItem>
-                    <SelectItem value="no">Out of Stock</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="col-span-2 space-y-1">
+                <Label>Description</Label>
+                <Textarea value={productForm.description} onChange={(e) => setProductForm((f) => ({ ...f, description: e.target.value }))} rows={2} placeholder="Describe your product..." />
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-sm font-medium block mb-1">Local Pickup Available</label>
-                <Select value={productForm.localPickup} onValueChange={v => setProductForm(f => ({ ...f, localPickup: v }))}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="no">No</SelectItem>
-                    <SelectItem value="yes">Yes</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="col-span-2 space-y-1">
+                <Label>External URL</Label>
+                <Input value={productForm.externalUrl} onChange={(e) => setProductForm((f) => ({ ...f, externalUrl: e.target.value }))} placeholder="https://your-store.com/product" />
               </div>
-              <div>
-                <label className="text-sm font-medium block mb-1">Product URL (optional)</label>
-                <Input
-                  value={productForm.externalUrl}
-                  onChange={e => setProductForm(f => ({ ...f, externalUrl: e.target.value }))}
-                  placeholder="https://..."
-                />
+              <div className="flex items-center gap-2">
+                <input type="checkbox" id="inStock" checked={productForm.inStock} onChange={(e) => setProductForm((f) => ({ ...f, inStock: e.target.checked }))} className="h-4 w-4" />
+                <Label htmlFor="inStock">In Stock</Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <input type="checkbox" id="localPickup" checked={productForm.localPickup} onChange={(e) => setProductForm((f) => ({ ...f, localPickup: e.target.checked }))} className="h-4 w-4" />
+                <Label htmlFor="localPickup">Local Pickup Available</Label>
               </div>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" className="bg-slate-100 text-slate-700" onClick={() => setShowProductDialog(false)}>Cancel</Button>
-            <Button
-              className="bg-blue-900 text-white"
-              onClick={handleProductSubmit}
-              disabled={createProduct.isPending || updateProduct.isPending}
-            >
-              {(createProduct.isPending || updateProduct.isPending) && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-              {editingProductId ? 'Save Changes' : 'List Product'}
+            <Button variant="outline" onClick={() => setProductDialog({ open: false })}>Cancel</Button>
+            <Button onClick={saveProduct} disabled={createProductMutation.isPending || updateProductMutation.isPending} className="bg-blue-900 hover:bg-blue-800 text-white">
+              {createProductMutation.isPending || updateProductMutation.isPending ? "Saving..." : "Save Product"}
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Delete Confirm */}
+      <Dialog open={deleteConfirm !== null} onOpenChange={(o) => !o && setDeleteConfirm(null)}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Delete Product?</DialogTitle>
+          </DialogHeader>
+          <p className="text-slate-500 text-sm">This action cannot be undone.</p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDeleteConfirm(null)}>Cancel</Button>
+            <Button variant="destructive" onClick={() => deleteConfirm && deleteProductMutation.mutate({ id: deleteConfirm })} disabled={deleteProductMutation.isPending}>
+              {deleteProductMutation.isPending ? "Deleting..." : "Delete"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// ─── Profile Editor sub-component ────────────────────────────────────────────
+type SupplierRow = {
+  id: number; userId: number; businessName: string; slug: string;
+  supplierType: string; description: string | null; logoUrl: string | null;
+  websiteUrl: string | null; instagramUrl: string | null; facebookUrl: string | null;
+  twitterUrl: string | null; linkedinUrl: string | null; youtubeUrl: string | null;
+  contactName: string | null; contactEmail: string | null; contactPhone: string | null;
+  state: string | null; city: string | null; zipCode: string | null;
+  nationwide: string; status: string; featured: string;
+  createdAt: Date; updatedAt: Date;
+};
+function ProfileEditor({ profile, onSave, saving }: {
+  profile: SupplierRow;
+  onSave: (data: Record<string, unknown>) => void;
+  saving: boolean;
+}) {
+  const [form, setForm] = useState({
+    businessName: profile.businessName,
+    description: profile.description ?? "",
+    logoUrl: profile.logoUrl ?? "",
+    websiteUrl: profile.websiteUrl ?? "",
+    instagramUrl: profile.instagramUrl ?? "",
+    facebookUrl: profile.facebookUrl ?? "",
+    twitterUrl: profile.twitterUrl ?? "",
+    linkedinUrl: profile.linkedinUrl ?? "",
+    youtubeUrl: profile.youtubeUrl ?? "",
+    contactName: profile.contactName ?? "",
+    contactEmail: profile.contactEmail ?? "",
+    contactPhone: profile.contactPhone ?? "",
+    city: profile.city ?? "",
+    state: profile.state ?? "",
+    zipCode: profile.zipCode ?? "",
+  });
+
+  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-1">
+          <Label>Business Name</Label>
+          <Input value={form.businessName} onChange={set("businessName")} />
+        </div>
+        <div className="space-y-1">
+          <Label>Logo URL</Label>
+          <Input value={form.logoUrl} onChange={set("logoUrl")} placeholder="https://..." />
+        </div>
+        <div className="md:col-span-2 space-y-1">
+          <Label>Description</Label>
+          <Textarea value={form.description} onChange={set("description")} rows={3} />
+        </div>
+      </div>
+
+      <div>
+        <h3 className="font-medium text-slate-700 mb-3 flex items-center gap-2"><Globe className="h-4 w-4" /> Online Presence</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { key: "websiteUrl", icon: Globe, placeholder: "https://yoursite.com" },
+            { key: "instagramUrl", icon: Instagram, placeholder: "https://instagram.com/..." },
+            { key: "facebookUrl", icon: Facebook, placeholder: "https://facebook.com/..." },
+            { key: "twitterUrl", icon: Twitter, placeholder: "https://twitter.com/..." },
+            { key: "linkedinUrl", icon: Linkedin, placeholder: "https://linkedin.com/..." },
+            { key: "youtubeUrl", icon: Youtube, placeholder: "https://youtube.com/..." },
+          ].map(({ key, icon: Icon, placeholder }) => (
+            <div key={key} className="flex items-center gap-2">
+              <Icon className="h-4 w-4 text-slate-400 shrink-0" />
+              <Input value={(form as any)[key]} onChange={set(key)} placeholder={placeholder} className="text-sm" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 className="font-medium text-slate-700 mb-3 flex items-center gap-2"><MapPin className="h-4 w-4" /> Location & Contact</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <Input value={form.city} onChange={set("city")} placeholder="City" />
+          <Input value={form.state} onChange={set("state")} placeholder="State (2-letter)" maxLength={2} />
+          <Input value={form.zipCode} onChange={set("zipCode")} placeholder="ZIP Code" />
+          <Input value={form.contactName} onChange={set("contactName")} placeholder="Contact Name" />
+          <Input value={form.contactEmail} onChange={set("contactEmail")} placeholder="Contact Email" />
+          <Input value={form.contactPhone} onChange={set("contactPhone")} placeholder="Phone" />
+        </div>
+      </div>
+
+      <Button onClick={() => onSave(form)} disabled={saving} className="bg-blue-900 hover:bg-blue-800 text-white">
+        {saving ? "Saving..." : "Save Profile"}
+      </Button>
     </div>
   );
 }

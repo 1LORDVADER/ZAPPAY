@@ -91,7 +91,7 @@ export default function AdminSalesPanel() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-blue-700" />
+              <TrendingUp className="h-5 w-5 text-purple-600" />
               <span className="text-3xl font-bold">${((stats?.paidCommissions || 0) / 100).toFixed(0)}</span>
             </div>
           </CardContent>

@@ -19,7 +19,8 @@ import {
   Package,
   Briefcase,
   User,
-  Building2,
+  Leaf,
+  LayoutDashboard,
 } from "lucide-react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
@@ -72,11 +73,6 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 Browse
               </Button>
             </Link>
-            <Link href="/grower-marketplace">
-              <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
-                Marketplace
-              </Button>
-            </Link>
             <Link href="/pricing">
               <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
                 Pricing
@@ -92,7 +88,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 How It Works
               </Button>
             </Link>
-            <a href="mailto:hello@zappayus.co">
+            <a href="mailto:Zappay.co@gmail.com">
               <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
                 Contact
               </Button>
@@ -143,7 +139,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 <DropdownMenuItem asChild>
                   <Link href="/transportation/company-register">
                     <div className="flex items-center gap-2 w-full cursor-pointer py-1">
-                      <Package className="h-4 w-4 text-blue-700 flex-shrink-0" />
+                      <Package className="h-4 w-4 text-purple-600 flex-shrink-0" />
                       <div>
                         <div className="font-medium text-sm">Transportation Company</div>
                         <div className="text-xs text-slate-500">Partner with ZAPPAY</div>
@@ -158,29 +154,6 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                       <div>
                         <div className="font-medium text-sm">SaaS Sales Rep</div>
                         <div className="text-xs text-slate-500">Join our sales team</div>
-                      </div>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/wholesaler-waitlist">
-                    <div className="flex items-center gap-2 w-full cursor-pointer py-1">
-                      <Building2 className="h-4 w-4 text-blue-700 flex-shrink-0" />
-                      <div>
-                        <div className="font-medium text-sm">Wholesaler</div>
-                        <div className="text-xs text-slate-500">Distribute at scale</div>
-                      </div>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href="/supplier-application">
-                    <div className="flex items-center gap-2 w-full cursor-pointer py-1">
-                      <Package className="h-4 w-4 text-slate-600 flex-shrink-0" />
-                      <div>
-                        <div className="font-medium text-sm">Supplier / Manufacturer</div>
-                        <div className="text-xs text-slate-500">List products on Marketplace</div>
                       </div>
                     </div>
                   </Link>
@@ -222,6 +195,11 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                       <Truck className="h-4 w-4" /> Transportation
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/suppliers" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <Leaf className="h-4 w-4" /> Supplier Review
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-slate-700" />
                   <DropdownMenuItem asChild>
                     <Link href="/admin/waitlist" className="flex items-center gap-2 text-yellow-300 hover:text-yellow-200 cursor-pointer font-medium">
@@ -232,6 +210,34 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
               </DropdownMenu>
             )}
 
+            {/* Partner Portal dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10 gap-1">
+                  Partner Portal <ChevronDown className="h-3 w-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-52 bg-slate-900 border-slate-700">
+                <DropdownMenuItem asChild>
+                  <Link href="/supplier/apply" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                    <Leaf className="h-4 w-4 text-green-400" /> Become a Supplier
+                  </Link>
+                </DropdownMenuItem>
+                {isAuthenticated && (
+                  <DropdownMenuItem asChild>
+                    <Link href="/supplier/dashboard" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <LayoutDashboard className="h-4 w-4" /> Supplier Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuSeparator className="bg-slate-700" />
+                <DropdownMenuItem asChild>
+                  <Link href="/grower-marketplace" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                    <Package className="h-4 w-4" /> Grower Marketplace
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             {/* My Applications */}
             {isAuthenticated && user?.role !== "admin" && (
               <Link href="/my-applications">

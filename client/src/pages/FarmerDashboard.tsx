@@ -133,7 +133,7 @@ export default function FarmerDashboard() {
             
             {farmerProfile && (
               <Badge className={`text-lg px-4 py-2 ${
-                farmerProfile.subscriptionTier === 'enterprise' ? 'bg-blue-900 text-white' :
+                farmerProfile.subscriptionTier === 'enterprise' ? 'bg-purple-100 text-purple-800' :
                 farmerProfile.subscriptionTier === 'premium' ? 'bg-blue-100 text-blue-800' :
                 'bg-green-100 text-green-800'
               }`}>
@@ -176,7 +176,7 @@ export default function FarmerDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-blue-700" />
+                  <TrendingUp className="h-5 w-5 text-purple-600" />
                   <span className="text-3xl font-bold text-slate-900">{totalViews}</span>
                 </div>
               </CardContent>

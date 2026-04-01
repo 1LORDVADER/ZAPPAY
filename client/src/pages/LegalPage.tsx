@@ -202,7 +202,7 @@ export default function LegalPage() {
             <div>
               <h3 className="font-bold text-lg mb-4">Contact</h3>
               <ul className="space-y-2">
-                <li>Email: hello@zappayus.co</li>
+                <li>Email: support@zappay.com</li>
                 <li>Phone: 1-800-ZAPPAY-1</li>
               </ul>
             </div>

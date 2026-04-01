@@ -140,7 +140,7 @@ export default function Privacy() {
               <li>Request a copy of your data in a portable format</li>
             </ul>
             <p className="mt-4">
-              To exercise these rights, please contact us at hello@zappayus.co
+              To exercise these rights, please contact us at Zappay.co@gmail.com
             </p>
           </section>
 
@@ -207,7 +207,7 @@ export default function Privacy() {
             <p>
               If you have questions about this Privacy Policy or our privacy practices, please contact us at:
               <br />
-              <strong>Email:</strong> hello@zappayus.co
+              <strong>Email:</strong> Zappay.co@gmail.com
               <br />
               <strong>Address:</strong> ZAPPAY Inc., California, USA
             </p>

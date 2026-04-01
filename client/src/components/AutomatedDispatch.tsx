@@ -391,7 +391,7 @@ const AutomatedDispatch = () => {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Clock className="h-5 w-5 text-blue-700" />
+            <Clock className="h-5 w-5 text-purple-600" />
             Dispatch Queue Management
           </CardTitle>
           <CardDescription>
@@ -414,9 +414,9 @@ const AutomatedDispatch = () => {
                 <div className="text-2xl font-bold text-yellow-600">3</div>
                 <div className="text-sm text-yellow-800">Delayed</div>
               </div>
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <div className="text-2xl font-bold text-blue-700">45</div>
-                <div className="text-sm text-blue-900">Completed Today</div>
+              <div className="text-center p-4 bg-purple-50 rounded-lg">
+                <div className="text-2xl font-bold text-purple-600">45</div>
+                <div className="text-sm text-purple-800">Completed Today</div>
               </div>
             </div>
 

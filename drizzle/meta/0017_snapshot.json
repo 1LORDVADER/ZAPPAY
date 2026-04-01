@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "72ef98af-4bb8-49f3-a477-1173c4b97077",
+  "id": "1eb00de8-2cb8-41f7-9032-b64b10d426dd",
   "prevId": "066576d3-ff38-4837-bc34-4c68a41516f2",
   "tables": {
     "advertiserApplications": {
@@ -2544,16 +2544,16 @@
           "notNull": true,
           "autoincrement": true
         },
-        "businessName": {
-          "name": "businessName",
-          "type": "varchar(255)",
+        "userId": {
+          "name": "userId",
+          "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "supplierType": {
-          "name": "supplierType",
-          "type": "enum('equipment','seeds','nutrients','lighting','soil','packaging','services','technology','other')",
+        "brandName": {
+          "name": "brandName",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -2565,23 +2565,44 @@
           "notNull": true,
           "autoincrement": false
         },
-        "contactEmail": {
-          "name": "contactEmail",
+        "email": {
+          "name": "email",
           "type": "varchar(320)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "contactPhone": {
-          "name": "contactPhone",
+        "phone": {
+          "name": "phone",
           "type": "varchar(30)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "websiteUrl": {
-          "name": "websiteUrl",
+        "website": {
+          "name": "website",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "businessType": {
+          "name": "businessType",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
           "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "licenseNumber": {
+          "name": "licenseNumber",
+          "type": "varchar(100)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -2600,27 +2621,13 @@
           "notNull": false,
           "autoincrement": false
         },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "nationwide": {
-          "name": "nationwide",
-          "type": "enum('yes','no')",
+        "shipsNationwide": {
+          "name": "shipsNationwide",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'yes'"
-        },
-        "message": {
-          "name": "message",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "default": false
         },
         "status": {
           "name": "status",
@@ -2629,6 +2636,27 @@
           "notNull": true,
           "autoincrement": false,
           "default": "'pending'"
+        },
+        "reviewedAt": {
+          "name": "reviewedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "reviewedBy": {
+          "name": "reviewedBy",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "reviewNotes": {
+          "name": "reviewNotes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         },
         "createdAt": {
           "name": "createdAt",
@@ -2685,16 +2713,16 @@
           "notNull": true,
           "autoincrement": false
         },
-        "description": {
-          "name": "description",
-          "type": "text",
+        "strainName": {
+          "name": "strainName",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "category": {
           "name": "category",
-          "type": "enum('equipment','seeds','nutrients','lighting','soil','packaging','services','technology','other')",
+          "type": "enum('seeds','clones','equipment','nutrients','packaging','lab_services','consulting','lighting','irrigation','other')",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -2706,20 +2734,34 @@
           "notNull": false,
           "autoincrement": false
         },
-        "unitPrice": {
-          "name": "unitPrice",
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "photoUrl": {
+          "name": "photoUrl",
+          "type": "varchar(1000)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "unitPriceCents": {
+          "name": "unitPriceCents",
           "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "unitLabel": {
-          "name": "unitLabel",
+        "unit": {
+          "name": "unit",
           "type": "varchar(50)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'unit'"
+          "default": "'each'"
         },
         "minOrderQty": {
           "name": "minOrderQty",
@@ -2731,41 +2773,11 @@
         },
         "inStock": {
           "name": "inStock",
-          "type": "enum('yes','no')",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'yes'"
-        },
-        "localPickup": {
-          "name": "localPickup",
-          "type": "enum('yes','no')",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "'no'"
-        },
-        "photos": {
-          "name": "photos",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "externalUrl": {
-          "name": "externalUrl",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "status": {
-          "name": "status",
-          "type": "enum('active','inactive','sold_out')",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "'active'"
+          "default": true
         },
         "createdAt": {
           "name": "createdAt",
@@ -2812,26 +2824,19 @@
           "name": "userId",
           "type": "int",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "businessName": {
-          "name": "businessName",
-          "type": "varchar(255)",
-          "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "slug": {
           "name": "slug",
-          "type": "varchar(255)",
+          "type": "varchar(120)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "supplierType": {
-          "name": "supplierType",
-          "type": "enum('equipment','seeds','nutrients','lighting','soil','packaging','services','technology','other')",
+        "brandName": {
+          "name": "brandName",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -2845,77 +2850,35 @@
         },
         "logoUrl": {
           "name": "logoUrl",
-          "type": "text",
+          "type": "varchar(1000)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "websiteUrl": {
           "name": "websiteUrl",
-          "type": "text",
+          "type": "varchar(500)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "instagramUrl": {
           "name": "instagramUrl",
-          "type": "text",
+          "type": "varchar(500)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "facebookUrl": {
           "name": "facebookUrl",
-          "type": "text",
+          "type": "varchar(500)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "twitterUrl": {
           "name": "twitterUrl",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "linkedinUrl": {
-          "name": "linkedinUrl",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "youtubeUrl": {
-          "name": "youtubeUrl",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contactName": {
-          "name": "contactName",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contactEmail": {
-          "name": "contactEmail",
-          "type": "varchar(320)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contactPhone": {
-          "name": "contactPhone",
-          "type": "varchar(30)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "state": {
-          "name": "state",
-          "type": "varchar(2)",
+          "type": "varchar(500)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -2927,24 +2890,24 @@
           "notNull": false,
           "autoincrement": false
         },
-        "zipCode": {
-          "name": "zipCode",
-          "type": "varchar(10)",
+        "state": {
+          "name": "state",
+          "type": "varchar(2)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "nationwide": {
-          "name": "nationwide",
-          "type": "enum('yes','no')",
+        "shipsNationwide": {
+          "name": "shipsNationwide",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'yes'"
+          "default": false
         },
         "status": {
           "name": "status",
-          "type": "enum('pending','approved','suspended')",
+          "type": "enum('pending','approved','rejected','suspended')",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
@@ -2952,11 +2915,32 @@
         },
         "featured": {
           "name": "featured",
-          "type": "enum('yes','no')",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'no'"
+          "default": false
+        },
+        "reviewedAt": {
+          "name": "reviewedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "reviewedBy": {
+          "name": "reviewedBy",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "reviewNotes": {
+          "name": "reviewNotes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         },
         "createdAt": {
           "name": "createdAt",

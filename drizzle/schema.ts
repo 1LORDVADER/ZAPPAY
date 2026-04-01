@@ -541,116 +541,75 @@ export const wholesalerWaitlist = mysqlTable("wholesalerWaitlist", {
 export type WholesalerWaitlist = typeof wholesalerWaitlist.$inferSelect;
 export type InsertWholesalerWaitlist = typeof wholesalerWaitlist.$inferInsert;
 
-// ============================================================
-// GROWER MARKETPLACE — Supplier / Manufacturer Tables
-// ============================================================
 
-// Supplier / Manufacturer brand profiles
+
+// ─── Supplier Tables (matched to live DB schema) ─────────────────────────────
 export const suppliers = mysqlTable("suppliers", {
   id: int("id").autoincrement().primaryKey(),
-  userId: int("userId"), // null if not yet claimed by a user account
+  userId: int("userId").notNull(),
   businessName: varchar("businessName", { length: 255 }).notNull(),
-  slug: varchar("slug", { length: 255 }).notNull().unique(), // URL-safe brand identifier
-  supplierType: mysqlEnum("supplierType", [
-    "equipment",
-    "seeds",
-    "nutrients",
-    "lighting",
-    "soil",
-    "packaging",
-    "services",
-    "technology",
-    "other",
-  ]).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  supplierType: mysqlEnum("supplierType", ["equipment","seeds","nutrients","lighting","soil","packaging","services","technology","other"]).notNull().default("other"),
   description: text("description"),
   logoUrl: text("logoUrl"),
   websiteUrl: text("websiteUrl"),
-  // Social media links
   instagramUrl: text("instagramUrl"),
   facebookUrl: text("facebookUrl"),
   twitterUrl: text("twitterUrl"),
   linkedinUrl: text("linkedinUrl"),
   youtubeUrl: text("youtubeUrl"),
-  // Contact
   contactName: varchar("contactName", { length: 255 }),
   contactEmail: varchar("contactEmail", { length: 320 }),
   contactPhone: varchar("contactPhone", { length: 30 }),
-  // Location
   state: varchar("state", { length: 2 }),
   city: varchar("city", { length: 100 }),
   zipCode: varchar("zipCode", { length: 10 }),
-  nationwide: mysqlEnum("nationwide", ["yes", "no"]).default("yes").notNull(),
-  // Status
-  status: mysqlEnum("status", ["pending", "approved", "suspended"]).default("pending").notNull(),
-  featured: mysqlEnum("featured", ["yes", "no"]).default("no").notNull(),
+  nationwide: mysqlEnum("nationwide", ["yes","no"]).default("no").notNull(),
+  status: mysqlEnum("status", ["pending","approved","suspended"]).default("pending").notNull(),
+  featured: mysqlEnum("featured", ["yes","no"]).default("no").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
-
 export type Supplier = typeof suppliers.$inferSelect;
 export type InsertSupplier = typeof suppliers.$inferInsert;
 
-// Supplier product/service listings
 export const supplierProducts = mysqlTable("supplierProducts", {
   id: int("id").autoincrement().primaryKey(),
   supplierId: int("supplierId").notNull(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
-  category: mysqlEnum("category", [
-    "equipment",
-    "seeds",
-    "nutrients",
-    "lighting",
-    "soil",
-    "packaging",
-    "services",
-    "technology",
-    "other",
-  ]).notNull(),
-  subcategory: varchar("subcategory", { length: 100 }), // e.g. "LED Grow Lights", "Feminized Seeds"
-  unitPrice: int("unitPrice").notNull(), // in cents
-  unitLabel: varchar("unitLabel", { length: 50 }).default("unit").notNull(), // e.g. "bag", "unit", "hour", "lb"
+  category: mysqlEnum("category", ["equipment","seeds","nutrients","lighting","soil","packaging","services","technology","other"]).notNull(),
+  subcategory: varchar("subcategory", { length: 100 }),
+  unitPrice: int("unitPrice").notNull(),
+  unitLabel: varchar("unitLabel", { length: 50 }).default("each").notNull(),
   minOrderQty: int("minOrderQty").default(1).notNull(),
-  inStock: mysqlEnum("inStock", ["yes", "no"]).default("yes").notNull(),
-  localPickup: mysqlEnum("localPickup", ["yes", "no"]).default("no").notNull(), // available for local pickup
-  photos: text("photos"), // JSON array of CDN URLs
-  externalUrl: text("externalUrl"), // link to product on supplier's own site
-  status: mysqlEnum("status", ["active", "inactive", "sold_out"]).default("active").notNull(),
+  inStock: mysqlEnum("inStock", ["yes","no"]).default("yes").notNull(),
+  localPickup: mysqlEnum("localPickup", ["yes","no"]).default("no").notNull(),
+  photos: text("photos"),
+  externalUrl: text("externalUrl"),
+  status: mysqlEnum("status", ["active","inactive","sold_out"]).default("active").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
-
 export type SupplierProduct = typeof supplierProducts.$inferSelect;
 export type InsertSupplierProduct = typeof supplierProducts.$inferInsert;
 
-// Supplier onboarding applications
 export const supplierApplications = mysqlTable("supplierApplications", {
   id: int("id").autoincrement().primaryKey(),
   businessName: varchar("businessName", { length: 255 }).notNull(),
-  supplierType: mysqlEnum("supplierType", [
-    "equipment",
-    "seeds",
-    "nutrients",
-    "lighting",
-    "soil",
-    "packaging",
-    "services",
-    "technology",
-    "other",
-  ]).notNull(),
+  supplierType: mysqlEnum("supplierType", ["equipment","seeds","nutrients","lighting","soil","packaging","services","technology","other"]).notNull(),
   contactName: varchar("contactName", { length: 255 }).notNull(),
   contactEmail: varchar("contactEmail", { length: 320 }).notNull(),
   contactPhone: varchar("contactPhone", { length: 30 }),
   websiteUrl: text("websiteUrl"),
   state: varchar("state", { length: 2 }).notNull(),
   city: varchar("city", { length: 100 }),
-  description: text("description"), // what they sell / offer
-  nationwide: mysqlEnum("nationwide", ["yes", "no"]).default("yes").notNull(),
-  message: text("message"), // additional notes from applicant
-  status: mysqlEnum("status", ["pending", "approved", "rejected"]).default("pending").notNull(),
+  description: text("description"),
+  nationwide: mysqlEnum("nationwide", ["yes","no"]).default("no").notNull(),
+  message: text("message"),
+  status: mysqlEnum("status", ["pending","approved","rejected"]).default("pending").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
-
 export type SupplierApplication = typeof supplierApplications.$inferSelect;
 export type InsertSupplierApplication = typeof supplierApplications.$inferInsert;

@@ -77,7 +77,7 @@ export default function SalesRepDashboard() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <TrendingUp className="h-5 w-5 text-blue-700 mt-1" />
+                <TrendingUp className="h-5 w-5 text-purple-600 mt-1" />
                 <div>
                   <h3 className="font-semibold">Track Your Success</h3>
                   <p className="text-sm text-muted-foreground">
@@ -152,7 +152,7 @@ export default function SalesRepDashboard() {
       </div>
 
       {/* Referral Code Card */}
-      <Card className="bg-gradient-to-r from-blue-50 to-slate-100 border-2">
+      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-2">
         <CardHeader>
           <CardTitle>Your Referral Code</CardTitle>
           <CardDescription>Share this code with farmers to earn commissions</CardDescription>
@@ -218,7 +218,7 @@ export default function SalesRepDashboard() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2">
-              <Award className="h-5 w-5 text-blue-700" />
+              <Award className="h-5 w-5 text-purple-600" />
               <span className="text-3xl font-bold">${stats.totalEarned.toFixed(0)}</span>
             </div>
           </CardContent>

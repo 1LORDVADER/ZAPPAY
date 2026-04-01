@@ -141,10 +141,10 @@ export default function ForFarmers() {
                 </CardHeader>
               </Card>
 
-              <Card className="border-2 border-slate-200 hover:border-blue-700 transition-all hover:shadow-xl">
+              <Card className="border-2 border-slate-200 hover:border-purple-500 transition-all hover:shadow-xl">
                 <CardHeader>
-                  <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <Shield className="h-6 w-6 text-blue-700" />
+                  <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <Shield className="h-6 w-6 text-purple-600" />
                   </div>
                   <CardTitle className="text-2xl">Built-in Compliance</CardTitle>
                   <CardDescription className="text-base">
