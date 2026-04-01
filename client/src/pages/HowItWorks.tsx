@@ -4,10 +4,44 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Sprout, Store, Truck, ShoppingCart, CheckCircle, DollarSign, Shield, Zap } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { trpc } from "@/lib/trpc";
 
 export default function HowItWorks() {
   const { user, isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
+
+  // Fetch the user's farmer profile and dispensary application status
+  const { data: farmerProfile } = trpc.profile.getFarmerProfile.useQuery(undefined, {
+    enabled: isAuthenticated,
+  });
+  const { data: userStatus } = (trpc as any).profile.getUserStatus?.useQuery?.(undefined, {
+    enabled: isAuthenticated,
+  }) ?? { data: null };
+
+  // Determine smart CTA destinations based on user progress
+  const farmerCTA = {
+    label: farmerProfile ? "Go to Farmer Dashboard" : "Join as Farmer",
+    route: farmerProfile ? "/farmer/dashboard" : "/farmer/register",
+    description: farmerProfile ? "Your application is on file" : "Apply to list your products",
+  };
+
+  const dispensaryCTA = {
+    label: "Join as Dispensary",
+    route: "/dispensary-application",
+    description: "Apply to partner with ZAPPAY",
+  };
+
+  const transporterCTA = {
+    label: "Join as Transporter",
+    route: "/transportation/driver-register",
+    description: "Apply to deliver cannabis legally",
+  };
+
+  const wholesalerCTA = {
+    label: "Join Wholesaler Waitlist",
+    route: "/wholesaler-waitlist",
+    description: "Get early access to bulk ordering",
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -292,42 +326,79 @@ export default function HowItWorks() {
       {/* CTA Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          <div className="max-w-5xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-slate-600 mb-8">
+            <p className="text-xl text-slate-600 mb-12">
               Join the payment processing network built for the cannabis industry
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                onClick={() => setLocation("/farmer/register")}
-                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg px-8 py-6"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Farmer CTA */}
+              <button
+                onClick={() => setLocation(farmerCTA.route)}
+                className="group flex flex-col items-center gap-3 bg-green-700 hover:bg-green-800 text-white rounded-xl px-6 py-6 transition-all shadow-md hover:shadow-lg"
               >
-                I'm a Farmer
-              </Button>
-              <Button 
-                size="lg"
-                onClick={() => setLocation("/transportation/driver-register")}
-                className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-lg px-8 py-6"
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <Sprout className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-semibold">{farmerCTA.label}</p>
+                  <p className="text-sm text-green-100 mt-1">{farmerCTA.description}</p>
+                </div>
+              </button>
+
+              {/* Transporter CTA */}
+              <button
+                onClick={() => setLocation(transporterCTA.route)}
+                className="group flex flex-col items-center gap-3 bg-blue-900 hover:bg-blue-800 text-white rounded-xl px-6 py-6 transition-all shadow-md hover:shadow-lg"
               >
-                I'm a Transporter
-              </Button>
-              <Button 
-                size="lg"
-                onClick={() => setLocation("/dispensary-application")}
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-6"
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <Truck className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-semibold">{transporterCTA.label}</p>
+                  <p className="text-sm text-blue-200 mt-1">{transporterCTA.description}</p>
+                </div>
+              </button>
+
+              {/* Dispensary CTA */}
+              <button
+                onClick={() => setLocation(dispensaryCTA.route)}
+                className="group flex flex-col items-center gap-3 bg-slate-700 hover:bg-slate-800 text-white rounded-xl px-6 py-6 transition-all shadow-md hover:shadow-lg"
               >
-                I'm a Dispensary
-              </Button>
-              <Button 
-                size="lg"
-                onClick={() => setLocation("/wholesaler-waitlist")}
-                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-lg px-8 py-6"
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <Store className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-semibold">{dispensaryCTA.label}</p>
+                  <p className="text-sm text-slate-300 mt-1">{dispensaryCTA.description}</p>
+                </div>
+              </button>
+
+              {/* Wholesaler CTA */}
+              <button
+                onClick={() => setLocation(wholesalerCTA.route)}
+                className="group flex flex-col items-center gap-3 bg-red-600 hover:bg-red-700 text-white rounded-xl px-6 py-6 transition-all shadow-md hover:shadow-lg"
               >
-                I'm a Wholesaler
-              </Button>
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <ShoppingCart className="h-7 w-7 text-white" />
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-semibold">{wholesalerCTA.label}</p>
+                  <p className="text-sm text-red-100 mt-1">{wholesalerCTA.description}</p>
+                </div>
+              </button>
+            </div>
+
+            {/* View Products link */}
+            <div className="mt-8">
+              <button
+                onClick={() => setLocation("/")}
+                className="text-blue-900 font-medium hover:underline text-sm"
+              >
+                Browse Products →
+              </button>
             </div>
           </div>
         </div>

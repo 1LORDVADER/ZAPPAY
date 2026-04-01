@@ -79,27 +79,27 @@ export function StrainRecommendations() {
   };
 
   return (
-    <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white shadow-md">
+    <Card className="border-2 border-blue-900 shadow-md overflow-hidden">
       <CardHeader
-        className="cursor-pointer select-none"
+        className="cursor-pointer select-none bg-blue-900 text-white"
         onClick={() => setIsExpanded((v) => !v)}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Sparkles className="h-5 w-5 text-blue-700" />
+            <div className="p-2 bg-white/20 rounded-lg">
+              <Sparkles className="h-5 w-5 text-white" />
             </div>
             <div>
-              <CardTitle className="text-lg text-blue-900">Norris</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-lg text-white">Norris</CardTitle>
+              <CardDescription className="text-blue-200">
                 Tell us what you need — we'll find the right match
               </CardDescription>
             </div>
           </div>
           {isExpanded ? (
-            <ChevronUp className="h-5 w-5 text-slate-400" />
+            <ChevronUp className="h-5 w-5 text-white/70" />
           ) : (
-            <ChevronDown className="h-5 w-5 text-slate-400" />
+            <ChevronDown className="h-5 w-5 text-white/70" />
           )}
         </div>
       </CardHeader>

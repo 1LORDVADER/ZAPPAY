@@ -79,7 +79,7 @@ export default function CheckoutSuccess() {
           </div>
 
           <p className="text-xs text-center text-slate-500 pt-4 border-t">
-            Questions about your order? Contact us at support@zappayus.co
+            Questions about your order? Contact us at hello@zappayus.co
           </p>
         </CardContent>
       </Card>

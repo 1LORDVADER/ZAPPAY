@@ -141,7 +141,7 @@ export default function Terms() {
             <p>
               For questions about these Terms, please contact us at:
               <br />
-              <strong>Email:</strong> Zappay.co@gmail.com
+              <strong>Email:</strong> hello@zappayus.co
               <br />
               <strong>Address:</strong> ZAPPAY Inc., California, USA
             </p>

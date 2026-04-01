@@ -86,7 +86,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 How It Works
               </Button>
             </Link>
-            <a href="mailto:Zappay.co@gmail.com">
+            <a href="mailto:hello@zappayus.co">
               <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
                 Contact
               </Button>

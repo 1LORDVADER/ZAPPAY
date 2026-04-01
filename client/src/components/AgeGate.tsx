@@ -246,7 +246,7 @@ export function AgeGate() {
             )}
 
             <p className="text-xs text-muted-foreground">
-              If you believe this is an error, please contact support at F5onellc@gmail.com
+              If you believe this is an error, please contact support at hello@zappayus.co
             </p>
           </div>
         </div>

@@ -366,7 +366,7 @@ export default function Advertise() {
       <footer className="bg-slate-900 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-slate-400">
-            © 2026 ZAPPAY. All rights reserved. | <a href="mailto:Zappay.co@gmail.com" className="hover:text-white">Zappay.co@gmail.com</a>
+            © 2026 ZAPPAY. All rights reserved. | <a href="mailto:hello@zappayus.co" className="hover:text-white">hello@zappayus.co</a>
           </p>
         </div>
       </footer>

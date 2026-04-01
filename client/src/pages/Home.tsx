@@ -34,8 +34,11 @@ export default function Home() {
     categories: [],
   });
   
-  // Fetch all products
-  const { data: products = [], isLoading } = trpc.products.list.useQuery();
+  // Fetch all products — cache for 5 minutes to avoid re-fetching on every tab switch
+  const { data: products = [], isLoading } = trpc.products.list.useQuery(undefined, {
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000,   // keep in memory for 10 minutes
+  });
   
   // Fetch cart items
   const { data: cartItems = [] } = trpc.cart.getItems.useQuery();
@@ -182,8 +185,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-green-100 rounded-lg">
-                      <Leaf className="h-6 w-6 text-green-600" />
+                    <div className="p-3 bg-green-700 rounded-lg">
+                      <Leaf className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">{products.length}+</p>
@@ -198,8 +201,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 rounded-lg">
-                      <Zap className="h-6 w-6 text-blue-600" />
+                    <div className="p-3 bg-amber-500 rounded-lg">
+                      <Zap className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">5.2%</p>
@@ -214,8 +217,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 rounded-lg">
-                      <Package className="h-6 w-6 text-blue-700" />
+                    <div className="p-3 bg-blue-900 rounded-lg">
+                      <Package className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">24/7</p>
@@ -241,7 +244,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/for-farmers">
-              <Button size="lg" variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50 px-8">
+              <Button size="lg" className="bg-blue-900 hover:bg-blue-800 text-white font-semibold px-8">
                 Learn How It Works
               </Button>
             </Link>
@@ -391,16 +394,12 @@ export default function Home() {
                           <div className="relative aspect-square bg-white overflow-hidden">
                             {product.photos ? (
                               <img 
-                                src={(() => {
-                                  try {
-                                    const photos = typeof product.photos === 'string' ? JSON.parse(product.photos) : product.photos;
-                                    return Array.isArray(photos) ? photos[0] : product.photos;
-                                  } catch {
-                                    return product.photos;
-                                  }
-                                })()} 
+                                src={product.photos as string}
                                 alt={product.name}
                                 loading="lazy"
+                                decoding="async"
+                                width={300}
+                                height={300}
                                 className="w-full h-full object-contain p-4"
                               />
                             ) : (
@@ -574,10 +573,10 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-lg mb-4">Contact</h3>
               <ul className="space-y-2 text-sm">
-                <li>Email: support@zappay.com</li>
+                <li>Email: hello@zappayus.co</li>
                 <li>Phone: 1-800-ZAPPAY-1</li>
-                <li>Privacy: privacy@zappay.com</li>
-                <li>Compliance: compliance@zappay.com</li>
+                <li>Privacy: privacy@zappayus.co</li>
+                <li>Compliance: compliance@zappayus.co</li>
               </ul>
             </div>
             <div>
