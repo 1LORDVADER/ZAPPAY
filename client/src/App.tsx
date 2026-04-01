@@ -51,6 +51,7 @@ const SupplierApplication = lazy(() => import("@/pages/SupplierApplication"));
 const SupplierDashboard = lazy(() => import("@/pages/SupplierDashboard"));
 const DispensaryDashboard = lazy(() => import("@/pages/DispensaryDashboard"));
 const WholesalerDashboard = lazy(() => import("@/pages/WholesalerDashboard"));
+const AdminSuppliers = lazy(() => import("@/pages/AdminSuppliers"));
 
 function PageLoader() {
   return (
@@ -107,6 +108,7 @@ function Router() {
         <Route path="/supplier/dashboard" component={SupplierDashboard} />
         <Route path="/dispensary/dashboard" component={DispensaryDashboard} />
         <Route path="/wholesaler/dashboard" component={WholesalerDashboard} />
+        <Route path="/admin/suppliers" component={AdminSuppliers} />
         {/* Final fallback route */}
         <Route component={NotFound} />
       </Switch>

@@ -594,3 +594,36 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Fix 404 error on How It Works page — "I'm a Farmer" button (was /farmer/registration, now /farmer/register)
 - [x] Fix 404 error on How It Works page — "I'm a Transporter" button (was /driver/registration, now /transportation/driver-register)
 - [x] Replace "I'm a Consumer" button on How It Works page with "I'm a Dispensary" and "I'm a Wholesaler" buttons
+
+
+## Session: April 1, 2026 — Supplier Ecosystem Completion
+
+### Backend CRUD Fixes
+- [x] Fix unitPrice type: int (cents) in createProduct procedure
+- [x] Fix unitPrice type: int (cents) in updateProduct procedure
+- [x] All supplier procedures compile with 0 TypeScript errors
+
+### Supplier Dashboard (Full Rewrite)
+- [x] Wire product listing to trpc.suppliers.getMyProducts (live data)
+- [x] Wire product creation to trpc.suppliers.createProduct (form → backend)
+- [x] Wire product editing to trpc.suppliers.updateProduct
+- [x] Wire product deletion to trpc.suppliers.deleteProduct
+- [x] Wire in-stock toggle to trpc.suppliers.toggleProductStock (optimistic update)
+- [x] Wire brand profile editing to trpc.suppliers.updateMyProfile
+- [x] Show "No approved profile" state with link to application form
+- [x] Three-tab layout: Overview, Products, Profile
+
+### Admin Supplier Review Panel (/admin/suppliers)
+- [x] Build AdminSuppliers page with admin-only access guard
+- [x] Applications tab: pending review queue with Approve/Reject buttons
+- [x] Applications tab: previously reviewed applications list with re-approve option
+- [x] Suppliers tab: all approved suppliers with Featured/Unfeature toggle
+- [x] Optimistic updates for featured toggle
+- [x] Register /admin/suppliers route in App.tsx
+
+### Grower Marketplace (Already Live)
+- [x] Confirmed: already wired to trpc.suppliers.browseProducts (live data)
+- [x] Category filter pills, search, local pickup filter all functional
+
+### Tests
+- [x] All 43 tests passing after changes
