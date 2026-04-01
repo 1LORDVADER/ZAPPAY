@@ -214,8 +214,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-purple-100 rounded-lg">
-                      <Package className="h-6 w-6 text-purple-600" />
+                    <div className="p-3 bg-blue-100 rounded-lg">
+                      <Package className="h-6 w-6 text-blue-700" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">24/7</p>
@@ -279,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* Products Section */}
-      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50">
+      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
         <div className="container mx-auto">
           <Tabs defaultValue="all" className="w-full" onValueChange={handleCategoryChange}>
             <motion.div

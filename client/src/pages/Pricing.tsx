@@ -57,7 +57,7 @@ export default function Pricing() {
       price: "$1,100",
       period: "per month",
       description: "For established farms ready to scale",
-      color: "from-purple-500 to-purple-600",
+      color: "from-blue-800 to-blue-900",
       icon: TrendingUp,
       features: [
         { text: "Unlimited product listings", included: true },
@@ -150,7 +150,7 @@ export default function Pricing() {
               <Check className="mr-2 h-4 w-4" />
               Cancel Anytime
             </Badge>
-            <Badge className="bg-purple-600 text-white hover:bg-purple-700">
+            <Badge className="bg-blue-800 text-white hover:bg-blue-900">
               <Check className="mr-2 h-4 w-4" />
               5.2% Processing Fee
             </Badge>
@@ -261,7 +261,7 @@ export default function Pricing() {
                   <th className="text-left p-4 text-slate-900 font-semibold">Feature</th>
                   <th className="text-center p-4 text-slate-900 font-semibold">Premium</th>
                   <th className="text-center p-4 text-slate-900 font-semibold">Pay-As-You-Go</th>
-                  <th className="text-center p-4 text-purple-600 font-semibold">Elite Grower</th>
+                  <th className="text-center p-4 text-blue-800 font-semibold">Elite Grower</th>
                 </tr>
               </thead>
               <tbody>

@@ -26,7 +26,7 @@ import { Users, Download, Search, Filter, Building2, Truck, Store, Leaf, Package
 const BUSINESS_TYPE_LABELS: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
   farmer: { label: 'Farmer', color: 'bg-green-100 text-green-800', icon: <Leaf className="h-3 w-3" /> },
   dispensary: { label: 'Dispensary', color: 'bg-blue-100 text-blue-800', icon: <Store className="h-3 w-3" /> },
-  distributor: { label: 'Distributor', color: 'bg-purple-100 text-purple-800', icon: <Package className="h-3 w-3" /> },
+  distributor: { label: 'Distributor', color: 'bg-slate-200 text-slate-800', icon: <Package className="h-3 w-3" /> },
   transporter: { label: 'Transporter', color: 'bg-orange-100 text-orange-800', icon: <Truck className="h-3 w-3" /> },
   other: { label: 'Other', color: 'bg-gray-100 text-gray-800', icon: <Building2 className="h-3 w-3" /> },
 }
@@ -141,7 +141,7 @@ export default function AdminWaitlist() {
             { label: 'Total Signups', value: counts.total, color: 'bg-blue-900 text-white' },
             { label: 'Farmers', value: counts.farmer, color: 'bg-green-600 text-white' },
             { label: 'Dispensaries', value: counts.dispensary, color: 'bg-blue-600 text-white' },
-            { label: 'Distributors', value: counts.distributor, color: 'bg-purple-600 text-white' },
+            { label: 'Distributors', value: counts.distributor, color: 'bg-blue-800 text-white' },
             { label: 'Transporters', value: counts.transporter, color: 'bg-orange-500 text-white' },
           ].map((stat) => (
             <Card key={stat.label} className={`${stat.color} border-0`}>

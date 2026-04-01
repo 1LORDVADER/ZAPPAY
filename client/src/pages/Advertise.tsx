@@ -30,7 +30,7 @@ export default function Advertise() {
       name: "Standard Ads",
       price: "$500/day",
       annualPrice: "$182,500/year",
-      color: "from-purple-500 to-purple-600",
+      color: "from-blue-800 to-blue-900",
       features: [
         "6 hours daily display time",
         "2M daily impressions",
@@ -161,10 +161,10 @@ export default function Advertise() {
               </CardHeader>
             </Card>
 
-            <Card className="border-2 border-slate-200 hover:border-purple-500 transition-all">
+            <Card className="border-2 border-slate-200 hover:border-blue-700 transition-all">
               <CardHeader>
-                <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <BarChart3 className="h-6 w-6 text-purple-600" />
+                <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <BarChart3 className="h-6 w-6 text-blue-700" />
                 </div>
                 <CardTitle className="text-2xl">Transaction Data</CardTitle>
                 <CardDescription className="text-base">
