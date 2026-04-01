@@ -575,3 +575,7 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] Apply all 59 product images to database (photos column) — 59/59 updated, 0 skipped
 - [x] Verify all products show images on site — sample verification passed
 - [x] Save checkpoint
+
+## GitHub & Contact Email (March 31, 2026)
+- [ ] Push latest code to GitHub repo 1LORDVADER/ZAPPAY — use Settings → GitHub in Management UI
+- [x] Add hello@zappayus.co contact email to /join page footer — added to footer nav links

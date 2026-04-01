@@ -640,6 +640,7 @@ export default function JoinLanding() {
             <a href="/terms-of-service" className="hover:text-slate-400 transition-colors">Terms</a>
             <a href="/privacy-policy" className="hover:text-slate-400 transition-colors">Privacy</a>
             <a href="/age-verification" className="hover:text-slate-400 transition-colors">Age Verification</a>
+            <a href="mailto:hello@zappayus.co" className="hover:text-slate-400 transition-colors">hello@zappayus.co</a>
           </div>
           <div className="text-center sm:text-right">
             For licensed cannabis businesses only. 18+ / 21+ where required.
