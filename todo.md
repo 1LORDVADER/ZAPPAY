@@ -589,3 +589,8 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [ ] Generate correct category-appropriate images for mismatched products
 - [ ] Apply corrected prices and images to database
 - [ ] Save checkpoint
+
+## How It Works Page Fixes (April 1, 2026)
+- [x] Fix 404 error on How It Works page — "I'm a Farmer" button (was /farmer/registration, now /farmer/register)
+- [x] Fix 404 error on How It Works page — "I'm a Transporter" button (was /driver/registration, now /transportation/driver-register)
+- [x] Replace "I'm a Consumer" button on How It Works page with "I'm a Dispensary" and "I'm a Wholesaler" buttons
