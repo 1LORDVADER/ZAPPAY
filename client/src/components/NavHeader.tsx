@@ -19,6 +19,7 @@ import {
   Package,
   Briefcase,
   User,
+  Building2,
 } from "lucide-react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
@@ -69,6 +70,11 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
             <Link href="/">
               <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
                 Browse
+              </Button>
+            </Link>
+            <Link href="/grower-marketplace">
+              <Button variant="ghost" size="sm" className="text-white hover:text-red-400 hover:bg-white/10">
+                Marketplace
               </Button>
             </Link>
             <Link href="/pricing">
@@ -152,6 +158,29 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                       <div>
                         <div className="font-medium text-sm">SaaS Sales Rep</div>
                         <div className="text-xs text-slate-500">Join our sales team</div>
+                      </div>
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/wholesaler-waitlist">
+                    <div className="flex items-center gap-2 w-full cursor-pointer py-1">
+                      <Building2 className="h-4 w-4 text-blue-700 flex-shrink-0" />
+                      <div>
+                        <div className="font-medium text-sm">Wholesaler</div>
+                        <div className="text-xs text-slate-500">Distribute at scale</div>
+                      </div>
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/supplier-application">
+                    <div className="flex items-center gap-2 w-full cursor-pointer py-1">
+                      <Package className="h-4 w-4 text-slate-600 flex-shrink-0" />
+                      <div>
+                        <div className="font-medium text-sm">Supplier / Manufacturer</div>
+                        <div className="text-xs text-slate-500">List products on Marketplace</div>
                       </div>
                     </div>
                   </Link>

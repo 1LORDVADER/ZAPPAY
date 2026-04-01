@@ -120,6 +120,13 @@
       "when": 1774656819128,
       "tag": "0016_sleepy_infant_terrible",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "5",
+      "when": 1775081625467,
+      "tag": "0017_flashy_kid_colt",
+      "breakpoints": true
     }
   ]
 }

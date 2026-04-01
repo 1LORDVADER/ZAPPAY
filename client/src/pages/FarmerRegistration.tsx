@@ -15,7 +15,7 @@ export default function FarmerRegistration() {
   const { toast } = useToast();
   const [referralCode, setReferralCode] = useState("");
   const [verifiedRep, setVerifiedRep] = useState<any>(null);
-  const [selectedTier, setSelectedTier] = useState<"standard" | "premium">("standard");
+  const [selectedTier, setSelectedTier] = useState<"standard" | "premium" | "elite">("standard");
   const [formData, setFormData] = useState({
     businessName: "",
     licenseNumber: "",
@@ -81,27 +81,48 @@ export default function FarmerRegistration() {
     standard: {
       name: "Standard",
       price: 250,
+      badge: null,
+      highlight: false,
       features: [
-        "Platform access for 1 year FREE",
-        "$250/month after trial",
+        "$250/month (deducted from earnings)",
         "List unlimited products",
         "5.2% transaction fee",
-        "Basic analytics",
+        "Basic analytics dashboard",
         "Email support",
       ],
     },
     premium: {
       name: "Premium",
       price: 1100,
+      badge: null,
+      highlight: false,
       features: [
-        "Platform access for 1 year FREE",
-        "$1,100/month after trial",
+        "$1,100/month (deducted from earnings)",
         "List unlimited products",
         "5.2% transaction fee",
         "Advanced analytics & insights",
         "Priority support",
         "Featured farmer badge",
         "Marketing tools",
+      ],
+    },
+    elite: {
+      name: "Elite Grower",
+      price: 2997,
+      badge: "BEST VALUE",
+      highlight: true,
+      features: [
+        "$2,997/month (deducted from earnings)",
+        "Everything in Premium, PLUS:",
+        "24/7 monthly ad campaigns (premium placement)",
+        "Dedicated account manager",
+        "Priority 24/7 live chat support",
+        "AI-powered analytics & demand forecasting",
+        "Top 3 search result placement",
+        "Exclusive beta feature access",
+        "API access for inventory management",
+        "Custom marketing materials",
+        "Multi-location management",
       ],
     },
   };
@@ -155,33 +176,46 @@ export default function FarmerRegistration() {
       <Card className="mb-6">
         <CardHeader>
           <CardTitle>Choose Your Subscription Tier</CardTitle>
-          <CardDescription>First year FREE for all tiers - select what works best for your business</CardDescription>
+          <CardDescription>Monthly subscription deducted from your earnings — no upfront payments required</CardDescription>
         </CardHeader>
         <CardContent>
-          <RadioGroup value={selectedTier} onValueChange={(value) => setSelectedTier(value as "standard" | "premium")}>
-            <div className="grid md:grid-cols-2 gap-4">
-              {(["standard", "premium"] as const).map((tier) => (
+          <RadioGroup value={selectedTier} onValueChange={(value) => setSelectedTier(value as "standard" | "premium" | "elite")}>
+            <div className="grid md:grid-cols-3 gap-4">
+              {(["standard", "premium", "elite"] as const).map((tier) => (
                 <label
                   key={tier}
-                  className={`relative flex cursor-pointer rounded-lg border-2 p-6 hover:border-primary transition-colors ${
-                    selectedTier === tier ? "border-primary bg-primary/5" : "border-border"
+                  className={`relative flex cursor-pointer rounded-lg border-2 p-5 hover:border-blue-900 transition-colors ${
+                    selectedTier === tier
+                      ? "border-blue-900 bg-blue-50"
+                      : tierPricing[tier].highlight
+                      ? "border-red-500 bg-red-50/30"
+                      : "border-border"
                   }`}
                 >
-                  <div className="flex items-start gap-4 w-full">
+                  {tierPricing[tier].badge && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        {tierPricing[tier].badge}
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex items-start gap-3 w-full">
                     <RadioGroupItem value={tier} id={tier} className="mt-1" />
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <h3 className="font-bold text-lg">{tierPricing[tier].name}</h3>
+                        <h3 className={`font-bold text-base ${tierPricing[tier].highlight ? "text-red-700" : ""}`}>
+                          {tierPricing[tier].name}
+                        </h3>
                         <div className="text-right">
-                          <div className="text-2xl font-bold">${tierPricing[tier].price}</div>
-                          <div className="text-xs text-muted-foreground">per month after trial</div>
+                          <div className="text-xl font-bold">${tierPricing[tier].price.toLocaleString()}</div>
+                          <div className="text-xs text-muted-foreground">/month</div>
                         </div>
                       </div>
-                      <ul className="space-y-2 text-sm">
+                      <ul className="space-y-1.5 text-sm">
                         {tierPricing[tier].features.map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                            <span>{feature}</span>
+                            <CheckCircle2 className="h-3.5 w-3.5 text-green-600 mt-0.5 flex-shrink-0" />
+                            <span className="text-slate-700">{feature}</span>
                           </li>
                         ))}
                       </ul>
