@@ -315,33 +315,52 @@ export default function Home() {
             )}
 
             {/* Hemp Sub-Category Filter Pills */}
-            {activeCategory === 'hemp' && (
-              <div className="mb-6 flex flex-wrap gap-2">
-                {[
-                  { key: 'all', label: 'All Hemp' },
-                  { key: 'flower', label: 'Flower' },
-                  { key: 'pre-rolls', label: 'Pre-Rolls' },
-                  { key: 'concentrates', label: 'Concentrates' },
-                  { key: 'edibles', label: 'Edibles' },
-                  { key: 'tinctures', label: 'Tinctures' },
-                  { key: 'topicals', label: 'Topicals' },
-                  { key: 'vapes', label: 'Vapes' },
-                  { key: 'pet', label: 'Pet' },
-                ].map(({ key, label }) => (
-                  <button
-                    key={key}
-                    onClick={() => setHempSubCategory(key)}
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
-                      hempSubCategory === key
-                        ? 'bg-green-700 text-white border-green-700 shadow-sm'
-                        : 'bg-white text-green-700 border-green-300 hover:bg-green-50'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            )}
+            {activeCategory === 'hemp' && (() => {
+              const hempProducts = products.filter(p => p.category === 'hemp');
+              const subCounts: Record<string, number> = { all: hempProducts.length };
+              hempProducts.forEach(p => {
+                const sub = getHempSubCategory(p.name);
+                subCounts[sub] = (subCounts[sub] || 0) + 1;
+              });
+              return (
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {[
+                    { key: 'all', label: 'All Hemp' },
+                    { key: 'flower', label: 'Flower' },
+                    { key: 'pre-rolls', label: 'Pre-Rolls' },
+                    { key: 'concentrates', label: 'Concentrates' },
+                    { key: 'edibles', label: 'Edibles' },
+                    { key: 'tinctures', label: 'Tinctures' },
+                    { key: 'topicals', label: 'Topicals' },
+                    { key: 'vapes', label: 'Vapes' },
+                    { key: 'pet', label: 'Pet' },
+                  ].map(({ key, label }) => {
+                    const count = subCounts[key] || 0;
+                    if (key !== 'all' && count === 0) return null;
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => setHempSubCategory(key)}
+                        className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
+                          hempSubCategory === key
+                            ? 'bg-green-700 text-white border-green-700 shadow-sm'
+                            : 'bg-white text-green-700 border-green-300 hover:bg-green-50'
+                        }`}
+                      >
+                        {label}
+                        <span className={`inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 rounded-full text-xs font-semibold ${
+                          hempSubCategory === key
+                            ? 'bg-white/20 text-white'
+                            : 'bg-green-100 text-green-800'
+                        }`}>
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })()}
 
             <TabsContent value={activeCategory} className="mt-0">
               {isLoading ? (
