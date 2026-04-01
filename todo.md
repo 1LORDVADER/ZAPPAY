@@ -582,3 +582,10 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 
 ## Test Data Cleanup (March 31, 2026)
 - [x] Permanently remove all test Blue Dream duplicate products from database — 12 test entries deleted, 3 legitimate Blue Dream products remain
+
+## Hemp Product Price & Image Fixes (March 31, 2026)
+- [ ] Audit all hemp product prices — align to cannabis pricing tiers
+- [ ] Identify all non-flower hemp products with wrong cannabis bud images (honey sticks, tinctures, topicals, etc.)
+- [ ] Generate correct category-appropriate images for mismatched products
+- [ ] Apply corrected prices and images to database
+- [ ] Save checkpoint
