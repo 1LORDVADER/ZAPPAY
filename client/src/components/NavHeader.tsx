@@ -224,7 +224,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
             {/* Ask Norris — auth-gated desktop link */}
             {isAuthenticated ? (
               <Link href="/norris">
-                <Button variant="ghost" size="sm" className="text-green-300 hover:text-green-200 hover:bg-white/10 gap-1">
+                <Button size="sm" className="bg-[#1a3356] hover:bg-[#14284a] text-white border border-white/20 gap-1">
                   <Sparkles className="h-3.5 w-3.5" /> Ask Norris
                 </Button>
               </Link>

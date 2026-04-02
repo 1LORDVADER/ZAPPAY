@@ -159,8 +159,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-green-100 rounded-lg">
-                      <Leaf className="h-6 w-6 text-green-600" />
+                    <div className="p-3 bg-green-600 rounded-xl">
+                      <Leaf className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">{products.length}+</p>
@@ -175,8 +175,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 rounded-lg">
-                      <Zap className="h-6 w-6 text-blue-600" />
+                    <div className="p-3 bg-amber-500 rounded-xl">
+                      <Zap className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">5.2%</p>
@@ -191,8 +191,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 rounded-lg">
-                      <Package className="h-6 w-6 text-blue-700" />
+                    <div className="p-3 bg-[#1a3356] rounded-xl">
+                      <Package className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">24/7</p>
@@ -218,7 +218,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/for-farmers">
-              <Button size="lg" variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50 px-8">
+              <Button size="lg" className="bg-[#1a3356] hover:bg-[#14284a] text-white font-semibold px-8">
                 Learn How It Works
               </Button>
             </Link>
@@ -604,7 +604,7 @@ function FeaturedSuppliers() {
             </p>
           </div>
           <Link href="/grower-marketplace">
-            <Button variant="outline" size="sm" className="hidden sm:flex items-center gap-1 text-blue-900 border-blue-200 hover:bg-blue-50">
+            <Button size="sm" className="hidden sm:flex items-center gap-1 bg-[#1a3356] hover:bg-[#14284a] text-white">
               View All <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
@@ -669,7 +669,7 @@ function FeaturedSuppliers() {
         {/* Mobile CTA */}
         <div className="mt-4 sm:hidden">
           <Link href="/grower-marketplace">
-            <Button variant="outline" size="sm" className="w-full text-blue-900 border-blue-200">
+            <Button size="sm" className="w-full bg-[#1a3356] hover:bg-[#14284a] text-white">
               View All Suppliers <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </Link>

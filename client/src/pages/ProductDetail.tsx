@@ -101,7 +101,7 @@ export default function ProductDetail() {
               </Link>
               <Link href="/cart">
                 <a>
-                  <Button variant="outline" size="sm">
+                  <Button size="sm" className="bg-[#1a3356] hover:bg-[#14284a] text-white">
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     Cart
                   </Button>
@@ -265,8 +265,8 @@ export default function ProductDetail() {
                 </label>
                 <div className="flex items-center gap-3">
                   <Button
-                    variant="outline"
                     size="sm"
+                    className="bg-[#1a3356] hover:bg-[#14284a] text-white"
                     onClick={() => setQuantity(Math.max(MIN_QUANTITY, quantity - 1))}
                   >
                     -
@@ -280,8 +280,8 @@ export default function ProductDetail() {
                     max={product.quantity}
                   />
                   <Button
-                    variant="outline"
                     size="sm"
+                    className="bg-[#1a3356] hover:bg-[#14284a] text-white"
                     onClick={() => setQuantity(Math.min(product.quantity, quantity + 1))}
                   >
                     +
