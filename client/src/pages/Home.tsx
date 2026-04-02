@@ -5,10 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, Star, Building2, Truck, MapPin, ArrowRight, Sparkles } from "lucide-react";
+import { ShoppingCart, Search, Leaf, Package, Zap, Star, Building2, Truck, MapPin, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { getLoginUrl } from "@/const";
 import { motion } from "framer-motion";
 import { getGuestCartCount } from "@/lib/cartPersistence";
 import { StateSelector } from "@/components/StateSelector";
@@ -192,8 +191,8 @@ export default function Home() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-purple-100 rounded-lg">
-                      <Package className="h-6 w-6 text-purple-600" />
+                    <div className="p-3 bg-blue-100 rounded-lg">
+                      <Package className="h-6 w-6 text-blue-700" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-slate-900">24/7</p>
@@ -223,23 +222,7 @@ export default function Home() {
                 Learn How It Works
               </Button>
             </Link>
-            {isAuthenticated ? (
-              <Link href="/norris">
-                <Button size="lg" className="bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 shadow-lg shadow-emerald-700/20">
-                  <Sparkles className="mr-2 h-4 w-4" />
-                  Ask Norris
-                </Button>
-              </Link>
-            ) : (
-              <Button
-                size="lg"
-                className="bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 shadow-lg shadow-emerald-700/20"
-                onClick={() => { window.location.href = getLoginUrl(); }}
-              >
-                <Sparkles className="mr-2 h-4 w-4" />
-                Ask Norris (Sign In)
-              </Button>
-            )}
+
           </motion.div>
 
           {/* Search Bar */}
@@ -274,7 +257,7 @@ export default function Home() {
       </section>
 
       {/* Products Section */}
-      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50">
+      <section className="py-8 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-blue-50">
         <div className="container mx-auto">
           <Tabs defaultValue="all" className="w-full" onValueChange={setActiveCategory}>
             <motion.div

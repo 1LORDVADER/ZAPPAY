@@ -142,11 +142,11 @@ export default function HowItWorks() {
               </Card>
 
               {/* Step 4 */}
-              <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-transparent relative overflow-hidden">
-                <div className="absolute top-4 right-4 text-6xl font-bold text-purple-100">4</div>
+              <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-transparent relative overflow-hidden">
+                <div className="absolute top-4 right-4 text-6xl font-bold text-blue-100">4</div>
                 <CardHeader>
-                  <div className="h-16 w-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                    <Store className="h-8 w-8 text-purple-600" />
+                  <div className="h-16 w-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <Store className="h-8 w-8 text-blue-700" />
                   </div>
                   <CardTitle className="text-2xl">Pickup at Dispensary</CardTitle>
                   <CardDescription className="text-base">
@@ -181,10 +181,10 @@ export default function HowItWorks() {
                   </CardDescription>                </CardHeader>
               </Card>
 
-              <Card className="border-2 border-slate-200 hover:border-purple-500 transition-all">
+              <Card className="border-2 border-slate-200 hover:border-blue-600 transition-all">
                 <CardHeader className="text-center">
-                  <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Shield className="h-6 w-6 text-purple-600" />
+                  <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Shield className="h-6 w-6 text-blue-700" />
                   </div>
                   <CardTitle className="text-lg">Full Compliance</CardTitle>
                   <CardDescription className="text-sm">
@@ -255,9 +255,9 @@ export default function HowItWorks() {
               </Card>
 
               {/* Model B */}
-              <Card className="border-2 border-purple-200 bg-white">
+              <Card className="border-2 border-blue-200 bg-white">
                 <CardHeader>
-                  <Badge className="mb-4 bg-purple-100 text-purple-800 w-fit">Model B</Badge>
+                  <Badge className="mb-4 bg-blue-100 text-blue-900 w-fit">Model B</Badge>
                   <CardTitle className="text-2xl">Dispensary-Facilitated</CardTitle>
                   <CardDescription className="text-base">
                     Drive foot traffic to dispensaries while connecting farmers with consumers

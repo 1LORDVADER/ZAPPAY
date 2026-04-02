@@ -59,7 +59,7 @@ export default function Rewards() {
 
   const getTierColor = (tier: string) => {
     switch (tier) {
-      case "Platinum": return "text-purple-600 bg-purple-100";
+      case "Platinum": return "text-blue-700 bg-blue-100";
       case "Gold": return "text-yellow-600 bg-yellow-100";
       case "Silver": return "text-slate-600 bg-slate-100";
       default: return "text-orange-600 bg-orange-100";
@@ -124,10 +124,10 @@ export default function Rewards() {
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-white">
+            <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Trophy className="h-5 w-5 text-purple-600" />
+                  <Trophy className="h-5 w-5 text-blue-700" />
                   Membership Tier
                 </CardTitle>
               </CardHeader>

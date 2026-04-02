@@ -79,18 +79,18 @@ export function StrainRecommendations() {
   };
 
   return (
-    <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-white shadow-md">
+    <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white shadow-md">
       <CardHeader
         className="cursor-pointer select-none"
         onClick={() => setIsExpanded((v) => !v)}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-purple-100 rounded-lg">
-              <Sparkles className="h-5 w-5 text-purple-600" />
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <Sparkles className="h-5 w-5 text-blue-700" />
             </div>
             <div>
-              <CardTitle className="text-lg text-purple-900">AI Strain Advisor</CardTitle>
+              <CardTitle className="text-lg text-slate-900">AI Strain Advisor</CardTitle>
               <CardDescription>
                 Tell us what you need — we'll find the right match
               </CardDescription>
@@ -126,8 +126,8 @@ export function StrainRecommendations() {
                       onClick={() => toggleEffect(effect)}
                       className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${
                         input.desiredEffects.includes(effect)
-                          ? "bg-purple-600 text-white border-purple-600"
-                          : "bg-white text-slate-600 border-slate-300 hover:border-purple-400"
+                          ? "bg-blue-700 text-white border-blue-700"
+                          : "bg-white text-slate-600 border-slate-300 hover:border-blue-400"
                       }`}
                     >
                       {effect}
@@ -145,7 +145,7 @@ export function StrainRecommendations() {
                     onChange={(e) =>
                       setInput((prev) => ({ ...prev, preferredCategory: e.target.value as any }))
                     }
-                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                   >
                     {CATEGORY_OPTIONS.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -161,7 +161,7 @@ export function StrainRecommendations() {
                     onChange={(e) =>
                       setInput((prev) => ({ ...prev, thcPreference: e.target.value as any }))
                     }
-                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                   >
                     {THC_OPTIONS.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -177,7 +177,7 @@ export function StrainRecommendations() {
                     onChange={(e) =>
                       setInput((prev) => ({ ...prev, experienceLevel: e.target.value as any }))
                     }
-                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                   >
                     {EXPERIENCE_OPTIONS.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -192,7 +192,7 @@ export function StrainRecommendations() {
               <Button
                 onClick={handleGetRecommendations}
                 disabled={input.desiredEffects.length === 0 || isLoading}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                className="w-full bg-blue-700 hover:bg-blue-800 text-white"
               >
                 {isLoading ? (
                   <>
@@ -215,7 +215,7 @@ export function StrainRecommendations() {
                   className="space-y-3"
                 >
                   {data.reasoning && (
-                    <p className="text-sm text-slate-600 italic border-l-4 border-purple-300 pl-3">
+                    <p className="text-sm text-slate-600 italic border-l-4 border-blue-300 pl-3">
                       {data.reasoning}
                     </p>
                   )}
@@ -228,8 +228,8 @@ export function StrainRecommendations() {
                     <div className="space-y-3">
                       {data.recommendations.map((rec: any, idx: number) => (
                         <Link key={rec.productId} href={`/product/${rec.productId}`}>
-                          <div className="flex items-start gap-3 p-3 rounded-lg border border-slate-200 hover:border-purple-300 hover:bg-purple-50/50 transition-all cursor-pointer">
-                            <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-700 font-bold text-sm">
+                          <div className="flex items-start gap-3 p-3 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50/50 transition-all cursor-pointer">
+                            <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-800 font-bold text-sm">
                               {idx + 1}
                             </div>
                             <div className="flex-1 min-w-0">

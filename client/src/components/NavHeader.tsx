@@ -144,7 +144,7 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 <DropdownMenuItem asChild>
                   <Link href="/transportation/company-register">
                     <div className="flex items-center gap-2 w-full cursor-pointer py-1">
-                      <Package className="h-4 w-4 text-purple-600 flex-shrink-0" />
+                      <Package className="h-4 w-4 text-blue-700 flex-shrink-0" />
                       <div>
                         <div className="font-medium text-sm">Transportation Company</div>
                         <div className="text-xs text-slate-500">Partner with ZAPPAY</div>

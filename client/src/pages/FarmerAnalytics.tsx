@@ -145,15 +145,15 @@ export default function FarmerAnalytics() {
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-white">
+            <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm">
-                  <Users className="h-4 w-4 text-purple-600" />
+                  <Users className="h-4 w-4 text-blue-700" />
                   Total Orders
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-purple-600">
+                <p className="text-3xl font-bold text-blue-700">
                   {orders.length}
                 </p>
                 <p className="text-xs text-slate-600 mt-1">All time</p>

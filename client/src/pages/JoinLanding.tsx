@@ -72,8 +72,8 @@ const BENEFITS = [
     icon: Shield,
     title: 'Built-In Compliance',
     desc: 'Adaptive multi-state compliance tools. Every transaction meets state regulations automatically.',
-    color: 'text-purple-400',
-    bg: 'bg-purple-400/10',
+    color: 'text-blue-400',
+    bg: 'bg-blue-400/10',
   },
   {
     icon: Users,
@@ -305,7 +305,7 @@ export default function JoinLanding() {
             <span className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-400" /> Verified Licensed Partners Only</span>
             <span className="flex items-center gap-2"><Lock className="h-4 w-4 text-blue-400" /> Bank-Grade Security</span>
             <span className="flex items-center gap-2"><Zap className="h-4 w-4 text-yellow-400" /> Instant Stablecoin Payments</span>
-            <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-purple-400" /> 24/7 Platform Access</span>
+            <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-blue-400" /> 24/7 Platform Access</span>
             <span className="flex items-center gap-2"><Shield className="h-4 w-4 text-red-400" /> Multi-State Compliance Built In</span>
           </div>
         </div>
