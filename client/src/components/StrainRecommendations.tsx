@@ -90,7 +90,7 @@ export function StrainRecommendations() {
               <Sparkles className="h-5 w-5 text-blue-700" />
             </div>
             <div>
-              <CardTitle className="text-lg text-slate-900">AI Strain Advisor</CardTitle>
+              <CardTitle className="text-lg text-slate-900">Norris</CardTitle>
               <CardDescription>
                 Tell us what you need — we'll find the right match
               </CardDescription>

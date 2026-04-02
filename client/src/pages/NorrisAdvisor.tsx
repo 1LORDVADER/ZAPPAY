@@ -86,7 +86,7 @@ export default function NorrisAdvisor() {
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">Meet Norris</h1>
             <p className="text-slate-400 max-w-md">
-              ZAPPAY's expert cannabis strain advisor. Get personalized guidance on strains,
+              ZAPPAY's intelligent cannabis platform. Get personalized guidance on strains,
               cultivation, compliance, and marketplace strategy — exclusively for ZAPPAY members.
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function NorrisAdvisor() {
             </div>
             <div>
               <div className="text-white font-semibold text-sm leading-tight">Norris</div>
-              <div className="text-green-400 text-xs">Cannabis Strain Advisor</div>
+              <div className="text-green-400 text-xs">Norris</div>
             </div>
           </div>
           <Badge className="ml-auto bg-green-900/50 text-green-400 border-green-800 text-xs">
