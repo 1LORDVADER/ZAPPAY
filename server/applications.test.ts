@@ -35,7 +35,7 @@ describe('Applications Router', () => {
           yearsInBusiness: 5,
           currentSuppliers: 'Various local farms',
           monthlyVolume: '500 lbs',
-          targetStrains: 'OG Kush, Gorilla Glue',
+          targetStrains: 'Various strains',
         })
       ).resolves.not.toThrow();
     });
@@ -89,7 +89,7 @@ describe('Applications Router', () => {
         yearsInBusiness: 3,
         currentSuppliers: 'Local farms',
         monthlyVolume: '200 lbs',
-        targetStrains: 'OG Kush',
+        targetStrains: 'Various strains',
       });
 
       // Find the application we just created

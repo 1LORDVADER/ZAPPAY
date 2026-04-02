@@ -321,7 +321,7 @@ export default function SupplierDashboard() {
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2 space-y-1">
                 <Label>Product Name *</Label>
-                <Input value={productForm.name} onChange={(e) => setProductForm((f) => ({ ...f, name: e.target.value }))} placeholder="e.g. OG Kush Seeds" />
+                <Input value={productForm.name} onChange={(e) => setProductForm((f) => ({ ...f, name: e.target.value }))} placeholder="Product name" />
               </div>
               <div className="space-y-1">
                 <Label>Category *</Label>

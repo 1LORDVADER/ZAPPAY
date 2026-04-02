@@ -8,7 +8,7 @@ describe('ZAPPAY Core Features', () => {
       
       await createProduct({
         farmerId: 100,
-        name: 'Test OG Kush',
+        name: 'Test Flower Product',
         strain: 'Sativa-Dominant Hybrid',
         category: 'flower',
         thcPercentage: '24%',
@@ -22,7 +22,7 @@ describe('ZAPPAY Core Features', () => {
       
       // Verify product was created by fetching farmer's products
       const products = await getProductsByFarmerId(100);
-      const createdProduct = products.find(p => p.name === 'Test OG Kush');
+      const createdProduct = products.find(p => p.name === 'Test Flower Product');
       
       expect(createdProduct).toBeDefined();
       expect(createdProduct?.price).toBe(3500);
