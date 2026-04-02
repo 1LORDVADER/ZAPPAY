@@ -231,7 +231,8 @@ export async function createFarmerProfile(profile: InsertFarmerProfile & { refer
   
   await db.insert(farmerSubscriptions).values({
     farmerId: Number(farmerId),
-    tier: profileData.subscriptionTier as "standard" | "premium",
+    // farmerSubscriptions.tier only accepts 'standard' | 'premium'; map other tiers
+    tier: (profileData.subscriptionTier === "premium" ? "premium" : "standard") as "standard" | "premium",
     status: "trial",
     billingCycle: "monthly",
     monthlyPrice: profileData.subscriptionTier === "premium" ? 110000 : 25000,

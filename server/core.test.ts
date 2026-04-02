@@ -116,8 +116,22 @@ describe('ZAPPAY Core Features', () => {
   });
 
   describe('Farmer Profiles', () => {
-    it('should get farmer profile by user ID', async () => {
-      const { getFarmerProfileByUserId } = await import('../server/db');
+    it('should create and get farmer profile by user ID', async () => {
+      const { getFarmerProfileByUserId, createFarmerProfile } = await import('../server/db');
+      
+      // Create a test farmer profile first (userId 100 is the test runner user)
+      await createFarmerProfile({
+        userId: 100,
+        businessName: 'Test Farm',
+        licenseNumber: 'LIC-TEST-001',
+        state: 'CA',
+        city: 'Los Angeles',
+        zipCode: '90001',
+        bio: 'Test farm for unit tests',
+        verified: 'pending',
+        subscriptionTier: 'enterprise',
+        subscriptionStatus: 'active',
+      });
       
       const profile = await getFarmerProfileByUserId(100);
       
