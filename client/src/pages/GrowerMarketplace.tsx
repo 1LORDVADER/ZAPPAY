@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { trpc } from "@/lib/trpc";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetContent,
@@ -14,11 +19,20 @@ import {
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "wouter";
+import { useToast } from "@/hooks/use-toast";
 import {
   Search, Package, DollarSign, Truck, MapPin, ExternalLink,
   Leaf, Zap, Shield, ArrowRight, Info, Phone, Mail, Globe,
-  CheckCircle2, XCircle, Building2, ChevronRight,
+  CheckCircle2, XCircle, Building2, ChevronRight, ClipboardList,
+  ChevronLeft, Send,
 } from "lucide-react";
+
+const US_STATES = [
+  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
+  "KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
+  "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT",
+  "VA","WA","WV","WI","WY","DC",
+];
 
 const CATEGORIES = [
   { value: "all", label: "All Categories" },
@@ -36,6 +50,7 @@ const CATEGORIES = [
 type ProductRow = {
   product: {
     id: number;
+    supplierId: number;
     name: string;
     description: string | null;
     category: string;
@@ -57,6 +72,17 @@ type ProductRow = {
   supplierContactPhone: string | null;
   supplierWebsite: string | null;
 };
+
+const quoteSchema = z.object({
+  requesterName: z.string().min(2, "Name is required"),
+  requesterEmail: z.string().email("Valid email required"),
+  requesterPhone: z.string().optional(),
+  requesterCompany: z.string().optional(),
+  deliveryState: z.string().length(2, "Select a state"),
+  quantity: z.coerce.number().int().min(1, "Minimum 1"),
+  notes: z.string().optional(),
+});
+type QuoteForm = z.infer<typeof quoteSchema>;
 
 export default function GrowerMarketplace() {
   const [search, setSearch] = useState("");
@@ -209,7 +235,7 @@ export default function GrowerMarketplace() {
 
 // ─── Product Card ─────────────────────────────────────────────────────────────
 function ProductCard({ row, onSelect }: { row: ProductRow; onSelect: () => void }) {
-  const { product, supplierName, supplierSlug, supplierLogoUrl } = row;
+  const { product, supplierName, supplierLogoUrl } = row;
   const categoryLabel = CATEGORIES.find((c) => c.value === product.category)?.label ?? product.category;
 
   return (
@@ -238,8 +264,6 @@ function ProductCard({ row, onSelect }: { row: ProductRow; onSelect: () => void 
         {product.description && (
           <p className="text-xs text-slate-500 line-clamp-2 mb-3">{product.description}</p>
         )}
-
-        {/* Price */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-1 font-bold text-slate-900">
             <DollarSign className="h-4 w-4" />
@@ -248,8 +272,6 @@ function ProductCard({ row, onSelect }: { row: ProductRow; onSelect: () => void 
           </div>
           <span className="text-xs text-slate-400">Min {product.minOrderQty}</span>
         </div>
-
-        {/* Logistics flags */}
         <div className="flex gap-3 mb-3">
           {product.localPickup === "yes" && (
             <div className="flex items-center gap-1 text-xs text-slate-500">
@@ -260,9 +282,7 @@ function ProductCard({ row, onSelect }: { row: ProductRow; onSelect: () => void 
             <Truck className="h-3 w-3" /> Ships
           </div>
         </div>
-
-        {/* Supplier — secondary, at the bottom */}
-        <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             {supplierLogoUrl ? (
               <img src={supplierLogoUrl} alt={supplierName} className="h-5 w-5 rounded object-cover" />
@@ -282,12 +302,23 @@ function ProductCard({ row, onSelect }: { row: ProductRow; onSelect: () => void 
 
 // ─── Product Detail Sheet Content ─────────────────────────────────────────────
 function ProductDetail({ row, onClose }: { row: ProductRow; onClose: () => void }) {
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
   const { product, supplierName, supplierSlug, supplierLogoUrl,
     supplierCity, supplierState, supplierNationwide,
     supplierContactEmail, supplierContactPhone, supplierWebsite } = row;
 
   const categoryLabel = CATEGORIES.find((c) => c.value === product.category)?.label ?? product.category;
   const inStock = product.inStock === "yes";
+
+  if (showQuoteForm) {
+    return (
+      <QuoteRequestForm
+        row={row}
+        onBack={() => setShowQuoteForm(false)}
+        onClose={onClose}
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col gap-0 h-full">
@@ -391,10 +422,10 @@ function ProductDetail({ row, onClose }: { row: ProductRow; onClose: () => void 
         </Link>
       </div>
 
-      {/* Contact */}
+      {/* Contact links */}
       {(supplierContactEmail || supplierContactPhone || supplierWebsite) && (
         <div className="bg-slate-50 rounded-xl p-4 mb-4">
-          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Contact Supplier</h3>
+          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Direct Contact</h3>
           <div className="space-y-2">
             {supplierContactEmail && (
               <a
@@ -435,28 +466,202 @@ function ProductDetail({ row, onClose }: { row: ProductRow; onClose: () => void 
               Order on Supplier Site
             </Button>
           </a>
-        ) : supplierContactEmail ? (
-          <a
-            href={`mailto:${supplierContactEmail}?subject=Order Inquiry: ${encodeURIComponent(product.name)}&body=Hi, I'm interested in ordering ${product.minOrderQty}x ${product.name} at $${(product.unitPrice / 100).toFixed(2)}/${product.unitLabel} via ZAPPAY.`}
-            className="block w-full"
-          >
-            <Button className="w-full bg-blue-900 hover:bg-blue-800 text-white" size="lg">
-              <Mail className="mr-2 h-4 w-4" />
-              Send Order Inquiry
-            </Button>
-          </a>
         ) : (
-          <Link href={`/supplier/${supplierSlug}`} onClick={onClose}>
-            <Button className="w-full bg-blue-900 hover:bg-blue-800 text-white" size="lg">
-              <Building2 className="mr-2 h-4 w-4" />
-              View Supplier Page
-            </Button>
-          </Link>
+          <Button
+            className="w-full bg-blue-900 hover:bg-blue-800 text-white"
+            size="lg"
+            onClick={() => setShowQuoteForm(true)}
+          >
+            <ClipboardList className="mr-2 h-4 w-4" />
+            Request a Quote
+          </Button>
         )}
         <p className="text-center text-xs text-slate-400">
           Payments processed securely through ZAPPAY's instant ACH network
         </p>
       </div>
+    </div>
+  );
+}
+
+// ─── Quote Request Form ───────────────────────────────────────────────────────
+function QuoteRequestForm({ row, onBack, onClose }: {
+  row: ProductRow;
+  onBack: () => void;
+  onClose: () => void;
+}) {
+  const { product, supplierName } = row;
+  const [submitted, setSubmitted] = useState(false);
+
+  const { toast } = useToast();
+  const submitQuote = trpc.suppliers.submitQuote.useMutation({
+    onSuccess: () => setSubmitted(true),
+    onError: (err) => toast({ title: "Error", description: err.message, variant: "destructive" }),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<QuoteForm>({
+    resolver: zodResolver(quoteSchema) as any,
+    defaultValues: { quantity: product.minOrderQty },
+  });
+
+  const deliveryState = watch("deliveryState");
+
+  const onSubmitFn = (data: QuoteForm) => {
+    submitQuote.mutate({
+      supplierId: row.product.supplierId,
+      productId: product.id,
+      productName: product.name,
+      requesterName: data.requesterName,
+      requesterEmail: data.requesterEmail,
+      requesterPhone: data.requesterPhone,
+      requesterCompany: data.requesterCompany,
+      deliveryState: data.deliveryState,
+      quantity: Number(data.quantity),
+      notes: data.notes,
+    });
+  };
+
+
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full gap-6 text-center px-4">
+        <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center">
+          <CheckCircle2 className="h-8 w-8 text-green-600" />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-slate-900 mb-2">Quote Request Sent</h3>
+          <p className="text-slate-500 text-sm max-w-xs">
+            Your request for <strong>{product.name}</strong> has been submitted to <strong>{supplierName}</strong>.
+            They will contact you directly to confirm pricing and availability.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2 w-full max-w-xs">
+          <Button onClick={onBack} variant="outline" className="w-full">
+            <ChevronLeft className="mr-2 h-4 w-4" /> Back to Product
+          </Button>
+          <Button onClick={onClose} className="w-full bg-blue-900 hover:bg-blue-800 text-white">
+            Browse More Products
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col h-full">
+      <SheetHeader className="pb-4">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800 mb-2 -ml-1 transition-colors"
+        >
+          <ChevronLeft className="h-4 w-4" /> Back to product details
+        </button>
+        <SheetTitle className="text-lg">Request a Quote</SheetTitle>
+        <SheetDescription className="text-sm">
+          <span className="font-medium text-slate-700">{product.name}</span>
+          {" "}from {supplierName} · ${(product.unitPrice / 100).toFixed(2)}/{product.unitLabel}
+        </SheetDescription>
+      </SheetHeader>
+
+      <form onSubmit={handleSubmit(onSubmitFn as any)} className="flex flex-col gap-4 flex-1 overflow-y-auto pb-4">
+        {/* Contact info */}
+        <div className="space-y-3">
+          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Your Contact Information</h3>
+          <div className="grid grid-cols-1 gap-3">
+            <div>
+              <Label htmlFor="requesterName">Full Name *</Label>
+              <Input id="requesterName" {...register("requesterName")} placeholder="Jane Smith" />
+              {errors.requesterName && <p className="text-xs text-red-500 mt-1">{errors.requesterName.message}</p>}
+            </div>
+            <div>
+              <Label htmlFor="requesterEmail">Email Address *</Label>
+              <Input id="requesterEmail" type="email" {...register("requesterEmail")} placeholder="jane@farm.com" />
+              {errors.requesterEmail && <p className="text-xs text-red-500 mt-1">{errors.requesterEmail.message}</p>}
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label htmlFor="requesterPhone">Phone (optional)</Label>
+                <Input id="requesterPhone" type="tel" {...register("requesterPhone")} placeholder="+1 555 000 0000" />
+              </div>
+              <div>
+                <Label htmlFor="requesterCompany">Company (optional)</Label>
+                <Input id="requesterCompany" {...register("requesterCompany")} placeholder="Green Acres LLC" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <Separator />
+
+        {/* Order details */}
+        <div className="space-y-3">
+          <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Order Details</h3>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label htmlFor="quantity">Quantity * (min {product.minOrderQty})</Label>
+              <Input
+                id="quantity"
+                type="number"
+                min={product.minOrderQty}
+                {...register("quantity")}
+              />
+              {errors.quantity && <p className="text-xs text-red-500 mt-1">{errors.quantity.message}</p>}
+            </div>
+            <div>
+              <Label>Delivery State *</Label>
+              <Select value={deliveryState} onValueChange={(v) => setValue("deliveryState", v)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select state" />
+                </SelectTrigger>
+                <SelectContent>
+                  {US_STATES.map((s) => (
+                    <SelectItem key={s} value={s}>{s}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.deliveryState && <p className="text-xs text-red-500 mt-1">{errors.deliveryState.message}</p>}
+            </div>
+          </div>
+          <div>
+            <Label htmlFor="notes">Additional Notes (optional)</Label>
+            <Textarea
+              id="notes"
+              {...register("notes")}
+              placeholder="Specific requirements, delivery timeline, bulk pricing questions..."
+              rows={3}
+            />
+          </div>
+        </div>
+
+        {/* Estimated value */}
+        <div className="bg-blue-50 rounded-xl p-3 text-sm">
+          <div className="flex justify-between text-slate-600">
+            <span>Estimated order value</span>
+            <span className="font-bold text-slate-900">
+              ${((product.unitPrice * (Number(watch("quantity")) || product.minOrderQty)) / 100).toFixed(2)}
+            </span>
+          </div>
+          <p className="text-xs text-slate-400 mt-1">Final price confirmed by supplier · Processed via ZAPPAY ACH</p>
+        </div>
+
+        <div className="mt-auto">
+          <Button
+            type="submit"
+            className="w-full bg-blue-900 hover:bg-blue-800 text-white"
+            size="lg"
+            disabled={submitQuote.isPending}
+          >
+            <Send className="mr-2 h-4 w-4" />
+            {submitQuote.isPending ? "Sending..." : "Submit Quote Request"}
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }

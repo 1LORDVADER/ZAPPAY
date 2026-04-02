@@ -607,3 +607,18 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 ## Session: April 1, 2026 — Nav + Product Modal
 - [x] Add Grower Marketplace link to main nav (Browse dropdown or standalone)
 - [x] Build product detail modal/slide-over in GrowerMarketplace page (full specs, supplier contact, inquiry CTA)
+
+## Session: April 1, 2026 — Quote Form, Brand Page, Featured Suppliers
+- [ ] Add structured quote request form to Grower Marketplace product detail modal (quantity, delivery state, notes) with DB storage
+- [ ] Build Supplier Brand Page (/supplier/:slug) — product grid, profile, social links, contact section
+- [ ] Add Featured Suppliers horizontal scroll section to homepage (admin-featured suppliers)
+
+
+## Session: April 1, 2026 — Quote Form, Brand Page, Featured Suppliers
+
+- [x] Quote request form in Grower Marketplace product detail modal (structured B2B inquiry, saved to DB)
+- [x] Supplier Brand Page (/supplier/:slug) — product grid first, brand info secondary
+- [x] Featured Suppliers horizontal scroll on homepage (admin-featured suppliers)
+- [x] supplierQuotes table created in DB (supplierId, productId, requesterName, email, phone, company, deliveryState, quantity, notes, status)
+- [x] submitQuote and adminListQuotes procedures added to suppliersRouter
+- [x] 43/43 tests passing, 0 TypeScript errors

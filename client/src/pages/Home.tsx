@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, Star } from "lucide-react";
+import { ShoppingCart, Search, Leaf, Package, Zap, Star, Building2, Truck, MapPin, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -451,6 +451,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Featured Suppliers Section */}
+      <FeaturedSuppliers />
+
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-12 mt-16">
         <div className="container mx-auto px-4">
@@ -552,5 +555,125 @@ export default function Home() {
       </footer>
       <Toaster position="top-right" richColors />
     </div>
+  );
+}
+
+// ─── Featured Suppliers Section ───────────────────────────────────────────────
+function FeaturedSuppliers() {
+  const { data: suppliers = [], isLoading } = trpc.suppliers.browse.useQuery({
+    featured: true,
+    limit: 12,
+    offset: 0,
+  });
+
+  if (isLoading) {
+    return (
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <div className="h-7 w-48 bg-slate-200 rounded animate-pulse mb-2" />
+              <div className="h-4 w-72 bg-slate-100 rounded animate-pulse" />
+            </div>
+          </div>
+          <div className="flex gap-4 overflow-hidden">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="h-40 w-64 shrink-0 bg-slate-100 rounded-2xl animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (suppliers.length === 0) return null;
+
+  return (
+    <section className="py-12 px-4 bg-white border-t border-slate-100">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+              <Zap className="h-6 w-6 text-red-500" />
+              Featured Suppliers
+            </h2>
+            <p className="text-slate-500 text-sm mt-1">
+              Verified equipment, genetics, and services partners powering ZAPPAY growers
+            </p>
+          </div>
+          <Link href="/grower-marketplace">
+            <Button variant="outline" size="sm" className="hidden sm:flex items-center gap-1 text-blue-900 border-blue-200 hover:bg-blue-50">
+              View All <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+
+        {/* Horizontal scroll row */}
+        <div className="flex gap-4 overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory">
+          {suppliers.map((s) => (
+            <Link key={s.id} href={`/supplier/${s.slug}`}>
+              <div className="snap-start shrink-0 w-64 bg-gradient-to-br from-slate-50 to-blue-50 border border-slate-200 rounded-2xl p-5 hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group">
+                {/* Logo + name */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="h-11 w-11 bg-white rounded-xl border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
+                    {s.logoUrl ? (
+                      <img src={s.logoUrl} alt={s.businessName} className="h-8 w-8 rounded-lg object-contain" />
+                    ) : (
+                      <Building2 className="h-6 w-6 text-blue-400" />
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-semibold text-slate-900 text-sm truncate group-hover:text-blue-900 transition-colors">
+                      {s.businessName}
+                    </div>
+                    <div className="text-xs text-slate-400 capitalize">{s.supplierType}</div>
+                  </div>
+                </div>
+
+                {/* Description */}
+                {s.description && (
+                  <p className="text-xs text-slate-500 line-clamp-2 mb-3 leading-relaxed">
+                    {s.description}
+                  </p>
+                )}
+
+                {/* Meta chips */}
+                <div className="flex flex-wrap gap-1.5">
+                  {s.nationwide === "yes" && (
+                    <span className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-700 rounded-full px-2 py-0.5">
+                      <Truck className="h-3 w-3" /> Nationwide
+                    </span>
+                  )}
+                  {(s.city || s.state) && (
+                    <span className="inline-flex items-center gap-1 text-xs bg-slate-100 text-slate-600 rounded-full px-2 py-0.5">
+                      <MapPin className="h-3 w-3" />
+                      {[s.city, s.state].filter(Boolean).join(", ")}
+                    </span>
+                  )}
+                </div>
+
+                {/* CTA */}
+                <div className="mt-3 pt-3 border-t border-slate-200 flex items-center justify-between">
+                  <span className="text-xs text-blue-600 font-medium group-hover:underline">
+                    View Products
+                  </span>
+                  <ArrowRight className="h-3.5 w-3.5 text-blue-400 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile CTA */}
+        <div className="mt-4 sm:hidden">
+          <Link href="/grower-marketplace">
+            <Button variant="outline" size="sm" className="w-full text-blue-900 border-blue-200">
+              View All Suppliers <ArrowRight className="ml-1 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

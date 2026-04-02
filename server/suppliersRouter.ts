@@ -6,6 +6,7 @@ import {
   suppliers,
   supplierProducts,
   supplierApplications,
+  supplierQuotes,
 } from "../drizzle/schema";
 import { eq, and, desc, asc } from "drizzle-orm";
 
@@ -456,4 +457,52 @@ export const suppliersRouter = router({
         .where(eq(suppliers.id, input.supplierId));
       return { success: true };
     }),
+
+  // ── Public: submit quote request ───────────────────────────────────────────
+  submitQuote: publicProcedure
+    .input(z.object({
+      supplierId: z.number().int(),
+      productId: z.number().int(),
+      productName: z.string().min(1).max(255),
+      requesterName: z.string().min(2).max(255),
+      requesterEmail: z.string().email(),
+      requesterPhone: z.string().optional(),
+      requesterCompany: z.string().optional(),
+      deliveryState: z.string().length(2),
+      quantity: z.number().int().min(1),
+      notes: z.string().optional(),
+    }))
+    .mutation(async ({ input }) => {
+      const db = await dbc();
+      await db.insert(supplierQuotes).values({
+        supplierId: input.supplierId,
+        productId: input.productId,
+        productName: input.productName,
+        requesterName: input.requesterName,
+        requesterEmail: input.requesterEmail,
+        requesterPhone: input.requesterPhone,
+        requesterCompany: input.requesterCompany,
+        deliveryState: input.deliveryState,
+        quantity: input.quantity,
+        notes: input.notes,
+        status: "pending",
+      });
+      return { success: true };
+    }),
+
+  // ── Protected: get my supplier's quote requests ────────────────────────────
+  myQuotes: protectedProcedure.query(async ({ ctx }) => {
+    const db = await dbc();
+    const [supplier] = await db
+      .select()
+      .from(suppliers)
+      .where(eq(suppliers.userId, ctx.user.id))
+      .limit(1);
+    if (!supplier) return [];
+    return db
+      .select()
+      .from(supplierQuotes)
+      .where(eq(supplierQuotes.supplierId, supplier.id))
+      .orderBy(desc(supplierQuotes.createdAt));
+  }),
 });

@@ -613,3 +613,23 @@ export const supplierApplications = mysqlTable("supplierApplications", {
 });
 export type SupplierApplication = typeof supplierApplications.$inferSelect;
 export type InsertSupplierApplication = typeof supplierApplications.$inferInsert;
+
+// ─── Supplier Quote Requests ──────────────────────────────────────────────────
+export const supplierQuotes = mysqlTable("supplierQuotes", {
+  id: int("id").autoincrement().primaryKey(),
+  supplierId: int("supplierId").notNull(),
+  productId: int("productId").notNull(),
+  productName: varchar("productName", { length: 255 }).notNull(),
+  requesterName: varchar("requesterName", { length: 255 }).notNull(),
+  requesterEmail: varchar("requesterEmail", { length: 320 }).notNull(),
+  requesterPhone: varchar("requesterPhone", { length: 30 }),
+  requesterCompany: varchar("requesterCompany", { length: 255 }),
+  deliveryState: varchar("deliveryState", { length: 2 }).notNull(),
+  quantity: int("quantity").notNull(),
+  notes: text("notes"),
+  status: mysqlEnum("status", ["pending","responded","closed"]).default("pending").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+export type SupplierQuote = typeof supplierQuotes.$inferSelect;
+export type InsertSupplierQuote = typeof supplierQuotes.$inferInsert;
