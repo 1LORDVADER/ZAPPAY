@@ -58,7 +58,7 @@ export default function Orders() {
       status: "delivered",
       total: 8450.00,
       items: [
-        { name: "Blue Dream (Premium)", quantity: "500g", price: 1500.00 },
+        { name: "Sour Diesel (Premium)", quantity: "500g", price: 1500.00 },
         { name: "OG Kush (Top Shelf)", quantity: "1000g", price: 3000.00 },
         { name: "Girl Scout Cookies", quantity: "500g", price: 1650.00 },
         { name: "Wedding Cake", quantity: "750g", price: 2300.00 }

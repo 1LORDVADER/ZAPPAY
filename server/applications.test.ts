@@ -35,7 +35,7 @@ describe('Applications Router', () => {
           yearsInBusiness: 5,
           currentSuppliers: 'Various local farms',
           monthlyVolume: '500 lbs',
-          targetStrains: 'Blue Dream, OG Kush',
+          targetStrains: 'OG Kush, Gorilla Glue',
         })
       ).resolves.not.toThrow();
     });
