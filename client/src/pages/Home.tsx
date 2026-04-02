@@ -5,9 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
-import { ShoppingCart, Search, Leaf, Package, Zap, Star, Building2, Truck, MapPin, ArrowRight } from "lucide-react";
+import { ShoppingCart, Search, Leaf, Package, Zap, Star, Building2, Truck, MapPin, ArrowRight, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
+import { getLoginUrl } from "@/const";
 import { motion } from "framer-motion";
 import { getGuestCartCount } from "@/lib/cartPersistence";
 import { StateSelector } from "@/components/StateSelector";
@@ -222,6 +223,23 @@ export default function Home() {
                 Learn How It Works
               </Button>
             </Link>
+            {isAuthenticated ? (
+              <Link href="/norris">
+                <Button size="lg" className="bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 shadow-lg shadow-emerald-700/20">
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  Ask Norris
+                </Button>
+              </Link>
+            ) : (
+              <Button
+                size="lg"
+                className="bg-emerald-700 hover:bg-emerald-600 text-white font-semibold px-8 shadow-lg shadow-emerald-700/20"
+                onClick={() => { window.location.href = getLoginUrl(); }}
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                Ask Norris (Sign In)
+              </Button>
+            )}
           </motion.div>
 
           {/* Search Bar */}

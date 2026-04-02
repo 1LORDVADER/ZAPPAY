@@ -622,3 +622,12 @@ ZAPPAY is a payment processor and transaction facilitator — not a marketplace 
 - [x] supplierQuotes table created in DB (supplierId, productId, requesterName, email, phone, company, deliveryState, quantity, notes, status)
 - [x] submitQuote and adminListQuotes procedures added to suppliersRouter
 - [x] 43/43 tests passing, 0 TypeScript errors
+
+## Session: April 1, 2026 — Auth-Gated Features
+
+- [ ] Admin Quotes Dashboard (/admin/quotes) — admin-only, shows all incoming quote requests with status management
+- [ ] Norris AI strain advisor — auth-gated, entry point on homepage hero and product listings
+- [ ] Partner Portal in mobile hamburger menu — auth-gated, shows Supplier Dashboard and Apply links
+- [ ] Auth gate: quote request form in Grower Marketplace modal requires login
+- [ ] Auth gate: Norris advisor requires login
+- [ ] Auth gate: Partner Portal mobile nav requires login

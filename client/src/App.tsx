@@ -45,6 +45,8 @@ import SupplierDashboard from "@/pages/SupplierDashboard";
 import GrowerMarketplace from "@/pages/GrowerMarketplace";
 import SupplierBrandPage from "@/pages/SupplierBrandPage";
 import AdminSuppliers from "@/pages/AdminSuppliers";
+import AdminQuotes from "@/pages/AdminQuotes";
+import NorrisAdvisor from "@/pages/NorrisAdvisor";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -85,6 +87,8 @@ function Router() {
       <Route path="/join" component={JoinLanding} />
       <Route path="/admin/waitlist" component={AdminWaitlist} />
       <Route path="/admin/suppliers" component={AdminSuppliers} />
+      <Route path="/admin/quotes" component={AdminQuotes} />
+      <Route path="/norris" component={NorrisAdvisor} />
       <Route path="/supplier/apply" component={SupplierApply} />
       <Route path="/supplier/dashboard" component={SupplierDashboard} />
       <Route path="/grower-marketplace" component={GrowerMarketplace} />

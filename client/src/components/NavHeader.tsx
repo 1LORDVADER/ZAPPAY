@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -21,6 +22,9 @@ import {
   User,
   Leaf,
   LayoutDashboard,
+  Menu,
+  X,
+  Sparkles,
 } from "lucide-react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
@@ -36,6 +40,7 @@ interface NavHeaderProps {
 
 export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
   const { user, isAuthenticated, logout } = useAuth();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   // Fetch cart count if not provided
@@ -202,6 +207,12 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-slate-700" />
                   <DropdownMenuItem asChild>
+                    <Link href="/admin/quotes" className="flex items-center gap-2 text-slate-200 hover:text-white cursor-pointer">
+                      <Package className="h-4 w-4" /> Quote Requests
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="bg-slate-700" />
+                  <DropdownMenuItem asChild>
                     <Link href="/admin/waitlist" className="flex items-center gap-2 text-yellow-300 hover:text-yellow-200 cursor-pointer font-medium">
                       <User className="h-4 w-4" /> Waitlist
                     </Link>
@@ -209,6 +220,15 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
+
+            {/* Ask Norris — auth-gated desktop link */}
+            {isAuthenticated ? (
+              <Link href="/norris">
+                <Button variant="ghost" size="sm" className="text-green-300 hover:text-green-200 hover:bg-white/10 gap-1">
+                  <Sparkles className="h-3.5 w-3.5" /> Ask Norris
+                </Button>
+              </Link>
+            ) : null}
 
             {/* Partner Portal dropdown */}
             <DropdownMenu>
@@ -247,6 +267,15 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
               </Link>
             )}
           </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden text-white hover:text-red-400 p-1"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-2">
@@ -343,6 +372,119 @@ export function NavHeader({ showCart = true, cartCount }: NavHeaderProps) {
           </div>
         </div>
       </div>
+
+      {/* Mobile slide-down menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-[#1a3356] border-t border-white/10 px-4 py-4 space-y-1">
+          <Link href="/" onClick={() => setMobileOpen(false)}>
+            <div className="text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">Browse</div>
+          </Link>
+          <Link href="/pricing" onClick={() => setMobileOpen(false)}>
+            <div className="text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">Pricing</div>
+          </Link>
+          <Link href="/how-it-works" onClick={() => setMobileOpen(false)}>
+            <div className="text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">How It Works</div>
+          </Link>
+          <Link href="/advertise" onClick={() => setMobileOpen(false)}>
+            <div className="text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">Advertise</div>
+          </Link>
+
+          {/* Norris — auth-gated */}
+          {isAuthenticated ? (
+            <Link href="/norris" onClick={() => setMobileOpen(false)}>
+              <div className="flex items-center gap-2 text-green-300 text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+                <Sparkles className="h-4 w-4" /> Ask Norris
+              </div>
+            </Link>
+          ) : (
+            <div
+              className="flex items-center gap-2 text-slate-400 text-sm py-2 px-3 rounded-lg cursor-pointer hover:bg-white/10"
+              onClick={() => { window.location.href = getLoginUrl(); }}
+            >
+              <Sparkles className="h-4 w-4" /> Ask Norris (Sign In)
+            </div>
+          )}
+
+          {/* Partner Portal */}
+          <div className="border-t border-white/10 pt-2 mt-2">
+            <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider px-3 pb-1">Partner Portal</div>
+            <Link href="/supplier/apply" onClick={() => setMobileOpen(false)}>
+              <div className="flex items-center gap-2 text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+                <Leaf className="h-4 w-4 text-green-400" /> Become a Supplier
+              </div>
+            </Link>
+            {isAuthenticated && (
+              <Link href="/supplier/dashboard" onClick={() => setMobileOpen(false)}>
+                <div className="flex items-center gap-2 text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+                  <LayoutDashboard className="h-4 w-4" /> Supplier Dashboard
+                </div>
+              </Link>
+            )}
+            <Link href="/grower-marketplace" onClick={() => setMobileOpen(false)}>
+              <div className="flex items-center gap-2 text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+                <Package className="h-4 w-4" /> Grower Marketplace
+              </div>
+            </Link>
+          </div>
+
+          {/* Apply Now */}
+          <div className="border-t border-white/10 pt-2 mt-2">
+            <div className="text-slate-400 text-xs font-semibold uppercase tracking-wider px-3 pb-1">Apply Now</div>
+            <Link href="/farmer/register" onClick={() => setMobileOpen(false)}>
+              <div className="flex items-center gap-2 text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+                <Sprout className="h-4 w-4 text-green-500" /> Licensed Farmer
+              </div>
+            </Link>
+            <Link href="/dispensary-application" onClick={() => setMobileOpen(false)}>
+              <div className="flex items-center gap-2 text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+                <Store className="h-4 w-4 text-orange-400" /> Dispensary Partner
+              </div>
+            </Link>
+            <Link href="/transportation/driver-register" onClick={() => setMobileOpen(false)}>
+              <div className="flex items-center gap-2 text-white text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+                <Truck className="h-4 w-4 text-blue-400" /> Transportation Driver
+              </div>
+            </Link>
+          </div>
+
+          {/* Admin (admin only) */}
+          {user?.role === "admin" && (
+            <div className="border-t border-white/10 pt-2 mt-2">
+              <div className="text-yellow-400 text-xs font-semibold uppercase tracking-wider px-3 pb-1">Admin</div>
+              <Link href="/admin/applications" onClick={() => setMobileOpen(false)}>
+                <div className="text-yellow-300 text-sm py-2 px-3 rounded-lg hover:bg-white/10">Applications</div>
+              </Link>
+              <Link href="/admin/suppliers" onClick={() => setMobileOpen(false)}>
+                <div className="text-yellow-300 text-sm py-2 px-3 rounded-lg hover:bg-white/10">Supplier Review</div>
+              </Link>
+              <Link href="/admin/quotes" onClick={() => setMobileOpen(false)}>
+                <div className="text-yellow-300 text-sm py-2 px-3 rounded-lg hover:bg-white/10">Quote Requests</div>
+              </Link>
+              <Link href="/admin/analytics" onClick={() => setMobileOpen(false)}>
+                <div className="text-yellow-300 text-sm py-2 px-3 rounded-lg hover:bg-white/10">Analytics</div>
+              </Link>
+            </div>
+          )}
+
+          {/* Auth */}
+          <div className="border-t border-white/10 pt-3 mt-2">
+            {isAuthenticated ? (
+              <button
+                onClick={() => { logout(); setMobileOpen(false); }}
+                className="w-full text-left text-red-400 text-sm py-2 px-3 rounded-lg hover:bg-white/10"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <a href={getLoginUrl()} className="block">
+                <div className="bg-red-600 text-white text-sm py-2 px-3 rounded-lg text-center font-medium">
+                  Login / Sign Up
+                </div>
+              </a>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

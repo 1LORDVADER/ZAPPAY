@@ -7,6 +7,7 @@ import { salesRouter } from "./salesRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { recommendationsRouter } from "./recommendationsRouter";
 import { suppliersRouter } from "./suppliersRouter";
+import { norrisRouter } from "./norrisRouter";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -16,6 +17,7 @@ export const appRouter = router({
   sales: salesRouter,
   recommendations: recommendationsRouter,
   suppliers: suppliersRouter,
+  norris: norrisRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

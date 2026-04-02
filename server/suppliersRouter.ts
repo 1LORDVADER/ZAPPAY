@@ -458,8 +458,8 @@ export const suppliersRouter = router({
       return { success: true };
     }),
 
-  // ── Public: submit quote request ───────────────────────────────────────────
-  submitQuote: publicProcedure
+  // ── Protected: submit quote request (requires login) ────────────────────────
+  submitQuote: protectedProcedure
     .input(z.object({
       supplierId: z.number().int(),
       productId: z.number().int(),
@@ -505,4 +505,53 @@ export const suppliersRouter = router({
       .where(eq(supplierQuotes.supplierId, supplier.id))
       .orderBy(desc(supplierQuotes.createdAt));
   }),
+
+  // ── Admin: list all quote requests ──────────────────────────────────────────────
+  adminListQuotes: protectedProcedure
+    .input(z.object({
+      status: z.enum(["pending", "responded", "closed"]).optional(),
+      limit: z.number().int().min(1).max(100).default(50),
+      offset: z.number().int().min(0).default(0),
+    }).optional())
+    .query(async ({ ctx, input }) => {
+      if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+      const db = await dbc();
+      const { limit = 50, offset = 0 } = input ?? {};
+      const rows = await db
+        .select({
+          quote: supplierQuotes,
+          supplierName: suppliers.businessName,
+          supplierSlug: suppliers.slug,
+        })
+        .from(supplierQuotes)
+        .leftJoin(suppliers, eq(supplierQuotes.supplierId, suppliers.id))
+        .orderBy(desc(supplierQuotes.createdAt))
+        .limit(limit)
+        .offset(offset);
+      const statusFilter = input?.status;
+      const filtered = statusFilter
+        ? rows.filter((r) => r.quote.status === statusFilter)
+        : rows;
+      return filtered.map((r) => ({
+        ...r.quote,
+        supplierName: r.supplierName ?? "Unknown",
+        supplierSlug: r.supplierSlug ?? "",
+      }));
+    }),
+
+  // ── Admin: update quote status ──────────────────────────────────────────────────
+  adminUpdateQuoteStatus: protectedProcedure
+    .input(z.object({
+      quoteId: z.number().int(),
+      status: z.enum(["pending", "responded", "closed"]),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+      const db = await dbc();
+      await db
+        .update(supplierQuotes)
+        .set({ status: input.status })
+        .where(eq(supplierQuotes.id, input.quoteId));
+      return { success: true };
+    }),
 });
