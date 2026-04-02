@@ -105,6 +105,12 @@ export const suppliersRouter = router({
           supplierName: suppliers.businessName,
           supplierSlug: suppliers.slug,
           supplierLogoUrl: suppliers.logoUrl,
+          supplierCity: suppliers.city,
+          supplierState: suppliers.state,
+          supplierNationwide: suppliers.nationwide,
+          supplierContactEmail: suppliers.contactEmail,
+          supplierContactPhone: suppliers.contactPhone,
+          supplierWebsite: suppliers.websiteUrl,
         })
         .from(supplierProducts)
         .innerJoin(
